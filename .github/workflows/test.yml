@@ -1,13 +1,21 @@
-name: Test
-on: push
+name: Notification on PR
+
+on:
+  pull_request:
+    branches: [ master, staging, feature/discord ]
+
 jobs:
-  page_components_test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
-      - run: yarn install --frozen-lockfile
-      - run: yarn test
+    - name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        DISCORD_USERNAME: 뽁 bot
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'A new PR has been created at front-project'
+    - name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
