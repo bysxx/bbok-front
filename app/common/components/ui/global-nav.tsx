@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { AiFillGithub } from 'react-icons/ai';
 
 function GlobalNav() {
   return (
@@ -9,16 +8,7 @@ function GlobalNav() {
       </div>
 
       <div className="flex justify-end gap-x-2 text-gray-500">
-        <Link href="/example">Example</Link>
-        <a
-          className="ml-2 flex items-center gap-x-1"
-          href="https://github.com/bysxx/next-ts-template-tailwind"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <AiFillGithub />
-          <span>Source Code</span>
-        </a>
+        <Link href="/test">Test</Link>
       </div>
     </nav>
   );

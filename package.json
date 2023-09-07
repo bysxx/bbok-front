@@ -1,14 +1,12 @@
 {
-  "name": "next-ts-template-fullstack-bysxx",
+  "name": "bbok-front",
   "version": "0.1.0",
   "engines": {
     "node": ">=16.0.0"
   },
-  "description": "Fullstack Next.js + TypeScript Template",
-  "author": "bysxx <0415white@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bysxx/next13-ts-template-fullstack"
+    "url": "https://github.com/bysxx/bbok-front"
   },
   "license": "MIT",
   "scripts": {
@@ -24,7 +22,6 @@
     "autoprefixer": "10.4.14",
     "axios": "^0.27.2",
     "classnames": "^2.3.2",
-    "mongoose": "^7.3.4",
     "next": "13.4.9",
     "postcss": "^8.4.21",
     "react": "18.2.0",
@@ -64,5 +61,5 @@
     "prettier": "^2.8.1",
     "typescript": "4.7.3"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@3.6.3"
 }
