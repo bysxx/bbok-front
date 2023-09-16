@@ -4,4 +4,65 @@
 
 * {
   box-sizing: border-box;
+  font-family: Pretendard;
+}
+
+.text-heading {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -2%;
+}
+
+.text-title-1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -2%;
+}
+
+.text-title-2 {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -2%;
+}
+
+.text-title-3 {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -2%;
+}
+
+.text-body-1 {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -1%;
+}
+
+.text-body-2 {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -1%;
+}
+
+.text-body-3 {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -1%;
+}
+
+.text-body-4 {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -1%;
+}
+
+.text-caption-1 {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -1%;
+}
+
+.text-caption-2 {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0%;
 }
