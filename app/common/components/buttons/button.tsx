@@ -19,7 +19,7 @@ const Button = ({ text, disabled = false, size, onClick, border = false }: Butto
     <div className={border ? `shadow-button px-6 py-4 pb-6 flex items-center` : ''}>
       <button
         type="button"
-        className={`bg-${disabled ? 'gray-20' : 'orange'} text-white hover:bg-orange-hover ${sizeClass} rounded-xl font-semibold text-lg leading-[18px]`}
+        className={`bg-orange-1 disabled:bg-gray-20 disabled:text-gray-35 text-white hover:bg-orange-hover ${sizeClass} rounded-xl font-semibold text-lg leading-[18px] h-[52px]`}
         disabled={disabled}
         onClick={onClick}
       >

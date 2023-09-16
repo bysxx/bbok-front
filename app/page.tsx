@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Button, ButtonOption,SignInButton } from '@components/buttons';
+import { Button, ButtonOption, SignInButton } from '@components/buttons';
 import CheckBox from '@components/check-box';
 import DatePicker from '@components/date-picker';
 import DiaryField from '@components/diary-field';
@@ -50,6 +50,14 @@ export default function MainPage() {
       {/*Button Main Medium*/}
       <div className="m-2">
         <Button size='medium' onClick={() => {}} text="친구생성" />
+      </div>
+
+      <div className="m-2">
+        <Button size='large' border={true} onClick={() => {}} text="다음" />
+      </div>
+
+      <div className="m-2">
+        <Button size='large' border={true} disabled={true} onClick={() => {}} text="다음" />
       </div>
 
       {/*Sign in button*/}
