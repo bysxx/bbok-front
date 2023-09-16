@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Button, ButtonOption, MainButton, SignInButton } from '@components/buttons';
+import { Button, ButtonOption,SignInButton } from '@components/buttons';
 import CheckBox from '@components/check-box';
 import DatePicker from '@components/date-picker';
 import DiaryField from '@components/diary-field';
