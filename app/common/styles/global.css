@@ -66,3 +66,11 @@
   font-weight: 400;
   letter-spacing: 0%;
 }
+
+.triangle {
+  width: 0px;
+  height: 0px;
+  border-top: calc( 8px * 1.732 ) solid #FF802D;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
