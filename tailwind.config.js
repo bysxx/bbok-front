@@ -31,7 +31,9 @@ module.exports = {
           5: '#FFE7D8',
           hover: '#CS2B17',
         },
-        yellow: 'FFF9E9',
+        red:'#FFDFCA',
+        yellow: '#FFF9E9',
+        login: '#FEE500',
         green: '71C89E',
         success: '#3988FF',
         success2: '53BD6A',
@@ -41,6 +43,7 @@ module.exports = {
       },
       boxShadow: {
         bottom: '0 6px 13px 0px rgba(0, 0, 0, 0.15)',
+        button: '0px -9px 13px 0px #00000026',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
