@@ -10,7 +10,7 @@ const SignInButton = ({ onClick }: SignInProps) => {
   return (
     <button
       type="button"
-      className="bg-login flex w-[326px] items-center justify-center text-black h-14 rounded-xl font-semibold text-lg leading-[18px] not-italic"
+      className="flex h-14 w-[326px] items-center justify-center rounded-xl bg-login text-lg font-semibold not-italic leading-[18px] text-black hover:shadow-lg active:opacity-[0.85]"
       onClick={onClick}
     >
       <Image src={kakao} alt="" className="mr-2" />

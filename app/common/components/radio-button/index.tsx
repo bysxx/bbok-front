@@ -16,7 +16,7 @@ const RadioButton = ({ isChecked, setIsChecked }: RadioButtonProps) => {
           isChecked ? 'border-gray-45' : 'border-gray-25'
         } flex items-center justify-center`}
       >
-        {isChecked && <div className="rounded-full bg-orange-3 h-2 w-2" />}
+        {isChecked && <div className="h-2 w-2 rounded-full bg-orange-3" />}
       </div>
     </div>
   );

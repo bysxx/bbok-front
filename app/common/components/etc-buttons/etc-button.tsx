@@ -30,7 +30,7 @@ const EtcButton = ({ type, onClick }: EtcProps) => {
     <button
       className={`${
         type === 'plus' ? 'h-[52px] w-[311px]' : 'h-12 w-[326px]'
-      } ${backgroundColor} ${textColor} text-base font-semibold rounded-xl pl-5 pr-3 leading-4`}
+      } ${backgroundColor} ${textColor} rounded-xl pl-5 pr-3 text-base font-semibold leading-4`}
       onClick={onClick}
     >
       <div className={`${info}`}>

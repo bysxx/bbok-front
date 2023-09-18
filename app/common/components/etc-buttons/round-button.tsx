@@ -20,7 +20,7 @@ const RoundButton = ({ onClick, type, label }: RoundProps) => {
   const { backgroundColor, hoverColor, textColor } = options[type];
   return (
     <button
-      className={`${backgroundColor} ${hoverColor} ${textColor} rounded-[39px] px-[13px] text-xs font-medium py-2`}
+      className={`${backgroundColor} ${hoverColor} ${textColor} rounded-[39px] px-[13px]  py-2 text-center text-xs font-medium leading-none hover:shadow-sm active:opacity-[0.85]`}
       onClick={onClick}
     >
       {label}

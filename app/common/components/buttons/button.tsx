@@ -9,17 +9,17 @@ interface ButtonProps {
 }
 
 const sizeClasses = {
-  medium: 'w-[276px]',
-  large: 'w-[326px]',
+  large: 'w-[326px] text-xl font-medium leading-5 tracking-tighter',
+  medium: 'w-[276px] text-base font-medium leading-4 tracking-tighter',
 };
 
 const Button = ({ text, disabled = false, size, onClick, border = false }: ButtonProps) => {
   const sizeClass = sizeClasses[size];
   return (
-    <div className={border ? `shadow-button px-6 py-4 pb-6 flex items-center` : ''}>
+    <div className={border ? `flex items-center px-6 py-4 pb-6 shadow-button` : ''}>
       <button
         type="button"
-        className={`bg-orange-1 disabled:bg-gray-20 disabled:text-gray-35 text-white hover:bg-orange-hover ${sizeClass} rounded-xl font-semibold text-lg leading-[18px] h-[52px]`}
+        className={`bg-orange-1 text-white hover:bg-orange-hover disabled:bg-gray-20 disabled:text-gray-35 ${sizeClass} h-[52px] rounded-xl hover:shadow-lg active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none`}
         disabled={disabled}
         onClick={onClick}
       >
