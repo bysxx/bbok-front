@@ -5,16 +5,14 @@ import { useCallback, useState } from 'react';
 
 import BadCheckList from './bad-checklist';
 import CheckListTitle from './checklist-title';
-import GoodCheckList from './good-checlist';
 
 const CheckListPage = () => {
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  const [type, setType] = useState<'bad' | 'good'>('bad');
+  const type = 'bad';
   const [count, setCount] = useState<number>(0);
   // 사용자가 체크한 bad list
   const [badCheckList, setBadCheckList] = useState<string[]>([]);
-  // 사용자가 체크한 good list
-  const [goodCheckList, setGoodCheckList] = useState<string[]>([]);
+  /// / 사용자가 체크한 good list
+  // const [goodCheckList, setGoodCheckList] = useState<string[]>([]);
 
   // bad list 업데이트 하는 함수
   const handleSetBadCheckList = useCallback(
@@ -26,13 +24,13 @@ const CheckListPage = () => {
   );
 
   // good list 업데이트 함수
-  const handleSetGoodCheckList = useCallback(
-    (value: string[]) => {
-      setGoodCheckList(value);
-      setCount(value.length);
-    },
-    [setGoodCheckList, setCount],
-  );
+  // const handleSetGoodCheckList = useCallback(
+  //  (value: string[]) => {
+  //    setGoodCheckList(value);
+  //    setCount(value.length);
+  //  },
+  //  [setGoodCheckList, setCount],
+  // );
 
   return (
     <div className="flex h-full flex-col">
@@ -40,7 +38,6 @@ const CheckListPage = () => {
         <CheckListTitle type={type} />
         <h2 className={`text-body-4 mt-1 ${count === 5 ? 'text-orange-2' : 'text-gray-20'} `}>{count}/5</h2>
         {type === 'bad' && <BadCheckList badCheckList={badCheckList} setBadCheckList={handleSetBadCheckList} />}
-        {type === 'good' && <GoodCheckList goodCheckList={goodCheckList} setGoodCheckList={handleSetGoodCheckList} />}
       </div>
 
       {/* 하단 footer 버튼 */}
