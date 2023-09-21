@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body>
         <div className="flex w-full justify-center">
-          <div className="min-h-screen w-full max-w-md shadow-lg">
+          <div className="min-h-screen w-full max-w-[375px] shadow-lg">
             {children}
             <Footer />
           </div>
