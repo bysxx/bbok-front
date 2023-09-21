@@ -16,7 +16,7 @@ const SearchBar = ({ input, setInput, onClick }: SearchBarProps) => {
         <input
           type="input"
           id="default-search"
-          className="block w-full border border-none bg-gray-10 py-[11px] pl-[12px] text-gray-70 focus:outline-0 rounded-lg"
+          className="block w-full rounded-lg border border-none bg-gray-10 py-[11px] pl-[12px] text-gray-70 focus:outline-0"
           placeholder="키워드로 일화를 검색할 수 있어요"
           onChange={handleSearchInputChange}
           value={input}

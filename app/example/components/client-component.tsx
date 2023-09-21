@@ -1,6 +1,5 @@
 'use client';
 
-import { getExample } from 'app/common/requests/example';
 import { useState } from 'react';
 
 export default function ClientComponent() {
@@ -14,12 +13,12 @@ export default function ClientComponent() {
       <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" onClick={countUp}>
         Count Up
       </button>
-      <button
+      {/* <button
         className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
         onClick={() => getExample().then((data) => alert(data.title))}
       >
         Get Request Test
-      </button>
+      </button> */}
     </div>
   );
 }
