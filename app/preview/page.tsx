@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, ButtonOption, SignInButton } from '@components/buttons';
-import CheckBox from '@components/check-box';
 import DatePicker from '@components/date-picker';
 import DiaryField from '@components/diary-field';
 import { RoundButton } from '@components/etc-buttons';
@@ -14,7 +13,7 @@ import { useState } from 'react';
 
 const PreviewPage = () => {
   // 체크박스 상태
-  const [isChecked, setIsChecked] = useState(false);
+
   // 라디오 버튼 상태
   const [radioChecked, setRadioChecked] = useState(false);
   // toggle 버튼 상태
@@ -64,9 +63,9 @@ const PreviewPage = () => {
       </div>
 
       {/* CheckBox */}
-      <div className="m-2">
+      {/* <div className="m-2">
         <CheckBox isChecked={isChecked} setIsChecked={setIsChecked} />
-      </div>
+      </div> */}
 
       {/* Radio Button */}
       <div className="m-2">

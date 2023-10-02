@@ -16,7 +16,7 @@ const sizeClasses = {
 const Button = ({ text, disabled = false, size, onClick, border = false }: ButtonProps) => {
   const sizeClass = sizeClasses[size];
   return (
-    <div className={border ? `flex items-center px-6 py-4 pb-6 shadow-button` : ''}>
+    <div className={border ? `flex w-full items-center justify-center bg-white px-6 py-4 pb-6 shadow-button` : ''}>
       <button
         type="button"
         className={`bg-orange-1 text-white hover:bg-orange-hover disabled:bg-gray-20 disabled:text-gray-35 ${sizeClass} h-[52px] rounded-xl hover:shadow-lg active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none`}
