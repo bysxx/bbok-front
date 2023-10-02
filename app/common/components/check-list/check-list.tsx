@@ -10,7 +10,7 @@ interface CheckListProps {
 const CheckList = ({ label, selected, onClick }: CheckListProps) => {
   return (
     <div
-      className={`flex h-[52px] w-[312px] items-center rounded-lg border ${
+      className={`flex h-[52px] w-full items-center rounded-lg border ${
         selected ? 'border-orange-2 bg-orange-6' : 'border-gray-15'
       }  px-4 py-[15px]`}
     >

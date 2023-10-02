@@ -68,27 +68,28 @@ const CheckListPage = () => {
     //  .map((list) => {
     //    return list.contents;
     //  });
+    // console.log(finalBadList, finalGoodList);
     // => finalBadList, finalGoodList api
   };
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="flex h-full w-full flex-1 flex-col justify-center">
+      <div className="mb-6 flex h-full w-full flex-1 flex-col justify-center">
         <ChangeTopBar type={type} setType={setType} />
-        <div className="ml-8">
+        <div className="ml-8 w-full">
           <CheckListTitle type={type} />
           {/* 체크한 리스트 아이템 개수 */}
           {type === 'first' && (
             <h2
               className={`text-body-4 mt-1 ${
-                allBadList.filter((bad) => bad.isChecked === true).length ? 'text-orange-2' : 'text-gray-20'
+                allBadList.filter((bad) => bad.isChecked === true).length === 5 ? 'text-orange-2' : 'text-gray-20'
               } `}
             >{`${allBadList.filter((bad) => bad.isChecked === true).length}/5`}</h2>
           )}
           {type === 'second' && (
             <h2
               className={`text-body-4 mt-1 ${
-                allGoodList.filter((good) => good.isChecked === true).length ? 'text-orange-2' : 'text-gray-20'
+                allGoodList.filter((good) => good.isChecked === true).length === 5 ? 'text-orange-2' : 'text-gray-20'
               } `}
             >{`${allGoodList.filter((good) => good.isChecked === true).length}/5`}</h2>
           )}
@@ -109,7 +110,7 @@ const CheckListPage = () => {
       </div>
 
       {/* 하단 footer 버튼 */}
-      <div className="sticky bottom-[50px] h-[93px]">
+      <div className="sticky bottom-0 h-[90px] w-full">
         {type === 'first' && (
           <Button
             disabled={allBadList.filter((bad) => bad.isChecked === true).length !== 5}

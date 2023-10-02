@@ -39,7 +39,7 @@ const TypeCheckList = ({ type, allList, setAllList, length }: TypeCheckListProps
   };
 
   return (
-    <div className="mt-[38px]">
+    <div className="mt-[38px] w-full px-8">
       <h5 className="text-body-3 mb-4">{`내 기준에 ${type === 'bad' ? '벗어난' : '적합한'} 친구`}</h5>
 
       {allList.slice(0, length).map((item) => (

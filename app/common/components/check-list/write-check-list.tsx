@@ -28,17 +28,17 @@ const WriteCheckList = ({ selected, onClick, value, setValue, onDelete, allList 
 
   return (
     <div
-      className={`flex h-[52px] w-[312px] items-center rounded-lg border ${
+      className={`flex h-[52px] w-full items-center rounded-lg border ${
         selected ? 'border-orange-2 bg-orange-6' : 'border-gray-15'
       }  px-4 py-[15px]`}
     >
       <CheckBox selected={selected} onClick={onClick} />
-      <div className="ml-[10px]">
-        <div className="flex items-center justify-center">
+      <div className="ml-[10px] w-full">
+        <div className="flex w-full items-center">
           <input
             className={`${
               selected ? 'bg-orange-6' : ''
-            } w-[216px] border-b border-gray-20 focus:border-b focus:border-gray-20 focus:outline-0 active:border-b`}
+            } w-full border-b border-gray-20 focus:border-b focus:border-gray-20 focus:outline-0 active:border-b`}
             placeholder="나만의 기준을 입력하세요"
             value={value.contents}
             onChange={handleCheckListChange}

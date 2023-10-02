@@ -28,8 +28,8 @@ const EtcButton = ({ type, onClick }: EtcProps) => {
 
   return (
     <button
-      className={`${
-        type === 'plus' ? 'h-[52px] w-[311px]' : 'h-12 w-[326px]'
+      className={`w-full ${
+        type === 'plus' ? 'h-[52px]' : 'h-12'
       } ${backgroundColor} ${textColor} rounded-xl pl-5 pr-3 text-base font-semibold leading-4 hover:shadow-md active:opacity-[0.85]`}
       onClick={onClick}
     >
