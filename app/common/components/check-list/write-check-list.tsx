@@ -10,6 +10,7 @@ interface WriteCheckListProps {
   onDelete: () => void;
   allList: ICheckItem[];
 }
+
 const WriteCheckList = ({ selected, onClick, value, setValue, onDelete, allList }: WriteCheckListProps) => {
   // 체크리스트 아이템 작성할 때
   const handleCheckListChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,7 +1,6 @@
 'use client';
 
-import CheckList from '@components/check-list';
-import WriteCheckList from '@components/check-list/write-check-list';
+import { CheckList, WriteCheckList } from '@components/check-list';
 import { EtcButton } from '@components/etc-buttons';
 import type { ICheckItem } from '@interfaces/checklist';
 import { v4 as uuidv4 } from 'uuid';

@@ -58,19 +58,17 @@ const CheckListPage = () => {
 
   // good, bad 체크리스트 완료했을 때
   const handleCheckListComplete = () => {
-    const finalBadList = allBadList
-      .filter((bad) => bad.isChecked === true)
-      .map((list) => {
-        return list.contents;
-      });
-    const finalGoodList = allGoodList
-      .filter((good) => good.isChecked === true)
-      .map((list) => {
-        return list.contents;
-      });
-
-    console.log('badCheckList', finalBadList);
-    console.log('goodCheckList', finalGoodList);
+    // const finalBadList = allBadList
+    //  .filter((bad) => bad.isChecked === true)
+    //  .map((list) => {
+    //    return list.contents;
+    //  });
+    // const finalGoodList = allGoodList
+    //  .filter((good) => good.isChecked === true)
+    //  .map((list) => {
+    //    return list.contents;
+    //  });
+    // => finalBadList, finalGoodList api
   };
 
   return (
