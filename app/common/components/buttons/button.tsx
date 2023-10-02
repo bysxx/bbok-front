@@ -9,8 +9,8 @@ interface ButtonProps {
 }
 
 const sizeClasses = {
-  large: 'w-[326px] text-xl font-medium leading-5 tracking-tighter',
-  medium: 'w-[276px] text-base font-medium leading-4 tracking-tighter',
+  large: 'w-full text-xl font-medium leading-5 tracking-tighter',
+  medium: 'w-full text-base font-medium leading-4 tracking-tighter',
 };
 
 const Button = ({ text, disabled = false, size, onClick, border = false }: ButtonProps) => {
