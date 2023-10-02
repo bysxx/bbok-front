@@ -3,7 +3,7 @@
 import { CheckList, WriteCheckList } from '@components/check-list';
 import { EtcButton } from '@components/etc-buttons';
 import type { ICheckItem } from '@interfaces/checklist';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-uuid';
 
 interface TypeCheckListProps {
   type: 'good' | 'bad';
@@ -29,7 +29,7 @@ const TypeCheckList = ({ type, allList, setAllList, length }: TypeCheckListProps
 
   // 체크리스트 아이템을 생성할 때
   const handlePlusCountClick = () => {
-    const updateItem: ICheckItem[] = [...allList, { key: uuidv4(), contents: '', isChecked: false }];
+    const updateItem: ICheckItem[] = [...allList, { key: uuid(), contents: '', isChecked: false }];
     setAllList(updateItem);
   };
 

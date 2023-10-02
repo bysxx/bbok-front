@@ -4,7 +4,7 @@ import { Button } from '@components/buttons';
 import { ChangeTopBar } from '@components/top-bar';
 import type { ICheckItem } from '@interfaces/checklist';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-uuid';
 
 import CheckListTitle from './checklist-title';
 import TypeCheckList from './type-checklist';
@@ -39,7 +39,7 @@ const CheckListPage = () => {
 
   const initialBadList: ICheckItem[] = badCheckLists.map((item: string) => {
     return {
-      key: uuidv4(),
+      key: uuid(),
       contents: item,
       isChecked: false,
     };
@@ -47,7 +47,7 @@ const CheckListPage = () => {
 
   const initialGoodList: ICheckItem[] = goodCheckLists.map((item: string) => {
     return {
-      key: uuidv4(),
+      key: uuid(),
       contents: item,
       isChecked: false,
     };
