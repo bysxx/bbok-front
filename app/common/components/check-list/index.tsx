@@ -1,9 +1,8 @@
-'use client';
-
 import CheckBox from '@components/check-box';
+import React from 'react';
 
 interface CheckListProps {
-  label: string;
+  label?: string;
   selected: boolean;
   onClick: () => void;
 }
@@ -16,7 +15,9 @@ const CheckList = ({ label, selected, onClick }: CheckListProps) => {
       }  px-4 py-[15px]`}
     >
       <CheckBox selected={selected} onClick={onClick} />
-      <h5 className={`text-body-2 ml-[10px] ${selected ? 'text-orange-1' : 'text-gray-45'}`}>{label}</h5>
+      <div className="ml-[10px]">
+        <h5 className={`text-body-2 ${selected ? 'text-orange-1' : 'text-gray-45'}`}>{label}</h5>
+      </div>
     </div>
   );
 };

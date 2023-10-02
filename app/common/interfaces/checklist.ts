@@ -3,3 +3,9 @@ export interface ICheckList {
   badChecklist: string[];
   goodChecklist: string[];
 }
+
+export interface ICheckItem {
+  key: string;
+  contents: string;
+  isChecked: boolean;
+}
