@@ -73,8 +73,8 @@ const CheckListPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="mb-6 flex h-full w-full flex-1 flex-col justify-center">
+    <div className="flex h-full flex-col">
+      <div className="flex flex-1 flex-col">
         <ChangeTopBar type={type} setType={setType} />
         <div className="ml-8 w-full">
           <CheckListTitle type={type} />
@@ -110,7 +110,7 @@ const CheckListPage = () => {
       </div>
 
       {/* 하단 footer 버튼 */}
-      <div className="sticky bottom-0 h-[90px] w-full">
+      <footer className="sticky bottom-0 mt-24 h-[90px]">
         {type === 'first' && (
           <Button
             disabled={allBadList.filter((bad) => bad.isChecked === true).length !== 5}
@@ -131,7 +131,7 @@ const CheckListPage = () => {
             border={true}
           />
         )}
-      </div>
+      </footer>
     </div>
   );
 };
