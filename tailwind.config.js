@@ -46,6 +46,8 @@ module.exports = {
       boxShadow: {
         bottom: '0 6px 13px 0px rgba(0, 0, 0, 0.15)',
         button: '0px -9px 13px 0px #00000026',
+        'friend-card': '0px 7px 0px 0px #EF6106',
+        'locked-friend-card': '0px 7px 0px 0px #1B1B1B',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
