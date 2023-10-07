@@ -1,16 +1,12 @@
-import { useCallback } from 'react';
+'use client';
 
 interface RadioButtonProps {
   isChecked: boolean;
-  setIsChecked: (value: boolean) => void;
+  setIsChecked: () => void;
 }
 const RadioButton = ({ isChecked, setIsChecked }: RadioButtonProps) => {
-  const handleRadioButtonChange = useCallback(() => {
-    setIsChecked(!isChecked);
-  }, [isChecked]);
-
   return (
-    <div className="flex cursor-pointer items-center" onClick={handleRadioButtonChange}>
+    <div className="flex cursor-pointer items-center" onClick={setIsChecked}>
       <div
         className={`h-[18px] w-[18px] rounded-full border-[2px] ${
           isChecked ? 'border-gray-45' : 'border-gray-25'

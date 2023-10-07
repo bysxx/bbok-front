@@ -1,10 +1,11 @@
 'use client';
 
 import { EtcButton, RoundButton } from '@components/etc-buttons';
-import DiaryTopBar from '@components/top-bar/diary-top-bar';
+import { DiaryTopBar } from '@components/top-bar';
 import Footer from '@components/ui/footer';
 import ModalFooter from '@components/ui/modal-footer';
 import { Inter } from 'next/font/google';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -50,12 +51,16 @@ const MainPage = () => {
                     <h5>먼저 친구를 생성해보세요 tooltip 자리</h5>
                   </div>
                 )}
-                <RoundButton type="orange" onClick={() => {}} label="친구 생성" />
+                <Link href={'./friend'}>
+                  <RoundButton type="orange" onClick={() => {}} label="친구 생성" />
+                </Link>
               </div>
             </div>
           </div>
           <div className="mx-6 mt-[53px]">
-            <EtcButton type="friend" onClick={() => {}} />
+            <Link href={'./criteria'}>
+              <EtcButton type="friend" onClick={() => {}} />
+            </Link>
           </div>
         </div>
 

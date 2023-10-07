@@ -1,13 +1,13 @@
 'use client';
 
 import { Button } from '@components/buttons';
+import { CheckCount, TypeCheckList } from '@components/check-list-page';
 import { ChangeTopBar } from '@components/top-bar';
 import type { ICheckItem } from '@interfaces/checklist';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import uuid from 'react-uuid';
 
 import CheckListTitle from './checklist-title';
-import TypeCheckList from './type-checklist';
 
 const CheckListPage = () => {
   const [type, setType] = useState<'first' | 'second'>('first');
@@ -53,8 +53,21 @@ const CheckListPage = () => {
     };
   });
   const [allBadList, setAllBadList] = useState<ICheckItem[]>(initialBadList);
-
   const [allGoodList, setAllGoodList] = useState<ICheckItem[]>(initialGoodList);
+
+  const handleSetAllBadList = useCallback(
+    (item: ICheckItem[]) => {
+      setAllBadList(item);
+    },
+    [setAllBadList],
+  );
+
+  const handleSetAllGoodList = useCallback(
+    (item: ICheckItem[]) => {
+      setAllGoodList(item);
+    },
+    [setAllGoodList],
+  );
 
   // good, bad 체크리스트 완료했을 때
   const handleCheckListComplete = () => {
@@ -79,30 +92,22 @@ const CheckListPage = () => {
         <div className="ml-8 w-full">
           <CheckListTitle type={type} />
           {/* 체크한 리스트 아이템 개수 */}
-          {type === 'first' && (
-            <h2
-              className={`text-body-4 mt-1 ${
-                allBadList.filter((bad) => bad.isChecked === true).length === 5 ? 'text-orange-2' : 'text-gray-20'
-              } `}
-            >{`${allBadList.filter((bad) => bad.isChecked === true).length}/5`}</h2>
-          )}
-          {type === 'second' && (
-            <h2
-              className={`text-body-4 mt-1 ${
-                allGoodList.filter((good) => good.isChecked === true).length === 5 ? 'text-orange-2' : 'text-gray-20'
-              } `}
-            >{`${allGoodList.filter((good) => good.isChecked === true).length}/5`}</h2>
-          )}
+          <CheckCount list={type === 'first' ? allBadList : allGoodList} />
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="mt-[38px] flex flex-col items-center justify-center">
           {type === 'first' && (
-            <TypeCheckList type="bad" allList={allBadList} setAllList={setAllBadList} length={badCheckLists.length} />
+            <TypeCheckList
+              type="bad"
+              allList={allBadList}
+              setAllList={handleSetAllBadList}
+              length={badCheckLists.length}
+            />
           )}
           {type === 'second' && (
             <TypeCheckList
               type="good"
               allList={allGoodList}
-              setAllList={setAllGoodList}
+              setAllList={handleSetAllGoodList}
               length={goodCheckLists.length}
             />
           )}
