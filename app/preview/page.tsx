@@ -6,16 +6,11 @@ import DiaryField from '@components/diary-field';
 import { RoundButton } from '@components/etc-buttons';
 import EtcButton from '@components/etc-buttons/etc-button';
 import Input from '@components/input';
-import RadioButton from '@components/radio-button';
 import SearchBar from '@components/search-bar';
 import ToggleButton from '@components/toggle-button';
 import { useState } from 'react';
 
 const PreviewPage = () => {
-  // 체크박스 상태
-
-  // 라디오 버튼 상태
-  const [radioChecked, setRadioChecked] = useState(false);
   // toggle 버튼 상태
   const [toggleChecked, setToggleChecked] = useState(false);
   // datepicker 상태
@@ -68,9 +63,9 @@ const PreviewPage = () => {
       </div> */}
 
       {/* Radio Button */}
-      <div className="m-2">
+      {/* <div className="m-2">
         <RadioButton isChecked={radioChecked} setIsChecked={setRadioChecked} />
-      </div>
+      </div> */}
 
       {/* etc Button 3 */}
       <div className="m-2">

@@ -4,6 +4,8 @@ export interface IFriendBody {
   character: string;
 }
 
+export type ICharacter = 'kaka' | 'sisi';
+
 // 등록한 친구 리스트 type
 interface Friend {
   id: string;
