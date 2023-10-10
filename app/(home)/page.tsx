@@ -8,8 +8,8 @@ import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import FriendCard from './home/friends/friend-card';
-import LockedFriendCard from './home/friends/locked-friend-card';
+import FriendCard from './friends/friend-card';
+import LockedFriendCard from './friends/locked-friend-card';
 
 const inter = Inter({ subsets: ['latin'] });
 
