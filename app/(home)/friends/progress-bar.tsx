@@ -3,14 +3,16 @@
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
+const HEART_WIDTH = 32;
+
 export default function FriendProgressBar({ percent }: { percent: number }) {
   const fillRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     if (fillRef.current && imgRef.current) {
-      fillRef.current.style.width = `${percent + 16}px`;
-      imgRef.current.style.left = `${percent}px`;
+      fillRef.current.style.width = `${percent}px`;
+      imgRef.current.style.left = `${percent - HEART_WIDTH / 2}px`;
     }
   }, [fillRef, imgRef, percent]);
 
@@ -27,8 +29,8 @@ export default function FriendProgressBar({ percent }: { percent: number }) {
         className="absolute -top-2.5 transition-all duration-1000"
         src="/images/home/heart.svg"
         alt=""
-        width={32}
-        height={32}
+        width={HEART_WIDTH}
+        height={HEART_WIDTH}
       />
     </div>
   );
