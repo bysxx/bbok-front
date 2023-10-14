@@ -8,6 +8,9 @@ import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import FriendCard from './friends/friend-card';
+import LockedFriendCard from './friends/locked-friend-card';
+
 const inter = Inter({ subsets: ['latin'] });
 
 const MainPage = () => {
@@ -35,6 +38,10 @@ const MainPage = () => {
       <main className={`${inter.className} flex h-full w-full flex-col bg-yellow`}>
         <div className="flex flex-1 flex-col">
           <DiaryTopBar label={'MY일기장'} settingClick={() => {}} />
+          <div className="flex gap-4 overflow-scroll px-9 py-4">
+            <FriendCard />
+            <LockedFriendCard />
+          </div>
           <div className="mx-9 mt-9 rounded-3xl bg-white pb-[53px] pt-[51px]">
             <div className="flex flex-col items-center justify-center">
               <img src={'/images/illustration/empty-state-kaka.svg'} alt="" />

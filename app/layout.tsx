@@ -1,4 +1,5 @@
 import '@styles/global.css';
+import '@styles/font.css';
 
 export const metadata = {
   title: 'BBOK',
