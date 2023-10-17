@@ -1,5 +1,5 @@
 import type { ILoginToken } from '@interfaces/login';
-import create from 'zustand';
+import { create } from 'zustand';
 
 interface State {
   userData: ILoginToken | null;
