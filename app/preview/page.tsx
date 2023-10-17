@@ -49,7 +49,7 @@ const PreviewPage = () => {
 
       {/* Sign in button */}
       <div className="m-2">
-        <SignInButton onClick={() => {}} />
+        <SignInButton />
       </div>
 
       {/* Toggle Button */}
