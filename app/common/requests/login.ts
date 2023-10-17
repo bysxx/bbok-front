@@ -1,16 +1,19 @@
 import type { IExpireToken, ILoginToken } from '@interfaces/login';
+import { baseUrl } from '@libs/config';
+
+import type { ResponseDTO } from './common';
 
 // 사용자가 정보를 입력하면, redirect url로 넘어갑니다
 export const loginKakao = async () => {
-  const res = await fetch('/kakao/login');
+  const res = await fetch(`${baseUrl}/kakao/login`);
   return res.json();
 };
 
 // 카카오 정보를 저장하고 해당 멤버 Id와 accessToken, refreshToken을 받기
 // 인자에 카카오에서 받을 인카코드 넣어주기
-export const getLoginToken = async (code: string) => {
-  const res = await fetch(`/account/kakao/result?code=${code}`);
-  const data: ILoginToken = await res.json();
+export const getLoginToken = async (code: string, redirectUri: string) => {
+  const res = await fetch(`${baseUrl}/kakao?code=${code}&redirectUri=${redirectUri}`);
+  const data: ResponseDTO<ILoginToken> = await res.json();
   return data;
 };
 

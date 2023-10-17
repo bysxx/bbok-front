@@ -1,5 +1,7 @@
 import { SignInButton } from '@components/buttons';
-import Link from 'next/link';
+import { baseUrl } from '@libs/config';
+
+const redirectUri = 'http://localhost:3000/kakao';
 
 export default function LoginPage() {
   return (
@@ -13,9 +15,11 @@ export default function LoginPage() {
         <img className="mt-6" src="/images/icon/logo.svg" alt="" />
       </section>
 
-      <Link className="z-10" href="/kakao">
+      {/* <Link className="z-10" href="/kakao"> */}
+      <a href={`${baseUrl}/kakao/login?redirectUri=${redirectUri}`}>
         <SignInButton />
-      </Link>
+      </a>
+      {/* </Link> */}
     </main>
   );
 }
