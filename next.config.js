@@ -3,7 +3,7 @@ const nextConfig = {
   eslint: {
     dirs: ['.'],
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   compiler: {
     removeConsole: false,
   },
