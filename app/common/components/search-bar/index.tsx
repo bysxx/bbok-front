@@ -11,7 +11,7 @@ const SearchBar = ({ input, setInput, onClick }: SearchBarProps) => {
     setInput(e.target.value);
   }, []);
   return (
-    <form className="h-[36px] w-[303px]">
+    <form className="h-full w-full">
       <div className="relative">
         <input
           type="input"

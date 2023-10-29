@@ -58,7 +58,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line global-require
+  plugins: [require('tailwind-scrollbar-hide')],
   extend: {
     display: ['group-hover'],
   },
