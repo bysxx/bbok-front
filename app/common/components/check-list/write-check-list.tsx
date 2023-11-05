@@ -15,10 +15,10 @@ const WriteCheckList = ({ selected, onClick, value, setValue, onDelete, allList 
   // 체크리스트 아이템 작성할 때
   const handleCheckListChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updateItem = allList.map((i) => {
-      if (i.key === value.key) {
+      if (i.id === value.id) {
         return {
           ...i,
-          contents: e.target.value,
+          criteria: e.target.value,
         };
       }
       return i;
@@ -40,10 +40,10 @@ const WriteCheckList = ({ selected, onClick, value, setValue, onDelete, allList 
               selected ? 'bg-orange-6' : ''
             } w-full border-b border-gray-20 focus:border-b focus:border-gray-20 focus:outline-0 active:border-b`}
             placeholder="나만의 기준을 입력하세요"
-            value={value.contents}
+            value={value.criteria}
             onChange={handleCheckListChange}
           />
-          <img src={'/images/icon/ui/trash.svg'} className="ml-[8px] cursor-pointer" onClick={onDelete} alt="" />
+          <img src={'/images/icon/ui/delete.svg'} className="ml-[8px] cursor-pointer" onClick={onDelete} alt="" />
         </div>
       </div>
     </div>

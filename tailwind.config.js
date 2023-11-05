@@ -44,6 +44,7 @@ module.exports = {
         brownModal: '#413A2F',
       },
       boxShadow: {
+        modal: '0px -2px 28px 0px rgba(0, 0, 0, 0.28)',
         bottom: '0 6px 13px 0px rgba(0, 0, 0, 0.15)',
         button: '0px -9px 13px 0px #00000026',
         'friend-card': '0px 7px 0px 0px #EF6106',
@@ -56,9 +57,20 @@ module.exports = {
       height: {
         'screen-footer': 'calc(100vh - 65px)',
       },
+      keyframes: {
+        'bottom-sheet-up': {
+          '0%': { transform: 'translateY(420px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        'bottom-sheet-down': {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(420px)' },
+        },
+      },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line global-require
+  plugins: [require('tailwind-scrollbar-hide')],
   extend: {
     display: ['group-hover'],
   },

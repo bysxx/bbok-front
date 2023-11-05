@@ -11,7 +11,7 @@ const NavTopBar = ({ label, href }: NavTopBarInterface) => {
       <Link href={href}>
         <img src={'/images/icon/ui/back.svg'} alt="" />
       </Link>
-      <h5 className="text-body-1 mr-5 grow text-center font-medium text-gray-70">{label}</h5>
+      <h5 className="mr-5 grow text-center text-lg font-medium text-gray-70">{label}</h5>
     </div>
   );
 };

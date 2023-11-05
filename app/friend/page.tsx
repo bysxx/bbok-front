@@ -2,13 +2,15 @@
 
 import { Button } from '@components/buttons';
 import Input from '@components/input';
-import { CloseTopBar } from '@components/top-bar';
+import { ButtonTopBar } from '@components/top-bar';
 import type { ICharacter } from '@interfaces/friend';
+import { useRouter } from 'next/navigation';
 import { useCallback, useMemo, useState } from 'react';
 
 import FriendCharacter from './friend-character';
 
 const FriendPage = () => {
+  const router = useRouter();
   const characterList: ICharacter[] = ['kaka', 'sisi'];
   // 선택한 캐릭터
   const [character, setCharacter] = useState<ICharacter>('kaka');
@@ -58,7 +60,13 @@ const FriendPage = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <CloseTopBar label={'친구생성'} href={'/'} />
+      <ButtonTopBar
+        label={'친구생성'}
+        name={'닫기'}
+        onClick={() => {
+          router.push('/');
+        }}
+      />
       <div className="flex flex-1 flex-col px-6 pt-6">
         <h2 className="mb-4 text-[17px] font-medium text-gray-65">캐릭터 선택</h2>
         <div className="flex items-center">
