@@ -5,7 +5,7 @@ export interface ICheckList {
 }
 
 export interface ICheckItem {
-  key: string;
-  contents: string;
-  isChecked: boolean;
+  id: string | number;
+  criteria: string;
+  checked: boolean;
 }

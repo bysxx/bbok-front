@@ -9,6 +9,7 @@ import DiaryList from './diary-list';
 import TagButtonsList from './tag-buttons-list';
 
 const DiaryListPage = () => {
+  // 검색 string 옵션
   const [input, setInput] = useState<string>('');
 
   // 카테고리 옵션
@@ -21,7 +22,7 @@ const DiaryListPage = () => {
   );
 
   // 시간 순 옵션
-  const [time, setTime] = useState<string>('최신순');
+  const [time, setTime] = useState<string>('desc');
   const handleSetTime = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
       setTime(event.target.value);
@@ -32,13 +33,12 @@ const DiaryListPage = () => {
   return (
     <div className="flex h-full flex-col">
       <div className="flex flex-1 flex-col">
-        <div className="flex items-center justify-center py-[10px] pl-4 pr-6">
-          <img src="/images/icon/ui/back.svg" alt="" className="mr-2" />
-          <SearchBar input={input} setInput={setInput} onClick={() => {}} />
+        <div className="py-[10px]">
+          <SearchBar input={input} setInput={setInput} onClick={() => {}} href="./" />
         </div>
         <TagButtonsList selectTag={tag} setSelectTag={handleSetTag} />
 
-        <DiaryList time={time} setTime={handleSetTime} />
+        <DiaryList time={time} setTime={handleSetTime} input={input} tags={tag} />
       </div>
       <div className="sticky bottom-0 mt-24 h-[90px]">
         <Button text="일화작성" onClick={() => {}} size="large" border={true} />

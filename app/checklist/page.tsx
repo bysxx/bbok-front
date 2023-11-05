@@ -12,6 +12,7 @@ import CheckListTitle from './checklist-title';
 const CheckListPage = () => {
   const [type, setType] = useState<'first' | 'second'>('first');
 
+  // api로 목록 받아오기
   const badCheckLists = [
     '나를 배려하지 않는 친구',
     '신뢰를 잃는 행동을 하는 친구',
@@ -39,17 +40,17 @@ const CheckListPage = () => {
 
   const initialBadList: ICheckItem[] = badCheckLists.map((item: string) => {
     return {
-      key: uuid(),
-      contents: item,
-      isChecked: false,
+      id: uuid(),
+      criteria: item,
+      checked: false,
     };
   });
 
   const initialGoodList: ICheckItem[] = goodCheckLists.map((item: string) => {
     return {
-      key: uuid(),
-      contents: item,
-      isChecked: false,
+      id: uuid(),
+      criteria: item,
+      checked: false,
     };
   });
   const [allBadList, setAllBadList] = useState<ICheckItem[]>(initialBadList);
@@ -71,17 +72,17 @@ const CheckListPage = () => {
 
   // good, bad 체크리스트 완료했을 때
   const handleCheckListComplete = () => {
-    // const finalBadList = allBadList
-    //  .filter((bad) => bad.isChecked === true)
-    //  .map((list) => {
-    //    return list.contents;
-    //  });
-    // const finalGoodList = allGoodList
-    //  .filter((good) => good.isChecked === true)
-    //  .map((list) => {
-    //    return list.contents;
-    //  });
-    // console.log(finalBadList, finalGoodList);
+    const finalBadList = allBadList
+      .filter((bad) => bad.checked === true)
+      .map((list) => {
+        return list.criteria;
+      });
+    const finalGoodList = allGoodList
+      .filter((good) => good.checked === true)
+      .map((list) => {
+        return list.criteria;
+      });
+    console.log(finalBadList, finalGoodList);
     // => finalBadList, finalGoodList api
   };
 
@@ -101,6 +102,7 @@ const CheckListPage = () => {
               allList={allBadList}
               setAllList={handleSetAllBadList}
               length={badCheckLists.length}
+              use="make"
             />
           )}
           {type === 'second' && (
@@ -109,6 +111,7 @@ const CheckListPage = () => {
               allList={allGoodList}
               setAllList={handleSetAllGoodList}
               length={goodCheckLists.length}
+              use="make"
             />
           )}
         </div>
@@ -118,7 +121,7 @@ const CheckListPage = () => {
       <footer className="sticky bottom-0 mt-24 h-[90px]">
         {type === 'first' && (
           <Button
-            disabled={allBadList.filter((bad) => bad.isChecked === true).length !== 5}
+            disabled={allBadList.filter((bad) => bad.checked === true).length !== 5}
             text="다음"
             onClick={() => {
               setType('second');
@@ -129,7 +132,7 @@ const CheckListPage = () => {
         )}
         {type === 'second' && (
           <Button
-            disabled={allGoodList.filter((good) => good.isChecked === true).length !== 5}
+            disabled={allGoodList.filter((good) => good.checked === true).length !== 5}
             text="완료"
             onClick={handleCheckListComplete}
             size="large"
