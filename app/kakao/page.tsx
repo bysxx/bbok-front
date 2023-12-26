@@ -11,13 +11,13 @@ import { useEffect } from 'react';
 export default function KakaoPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { setUserData } = useUserStore();
+  const { setUserData, userData } = useUserStore();
 
   useEffect(() => {
     if (searchParams.get('code')) {
       getLoginToken(searchParams.get('code') as string, redirectUri).then((res) => {
         setUserData(res.data);
-        router.push('/');
+        router.replace('/');
       });
     }
   }, [searchParams]);
@@ -25,6 +25,7 @@ export default function KakaoPage() {
   return (
     <main className="flex h-screen items-center justify-center">
       <Loading />
+      {userData?.accessToken}
     </main>
   );
 }
