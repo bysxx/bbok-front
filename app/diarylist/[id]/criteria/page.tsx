@@ -1,8 +1,7 @@
 'use client';
 
-import { Button } from '@components/buttons';
-import { TypeCheckList } from '@components/check-list-page';
 import { NavTopBar } from '@components/top-bar';
+import { AllCheckList, CheckListLayout } from '@components/ui/check-list';
 import type { ICheckItem } from '@interfaces/checklist';
 import { useCallback, useState } from 'react';
 
@@ -45,34 +44,27 @@ const DiaryListCriteriaModify = () => {
     [allCheckList],
   );
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex flex-1 flex-col">
-        <NavTopBar label="선택 기준 수정" href="./" />
-        <h2 className="px-8 text-[17px] font-medium text-gray-70">{`내 기준에 ${
-          type === 'bad' ? '벗어난' : '적합한'
-        } 친구`}</h2>
-        <div className="mt-[34px]">
-          <TypeCheckList
-            type={type}
-            allList={allCheckList}
-            setAllList={handleSetModifyCheckList}
-            length={goodChecklist.length}
-          />
-        </div>
-      </div>
-      <footer className="sticky bottom-0 mt-24 h-[90px]">
-        <Button
-          disabled={allCheckList.filter((c) => c.checked === true).length === 0}
-          text="수정"
-          onClick={() => {
-            // 통신 & 페이지 이동
-            console.log(allCheckList);
-          }}
-          size="large"
-          border={true}
+    <CheckListLayout
+      disabled={allCheckList.filter((c) => c.checked === true).length === 0}
+      onClick={() => {
+        // 통신 & 페이지 이동
+        console.log(allCheckList);
+      }}
+      text="수정"
+    >
+      <NavTopBar label="선택 기준 수정" href="./" />
+      <h2 className="px-8 text-[17px] font-medium text-gray-70">{`내 기준에 ${
+        type === 'bad' ? '벗어난' : '적합한'
+      } 친구`}</h2>
+      <div className="mt-[34px]">
+        <AllCheckList
+          type={type}
+          allList={allCheckList}
+          setAllList={handleSetModifyCheckList}
+          length={goodChecklist.length}
         />
-      </footer>
-    </div>
+      </div>
+    </CheckListLayout>
   );
 };
 export default DiaryListCriteriaModify;

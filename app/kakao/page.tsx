@@ -17,7 +17,10 @@ export default function KakaoPage() {
     if (searchParams.get('code')) {
       getLoginToken(searchParams.get('code') as string, redirectUri).then((res) => {
         setUserData(res.data);
-        router.replace('/');
+        // 처음 사용하는 유저이면
+        router.replace('/checklist');
+        // 이전에도 사용한 유저이면
+        // router.replace('/');
       });
     }
   }, [searchParams]);
