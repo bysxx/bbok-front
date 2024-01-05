@@ -2,6 +2,7 @@
 
 import Loading from '@components/ui/loading';
 import { redirectUri } from '@libs/config';
+import { setCookie } from '@libs/cookie';
 import { getLoginToken } from '@requests/login';
 import { useUserStore } from '@stores/useUserStore';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -17,6 +18,9 @@ export default function KakaoPage() {
     if (searchParams.get('code')) {
       getLoginToken(searchParams.get('code') as string, redirectUri).then((res) => {
         setUserData(res.data);
+        // 일단 쿠키에 저장
+        setCookie('accessToken', res.data.accessToken, {});
+        setCookie('refreshToken', res.data.refreshToken, {});
         // 처음 사용하는 유저이면
         router.replace('/checklist');
         // 이전에도 사용한 유저이면
