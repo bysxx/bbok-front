@@ -1,61 +1,53 @@
 'use client';
 
-import { Button } from '@components/buttons';
-import { CheckCount, TypeCheckList } from '@components/check-list-page';
 import { ChangeTopBar } from '@components/top-bar';
-import type { ICheckItem } from '@interfaces/checklist';
+import { AllCheckList, CheckListCount, CheckListLayout } from '@components/ui/check-list';
+import Loading from '@components/ui/loading';
+import useCustomRouter from '@hooks/useCustomRouter';
+import type { ICheckItem, ICheckList } from '@interfaces/checklist';
+import { getAllCheckList, useAddCheckList } from '@requests/checklist';
 import { useCallback, useState } from 'react';
+import { useQuery } from 'react-query';
 import uuid from 'react-uuid';
 
 import CheckListTitle from './checklist-title';
 
 const CheckListPage = () => {
+  // 해당 페이지 전환하는 상태(벗어난 => first, 적합한 => second)
   const [type, setType] = useState<'first' | 'second'>('first');
+  const [allBadList, setAllBadList] = useState<ICheckItem[]>([]);
+  const [allGoodList, setAllGoodList] = useState<ICheckItem[]>([]);
 
-  // api로 목록 받아오기
-  const badCheckLists = [
-    '나를 배려하지 않는 친구',
-    '신뢰를 잃는 행동을 하는 친구',
-    '나의 자존감을 낮추는 친구',
-    '유머 코드가 맞지 않는 친구',
-    '나에게 너무 많이 의존하는 친구',
-    '이성에 집착하는 친구',
-    '자기 과시와 자랑이 심한 친구',
-    '종교적·정치적 가치관이 다른 친구',
-    '의사소통 스타일이 맞지 않는 친구',
-    '나를 가르치려고 하는 친구',
-  ];
-  const goodCheckLists = [
-    '이야기를 잘 듣고 공감해주는 친구',
-    '존중하고 배려하는 마음을 가진 친구',
-    '관심사가 비슷한 친구',
-    '신뢰할 수 있는 친구',
-    '긍정적인 친구',
-    '성격이 잘 맞는 친구',
-    '둘이서 만나도 편한 친구',
-    '나를 편견없이 대해주는 친구',
-    '배울 점이 많은 친구',
-    '내 자존감을 올려주는 친구',
-  ];
+  let initialBadList: ICheckItem[] = [];
+  let initialGoodList: ICheckItem[] = [];
 
-  const initialBadList: ICheckItem[] = badCheckLists.map((item: string) => {
-    return {
-      id: uuid(),
-      criteria: item,
-      checked: false,
-    };
+  const { data, isLoading } = useQuery<ICheckList>('checklist', getAllCheckList, {
+    onSuccess: (res) => {
+      initialBadList = res?.badChecklist.map((item: string) => {
+        return {
+          id: uuid(),
+          criteria: item,
+          checked: false,
+        };
+      });
+      setAllBadList(initialBadList);
+
+      initialGoodList = res?.goodChecklist.map((item: string) => {
+        return {
+          id: uuid(),
+          criteria: item,
+          checked: false,
+        };
+      });
+      setAllGoodList(initialGoodList);
+    },
   });
 
-  const initialGoodList: ICheckItem[] = goodCheckLists.map((item: string) => {
-    return {
-      id: uuid(),
-      criteria: item,
-      checked: false,
-    };
-  });
-  const [allBadList, setAllBadList] = useState<ICheckItem[]>(initialBadList);
-  const [allGoodList, setAllGoodList] = useState<ICheckItem[]>(initialGoodList);
+  const { mutation: addCheckList } = useAddCheckList();
 
+  const { push } = useCustomRouter();
+
+  // 페이지에 보여지는 리스트들 update
   const handleSetAllBadList = useCallback(
     (item: ICheckItem[]) => {
       setAllBadList(item);
@@ -70,77 +62,89 @@ const CheckListPage = () => {
     [setAllGoodList],
   );
 
+  // 적합한 기준, 벗어난 기준 페이지 전환 상태 update
+  const handleSetType = useCallback(
+    (value: 'first' | 'second') => {
+      setType(value);
+    },
+    [setType],
+  );
+
   // good, bad 체크리스트 완료했을 때
   const handleCheckListComplete = () => {
-    const finalBadList = allBadList
+    const badChecklist = allBadList
       .filter((bad) => bad.checked === true)
       .map((list) => {
         return list.criteria;
       });
-    const finalGoodList = allGoodList
+    const goodChecklist = allGoodList
       .filter((good) => good.checked === true)
       .map((list) => {
         return list.criteria;
       });
-    console.log(finalBadList, finalGoodList);
-    // => finalBadList, finalGoodList api
+    const body = {
+      badChecklist,
+      goodChecklist,
+    };
+    addCheckList.mutate(body);
+    push('/');
   };
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex flex-1 flex-col">
-        <ChangeTopBar type={type} setType={setType} />
-        <div className="ml-8 w-full">
-          <CheckListTitle type={type} />
-          {/* 체크한 리스트 아이템 개수 */}
-          <CheckCount list={type === 'first' ? allBadList : allGoodList} />
+    <>
+      {isLoading && (
+        <div>
+          <Loading />
         </div>
-        <div className="mt-[38px] flex flex-col items-center justify-center">
-          {type === 'first' && (
-            <TypeCheckList
-              type="bad"
-              allList={allBadList}
-              setAllList={handleSetAllBadList}
-              length={badCheckLists.length}
-              use="make"
-            />
-          )}
-          {type === 'second' && (
-            <TypeCheckList
-              type="good"
-              allList={allGoodList}
-              setAllList={handleSetAllGoodList}
-              length={goodCheckLists.length}
-              use="make"
-            />
-          )}
-        </div>
-      </div>
-
-      {/* 하단 footer 버튼 */}
-      <footer className="sticky bottom-0 mt-24 h-[90px]">
-        {type === 'first' && (
-          <Button
-            disabled={allBadList.filter((bad) => bad.checked === true).length !== 5}
-            text="다음"
-            onClick={() => {
-              setType('second');
-            }}
-            size="large"
-            border={true}
-          />
-        )}
-        {type === 'second' && (
-          <Button
-            disabled={allGoodList.filter((good) => good.checked === true).length !== 5}
-            text="완료"
-            onClick={handleCheckListComplete}
-            size="large"
-            border={true}
-          />
-        )}
-      </footer>
-    </div>
+      )}
+      {!isLoading && data && (
+        <CheckListLayout
+          disabled={
+            type === 'first'
+              ? allBadList.filter((bad) => bad.checked === true).length !== 5
+              : allGoodList.filter((good) => good.checked === true).length !== 5
+          }
+          onClick={
+            type === 'first'
+              ? () => {
+                  handleSetType('second');
+                }
+              : handleCheckListComplete
+          }
+          text={type === 'first' ? '다음' : '완료'}
+        >
+          <ChangeTopBar type={type} setType={setType} />
+          <div className="ml-8 w-full">
+            <CheckListTitle type={type} />
+            <CheckListCount list={type === 'first' ? allBadList : allGoodList} />
+          </div>
+          <div className="mt-[38px] flex flex-col items-center justify-center">
+            {(() => {
+              if (type === 'first') {
+                return (
+                  <AllCheckList
+                    type="bad"
+                    allList={allBadList}
+                    setAllList={handleSetAllBadList}
+                    length={data?.badChecklist.length}
+                    use="make"
+                  />
+                );
+              }
+              return (
+                <AllCheckList
+                  type="good"
+                  allList={allGoodList}
+                  setAllList={handleSetAllGoodList}
+                  length={data?.goodChecklist.length}
+                  use="make"
+                />
+              );
+            })()}
+          </div>
+        </CheckListLayout>
+      )}
+    </>
   );
 };
 export default CheckListPage;
