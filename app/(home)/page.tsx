@@ -1,7 +1,7 @@
 'use client';
 
+import { RoundButton } from '@components/buttons';
 import BoxButton from '@components/buttons/box-button';
-import { RoundButton } from '@components/etc-buttons';
 import { DiaryTopBar } from '@components/top-bar';
 import Footer from '@components/ui/footer';
 import ModalFooter from '@components/ui/modal-footer';
@@ -60,7 +60,7 @@ const MainPage = () => {
                   </div>
                 )}
                 <Link href={'./friend'}>
-                  <RoundButton type="orange" onClick={() => {}} label="친구 생성" />
+                  <RoundButton type="secondary" onClick={() => {}} label="친구 생성" />
                 </Link>
               </div>
             </div>

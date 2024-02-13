@@ -1,6 +1,6 @@
 'use client';
 
-import { RoundButton } from '@components/etc-buttons';
+import { RoundButton } from '@components/buttons';
 
 interface DiaryTopBarProps {
   label: string;
@@ -10,7 +10,7 @@ const DiaryTopBar = ({ label, settingClick }: DiaryTopBarProps) => {
   return (
     <div className="flex w-full items-center justify-between py-4 pl-7 pr-4">
       <h1 className="text-title-1">{label}</h1>
-      <RoundButton label="설정" type="red" onClick={settingClick} />
+      <RoundButton label="설정" type="primary" onClick={settingClick} />
     </div>
   );
 };

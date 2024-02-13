@@ -1,12 +1,11 @@
 'use client';
 
-import { SignInButton, TagButton } from '@components/buttons';
+import { RoundButton, SignInButton, TagButton } from '@components/buttons';
 import BoxButton from '@components/buttons/box-button';
 import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
 import DatePicker from '@components/date-picker';
 import DiaryField from '@components/diary-field';
-import { RoundButton } from '@components/etc-buttons';
 import Input from '@components/input';
 import Modal from '@components/modal';
 import RadioButton from '@components/radio-button';
@@ -130,8 +129,8 @@ const PreviewPage = () => {
 
       {/* round button */}
       <div className="m-2 flex gap-2">
-        <RoundButton onClick={() => {}} type="orange" label="친구생성" />
-        <RoundButton onClick={() => {}} type="red" label="설정" />
+        <RoundButton onClick={() => {}} type="secondary" label="친구생성" />
+        <RoundButton onClick={() => {}} type="primary" label="설정" />
       </div>
       <h1 className="m-2">toggle button</h1>
       {/* Toggle Button */}
