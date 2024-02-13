@@ -1,6 +1,7 @@
 'use client';
 
-import { Button, ButtonOption, SignInButton, TagButton } from '@components/buttons';
+import { Button, SignInButton, TagButton } from '@components/buttons';
+import BoxButton from '@components/buttons/box-button';
 import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
 import DatePicker from '@components/date-picker';
@@ -52,37 +53,39 @@ const PreviewPage = () => {
       <Text color="gray60" typo="title2">
         buttons
       </Text>
-      {/* Button option */}
       <div className="m-2">
-        <ButtonOption label="취소" type="gray" onClick={() => {}} />
+        <BoxButton text="친구 생성" onClick={() => {}} />
       </div>
       <div className="m-2">
-        <ButtonOption label="삭제" type="red" onClick={() => {}} />
-      </div>
-
-      <Text color="gray60" typo="title2">
-        medium 사이즈 buttons
-      </Text>
-      {/* Button */}
-      <div className="m-2">
-        <Button size="medium" onClick={() => {}} text="친구 생성" />
+        <BoxButton text="친구 생성" border={true} onClick={() => {}} />
       </div>
       <div className="m-2">
-        <Button size="medium" border={true} onClick={() => {}} text="친구 생성" />
-      </div>
-
-      <Text color="gray60" typo="title2">
-        large 사이즈 buttons
-      </Text>
-      <div className="m-2">
-        <Button size="large" onClick={() => {}} text="친구 생성" />
-      </div>
-
-      <div className="m-2">
-        <Button size="large" border={true} onClick={() => {}} text="친구 생성" />
+        <BoxButton text="친구 생성" border={true} disabled={true} onClick={() => {}} />
       </div>
       <div className="m-2">
-        <Button size="large" disabled={true} border={true} onClick={() => {}} text="친구 생성" />
+        <BoxButton text="삭제" onClick={() => {}} bg="alert" />
+      </div>
+      <div className="m-2">
+        <BoxButton text="취소" onClick={() => {}} bg="gray15" textColor="gray55" />
+      </div>
+      <div className="m-2">
+        <BoxButton text="일기쓰러 가기" typo="title4" size="large" onClick={() => {}} bg="orange4" />
+      </div>
+      <div className="m-2">
+        <BoxButton text="+나만의 기준추가" onClick={() => {}} bg="orange6" textColor="orange1" />
+      </div>
+      <div className="m-2">
+        <BoxButton text="나의 친구 기준 보기" size="small" onClick={() => {}} bg="orange6" textColor="orange1" />
+      </div>
+      <div className="m-2">
+        <BoxButton size="small" onClick={() => {}} bg="yellow">
+          <div className="flex justify-between pl-5 pr-3">
+            <Text color="orange1" typo="title3">
+              가시를 뽁! 뽑기 (관계 정리하기)
+            </Text>
+            <img src="/images/icon/ui/back-orange.svg" alt="" />
+          </div>
+        </BoxButton>
       </div>
       {/* Sign in button */}
       <div className="m-2">

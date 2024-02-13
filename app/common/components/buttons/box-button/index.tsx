@@ -14,6 +14,7 @@ const BoxButton = ({
   typo = 'title3',
   textColor = 'white',
   size = 'medium',
+  children,
 }: IBoxButtonProps) => {
   return (
     <div className={border ? `flex w-full items-center justify-center bg-white px-6 py-4 pb-6 shadow-button` : ''}>
@@ -26,9 +27,13 @@ const BoxButton = ({
         disabled={disabled}
         onClick={onClick}
       >
-        <Text typo={typo} color={disabled ? 'gray35' : textColor}>
-          {text}
-        </Text>
+        {text && (
+          <Text typo={typo} color={disabled ? 'gray35' : textColor}>
+            {text}
+          </Text>
+        )}
+
+        {children}
       </button>
     </div>
   );
