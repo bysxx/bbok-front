@@ -1,4 +1,4 @@
-import { Button } from '@components/buttons';
+import BoxButton from '@components/buttons/box-button';
 import Link from 'next/link';
 
 import LandingSection from './section';
@@ -33,7 +33,7 @@ export default function LandingPage() {
       </div>
 
       <Link href="/login" className="absolute bottom-6 w-[calc(100%-48px)]">
-        <Button text="일기쓰러 가기" size="medium" />
+        <BoxButton text="일기쓰러 가기" typo="title4" size="large" bg="orange4" />
       </Link>
     </main>
   );

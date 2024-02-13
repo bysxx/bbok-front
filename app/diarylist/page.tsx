@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@components/buttons';
+import BoxButton from '@components/buttons/box-button';
 import SearchBar from '@components/search-bar';
 import type { ChangeEvent } from 'react';
 import { useCallback, useState } from 'react';
@@ -41,7 +41,7 @@ const DiaryListPage = () => {
         <DiaryList time={time} setTime={handleSetTime} input={input} tags={tag} />
       </div>
       <div className="sticky bottom-0 mt-24 h-[90px]">
-        <Button text="일화작성" onClick={() => {}} size="large" border={true} />
+        <BoxButton text="일화작성" border={true} onClick={() => {}} />
       </div>
     </div>
   );

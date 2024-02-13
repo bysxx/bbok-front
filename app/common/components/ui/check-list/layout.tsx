@@ -1,4 +1,4 @@
-import { Button } from '@components/buttons';
+import BoxButton from '@components/buttons/box-button';
 
 interface CheckListLayoutProps {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ function CheckListLayout({ children, disabled, onClick, text }: CheckListLayoutP
     <div className="flex h-full flex-col">
       <div className="flex flex-1 flex-col">{children}</div>
       <footer className="sticky bottom-0 mt-24 h-[90px]">
-        <Button disabled={disabled} text={text} onClick={onClick} size="large" border={true} />
+        <BoxButton disabled={disabled} text={text} border={true} onClick={onClick} />
       </footer>
     </div>
   );

@@ -10,7 +10,7 @@ export interface IBoxButtonProps {
   text?: string;
   disabled?: boolean;
   border?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   bg?: TBackgroundColor;
   typo?: TTypography;
   size?: TButtonSize;

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, SignInButton, TagButton } from '@components/buttons';
+import { SignInButton, TagButton } from '@components/buttons';
 import BoxButton from '@components/buttons/box-button';
 import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
@@ -196,8 +196,7 @@ const PreviewPage = () => {
       <h1 className="m-2">modal</h1>
       {/* modal */}
       <div className="m-7">
-        <Button
-          size="medium"
+        <BoxButton
           onClick={() => {
             setModal(true);
           }}
