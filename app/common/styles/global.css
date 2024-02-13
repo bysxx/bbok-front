@@ -4,5 +4,35 @@
 
 * {
   box-sizing: border-box;
-  font-family: Pretendard;
+  font-family: 'Noto Sans KR'
+}
+
+@font-face {
+  font-family: "Noto Sans Korean";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/NotoSans-Regular.eot?") format("eot"),
+  url("/fonts/NotoSans-Regular.otf") format("opentype"),
+  url("/fonts/NotoSans-Regular.woff") format("woff"),
+  url("/fonts/NotoSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Sans Korean";
+  font-weight: 500;
+  font-style: normal;
+  src: url("/fonts/NotoSans-Medium.eot?") format("eot"),
+  url("/fonts/NotoSans-Medium.otf") format("opentype"),
+  url("/fonts/NotoSans-Medium.woff") format("woff"),
+  url("/fonts/NotoSans-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Sans Korean";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/fonts/NotoSans-Black.eot?") format("eot"),
+  url("/fonts/NotoSans-Black.otf") format("opentype"),
+  url("/fonts/NotoSans-Black.woff") format("woff"),
+  url("/fonts/NotoSans-Black.woff2") format("woff2");
 }
