@@ -6,7 +6,7 @@ import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
 import DatePicker from '@components/date-picker';
 import DiaryField from '@components/diary-field';
-import { EtcButton, RoundButton } from '@components/etc-buttons';
+import { RoundButton } from '@components/etc-buttons';
 import Input from '@components/input';
 import Modal from '@components/modal';
 import RadioButton from '@components/radio-button';
@@ -19,6 +19,7 @@ import { useState } from 'react';
 
 const PreviewPage = () => {
   const [tag, setTag] = useState(false);
+  const [check, setCheck] = useState(false);
   // toggle 버튼 상태
   const [toggleChecked, setToggleChecked] = useState(false);
   // radio button
@@ -110,8 +111,12 @@ const PreviewPage = () => {
 
       <h1 className="m-2">check box</h1>
       <div className="m-4 flex gap-2">
-        <CheckBox selected={true} onClick={() => {}} />
-        <CheckBox selected={false} onClick={() => {}} />
+        <CheckBox
+          selected={check}
+          onClick={() => {
+            setCheck(!check);
+          }}
+        />
       </div>
       <h1 className="m-2">check list</h1>
       <div className="m-2">
@@ -122,16 +127,7 @@ const PreviewPage = () => {
         <CheckList label={'친구 타입1'} selected={true} onClick={() => {}} />
       </div>
       <h1 className="m-2">etc buttons</h1>
-      {/* etc Button */}
-      <div className="m-2">
-        <EtcButton type="friend" onClick={() => {}} />
-      </div>
-      <div className="m-2">
-        <EtcButton type="solve" onClick={() => {}} />
-      </div>
-      <div className="m-2">
-        <EtcButton type="plus" onClick={() => {}} />
-      </div>
+
       {/* round button */}
       <div className="m-2 flex gap-2">
         <RoundButton onClick={() => {}} type="orange" label="친구생성" />
