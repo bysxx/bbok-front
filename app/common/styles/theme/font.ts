@@ -3,6 +3,7 @@ export const typography = {
   title1: 'text-title-1',
   title2: 'text-title-2',
   title3: 'text-title-3',
+  title4: 'text-title-4',
   body1: 'text-body-1',
   body2: 'text-body-2',
   body3: 'text-body-3',

@@ -11,6 +11,7 @@ import Modal from '@components/modal';
 import RadioButton from '@components/radio-button';
 import SearchBar from '@components/search-bar';
 import TagLabel from '@components/tag-label';
+import Text from '@components/text';
 import ToggleButton from '@components/toggle-button';
 import { ButtonTopBar, DiaryTopBar, NavTopBar } from '@components/top-bar';
 import { useState } from 'react';
@@ -39,7 +40,18 @@ const PreviewPage = () => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="m-2">buttons</h1>
+      <Text color="gray60" typo="title2">
+        자신이 생각하는 유형의 중요도 순위를 정해주세요
+      </Text>
+      <Text color="gray60" typo="title3">
+        자신이 생각하는 유형의 중요도 순위를 정해주세요
+      </Text>
+      <Text color="gray60" typo="body1">
+        자신이 생각하는 유형의 중요도 순위를 정해주세요
+      </Text>
+      <Text color="gray60" typo="title2">
+        buttons
+      </Text>
       {/* Button option */}
       <div className="m-2">
         <ButtonOption label="취소" type="gray" onClick={() => {}} />
@@ -47,16 +59,25 @@ const PreviewPage = () => {
       <div className="m-2">
         <ButtonOption label="삭제" type="red" onClick={() => {}} />
       </div>
+
+      <Text color="gray60" typo="title2">
+        medium 사이즈 buttons
+      </Text>
       {/* Button */}
       <div className="m-2">
         <Button size="medium" onClick={() => {}} text="친구 생성" />
       </div>
       <div className="m-2">
-        <Button size="large" onClick={() => {}} text="친구 생성" />
-      </div>
-      <div className="m-2">
         <Button size="medium" border={true} onClick={() => {}} text="친구 생성" />
       </div>
+
+      <Text color="gray60" typo="title2">
+        large 사이즈 buttons
+      </Text>
+      <div className="m-2">
+        <Button size="large" onClick={() => {}} text="친구 생성" />
+      </div>
+
       <div className="m-2">
         <Button size="large" border={true} onClick={() => {}} text="친구 생성" />
       </div>
