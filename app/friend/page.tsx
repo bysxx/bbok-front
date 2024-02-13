@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@components/buttons';
+import BoxButton from '@components/buttons/box-button';
 import Input from '@components/input';
 import { ButtonTopBar } from '@components/top-bar';
 import type { ICharacter } from '@interfaces/friend';
@@ -91,12 +91,7 @@ const FriendPage = () => {
         </div>
       </div>
       <div className="sticky bottom-0 h-[85px] px-6 ">
-        <Button
-          disabled={nameState === 'empty' || nameState === 'error'}
-          text="완료"
-          onClick={handleFriendMake}
-          size="large"
-        />
+        <BoxButton text="완료" disabled={nameState === 'empty' || nameState === 'error'} onClick={handleFriendMake} />
       </div>
     </div>
   );

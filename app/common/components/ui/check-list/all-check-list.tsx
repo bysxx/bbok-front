@@ -3,9 +3,8 @@
 /**
  * @description 모든 체크 리스트 보여주는 컴포넌트
  */
-
+import BoxButton from '@components/buttons/box-button';
 import { CheckList, WriteCheckList } from '@components/check-list';
-import { EtcButton } from '@components/etc-buttons';
 import type { ICheckItem } from '@interfaces/checklist';
 import { useCallback } from 'react';
 import uuid from 'react-uuid';
@@ -82,7 +81,7 @@ function AllCheckList({ use = 'modify', type, allList, setAllList, length }: Typ
               ))}
 
               {allList.length > 0 && allList.length < length + 5 && (
-                <EtcButton type="plus" onClick={handlePlusCountClick} />
+                <BoxButton text="+나만의 기준추가" onClick={handlePlusCountClick} bg="orange6" textColor="orange1" />
               )}
             </>
           );

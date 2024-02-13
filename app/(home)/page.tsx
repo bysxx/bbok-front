@@ -1,6 +1,7 @@
 'use client';
 
-import { EtcButton, RoundButton } from '@components/etc-buttons';
+import { RoundButton } from '@components/buttons';
+import BoxButton from '@components/buttons/box-button';
 import { DiaryTopBar } from '@components/top-bar';
 import Footer from '@components/ui/footer';
 import ModalFooter from '@components/ui/modal-footer';
@@ -59,14 +60,14 @@ const MainPage = () => {
                   </div>
                 )}
                 <Link href={'./friend'}>
-                  <RoundButton type="orange" onClick={() => {}} label="친구 생성" />
+                  <RoundButton type="secondary" onClick={() => {}} label="친구 생성" />
                 </Link>
               </div>
             </div>
           </div>
           <div className="mx-6 mt-[53px]">
             <Link href={'./criteria'}>
-              <EtcButton type="friend" onClick={() => {}} />
+              <BoxButton text="나의 친구 기준 보기" size="small" onClick={() => {}} bg="orange6" textColor="orange1" />
             </Link>
           </div>
         </div>

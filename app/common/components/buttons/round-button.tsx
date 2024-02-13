@@ -1,22 +1,21 @@
 interface RoundProps {
-  type: 'red' | 'orange';
+  type: 'primary' | 'secondary';
   onClick?: () => void;
   label: string;
 }
-
+const options = {
+  primary: {
+    backgroundColor: 'bg-red',
+    textColor: 'text-gray-55',
+    hoverColor: '',
+  },
+  secondary: {
+    backgroundColor: 'bg-orange-1',
+    textColor: 'text-gray-5',
+    hoverColor: 'hover:bg-orange-hover',
+  },
+};
 const RoundButton = ({ onClick, type, label }: RoundProps) => {
-  const options = {
-    red: {
-      backgroundColor: 'bg-red',
-      textColor: 'text-gray-55',
-      hoverColor: '',
-    },
-    orange: {
-      backgroundColor: 'bg-orange-1',
-      textColor: 'text-gray-5',
-      hoverColor: 'hover:bg-orange-hover',
-    },
-  };
   const { backgroundColor, hoverColor, textColor } = options[type];
   return (
     <button

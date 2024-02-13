@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        white: '#FFFFFF',
         gray: {
           5: '#FCFCFC',
           10: '#F9F9F9',
@@ -29,7 +30,7 @@ module.exports = {
           3: '#FF944F',
           4: '#EF6106',
           5: '#FFE7D8',
-          6: '#FFF9E9',
+          6: '#FFDFCA',
           hover: '#C25B17',
         },
         red: '#FFDFCA',

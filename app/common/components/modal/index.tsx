@@ -1,4 +1,4 @@
-import { ButtonOption } from '@components/buttons';
+import BoxButton from '@components/buttons/box-button';
 
 interface ModalProps {
   label: string;
@@ -16,9 +16,10 @@ const Modal = ({ label, onClose, onClick, title, content }: ModalProps) => {
           <h5 className="text-caption-1 text-gray-40">{content}</h5>
         </div>
         <div className="grid w-full grid-cols-2 gap-2 px-3">
-          <ButtonOption type="gray" label="취소" onClick={onClose} />
-          <ButtonOption type="red" label={label} onClick={onClick} />
+          <BoxButton text="취소" onClick={onClose} bg="gray15" textColor="gray55" />
+          <BoxButton text={label} onClick={onClick} bg="alert" />
         </div>
+        <div className="m-2"></div>
       </div>
     </div>
   );

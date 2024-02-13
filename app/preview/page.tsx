@@ -1,21 +1,24 @@
 'use client';
 
-import { Button, ButtonOption, SignInButton, TagButton } from '@components/buttons';
+import { RoundButton, SignInButton, TagButton } from '@components/buttons';
+import BoxButton from '@components/buttons/box-button';
 import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
 import DatePicker from '@components/date-picker';
 import DiaryField from '@components/diary-field';
-import { EtcButton, RoundButton } from '@components/etc-buttons';
 import Input from '@components/input';
 import Modal from '@components/modal';
 import RadioButton from '@components/radio-button';
 import SearchBar from '@components/search-bar';
 import TagLabel from '@components/tag-label';
+import Text from '@components/text';
 import ToggleButton from '@components/toggle-button';
 import { ButtonTopBar, DiaryTopBar, NavTopBar } from '@components/top-bar';
 import { useState } from 'react';
 
 const PreviewPage = () => {
+  const [tag, setTag] = useState(false);
+  const [check, setCheck] = useState(false);
   // toggle 버튼 상태
   const [toggleChecked, setToggleChecked] = useState(false);
   // radio button
@@ -39,29 +42,51 @@ const PreviewPage = () => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="m-2">buttons</h1>
-      {/* Button option */}
+      <Text color="gray60" typo="title2">
+        자신이 생각하는 유형의 중요도 순위를 정해주세요
+      </Text>
+      <Text color="gray60" typo="title3">
+        자신이 생각하는 유형의 중요도 순위를 정해주세요
+      </Text>
+      <Text color="gray60" typo="body1">
+        자신이 생각하는 유형의 중요도 순위를 정해주세요
+      </Text>
+      <Text color="gray60" typo="title2">
+        buttons
+      </Text>
       <div className="m-2">
-        <ButtonOption label="취소" type="gray" onClick={() => {}} />
+        <BoxButton text="친구 생성" onClick={() => {}} />
       </div>
       <div className="m-2">
-        <ButtonOption label="삭제" type="red" onClick={() => {}} />
-      </div>
-      {/* Button */}
-      <div className="m-2">
-        <Button size="medium" onClick={() => {}} text="친구 생성" />
+        <BoxButton text="친구 생성" border={true} onClick={() => {}} />
       </div>
       <div className="m-2">
-        <Button size="large" onClick={() => {}} text="친구 생성" />
+        <BoxButton text="친구 생성" border={true} disabled={true} onClick={() => {}} />
       </div>
       <div className="m-2">
-        <Button size="medium" border={true} onClick={() => {}} text="친구 생성" />
+        <BoxButton text="삭제" onClick={() => {}} bg="alert" />
       </div>
       <div className="m-2">
-        <Button size="large" border={true} onClick={() => {}} text="친구 생성" />
+        <BoxButton text="취소" onClick={() => {}} bg="gray15" textColor="gray55" />
       </div>
       <div className="m-2">
-        <Button size="large" disabled={true} border={true} onClick={() => {}} text="친구 생성" />
+        <BoxButton text="일기쓰러 가기" typo="title4" size="large" onClick={() => {}} bg="orange4" />
+      </div>
+      <div className="m-2">
+        <BoxButton text="+나만의 기준추가" onClick={() => {}} bg="orange6" textColor="orange1" />
+      </div>
+      <div className="m-2">
+        <BoxButton text="나의 친구 기준 보기" size="small" onClick={() => {}} bg="orange6" textColor="orange1" />
+      </div>
+      <div className="m-2">
+        <BoxButton size="small" onClick={() => {}} bg="yellow">
+          <div className="flex justify-between pl-5 pr-3">
+            <Text color="orange1" typo="title3">
+              가시를 뽁! 뽑기 (관계 정리하기)
+            </Text>
+            <img src="/images/icon/ui/back-orange.svg" alt="" />
+          </div>
+        </BoxButton>
       </div>
       {/* Sign in button */}
       <div className="m-2">
@@ -69,19 +94,28 @@ const PreviewPage = () => {
       </div>
       {/* tag button */}
       <div className="m-4 flex gap-2">
-        <TagButton selected={true} label="태그1" onClick={() => {}} />
-        <TagButton selected={false} label="태그1" onClick={() => {}} />
+        <TagButton
+          selected={tag}
+          label="태그1"
+          onClick={() => {
+            setTag(!tag);
+          }}
+        />
       </div>
       <h1 className="m-2">tag label</h1>
       {/* tag label */}
-      <div className="flex-col">
-        <TagLabel label="태그" type="orange" />
-        <TagLabel label="태그" type="gray" />
-      </div>
+
+      <TagLabel label="태그" type="orange" />
+      <TagLabel label="태그" type="gray" />
+
       <h1 className="m-2">check box</h1>
       <div className="m-4 flex gap-2">
-        <CheckBox selected={true} onClick={() => {}} />
-        <CheckBox selected={false} onClick={() => {}} />
+        <CheckBox
+          selected={check}
+          onClick={() => {
+            setCheck(!check);
+          }}
+        />
       </div>
       <h1 className="m-2">check list</h1>
       <div className="m-2">
@@ -92,20 +126,11 @@ const PreviewPage = () => {
         <CheckList label={'친구 타입1'} selected={true} onClick={() => {}} />
       </div>
       <h1 className="m-2">etc buttons</h1>
-      {/* etc Button */}
-      <div className="m-2">
-        <EtcButton type="friend" onClick={() => {}} />
-      </div>
-      <div className="m-2">
-        <EtcButton type="solve" onClick={() => {}} />
-      </div>
-      <div className="m-2">
-        <EtcButton type="plus" onClick={() => {}} />
-      </div>
+
       {/* round button */}
       <div className="m-2 flex gap-2">
-        <RoundButton onClick={() => {}} type="orange" label="친구생성" />
-        <RoundButton onClick={() => {}} type="red" label="설정" />
+        <RoundButton onClick={() => {}} type="secondary" label="친구생성" />
+        <RoundButton onClick={() => {}} type="primary" label="설정" />
       </div>
       <h1 className="m-2">toggle button</h1>
       {/* Toggle Button */}
@@ -172,8 +197,7 @@ const PreviewPage = () => {
       <h1 className="m-2">modal</h1>
       {/* modal */}
       <div className="m-7">
-        <Button
-          size="medium"
+        <BoxButton
           onClick={() => {
             setModal(true);
           }}
