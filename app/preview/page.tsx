@@ -18,6 +18,7 @@ import { ButtonTopBar, DiaryTopBar, NavTopBar } from '@components/top-bar';
 import { useState } from 'react';
 
 const PreviewPage = () => {
+  const [tag, setTag] = useState(false);
   // toggle 버튼 상태
   const [toggleChecked, setToggleChecked] = useState(false);
   // radio button
@@ -93,15 +94,20 @@ const PreviewPage = () => {
       </div>
       {/* tag button */}
       <div className="m-4 flex gap-2">
-        <TagButton selected={true} label="태그1" onClick={() => {}} />
-        <TagButton selected={false} label="태그1" onClick={() => {}} />
+        <TagButton
+          selected={tag}
+          label="태그1"
+          onClick={() => {
+            setTag(!tag);
+          }}
+        />
       </div>
       <h1 className="m-2">tag label</h1>
       {/* tag label */}
-      <div className="flex-col">
-        <TagLabel label="태그" type="orange" />
-        <TagLabel label="태그" type="gray" />
-      </div>
+
+      <TagLabel label="태그" type="orange" />
+      <TagLabel label="태그" type="gray" />
+
       <h1 className="m-2">check box</h1>
       <div className="m-4 flex gap-2">
         <CheckBox selected={true} onClick={() => {}} />
