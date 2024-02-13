@@ -37,4 +37,19 @@ export const textColor = {
   white: 'text-white',
 } as const;
 
+export const bgColor = {
+  orange1: 'bg-orange-1',
+  orange2: 'bg-orange-2',
+  orange3: 'bg-orange-3',
+  orange4: 'bg-orange-4',
+  orange5: 'bg-orange-5',
+  orange6: 'bg-orange-6',
+  orangeHover: 'bg-orange-hover',
+  yellow: 'bg-yellow',
+  gray20: 'bg-gray-20',
+  gray15: 'bg-gray-15',
+  alert: 'bg-alert',
+  alertHover: 'bg-alerthover',
+} as const;
+
 export type KeyOfColor = keyof typeof textColor;
