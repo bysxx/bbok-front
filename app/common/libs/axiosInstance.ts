@@ -1,8 +1,9 @@
+import { BASE_URL } from '@constants/url';
 import type { AxiosInstance } from 'axios';
 import axios from 'axios';
 
 const axiosInstance: AxiosInstance = axios.create();
-axiosInstance.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+axiosInstance.defaults.baseURL = BASE_URL;
 
 axiosInstance.interceptors.response.use(
   (res) => {
