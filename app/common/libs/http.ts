@@ -1,11 +1,21 @@
-import { BASE_URL } from '@constants/url';
-import type { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { baseUrl } from '@libs/config';
+// eslint-disable-next-line import/no-cycle
+import authApi from '@requests/auth';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { deleteCookie, getCookie } from 'cookies-next';
 
-const axiosInstance: AxiosInstance = axios.create();
-axiosInstance.defaults.baseURL = BASE_URL;
+/**
+ * 토큰 없이 api 호출 axios instance
+ */
+const apiWithoutToken = axios.create({
+  baseURL: baseUrl,
+});
+
+const api: AxiosInstance = axios.create({
+  baseURL: baseUrl,
+});
 
 export interface HttpClient extends AxiosInstance {
   get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T>;
@@ -15,7 +25,8 @@ export interface HttpClient extends AxiosInstance {
   delete<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
 }
 
-export const http: HttpClient = axiosInstance;
+export const http: HttpClient = api;
+export const httpWithoutToken: HttpClient = apiWithoutToken;
 
 /**
  * 로그인 토큰
@@ -61,13 +72,36 @@ http.interceptors.request.use(
   },
 );
 
-http.interceptors.response.use(
-  (res) => {
-    return res;
-  },
-  (err) => {
-    return Promise.reject(err);
-  },
-);
+const onFulfilled = (res: AxiosResponse) => res;
 
-export default axiosInstance;
+let lock = false;
+
+const onRejected = async (error: AxiosError) => {
+  const originalConfig = error.config;
+  // TODO: erro 타입 지정
+  // const data = error.response?.data;
+
+  if (originalConfig && error.response?.status === 401 && !lock) {
+    lock = true;
+    try {
+      await authApi.refresh();
+      return await apiWithoutToken
+        .request({
+          ...originalConfig,
+          headers: {
+            Authorization: `Bearer ${getCookie('accessToken')}`,
+          },
+        })
+
+        .finally(() => {
+          lock = false;
+        });
+    } catch (err) {
+      // ignore
+    }
+  }
+
+  return Promise.reject(error);
+};
+
+http.interceptors.response.use(onFulfilled, onRejected);
