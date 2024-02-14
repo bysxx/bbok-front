@@ -47,7 +47,21 @@ export const authToken = {
   },
 };
 
-axiosInstance.interceptors.response.use(
+http.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    const accessToken = getCookie('accessToken');
+    if (accessToken) {
+      // eslint-disable-next-line no-param-reassign
+      config.headers!.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
+http.interceptors.response.use(
   (res) => {
     return res;
   },
@@ -55,9 +69,5 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(err);
   },
 );
-
-axiosInstance.interceptors.request.use((req) => {
-  return req;
-});
 
 export default axiosInstance;
