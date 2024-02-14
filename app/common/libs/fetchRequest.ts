@@ -1,7 +1,8 @@
 import type { IRequestOptions } from '@requests/common';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { getCookie } from 'cookies-next';
 
 import { baseUrl } from './config';
-import { getCookie } from './cookie';
 
 // const token =
 // 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1NjM1MWU2Ni03YjAwLTQwZDQtODY4ZS0yNzY2MGRkNjY4NjciLCJyb2xlIjoic29jaWFsIiwiaXNzIjoiYmJvayIsImlhdCI6MTcwNDEwMjg2NywiZXhwIjoxNzA0MTg5MjY3fQ.DJnJIjhv65kK8MDnxq6apbFxyG8Ox-WRBw6qessZja4';

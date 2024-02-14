@@ -1,4 +1,4 @@
-import type { IExpireToken, ILoginToken } from '@interfaces/login';
+import type { IExpireToken, ILoginToken } from '@interfaces/auth';
 import { baseUrl } from '@libs/config';
 
 import type { ResponseDTO } from './common';

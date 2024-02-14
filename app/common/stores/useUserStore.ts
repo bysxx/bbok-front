@@ -1,4 +1,4 @@
-import type { ILoginToken } from '@interfaces/login';
+import type { ILoginToken } from '@interfaces/auth';
 import { create } from 'zustand';
 
 interface State {

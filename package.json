@@ -22,6 +22,7 @@
     "autoprefixer": "10.4.14",
     "axios": "^0.27.2",
     "classnames": "^2.5.1",
+    "cookies-next": "^4.1.1",
     "next": "^13.5.4",
     "postcss": "^8.4.21",
     "react": "latest",
@@ -31,7 +32,6 @@
     "react-uuid": "^2.0.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "3.3.1",
-    "universal-cookie": "^7.0.0",
     "zustand": "^4.4.3"
   },
   "devDependencies": {

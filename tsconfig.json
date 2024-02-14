@@ -39,7 +39,7 @@
       "@libs/*": ["app/common/libs/*"],
       "@stores/*": ["app/common/stores/*"],
       "@styles/*": ["app/common/styles/*"],
-      "@components/*": ["app/common/components/*"]
+      "@components/*": ["app/common/components/*"],
     },
     "plugins": [
       {
