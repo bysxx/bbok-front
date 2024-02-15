@@ -68,6 +68,15 @@ module.exports = {
           '100%': { transform: 'translateY(420px)' },
         },
       },
+      // fontSize: {
+      //   heading: [
+      //     '20px',
+      //     {
+      //       fontWeight: 700,
+      //       letterSpacing: '-3%',
+      //     },
+      //   ],
+      // },
     },
   },
   // eslint-disable-next-line global-require
