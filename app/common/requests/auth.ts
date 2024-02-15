@@ -1,7 +1,6 @@
 import type { IExpireToken, ILoginToken } from '@interfaces/auth';
 // eslint-disable-next-line import/no-cycle
 import { httpWithoutToken } from '@libs/http';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { getCookie, setCookie } from 'cookies-next';
 
 import type { ResponseDTO } from './common';

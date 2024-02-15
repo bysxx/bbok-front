@@ -3,7 +3,6 @@ import { baseUrl } from '@libs/config';
 import authApi from '@requests/auth';
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { deleteCookie, getCookie } from 'cookies-next';
 
 /**
