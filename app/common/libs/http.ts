@@ -1,7 +1,7 @@
 import { baseUrl } from '@libs/config';
 // eslint-disable-next-line import/no-cycle
 import authApi from '@requests/auth';
-import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { deleteCookie, getCookie } from 'cookies-next';
@@ -59,7 +59,7 @@ export const authToken = {
 };
 
 http.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: InternalAxiosRequestConfig) => {
     const accessToken = getCookie('accessToken');
     if (accessToken) {
       // eslint-disable-next-line no-param-reassign

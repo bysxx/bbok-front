@@ -7,6 +7,9 @@ const nextConfig = {
   compiler: {
     removeConsole: false,
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 module.exports = nextConfig;
