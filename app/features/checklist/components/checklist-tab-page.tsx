@@ -17,7 +17,7 @@ interface TypeCheckListProps {
   use?: 'make' | 'modify'; // 체크 리스트를 생성할 때 혹은 체크 리스트를 수정할 때
 }
 
-function AllCheckList({ use = 'modify', type, allList, setAllList, length }: TypeCheckListProps) {
+function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }: TypeCheckListProps) {
   // 체크리스트 아이템을 클릭했을 때
   const handleCheckItemClick = useCallback(
     (item: ICheckItem) => {
@@ -53,7 +53,9 @@ function AllCheckList({ use = 'modify', type, allList, setAllList, length }: Typ
     <div className="w-full px-8">
       <h5 className="text-body-3 mb-4">{`내 기준에 ${type === 'bad' ? '벗어난' : '적합한'} 친구`}</h5>
       {(() => {
-        // 체크리스트 기준 생성하는 경우
+        /**
+         * 체크리스트 기준 생성하는 경우
+         */
         if (use === 'make') {
           return (
             <>
@@ -86,7 +88,9 @@ function AllCheckList({ use = 'modify', type, allList, setAllList, length }: Typ
             </>
           );
         }
-        // 기존의 체크 리스트 수정하는경우
+        /**
+         * 체크리스트 수정하는 경우
+         */
         return (
           <>
             {allList.map((item: ICheckItem) => (
@@ -105,4 +109,4 @@ function AllCheckList({ use = 'modify', type, allList, setAllList, length }: Typ
     </div>
   );
 }
-export default AllCheckList;
+export default CheckListTabPage;

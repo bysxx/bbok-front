@@ -11,7 +11,7 @@ const CheckList = ({ label, selected, onClick }: CheckListProps) => {
   return (
     <div
       className={`flex h-[52px] w-full items-center rounded-lg border ${
-        selected ? 'border-orange-2 bg-orange-6' : 'border-gray-15'
+        selected ? 'border-orange-2 bg-[#FFF9E9]' : 'border-gray-15'
       }  px-4 py-[15px]`}
     >
       <CheckBox selected={selected} onClick={onClick} />
