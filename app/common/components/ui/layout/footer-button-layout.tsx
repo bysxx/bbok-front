@@ -11,7 +11,7 @@ const FooterButtonLayout = ({ children, disabled, text, onClick, border = true }
   return (
     <div className="flex h-full flex-col">
       <div className="flex flex-1 flex-col">{children}</div>
-      <footer className="sticky bottom-0 mt-24 h-[90px]">
+      <footer className={`sticky bottom-0 ${!border && 'bg-white px-6 pb-8'} `}>
         <BoxButton disabled={disabled} text={text} border={border} onClick={onClick} />
       </footer>
     </div>
