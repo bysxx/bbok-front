@@ -24,3 +24,6 @@ export const CHECK_LIST = {
     '내 자존감을 올려주는 친구',
   ],
 };
+
+export const GOOD_CHECK_COUNT = CHECK_LIST.good.length;
+export const BAD_CHECK_COUNT = CHECK_LIST.bad.length;

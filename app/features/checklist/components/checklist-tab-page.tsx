@@ -6,8 +6,9 @@
 import BoxButton from '@components/buttons/box-button';
 import { CheckList, WriteCheckList } from '@components/check-list';
 import type { ICheckItem } from '@interfaces/checklist';
-import { useCallback } from 'react';
 import uuid from 'react-uuid';
+
+import { updateChecklist } from '../utils/getChecklist';
 
 interface TypeCheckListProps {
   type: 'good' | 'bad';
@@ -19,35 +20,20 @@ interface TypeCheckListProps {
 
 function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }: TypeCheckListProps) {
   // 체크리스트 아이템을 클릭했을 때
-  const handleCheckItemClick = useCallback(
-    (item: ICheckItem) => {
-      const updateItem = allList.map((i: ICheckItem) => {
-        if (i.id === item.id) {
-          return {
-            ...i,
-            checked: !i.checked,
-          };
-        }
-        return i;
-      });
-      setAllList(updateItem);
-    },
-    [allList],
-  );
+  const handleCheckItemClick = (item: ICheckItem) => {
+    setAllList(updateChecklist(allList, item.id));
+  };
 
   // 체크리스트 아이템을 생성할 때
-  const handlePlusCountClick = useCallback(() => {
+  const handlePlusCountClick = () => {
     const updateItem: ICheckItem[] = [...allList, { id: uuid(), criteria: '', checked: false }];
     setAllList(updateItem);
-  }, [allList]);
+  };
 
   // 체크리스트 아이템을 삭제할 때
-  const handleCheckListDelete = useCallback(
-    (item: ICheckItem) => {
-      setAllList(allList.filter((i) => i.id !== item.id));
-    },
-    [allList],
-  );
+  const handleCheckListDelete = (item: ICheckItem) => {
+    setAllList(allList.filter((i) => i.id !== item.id));
+  };
 
   return (
     <div className="w-full px-8">
