@@ -19,6 +19,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@tanstack/query-core": "^5.20.5",
     "@tanstack/react-query": "^5.20.5",
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.7",

@@ -981,7 +981,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.20.5":
+"@tanstack/query-core@npm:5.20.5, @tanstack/query-core@npm:^5.20.5":
   version: 5.20.5
   resolution: "@tanstack/query-core@npm:5.20.5"
   checksum: 10/ca495a213850a79a23ea45a4e22982e06eea07959f7cf5062c154dc8c7fc01f7cc7f1f8abf74cdb2a9f38347f1df9a39238fbee6cd49662e464064d92cf1c48b
@@ -2114,6 +2114,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "bbok-front@workspace:."
   dependencies:
+    "@tanstack/query-core": "npm:^5.20.5"
     "@tanstack/react-query": "npm:^5.20.5"
     "@testing-library/jest-dom": "npm:^6.4.2"
     "@testing-library/react": "npm:^14.2.1"
