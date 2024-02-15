@@ -28,6 +28,10 @@ export interface HttpClient extends AxiosInstance {
 export const http: HttpClient = api;
 export const httpWithoutToken: HttpClient = apiWithoutToken;
 
+httpWithoutToken.interceptors.response.use((res: AxiosResponse) => {
+  return res.data;
+});
+
 /**
  * 로그인 토큰
  */
@@ -72,7 +76,9 @@ http.interceptors.request.use(
   },
 );
 
-const onFulfilled = (res: AxiosResponse) => res;
+const onFulfilled = (res: AxiosResponse) => {
+  return res.data;
+};
 
 let lock = false;
 
