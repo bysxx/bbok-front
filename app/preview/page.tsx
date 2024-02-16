@@ -11,7 +11,6 @@ import Modal from '@components/modal';
 import RadioButton from '@components/radio-button';
 import SearchBar from '@components/search-bar';
 import TagLabel from '@components/tag-label';
-import Text from '@components/text';
 import ToggleButton from '@components/toggle-button';
 import { ButtonTopBar, DiaryTopBar, NavTopBar } from '@components/top-bar';
 import { useState } from 'react';
@@ -42,18 +41,6 @@ const PreviewPage = () => {
 
   return (
     <div className="flex flex-col">
-      <Text color="gray60" typo="title2">
-        자신이 생각하는 유형의 중요도 순위를 정해주세요
-      </Text>
-      <Text color="gray60" typo="title3">
-        자신이 생각하는 유형의 중요도 순위를 정해주세요
-      </Text>
-      <Text color="gray60" typo="body1">
-        자신이 생각하는 유형의 중요도 순위를 정해주세요
-      </Text>
-      <Text color="gray60" typo="title2">
-        buttons
-      </Text>
       <div className="m-2">
         <BoxButton text="친구 생성" onClick={() => {}} />
       </div>
@@ -67,23 +54,21 @@ const PreviewPage = () => {
         <BoxButton text="삭제" onClick={() => {}} bg="alert" />
       </div>
       <div className="m-2">
-        <BoxButton text="취소" onClick={() => {}} bg="gray15" textColor="gray55" />
+        <BoxButton text="취소" onClick={() => {}} bg="gray15" color="gray55" />
       </div>
       <div className="m-2">
         <BoxButton text="일기쓰러 가기" typo="title4" size="large" onClick={() => {}} bg="orange4" />
       </div>
       <div className="m-2">
-        <BoxButton text="+나만의 기준추가" onClick={() => {}} bg="orange6" textColor="orange1" />
+        <BoxButton text="+나만의 기준추가" onClick={() => {}} bg="orange6" color="orange1" />
       </div>
       <div className="m-2">
-        <BoxButton text="나의 친구 기준 보기" size="small" onClick={() => {}} bg="orange6" textColor="orange1" />
+        <BoxButton text="나의 친구 기준 보기" size="small" onClick={() => {}} bg="orange6" color="orange1" />
       </div>
       <div className="m-2">
         <BoxButton size="small" onClick={() => {}} bg="yellow">
           <div className="flex justify-between pl-5 pr-3">
-            <Text color="orange1" typo="title3">
-              가시를 뽁! 뽑기 (관계 정리하기)
-            </Text>
+            <h5 className="text-title-3 text-orange-1">가시를 뽁! 뽑기 (관계 정리하기)</h5>
             <img src="/images/icon/ui/back-orange.svg" alt="" />
           </div>
         </BoxButton>

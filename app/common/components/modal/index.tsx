@@ -16,7 +16,7 @@ const Modal = ({ label, onClose, onClick, title, content }: ModalProps) => {
           <h5 className="text-caption-1 text-gray-40">{content}</h5>
         </div>
         <div className="grid w-full grid-cols-2 gap-2 px-3">
-          <BoxButton text="취소" onClick={onClose} bg="gray15" textColor="gray55" />
+          <BoxButton text="취소" onClick={onClose} bg="gray15" color="gray55" />
           <BoxButton text={label} onClick={onClick} bg="alert" />
         </div>
         <div className="m-2"></div>

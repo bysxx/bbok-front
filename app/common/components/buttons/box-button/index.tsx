@@ -1,5 +1,4 @@
-import Text from '@components/text';
-import { bgColor } from '@styles/theme';
+import { bgColor, textColor, typography } from '@styles/theme';
 import cx from 'classnames';
 
 import { commonButtonStyle, sizeStyle } from './constants';
@@ -12,7 +11,7 @@ const BoxButton = ({
   onClick,
   bg = 'orange1',
   typo = 'title3',
-  textColor = 'white',
+  color = 'white',
   size = 'medium',
   children,
 }: IBoxButtonProps) => {
@@ -28,9 +27,7 @@ const BoxButton = ({
         onClick={onClick}
       >
         {text && (
-          <Text typo={typo} color={disabled ? 'gray35' : textColor}>
-            {text}
-          </Text>
+          <h5 className={cx(typography[typo], { 'text-gray-35': disabled, [textColor[color]]: !disabled })}>{text}</h5>
         )}
 
         {children}

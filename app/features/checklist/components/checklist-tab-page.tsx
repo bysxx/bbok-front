@@ -69,7 +69,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
               ))}
 
               {allList.length > 0 && allList.length < length + 5 && (
-                <BoxButton text="+나만의 기준추가" onClick={handlePlusCountClick} bg="orange6" textColor="orange1" />
+                <BoxButton text="+나만의 기준추가" onClick={handlePlusCountClick} bg="orange6" color="orange1" />
               )}
             </>
           );
