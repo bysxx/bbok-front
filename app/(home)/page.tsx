@@ -30,13 +30,13 @@ const MainPage = () => {
   return (
     <>
       {modalButton && (
-        <div className="fixed left-0 top-0 z-10 h-full w-full bg-gray-70 opacity-80" onClick={closeButtonModal} />
+        <div className="fixed left-0 top-0 z-10 size-full bg-gray-70 opacity-80" onClick={closeButtonModal} />
       )}
       {modalWrite && (
-        <div className="fixed left-0 top-0 z-10 h-full w-full bg-gray-70 opacity-80" onClick={closeWriteModal} />
+        <div className="fixed left-0 top-0 z-10 size-full bg-gray-70 opacity-80" onClick={closeWriteModal} />
       )}
 
-      <main className={`${inter.className} flex h-full w-full flex-col bg-yellow`}>
+      <main className={`${inter.className} flex size-full flex-col bg-yellow`}>
         <div className="flex flex-1 flex-col">
           <DiaryTopBar label={'MY일기장'} settingClick={() => {}} />
           <div className="flex gap-4 overflow-scroll px-9 py-4">
@@ -67,7 +67,7 @@ const MainPage = () => {
           </div>
           <div className="mx-6 mt-[53px]">
             <Link href={'./criteria'}>
-              <BoxButton text="나의 친구 기준 보기" size="small" onClick={() => {}} bg="orange6" textColor="orange1" />
+              <BoxButton text="나의 친구 기준 보기" size="small" onClick={() => {}} bg="orange6" color="orange1" />
             </Link>
           </div>
         </div>
