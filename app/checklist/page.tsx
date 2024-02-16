@@ -5,6 +5,9 @@ import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
 import { ChecklistCount, ChecklistTabPage } from '@features/checklist/components';
 import { BAD_CHECK_COUNT, GOOD_CHECK_COUNT } from '@features/checklist/constants/checklist';
 import useHandleChecklist from '@features/checklist/hooks/useHandleChecklist';
+import { getChecklistComplete } from '@features/checklist/utils/getChecklist';
+import { usePostChecklist } from '@hooks/queries/checklist';
+import useCustomRouter from '@hooks/useCustomRouter';
 import { useState } from 'react';
 
 import CheckListTitle from './checklist-title';
@@ -13,9 +16,16 @@ const CheckListPage = () => {
   const [type, setType] = useState<'first' | 'second'>('first');
   const { allBadList, setAllBadList, allGoodList, setAllGoodList } = useHandleChecklist();
 
-  // const { push } = useCustomRouter();
+  const { push } = useCustomRouter();
+  const { mutate } = usePostChecklist();
 
-  const handleCheckListComplete = () => {};
+  const handleCheckListComplete = () => {
+    const body = {
+      badChecklist: getChecklistComplete(allBadList),
+      goodChecklist: getChecklistComplete(allGoodList),
+    };
+    mutate(body);
+  };
 
   return (
     <FooterButtonLayout
@@ -33,7 +43,16 @@ const CheckListPage = () => {
       }
       text={type === 'first' ? '다음' : '완료'}
     >
-      <ChangeTopBar type={type} setType={setType} />
+      <ChangeTopBar
+        type={type}
+        onClick={() => {
+          if (type === 'first') {
+            push('/login');
+          } else {
+            setType('first');
+          }
+        }}
+      />
       <div className="ml-8 w-full">
         <CheckListTitle type={type} />
         <ChecklistCount list={type === 'first' ? allBadList : allGoodList} />
