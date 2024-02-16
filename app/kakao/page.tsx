@@ -21,6 +21,8 @@ export default function KakaoPage() {
         // 일단 쿠키에 저장
         setCookie('accessToken', res.data.accessToken);
         setCookie('refreshToken', res.data.refreshToken);
+
+        setCookie('isVisited', true);
         // 처음 사용하는 유저이면
         // router.replace('/checklist');
         // 이전에도 사용한 유저이면

@@ -87,20 +87,24 @@ const onRejected = async (error: AxiosError) => {
   // const data = error.response?.data;
 
   if (originalConfig && error.response?.status === 401 && !lock) {
+    console.log('토큰 재발급 실행');
     lock = true;
     try {
-      await authApi.refresh();
-      return await apiWithoutToken
-        .request({
-          ...originalConfig,
-          headers: {
-            Authorization: `Bearer ${getCookie('accessToken')}`,
-          },
-        })
-
-        .finally(() => {
-          lock = false;
-        });
+      const res = await authApi.refresh();
+      if (res) {
+        return await apiWithoutToken
+          .request({
+            ...originalConfig,
+            headers: {
+              Authorization: `Bearer ${getCookie('accessToken')}`,
+            },
+          })
+          .finally(() => {
+            lock = false;
+          });
+      }
+      lock = false;
+      window.location.href = '/login';
     } catch (err) {
       // ignore
     }
