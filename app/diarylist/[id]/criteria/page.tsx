@@ -1,7 +1,8 @@
 'use client';
 
 import { NavTopBar } from '@components/top-bar';
-import { AllCheckList, CheckListLayout } from '@components/ui/check-list';
+import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
+import { ChecklistTabPage } from '@features/checklist/components';
 import type { ICheckItem } from '@interfaces/checklist';
 import { useCallback, useState } from 'react';
 
@@ -44,7 +45,7 @@ const DiaryListCriteriaModify = () => {
     [allCheckList],
   );
   return (
-    <CheckListLayout
+    <FooterButtonLayout
       disabled={allCheckList.filter((c) => c.checked === true).length === 0}
       onClick={() => {
         // 통신 & 페이지 이동
@@ -57,14 +58,14 @@ const DiaryListCriteriaModify = () => {
         type === 'bad' ? '벗어난' : '적합한'
       } 친구`}</h2>
       <div className="mt-[34px]">
-        <AllCheckList
+        <ChecklistTabPage
           type={type}
           allList={allCheckList}
           setAllList={handleSetModifyCheckList}
           length={goodChecklist.length}
         />
       </div>
-    </CheckListLayout>
+    </FooterButtonLayout>
   );
 };
 export default DiaryListCriteriaModify;

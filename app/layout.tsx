@@ -1,7 +1,7 @@
 import '@styles/global.css';
 import '@styles/font.css';
 
-import ReactQueryProvider from './common/providers/react-query-provider';
+import ReactQueryProvider from '@providers/react-query-provider';
 
 export const metadata = {
   title: 'BBOK',

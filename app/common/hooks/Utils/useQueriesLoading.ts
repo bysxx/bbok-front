@@ -1,5 +1,5 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useQueryClient } from 'react-query';
 
 export function useQueriesLoading() {
   const client = useQueryClient();
@@ -12,7 +12,7 @@ export function useQueriesLoading() {
   }, []);
 
   useEffect(() => {
-    if (queries.every(({ state }) => state.status !== 'loading') && queryChangedCount >= 0) {
+    if (queries.every(({ state }) => state.status === 'pending') && queryChangedCount >= 0) {
       setQueryChangedCount((prevState) => prevState - 1);
     }
   }, [queries]);

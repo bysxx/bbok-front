@@ -3,7 +3,6 @@ import { baseUrl } from '@libs/config';
 import authApi from '@requests/auth';
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { deleteCookie, getCookie } from 'cookies-next';
 
 /**
@@ -27,6 +26,10 @@ export interface HttpClient extends AxiosInstance {
 
 export const http: HttpClient = api;
 export const httpWithoutToken: HttpClient = apiWithoutToken;
+
+httpWithoutToken.interceptors.response.use((res: AxiosResponse) => {
+  return res.data;
+});
 
 /**
  * 로그인 토큰
@@ -72,7 +75,9 @@ http.interceptors.request.use(
   },
 );
 
-const onFulfilled = (res: AxiosResponse) => res;
+const onFulfilled = (res: AxiosResponse) => {
+  return res.data;
+};
 
 let lock = false;
 
@@ -82,20 +87,24 @@ const onRejected = async (error: AxiosError) => {
   // const data = error.response?.data;
 
   if (originalConfig && error.response?.status === 401 && !lock) {
+    console.log('토큰 재발급 실행');
     lock = true;
     try {
-      await authApi.refresh();
-      return await apiWithoutToken
-        .request({
-          ...originalConfig,
-          headers: {
-            Authorization: `Bearer ${getCookie('accessToken')}`,
-          },
-        })
-
-        .finally(() => {
-          lock = false;
-        });
+      const res = await authApi.refresh();
+      if (res) {
+        return await apiWithoutToken
+          .request({
+            ...originalConfig,
+            headers: {
+              Authorization: `Bearer ${getCookie('accessToken')}`,
+            },
+          })
+          .finally(() => {
+            lock = false;
+          });
+      }
+      lock = false;
+      window.location.href = '/login';
     } catch (err) {
       // ignore
     }

@@ -1,7 +1,8 @@
 'use client';
 
 import { NavTopBar } from '@components/top-bar';
-import { AllCheckList, CheckListLayout } from '@components/ui/check-list';
+import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
+import { ChecklistTabPage } from '@features/checklist/components';
 import type { ICheckItem } from '@interfaces/checklist';
 import { useCallback, useState } from 'react';
 
@@ -25,7 +26,7 @@ const CriteriaModifyPage = ({ params }: CriteriaProps) => {
   );
 
   return (
-    <CheckListLayout
+    <FooterButtonLayout
       disabled={modifyCheckList.filter((c) => c.checked === true).length !== 5}
       onClick={() => {
         // 통신 & 페이지 이동
@@ -36,7 +37,7 @@ const CriteriaModifyPage = ({ params }: CriteriaProps) => {
       <NavTopBar label="기준 수정" href="./" />
       <ModifyCheckListTitle type={params.type} list={modifyCheckList} />
       <div className="mt-[34px]">
-        <AllCheckList
+        <ChecklistTabPage
           type="good"
           allList={modifyCheckList}
           setAllList={handleSetModifyCheckList}
@@ -44,7 +45,7 @@ const CriteriaModifyPage = ({ params }: CriteriaProps) => {
           use="modify"
         />
       </div>
-    </CheckListLayout>
+    </FooterButtonLayout>
   );
 };
 

@@ -35,7 +35,7 @@ function Footer() {
           key={item.label}
           href={item.href}
         >
-          <img className="h-8 w-8" src={item.href === pathname ? item.iconOn : item.iconOff} alt="" />
+          <img className="size-8" src={item.href === pathname ? item.iconOn : item.iconOff} alt="" />
           <span className="text-xs">{item.label}</span>
         </Link>
       ))}

@@ -40,6 +40,9 @@
       "@stores/*": ["app/common/stores/*"],
       "@styles/*": ["app/common/styles/*"],
       "@components/*": ["app/common/components/*"],
+      "@providers/*": ["app/common/providers/*"],
+      "@constants/*": ["app/common/constants/*"],
+      "@features/*": ["app/features/*"],
     },
     "plugins": [
       {
