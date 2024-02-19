@@ -1,5 +1,5 @@
 import { FRIEND_KEYS } from '@constants/queryKeys';
-import { IFriendList } from '@interfaces/friend';
+import { ICharacterImage, IFriendList } from '@interfaces/friend';
 import { ResponseDTO } from '@requests/common';
 import friendApi from '@requests/friend/friend.client';
 import { useQuery } from '@tanstack/react-query';
@@ -11,3 +11,10 @@ export const useGetFriend = () => {
     queryFn: friendApi.get,
   });
 };
+
+export const useGetFriendCharater = () => {
+  return useQuery<ResponseDTO<ICharacterImage>, AxiosError>({
+    queryKey: FRIEND_KEYS.details(),
+    queryFn: friendApi.character
+  })
+}
