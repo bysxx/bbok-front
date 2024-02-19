@@ -11,7 +11,7 @@ const friendServerApi = {
    */
   get: async() => {
     const res = await httpServer.get<ResponseDTO<IFriendList>>('/friend'); 
-    return res.data;
+    return res;
   }
 };
 export default friendServerApi;
