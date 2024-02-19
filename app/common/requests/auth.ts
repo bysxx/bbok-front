@@ -1,6 +1,7 @@
 import type { IExpireToken, ILoginToken } from '@interfaces/auth';
 // eslint-disable-next-line import/no-cycle
-import { httpWithoutToken } from '@libs/http';
+import { httpWithoutToken } from '@libs/http.client';
+// eslint-disable-next-line import/no-cycle
 import { getCookie, setCookie } from 'cookies-next';
 
 import type { ResponseDTO } from './common';
@@ -26,5 +27,8 @@ const authApi = {
       return false;
     }
   },
+
+  reissue: async (refreshToken: string) =>
+    httpWithoutToken.get<ResponseDTO<IExpireToken>>(`/jwt/refresh?refreshToken=${refreshToken}`),
 };
 export default authApi;
