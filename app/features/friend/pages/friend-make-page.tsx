@@ -4,6 +4,7 @@ import Input from '@components/input';
 import { ButtonTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
+import { useGetFriendCharater } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { ICharacter } from '@interfaces/friend';
 import FriendCharacter from 'app/friend/friend-character';
@@ -12,7 +13,9 @@ import FriendCharacter from 'app/friend/friend-character';
 import { useState, useMemo, useCallback } from 'react';
 
 const FriendMakePage = () => {
-   const {push} = useCustomRouter();
+  const { data } = useGetFriendCharater();
+  console.log(data);
+  const {push} = useCustomRouter();
   const characterList: ICharacter[] = ['kaka', 'sisi'];
   // 선택한 캐릭터
   const [character, setCharacter] = useState<ICharacter>('kaka');

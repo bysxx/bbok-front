@@ -6,7 +6,7 @@ import { useGetFriend } from '@hooks/queries/friend';
 import FriendCard from 'app/(home)/friends/friend-card';
 import LockedFriendCard from 'app/(home)/friends/locked-friend-card';
 
-import EmptyFriend from './empty-friend';
+import EmptyFriend from '../component/empty-friend';
 
 const FriendCardPage = () => {
   const { data } = useGetFriend();

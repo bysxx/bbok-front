@@ -1,6 +1,6 @@
 import { PrefetchHydration } from '@components/react-query';
 import { FRIEND_KEYS } from '@constants/queryKeys';
-import { FriendCardPage } from '@features/friend/component';
+import { FriendCardPage } from '@features/friend/pages';
 import friendServerApi from '@requests/friend/friend.server';
 
 const MainPage = () => {
