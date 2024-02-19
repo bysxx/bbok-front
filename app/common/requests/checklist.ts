@@ -1,5 +1,5 @@
 import type { ICheckList } from '@interfaces/checklist';
-import { http } from '@libs/http';
+import { http } from '@libs/http.client';
 
 import type { ResponseAPI, ResponseDTO } from './common';
 

@@ -1,5 +1,17 @@
 import type { ICharacterImage, IFriendBody, IFriendList } from '@interfaces/friend';
 
+import { ResponseDTO } from '../common';
+import { http } from '@libs/http.client';
+
+const friendApi = {
+  /**
+   * @description 등록한 친구 목록 조회 client api
+   */
+  get: async() => http.get<ResponseDTO<IFriendList>>('/friend'),
+
+};
+export default friendApi;
+
 // 친구 정보(이름, 캐릭터)를 등록
 export const addFriend = async (body: IFriendBody) => {
   const res = await fetch('/friend', {
