@@ -9,6 +9,11 @@ const friendApi = {
    */
   get: async() => http.get<ResponseDTO<IFriendList>>('/friend'),
 
+  /**
+   * @description 등록 친구 캐릭터 조회 client api
+   */
+  character: async () => await http.get<ResponseDTO<ICharacterImage>>('/character')
+
 };
 export default friendApi;
 
@@ -19,13 +24,6 @@ export const addFriend = async (body: IFriendBody) => {
     body: JSON.stringify(body),
   });
   return res.json();
-};
-
-// 등록한 친구 목록을 조회
-export const getFriendList = async () => {
-  const res = await fetch('/friend');
-  const data: IFriendList = await res.json();
-  return data;
 };
 
 // 친구의 이름을 수정
@@ -46,11 +44,4 @@ export const deactivateFriend = async (id: number) => {
     method: 'PATCH',
   });
   return res.json();
-};
-
-// 캐릭터 이미지 제공
-export const getCharacterImage = async () => {
-  const res = await fetch('/character');
-  const data: ICharacterImage = await res.json();
-  return data;
 };
