@@ -1,8 +1,9 @@
 'use client';
 
-import BoxButton from '@components/buttons/box-button';
 import Input from '@components/input';
 import { ButtonTopBar } from '@components/top-bar';
+import DefaultLayout from '@components/ui/layout/default-layout';
+import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
 import type { ICharacter } from '@interfaces/friend';
 import { useRouter } from 'next/navigation';
 import { useCallback, useMemo, useState } from 'react';
@@ -59,7 +60,12 @@ const FriendPage = () => {
   };
 
   return (
-    <div className="flex h-full flex-col">
+    <FooterButtonLayout
+      text="완료"
+      border={false}
+      disabled={nameState === 'empty' || nameState === 'error'}
+      onClick={handleFriendMake}
+    >
       <ButtonTopBar
         label={'친구생성'}
         name={'닫기'}
@@ -67,7 +73,7 @@ const FriendPage = () => {
           router.push('/');
         }}
       />
-      <div className="flex flex-1 flex-col px-6 pt-6">
+      <DefaultLayout>
         <h2 className="mb-4 text-[17px] font-medium text-gray-65">캐릭터 선택</h2>
         <div className="flex items-center">
           {characterList.map((c) => (
@@ -89,11 +95,8 @@ const FriendPage = () => {
             한글 또는 영문,숫자의 조합으로 12자 이내
           </h5>
         </div>
-      </div>
-      <div className="sticky bottom-0 h-[85px] px-6 ">
-        <BoxButton text="완료" disabled={nameState === 'empty' || nameState === 'error'} onClick={handleFriendMake} />
-      </div>
-    </div>
+      </DefaultLayout>
+    </FooterButtonLayout>
   );
 };
 export default FriendPage;
