@@ -1,10 +1,8 @@
 // 등록할 친구 body type
 export interface IFriendBody {
   name: string;
-  character: string;
+  character: TFriendCharacter;
 }
-
-export type ICharacter = 'kaka' | 'sisi';
 
 // 등록한 친구 리스트 type
 interface Friend {
@@ -23,10 +21,12 @@ export interface IFriendList {
   friends: IFriend[];
 }
 
+export type TFriendCharacter = 'CACTUS' | 'HEDGEHOG';
+
 // 캐릭터 이미지 type
 interface CharacterContent {
-  type: string;
-  imgUrl: string;
+  type: TFriendCharacter;
+  iconUrl: string;
   name: string;
 }
 export interface ICharacterImage {

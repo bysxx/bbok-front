@@ -15,16 +15,18 @@ import CheckListTitle from './checklist-title';
 const CheckListPage = () => {
   const [type, setType] = useState<'first' | 'second'>('first');
   const { allBadList, setAllBadList, allGoodList, setAllGoodList } = useHandleChecklist();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { push } = useCustomRouter();
-  const { mutate } = usePostChecklist();
+  const { mutateAsync } = usePostChecklist();
 
-  const handleCheckListComplete = () => {
+  const handleCheckListComplete = async () => {
+    setIsLoading(true);
     const body = {
       badChecklist: getChecklistComplete(allBadList),
       goodChecklist: getChecklistComplete(allGoodList),
     };
-    mutate(body);
+    await mutateAsync(body);
   };
 
   return (
@@ -42,6 +44,7 @@ const CheckListPage = () => {
           : handleCheckListComplete
       }
       text={type === 'first' ? '다음' : '완료'}
+      isLoading={isLoading}
     >
       <ChangeTopBar
         type={type}

@@ -1,5 +1,6 @@
 import { bgColor, textColor, typography } from '@styles/theme';
 import cx from 'classnames';
+import { BeatLoader } from 'react-spinners';
 
 import { commonButtonStyle, sizeStyle } from './constants';
 import type { IBoxButtonProps } from './types';
@@ -13,6 +14,7 @@ const BoxButton = ({
   typo = 'title3',
   color = 'white',
   size = 'medium',
+  isLoading = false,
   children,
 }: IBoxButtonProps) => {
   return (
@@ -23,10 +25,11 @@ const BoxButton = ({
           'hover:bg-orange-hover': bg === 'orange1',
           'hover:bg-alerthover': bg === 'alert',
         })}
-        disabled={disabled}
+        disabled={disabled || isLoading}
         onClick={onClick}
       >
-        {text && (
+        {isLoading && <BeatLoader color="white" size={8} />}
+        {text && !isLoading && (
           <h5 className={cx(typography[typo], { 'text-gray-35': disabled, [textColor[color]]: !disabled })}>{text}</h5>
         )}
 

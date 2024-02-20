@@ -6,7 +6,6 @@ import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
 import DatePicker from '@components/date-picker';
 import DiaryField from '@components/diary-field';
-import Input from '@components/input';
 import Modal from '@components/modal';
 import RadioButton from '@components/radio-button';
 import SearchBar from '@components/search-bar';
@@ -24,9 +23,6 @@ const PreviewPage = () => {
   const [radio, setRadio] = useState(false);
   // datepicker 상태
   const [date, setDate] = useState('');
-  // 이름 input 상태
-  const [inputValue, setInputValue] = useState('');
-  const [inputError, setInputError] = useState('에러에러');
 
   // 검색 input 상태
   const [searchInput, setSearchInput] = useState('');
@@ -134,18 +130,6 @@ const PreviewPage = () => {
       </div>
 
       <h1 className="m-2">input</h1>
-      {/* name input */}
-      <div className="m-2">
-        <Input inputValue={inputValue} setInputValue={setInputValue} />
-      </div>
-      {/* tag input */}
-      <div className="m-2">
-        <Input type="tag" inputValue={inputValue} setInputValue={setInputValue} />
-      </div>
-      {/* tag input */}
-      <div className="m-2">
-        <Input type="tag" error={true} inputValue={inputError} setInputValue={setInputError} />
-      </div>
 
       <h1 className="m-2">search bar</h1>
       {/* search bar */}

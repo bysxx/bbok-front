@@ -16,5 +16,6 @@ export interface IBoxButtonProps {
   size?: TButtonSize;
   color?: TTextColor;
 
+  isLoading?: boolean;
   children?: React.ReactNode;
 }
