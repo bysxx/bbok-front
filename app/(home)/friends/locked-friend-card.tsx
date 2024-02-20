@@ -6,7 +6,7 @@ export default function LockedFriendCard() {
       <div className="flex flex-col items-center gap-6 text-white">
         <h2 className="text-friend-card-head">잠김</h2>
 
-        <figure className="h-[102px] w-[102px] rounded-full bg-white"></figure>
+        <figure className="size-[102px] rounded-full bg-white"></figure>
 
         <div className="text-friend-card-name rounded-[38px] bg-white px-3.5 py-2 text-gray-65">김도리</div>
 
