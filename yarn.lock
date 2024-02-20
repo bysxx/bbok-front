@@ -2172,6 +2172,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-icons: "npm:^5.0.1"
+    react-spinners: "npm:^0.13.8"
     react-uuid: "npm:^2.0.0"
     tailwind-scrollbar-hide: "npm:^1.1.7"
     tailwindcss: "npm:^3.4.1"
@@ -6639,6 +6640,16 @@ __metadata:
   version: 18.2.0
   resolution: "react-is@npm:18.2.0"
   checksum: 10/200cd65bf2e0be7ba6055f647091b725a45dd2a6abef03bf2380ce701fd5edccee40b49b9d15edab7ac08a762bf83cb4081e31ec2673a5bfb549a36ba21570df
+  languageName: node
+  linkType: hard
+
+"react-spinners@npm:^0.13.8":
+  version: 0.13.8
+  resolution: "react-spinners@npm:0.13.8"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 10/8564af7bf5b5be84665816fb815ebfc0a04cb899554c6e6a28a8d8ccfa75cbd8096bd99ec202f1fc9bcfee9133e9f5170484f42332f2fe58c6f7ade31f307a50
   languageName: node
   linkType: hard
 
