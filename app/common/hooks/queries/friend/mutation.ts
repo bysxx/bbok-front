@@ -1,5 +1,6 @@
 import { FRIEND_KEYS } from '@constants/queryKeys';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { showErrorToast } from '@libs/showToast';
 import { ResponseErrorApi } from '@requests/common';
 import friendApi from '@requests/friend/friend.client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -16,12 +17,11 @@ export const usePostFriend = () => {
     },
     onError: (err) => {
       const errorResponse = (err as AxiosError).response;
-      if (errorResponse?.data) {
-        //console.log(errorResponse.data as ResponseErrorApi);
-      }
       push('/');
-      // TODO: 토스트 띄우기
-
+      if (errorResponse?.data) {
+        const error = errorResponse.data as ResponseErrorApi;
+        showErrorToast(error.message);
+      }
     },
   });
 };
