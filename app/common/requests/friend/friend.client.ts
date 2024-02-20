@@ -1,6 +1,6 @@
 import type { ICharacterImage, IFriendBody, IFriendList } from '@interfaces/friend';
 
-import { ResponseDTO } from '../common';
+import { ResponseAPI, ResponseDTO } from '../common';
 import { http } from '@libs/http.client';
 
 const friendApi = {
@@ -12,19 +12,15 @@ const friendApi = {
   /**
    * @description 등록 친구 캐릭터 조회 client api
    */
-  character: async () => await http.get<ResponseDTO<ICharacterImage>>('/character')
+  character: async () => await http.get<ResponseDTO<ICharacterImage>>('/character'),
+
+  /**
+   * @description 친구 등록 api
+   */
+  post: async (body: IFriendBody) => http.post<ResponseAPI>('/friend', body)
 
 };
 export default friendApi;
-
-// 친구 정보(이름, 캐릭터)를 등록
-export const addFriend = async (body: IFriendBody) => {
-  const res = await fetch('/friend', {
-    method: 'POST',
-    body: JSON.stringify(body),
-  });
-  return res.json();
-};
 
 // 친구의 이름을 수정
 export const modifyFriendName = async (id: number, name: string) => {

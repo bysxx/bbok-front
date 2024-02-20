@@ -1,7 +1,7 @@
 // 등록할 친구 body type
 export interface IFriendBody {
   name: string;
-  character: string;
+  character: TFriendCharacter;
 }
 
 // 등록한 친구 리스트 type
