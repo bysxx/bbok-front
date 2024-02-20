@@ -16,19 +16,21 @@ import { friendInputVerifier } from '../utils/friendInputVerifier';
 const FriendMakePage = () => {
   const { push } = useCustomRouter();
   const { data } = useGetFriendCharater();
-  const { mutate, status } = usePostFriend();
+  const { mutateAsync } = usePostFriend();
   const { text: name, isValid: error, onChange } = useInput('', friendInputVerifier);
   const [character, setCharacter] = useState<TFriendCharacter>('CACTUS');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleFriendMake = () => {
+  const handleFriendMake = async () => {
+    setIsLoading(true);
     const body = {
       name,
       character,
     };
-    console.log(body);
+    await mutateAsync(body);
   };
   return (
-    <FooterButtonLayout text="완료" border={false} disabled={!error} onClick={handleFriendMake}>
+    <FooterButtonLayout text="완료" border={false} disabled={!error} onClick={handleFriendMake} isLoading={isLoading}>
       <ButtonTopBar
         label={'친구생성'}
         name={'닫기'}

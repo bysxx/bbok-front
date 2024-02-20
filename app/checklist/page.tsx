@@ -18,15 +18,15 @@ const CheckListPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { push } = useCustomRouter();
-  const { mutate } = usePostChecklist();
+  const { mutateAsync } = usePostChecklist();
 
-  const handleCheckListComplete = () => {
+  const handleCheckListComplete = async () => {
     setIsLoading(true);
     const body = {
       badChecklist: getChecklistComplete(allBadList),
       goodChecklist: getChecklistComplete(allGoodList),
     };
-    mutate(body);
+    await mutateAsync(body);
   };
 
   return (
