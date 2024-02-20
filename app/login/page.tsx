@@ -1,8 +1,5 @@
 import { SignInButton } from '@components/buttons';
-import { baseUrl } from '@libs/config';
-
-const redirectUri =
-  process.env.NODE_ENV === 'production' ? 'https://bbok-sigma.vercel.app/kakao' : 'http://localhost:3000/kakao';
+import { baseUrl, redirectUri } from '@libs/config';
 
 export default function LoginPage() {
   return (
