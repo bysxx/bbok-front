@@ -1,21 +1,18 @@
 import { useState } from 'react';
 
-const useInput = <T>(initialValue: string, validator: T) => {
-  const [value, setValue] = useState(initialValue);
+const useInput = <T>(initialValue: string, validator?: T) => {
+  const [text, setText] = useState(initialValue);
+  const [isValid, setIsValid] = useState(false);
+
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { value: target } = e.target as HTMLInputElement;
-    let willUpdate = true;
-
+    setText(target);
     if (typeof validator === 'function') {
-      willUpdate = validator(target);
-    }
-
-    if (willUpdate) {
-      setValue(target);
+      setIsValid(validator(target));
     }
   };
 
-  return { value, onChange };
+  return { text, isValid, onChange };
 };
 
 export default useInput;
