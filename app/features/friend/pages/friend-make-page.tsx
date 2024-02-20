@@ -4,7 +4,7 @@ import Input from '@components/input';
 import { ButtonTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
-import { useGetFriendCharater } from '@hooks/queries/friend';
+import { useGetFriendCharater, usePostFriend } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/Utils/useInput';
 import type { TFriendCharacter } from '@interfaces/friend';
@@ -14,9 +14,10 @@ import { useState } from 'react';
 import { friendInputVerifier } from '../utils/friendInputVerifier';
 
 const FriendMakePage = () => {
-  const { data } = useGetFriendCharater();
-  const { text: name, isValid: error, onChange } = useInput('', friendInputVerifier);
   const { push } = useCustomRouter();
+  const { data } = useGetFriendCharater();
+  const { mutate, status } = usePostFriend();
+  const { text: name, isValid: error, onChange } = useInput('', friendInputVerifier);
   const [character, setCharacter] = useState<TFriendCharacter>('CACTUS');
 
   const handleFriendMake = () => {
