@@ -16,12 +16,13 @@ const BoxButton = ({
   size = 'medium',
   isLoading = false,
   children,
+  className,
 }: IBoxButtonProps) => {
   return (
     <div className={border ? `flex w-full items-center justify-center bg-white px-6 py-4 pb-6 shadow-button` : ''}>
       <button
         type="button"
-        className={cx(commonButtonStyle, sizeStyle[size], bgColor[bg], {
+        className={cx(className, commonButtonStyle, sizeStyle[size], bgColor[bg], {
           'hover:bg-orange-hover': bg === 'orange1',
           'hover:bg-alerthover': bg === 'alert',
         })}

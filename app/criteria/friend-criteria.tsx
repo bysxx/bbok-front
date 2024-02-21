@@ -1,5 +1,6 @@
 import { CheckContent } from '@interfaces/member';
 import Link from 'next/link';
+import { useMemo } from 'react';
 
 interface CriteriaProps {
   type: 'bad' | 'good';
@@ -18,6 +19,7 @@ const title = {
 };
 
 const FriendCriteria = ({ type, list }: CriteriaProps) => {
+  const target = useMemo(() => list.filter((_, i) => i < 5), [list]);
   return (
     <div className="flex justify-between rounded-xl bg-yellow py-5 pl-5 pr-4">
       <div className="flex flex-col">
@@ -27,7 +29,7 @@ const FriendCriteria = ({ type, list }: CriteriaProps) => {
         </div>
 
         <ul className="ml-6 list-disc">
-          {list && list.length >= 5 && list.slice(0, 5).map((l) => (
+          {target.slice(0, 5).map((l) => (
             <li key={l.id} className="text-body-3 mb-[14px] ">
               {l.criteria}
             </li>
