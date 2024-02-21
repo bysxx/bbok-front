@@ -6,19 +6,17 @@ export interface IFriendBody {
 
 // 등록한 친구 리스트 type
 interface Friend {
-  id: string;
-  startedAt: string;
+  active: boolean;
   characterUrl: string;
+  countingDiary: number;
+  id: number;
   name: string;
-  diaryCount: number;
-  percentage: number;
-  isActive: boolean;
+  score: number;
+  startedAt: string;
 }
-export interface IFriend {
-  friend: Friend;
-}
+
 export interface IFriendList {
-  friends: IFriend[];
+  friends: Friend[];
 }
 
 export type TFriendCharacter = 'CACTUS' | 'HEDGEHOG';
