@@ -6,7 +6,7 @@ import LandingSection from './section';
 export default function LandingPage() {
   return (
     <main className="relative flex h-screen flex-col items-center">
-      <div className="h-screen w-full overflow-scroll">
+      <div className="h-screen w-full overflow-x-scroll scrollbar-hide">
         <LandingSection
           bg="bg-yellow"
           title="가시같은 친구를 등록하고<br />일화를 작성하세요"
