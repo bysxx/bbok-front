@@ -17,20 +17,18 @@ const friendApi = {
   /**
    * @description 친구 등록 api
    */
-  post: async (body: IFriendBody) => http.post<ResponseAPI>('/friend', body),
+  post: async (body: IFriendBody) => await http.post<ResponseAPI>('/friend', body),
 
   /**
    * @description 친구 이름 수정 api
    */
-  namePatch: async (body: IFriendModifyRequestBody ) => await http.patch<ResponseAPI>(`/friend/${body.id}`, {name: body.name})
+  namePatch: async (body: IFriendModifyRequestBody ) => await http.patch<ResponseAPI>(`/friend/${body.id}`, {name: body.name}),
+
+  /**
+   * @description 친구 관계 정리 api
+   */
+  friendPatch: async (id: number) => await http.patch<ResponseAPI>(`/friend/${id}/deactivate`)
 
 };
 export default friendApi;
 
-// 친구와의 일화 기록을 정리 (친구 비활성화)
-export const deactivateFriend = async (id: number) => {
-  const res = await fetch(`/friend/${id}/deactivate`, {
-    method: 'PATCH',
-  });
-  return res.json();
-};
