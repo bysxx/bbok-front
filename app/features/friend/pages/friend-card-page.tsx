@@ -8,20 +8,39 @@ import { EmptyFriend, FriendCard, KeyFriendCard } from '../component';
 
 const FriendCardPage = () => {
   const { data } = useGetFriend();
-  console.log(data?.data);
-
+  const friends = data?.data ? data.data.friends : [];
   return (
     <div>
       <DiaryTopBar label={'MY일기장'} settingClick={() => {}} />
-      {data?.data.friends.length === 0 && (
+      {friends.length === 0 && (
         <div className="mx-9 mt-9">
           <EmptyFriend />
         </div>
       )}
-      {data?.data.friends.length === 1 && (
+      {friends.length === 1 && friends[0]?.active && (
         <div className="flex gap-4 overflow-scroll px-9 py-4">
-          <FriendCard countingDiary={0} startedAt="2024-02-20" name="ㅁㄴㅇㄹ" score={0} url="" />
-          <KeyFriendCard name="asdg" lock={false} />
+          <FriendCard
+            countingDiary={friends[0]?.countingDiary}
+            startedAt={friends[0].startedAt}
+            name={friends[0].name}
+            score={friends[0].score}
+            url={friends[0].characterUrl}
+          />
+          <KeyFriendCard name={friends[0].name} lock={true} />
+        </div>
+      )}
+
+      {friends.length === 1 && !friends[0]?.active && friends[0] && (
+        <div className="flex gap-4 overflow-scroll px-9 py-4">
+          <KeyFriendCard name={friends[0].name} lock={true} />
+          <FriendCard
+            countingDiary={friends[0]?.countingDiary}
+            startedAt={friends[0].startedAt}
+            name={friends[0].name}
+            score={friends[0].score}
+            url={friends[0].characterUrl}
+            active={false}
+          />
         </div>
       )}
 
