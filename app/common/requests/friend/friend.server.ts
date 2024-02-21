@@ -15,7 +15,6 @@ const friendServerApi = {
   },
 
   /**
-   * 
    * @description 등록 친구 캐릭터 조회 server api
    */
   character: async () => {

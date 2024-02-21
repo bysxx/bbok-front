@@ -3,11 +3,13 @@
 import BoxButton from '@components/buttons/box-button';
 import { DiaryTopBar } from '@components/top-bar';
 import { useGetFriend } from '@hooks/queries/friend';
+import useCustomRouter from '@hooks/useCustomRouter';
 
 import { EmptyFriend, FriendCard, KeyFriendCard } from '../component';
 
 const FriendCardPage = () => {
   const { data } = useGetFriend();
+  const { push } = useCustomRouter();
   const friends = data?.data ? data.data.friends : [];
   return (
     <div>
@@ -45,7 +47,15 @@ const FriendCardPage = () => {
       )}
 
       <div className="mx-6 mb-[46px] mt-[53px]">
-        <BoxButton text="나의 친구 기준 보기" size="small" onClick={() => {}} bg="orange6" color="orange1" />
+        <BoxButton
+          text="나의 친구 기준 보기"
+          size="small"
+          onClick={() => {
+            push('/criteria');
+          }}
+          bg="orange6"
+          color="orange1"
+        />
       </div>
     </div>
   );

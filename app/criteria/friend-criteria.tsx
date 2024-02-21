@@ -1,21 +1,23 @@
+import { CheckContent } from '@interfaces/member';
 import Link from 'next/link';
 
 interface CriteriaProps {
   type: 'bad' | 'good';
-  list: string[];
+  list: CheckContent[];
 }
 
+const title = {
+  bad: {
+    image: '/images/icon/ui/broken-heart.svg',
+    label: '기피하는 친구 유형',
+  },
+  good: {
+    image: '/images/icon/ui/heart.svg',
+    label: '적합한 친구 유형',
+  },
+};
+
 const FriendCriteria = ({ type, list }: CriteriaProps) => {
-  const title = {
-    bad: {
-      image: '/images/icon/ui/broken-heart.svg',
-      label: '기피하는 친구 유형',
-    },
-    good: {
-      image: '/images/icon/ui/heart.svg',
-      label: '적합한 친구 유형',
-    },
-  };
   return (
     <div className="flex justify-between rounded-xl bg-yellow py-5 pl-5 pr-4">
       <div className="flex flex-col">
@@ -25,9 +27,9 @@ const FriendCriteria = ({ type, list }: CriteriaProps) => {
         </div>
 
         <ul className="ml-6 list-disc">
-          {list.map((l, index) => (
-            <li key={index} className="text-body-3 mb-[14px] ">
-              {l}
+          {list && list.length >= 5 && list.slice(0, 5).map((l) => (
+            <li key={l.id} className="text-body-3 mb-[14px] ">
+              {l.criteria}
             </li>
           ))}
         </ul>

@@ -1,20 +1,14 @@
-import { NavTopBar } from '@components/top-bar';
+import { PrefetchHydration } from '@components/react-query';
+import { MEMBER_KEYS } from '@constants/queryKeys';
+import memberServerApi from '@requests/member/member.server';
 
-import FriendCriteria from './friend-criteria';
+import MyCriteriaList from './my-criteria-list';
 
 const CriteriaPage = () => {
-  const badList = ['기피유형1', '기피유형2', '기피유형3', '기피유형4', '기피유형5'];
-  const goodList = ['적합유형1', '적합유형2', '적합유형3', '적합유형4', '적합유형5'];
   return (
-    <div>
-      <NavTopBar label="나의 친구 기준" href="./" />
-      <div className="mb-5 mt-[26px] px-6">
-        <FriendCriteria type="bad" list={badList} />
-      </div>
-      <div className="px-6">
-        <FriendCriteria type="good" list={goodList} />
-      </div>
-    </div>
+    <PrefetchHydration queryKey={MEMBER_KEYS.lists()} queryFn={memberServerApi.getList}>
+      <MyCriteriaList />
+    </PrefetchHydration>
   );
 };
 export default CriteriaPage;
