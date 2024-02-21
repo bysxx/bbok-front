@@ -13,7 +13,12 @@ const FriendCardPage = () => {
   const friends = data?.data ? data.data.friends : [];
   return (
     <div>
-      <DiaryTopBar label={'MY일기장'} settingClick={() => {}} />
+      <DiaryTopBar
+        label={'MY일기장'}
+        settingClick={() => {
+          push('/setting');
+        }}
+      />
       {friends.length === 0 && (
         <div className="mx-9 mt-9">
           <EmptyFriend />
