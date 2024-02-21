@@ -18,7 +18,7 @@ const FriendCardPage = () => {
         </div>
       )}
       {friends.length === 1 && friends[0]?.active && (
-        <div className="flex gap-4 overflow-scroll px-9 py-4">
+        <div className="flex gap-4 overflow-x-scroll px-9 py-4 scrollbar-hide">
           <FriendCard
             countingDiary={friends[0]?.countingDiary}
             startedAt={friends[0].startedAt}
@@ -31,7 +31,7 @@ const FriendCardPage = () => {
       )}
 
       {friends.length === 1 && !friends[0]?.active && friends[0] && (
-        <div className="flex gap-4 overflow-scroll px-9 py-4">
+        <div className="flex gap-4 overflow-x-scroll px-9 py-4 scrollbar-hide">
           <KeyFriendCard name={friends[0].name} lock={true} />
           <FriendCard
             countingDiary={friends[0]?.countingDiary}

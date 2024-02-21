@@ -11,8 +11,7 @@ interface IFriendCardProps {
   url: string;
   score: number;
 }
-export default function FriendCard({ countingDiary, startedAt, name, score, url, active = true }: IFriendCardProps) {
-  console.log(url);
+export default function FriendCard({ countingDiary, startedAt, name, score, active = true }: IFriendCardProps) {
   return (
     <div className=" min-w-[250px] rounded-3xl border-2 border-orange-4 bg-orange-3 px-4 pb-6 pt-[18px] shadow-friend-card">
       <div className="relative flex flex-col items-center gap-6 text-white">
