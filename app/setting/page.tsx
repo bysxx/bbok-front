@@ -6,13 +6,22 @@ import Input from '@components/input';
 import { NavTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
 import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
+import { useFriendMutation } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/Utils/useInput';
+import { useState } from 'react';
 
 const SettingPage = () => {
   const { text: value, isValid: error, onChange } = useInput('', friendInputVerifier);
   const { query } = useCustomRouter();
   const { id, name } = query;
+  const { patchFriend } = useFriendMutation();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleModifyFriend = async () => {
+    setIsLoading(true);
+    await patchFriend.mutateAsync({ id: id as number, name: value });
+  };
   return (
     <div>
       <NavTopBar label="일기장 관리" href="./" />
@@ -36,7 +45,14 @@ const SettingPage = () => {
             />
           </div>
           <div className="w-1/5">
-            <BoxButton text="변경" typo="body3" size="small" />
+            <BoxButton
+              text="변경"
+              typo="body3"
+              isLoading={isLoading}
+              disabled={!error}
+              onClick={handleModifyFriend}
+              size="small"
+            />
           </div>
         </div>
       </DefaultLayout>

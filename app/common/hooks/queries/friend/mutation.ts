@@ -6,10 +6,11 @@ import friendApi from '@requests/friend/friend.client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-export const usePostFriend = () => {
+export const useFriendMutation = () => {
   const queryClient = useQueryClient();
   const {push} = useCustomRouter();
-  return useMutation({
+
+  const postfriend = useMutation({
     mutationFn: friendApi.post,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
@@ -24,4 +25,14 @@ export const usePostFriend = () => {
       }
     },
   });
-};
+
+  const patchFriend = useMutation({
+    mutationFn: friendApi.namePatch,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
+      push('/');
+    }
+  })
+
+  return {postfriend, patchFriend}
+}
