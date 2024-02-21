@@ -1,4 +1,4 @@
-import type { ICharacterImage, IFriendBody, IFriendList } from '@interfaces/friend';
+import type { ICharacterImage, IFriendBody, IFriendList, IFriendModifyRequestBody } from '@interfaces/friend';
 
 import { ResponseAPI, ResponseDTO } from '../common';
 import { http } from '@libs/http.client';
@@ -17,22 +17,15 @@ const friendApi = {
   /**
    * @description 친구 등록 api
    */
-  post: async (body: IFriendBody) => http.post<ResponseAPI>('/friend', body)
+  post: async (body: IFriendBody) => http.post<ResponseAPI>('/friend', body),
+
+  /**
+   * @description 친구 이름 수정 api
+   */
+  namePatch: async (body: IFriendModifyRequestBody ) => await http.patch<ResponseAPI>(`/friend/${body.id}`, {name: body.name})
 
 };
 export default friendApi;
-
-// 친구의 이름을 수정
-export const modifyFriendName = async (id: number, name: string) => {
-  const body = {
-    name,
-  };
-  const res = await fetch(`/friend/${id}`, {
-    method: 'PATCH',
-    body: JSON.stringify(body),
-  });
-  return res.json();
-};
 
 // 친구와의 일화 기록을 정리 (친구 비활성화)
 export const deactivateFriend = async (id: number) => {
