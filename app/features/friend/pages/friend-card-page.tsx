@@ -3,13 +3,12 @@
 import BoxButton from '@components/buttons/box-button';
 import { DiaryTopBar } from '@components/top-bar';
 import { useGetFriend } from '@hooks/queries/friend';
-import FriendCard from 'app/(home)/friends/friend-card';
-import LockedFriendCard from 'app/(home)/friends/locked-friend-card';
 
-import EmptyFriend from '../component/empty-friend';
+import { EmptyFriend, FriendCard, LockedFriendCard } from '../component';
 
 const FriendCardPage = () => {
   const { data } = useGetFriend();
+  console.log(data?.data);
 
   return (
     <div>

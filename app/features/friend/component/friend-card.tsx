@@ -2,6 +2,13 @@ import Image from 'next/image';
 
 import FriendProgressBar from './progress-bar';
 
+interface IFriendCardProps {
+  countingDiary: number;
+  startedAt: Date;
+  name: string;
+  score: number;
+  active: boolean;
+}
 export default function FriendCard() {
   return (
     <div className=" min-w-[250px] rounded-3xl border-2 border-orange-4 bg-orange-3 px-4 pb-6 pt-[18px] shadow-friend-card">
@@ -13,7 +20,7 @@ export default function FriendCard() {
 
         <h2 className="text-friend-card-head">13일째 작성중</h2>
 
-        <figure className="h-[102px] w-[102px] rounded-full bg-white p-2.5">
+        <figure className="size-[102px] rounded-full bg-white p-2.5">
           <Image src={'/images/illustration/large-kaka.svg'} alt="" width={102} height={102} />
         </figure>
 
