@@ -23,15 +23,17 @@ export default function FriendProgressBar({ percent }: { percent: number }) {
         style={{ width: '0px' }}
         className="absolute left-0 top-0 h-3 rounded-full bg-white transition-all duration-1000"
       />
-      <Image
-        ref={imgRef}
-        style={{ left: '0px' }}
-        className="absolute -top-2.5 transition-all duration-1000"
-        src="/images/home/heart.svg"
-        alt=""
-        width={HEART_WIDTH}
-        height={HEART_WIDTH}
-      />
+      {percent > 0 && (
+        <Image
+          ref={imgRef}
+          style={{ left: '0px' }}
+          className="absolute -top-2.5 transition-all duration-1000"
+          src="/images/home/heart.svg"
+          alt=""
+          width={HEART_WIDTH}
+          height={HEART_WIDTH}
+        />
+      )}
     </div>
   );
 }
