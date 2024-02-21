@@ -16,7 +16,7 @@ const FriendCardPage = () => {
       <DiaryTopBar
         label={'MY일기장'}
         settingClick={() => {
-          push('/setting');
+          push({ pathname: '/setting', query: { id: friends[0]?.id, name: friends[0]?.name } });
         }}
       />
       {friends.length === 0 && (

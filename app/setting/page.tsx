@@ -6,10 +6,13 @@ import Input from '@components/input';
 import { NavTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
 import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
+import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/Utils/useInput';
 
 const SettingPage = () => {
   const { text: value, isValid: error, onChange } = useInput('', friendInputVerifier);
+  const { query } = useCustomRouter();
+  const { id, name } = query;
   return (
     <div>
       <NavTopBar label="일기장 관리" href="./" />
@@ -18,7 +21,7 @@ const SettingPage = () => {
 
         <h5 className="mb-3 mt-[25px] text-sm font-medium text-gray-70">기존 이름</h5>
         <div className="flex h-[47px] w-full items-center rounded-xl bg-gray-10 pl-4">
-          <h5 className="text-body-3 text-gray-65">김도리</h5>
+          <h5 className="text-body-3 text-gray-65">{name}</h5>
         </div>
         <h5 className="mb-3 mt-[22px] text-sm font-medium text-gray-70">새로운 이름</h5>
         <div className="flex w-full gap-2">
