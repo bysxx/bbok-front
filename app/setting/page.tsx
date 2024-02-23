@@ -6,6 +6,7 @@ import Input from '@components/input';
 import Popup from '@components/popup';
 import { NavTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
+import useNameValidation from '@features/friend/hooks/useNameValidation';
 import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
 import { useFriendMutation } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
@@ -15,6 +16,7 @@ import { useState } from 'react';
 const SettingPage = () => {
   const { text: value, isValid: error, onChange } = useInput('', friendInputVerifier);
   const { query } = useCustomRouter();
+  const { errorMessage } = useNameValidation(value);
   const { id, name } = query;
   const { patchFriend, deleteFriend } = useFriendMutation();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -63,7 +65,8 @@ const SettingPage = () => {
               error={!error}
               placeholder="새로운 이름"
               maxLength={12}
-              errorMessage="한글 또는 영문,숫자의 조합으로 12자 이내"
+              content="한글 또는 영문,숫자의 조합으로 12자 이내"
+              errorMessage={errorMessage}
             />
           </div>
           <div className="w-1/5">
