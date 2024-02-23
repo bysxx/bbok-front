@@ -1,3 +1,4 @@
+import useCustomRouter from '@hooks/useCustomRouter';
 import Image from 'next/image';
 
 interface IKeyFriendCardProp {
@@ -5,8 +6,16 @@ interface IKeyFriendCardProp {
   lock: boolean;
 }
 const KeyFriendCard = ({ name, lock }: IKeyFriendCardProp) => {
+  const { push } = useCustomRouter();
   return (
-    <div className="min-w-[250px] rounded-3xl bg-brown px-4 pb-6 pt-[18px] shadow-locked-friend-card">
+    <div
+      className="min-w-[250px] rounded-3xl bg-brown px-4 pb-6 pt-[18px] shadow-locked-friend-card"
+      onClick={() => {
+        if (!lock) {
+          push('./friend');
+        }
+      }}
+    >
       <div className="flex flex-col items-center justify-center">
         <h2 className="text-friend-card-head text-white">{lock ? '잠김' : '사용가능'}</h2>
         <Image
@@ -14,7 +23,7 @@ const KeyFriendCard = ({ name, lock }: IKeyFriendCardProp) => {
           alt=""
           width={112}
           height={112}
-          className="mt-14"
+          className="mt-[60px]"
         />
 
         {(() => {
@@ -31,7 +40,7 @@ const KeyFriendCard = ({ name, lock }: IKeyFriendCardProp) => {
             );
           }
           return (
-            <p className="text-body-4 mt-8 text-center text-gray-15">
+            <p className="text-body-4 mt-[54px] text-center text-gray-15">
               새로운 친구를
               <br /> 생성할 수 있어요
             </p>
