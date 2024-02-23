@@ -1,11 +1,15 @@
-// 등록할 친구 body type
+/**
+ * 등록할 친구 request type
+ */
 export interface IFriendBody {
   name: string;
   character: TFriendCharacter;
 }
 
-// 등록한 친구 리스트 type
-interface Friend {
+/**
+ * 등록한 친구 리스트 type
+ */
+export interface Friend {
   active: boolean;
   characterUrl: string;
   countingDiary: number;
@@ -21,7 +25,9 @@ export interface IFriendList {
 
 export type TFriendCharacter = 'CACTUS' | 'HEDGEHOG';
 
-// 캐릭터 이미지 type
+/**
+ * 캐릭터 이미지 type
+ */
 interface CharacterContent {
   type: TFriendCharacter;
   iconUrl: string;
@@ -29,4 +35,12 @@ interface CharacterContent {
 }
 export interface ICharacterImage {
   characters: CharacterContent[];
+}
+
+/**
+ * 친구 이름 수정 request body
+ */
+export interface IFriendModifyRequestBody {
+  id: number;
+  name: string;
 }

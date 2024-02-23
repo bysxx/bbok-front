@@ -21,6 +21,7 @@ const Input = ({
   setInputValue,
   maxLength,
   className,
+  content,
   errorMessage,
 }: InputProps) => {
   const [focus, setFocus] = useState(false);
@@ -44,7 +45,7 @@ const Input = ({
           }}
         />
       </div>
-      <Verifier state={!error} text={errorMessage!!} notice={!focus} />
+      <Verifier state={!error} text={content!} errorMessage={errorMessage} notice={!focus} />
     </div>
   );
 };

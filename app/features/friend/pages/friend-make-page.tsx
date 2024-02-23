@@ -4,20 +4,22 @@ import Input from '@components/input';
 import { ButtonTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
-import { useGetFriendCharater, usePostFriend } from '@hooks/queries/friend';
+import { useFriendMutation, useGetFriendCharater } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/Utils/useInput';
 import type { TFriendCharacter } from '@interfaces/friend';
 import FriendCharacter from 'app/friend/friend-character';
 import { useState } from 'react';
 
+import useNameValidation from '../hooks/useNameValidation';
 import { friendInputVerifier } from '../utils/friendInputVerifier';
 
 const FriendMakePage = () => {
   const { push } = useCustomRouter();
   const { data } = useGetFriendCharater();
-  const { mutateAsync } = usePostFriend();
+  const { postfriend } = useFriendMutation();
   const { text: name, isValid: error, onChange } = useInput('', friendInputVerifier);
+  const { errorMessage } = useNameValidation(name);
   const [character, setCharacter] = useState<TFriendCharacter>('CACTUS');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -27,7 +29,7 @@ const FriendMakePage = () => {
       name,
       character,
     };
-    await mutateAsync(body);
+    await postfriend.mutateAsync(body);
   };
   return (
     <FooterButtonLayout text="완료" border={false} disabled={!error} onClick={handleFriendMake} isLoading={isLoading}>
@@ -60,7 +62,8 @@ const FriendMakePage = () => {
           error={!error}
           placeholder="이름을 입력하세요"
           maxLength={12}
-          errorMessage="한글 또는 영문,숫자의 조합으로 12자 이내"
+          errorMessage={errorMessage}
+          content="한글 또는 영문,숫자의 조합으로 12자 이내"
         />
       </DefaultLayout>
     </FooterButtonLayout>
