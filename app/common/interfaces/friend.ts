@@ -9,7 +9,7 @@ export interface IFriendBody {
 /**
  * 등록한 친구 리스트 type
  */
-interface Friend {
+export interface Friend {
   active: boolean;
   characterUrl: string;
   countingDiary: number;
