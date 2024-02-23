@@ -6,7 +6,7 @@ import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
 import DatePicker from '@components/date-picker';
 import DiaryField from '@components/diary-field';
-import Modal from '@components/modal';
+import Popup from '@components/popup';
 import RadioButton from '@components/radio-button';
 import SearchBar from '@components/search-bar';
 import TagLabel from '@components/tag-label';
@@ -37,6 +37,21 @@ const PreviewPage = () => {
 
   return (
     <div className="flex flex-col">
+      <div className="m-7">
+        <Popup isOpen={modal} onClose={closeModal} label="확인" onClick={() => {}} title="정말 관계를 정리하시겠어요?">
+          <p className="text-caption-1 text-center text-gray-40">
+            관계정리를 하면 더 이상 일기를 쓸 수 없어요.
+            <br />
+            일기를 되살리고 싶다면 고객센터에 문의해주세요.
+          </p>
+        </Popup>
+        <BoxButton
+          onClick={() => {
+            setModal(true);
+          }}
+          text="모달 열기"
+        />
+      </div>
       <div className="m-2">
         <BoxButton text="친구 생성" onClick={() => {}} />
       </div>
@@ -165,23 +180,6 @@ const PreviewPage = () => {
 
       <h1 className="m-2">modal</h1>
       {/* modal */}
-      <div className="m-7">
-        <BoxButton
-          onClick={() => {
-            setModal(true);
-          }}
-          text="모달 열기"
-        />
-      </div>
-      {modal && (
-        <Modal
-          label="삭제"
-          title="정말 삭제하시겠어요?"
-          content="삭제한 일화는 다시 복구할 수 없어요."
-          onClose={closeModal}
-          onClick={() => {}}
-        />
-      )}
     </div>
   );
 };
