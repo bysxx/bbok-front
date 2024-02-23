@@ -19,6 +19,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@chakra-ui/next-js": "^2.2.0",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@tanstack/query-core": "^5.20.5",
     "@tanstack/react-query": "^5.20.5",
     "@tanstack/react-query-devtools": "^5.21.5",
@@ -26,6 +30,7 @@
     "axios": "^1.6.7",
     "classnames": "^2.5.1",
     "cookies-next": "^4.1.1",
+    "framer-motion": "^11.0.5",
     "moment": "^2.30.1",
     "next": "^14.1.0",
     "postcss": "^8.4.35",
