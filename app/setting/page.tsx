@@ -3,6 +3,7 @@
 import BoxButton from '@components/buttons/box-button';
 import Divider from '@components/divider';
 import Input from '@components/input';
+import Popup from '@components/popup';
 import { NavTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
 import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
@@ -15,15 +16,36 @@ const SettingPage = () => {
   const { text: value, isValid: error, onChange } = useInput('', friendInputVerifier);
   const { query } = useCustomRouter();
   const { id, name } = query;
-  const { patchFriend } = useFriendMutation();
-  const [isLoading, setIsLoading] = useState(false);
+  const { patchFriend, deleteFriend } = useFriendMutation();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(false);
 
   const handleModifyFriend = async () => {
     setIsLoading(true);
     await patchFriend.mutateAsync({ id: id as number, name: value });
   };
+
+  const handleDeleteFriend = async () => {
+    setModal(false);
+    await deleteFriend.mutateAsync(id as number);
+  };
   return (
-    <div>
+    <>
+      <Popup
+        isOpen={modal}
+        onClose={() => {
+          setModal(false);
+        }}
+        label="정리"
+        onClick={handleDeleteFriend}
+        title="정말 관계를 정리하시겠어요?"
+      >
+        <p className="text-caption-1 text-center text-gray-40">
+          관계정리를 하면 더 이상 일기를 쓸 수 없어요.
+          <br />
+          일기를 되살리고 싶다면 고객센터에 문의해주세요.
+        </p>
+      </Popup>
       <NavTopBar label="일기장 관리" href="./" />
       <DefaultLayout>
         <h2 className="text-title-3 mt-[22px] text-gray-65">친구 이름 변경</h2>
@@ -59,15 +81,20 @@ const SettingPage = () => {
       <Divider className="mt-[30px]" />
       <DefaultLayout>
         <h2 className="text-title-3 mb-[26px] mt-6 text-gray-65">친구 이름 변경</h2>
-
-        <BoxButton size="small" onClick={() => {}} bg="yellow">
+        <BoxButton
+          size="small"
+          onClick={() => {
+            setModal(true);
+          }}
+          bg="yellow"
+        >
           <div className="flex justify-between pl-5 pr-3">
             <h5 className="text-title-3 text-orange-1">가시를 뽁! 뽑기 (관계 정리하기)</h5>
             <img src="/images/icon/ui/back-orange.svg" alt="" />
           </div>
         </BoxButton>
       </DefaultLayout>
-    </div>
+    </>
   );
 };
 export default SettingPage;

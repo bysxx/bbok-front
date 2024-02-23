@@ -18,7 +18,7 @@ const Popup = (props: IModalProps) => {
     <Modal onClose={onClose} isOpen={isOpen} {...rest} isCentered={true}>
       <ModalOverlay />
 
-      <ModalContent className="items-center justify-center" borderRadius="20px" width="19rem">
+      <ModalContent className="items-center justify-center" borderRadius="20px" width="20rem">
         <ModalBody>
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-title-1 mb-3 mt-9 text-gray-70">{title}</h2>

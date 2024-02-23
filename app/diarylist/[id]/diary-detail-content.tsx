@@ -1,6 +1,6 @@
 'use client';
 
-import Modal from '@components/modal';
+import Popup from '@components/popup';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -48,15 +48,15 @@ const DiaryDetailContent = ({ content }: { content: string }) => {
   ];
   return (
     <>
-      {deleteModal && (
-        <Modal
-          label="삭제"
-          title="정말 삭제하시겠어요?"
-          content="삭제한 일화는 다시 복구할 수 없어요."
-          onClose={deleteModalHandler}
-          onClick={() => {}}
-        />
-      )}
+      <Popup
+        isOpen={deleteModal}
+        onClose={deleteModalHandler}
+        label="삭제"
+        onClick={() => {}}
+        title="정말 삭제하시겠어요?"
+      >
+        <p className="text-caption-1 text-center text-gray-40">삭제한 일화는 다시 복구할 수 없어요.</p>
+      </Popup>
       {stickerModal && <StickerBottomModal onClose={stickerModalHandler} />}
 
       <div className="h-96">
