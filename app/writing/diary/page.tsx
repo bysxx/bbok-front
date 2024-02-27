@@ -56,7 +56,10 @@ const WritingDiaryPage = () => {
         {(() => {
           if (tag.length === 0) {
             return (
-              <button className="rounded-[10px] bg-gray-10 py-4 pl-[14px]" onClick={() => push('/writing/tag')}>
+              <button
+                className="rounded-[10px] bg-gray-10 py-4 pl-[14px] w-full flex justify-start items-start"
+                onClick={() => push('/writing/tag')}
+              >
                 <h5 className="text-sm font-medium text-gray-30">입력하면 일화의 카테고리로 분류해서 볼 수 있어요</h5>
               </button>
             );
