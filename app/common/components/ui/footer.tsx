@@ -7,11 +7,14 @@ import useCustomRouter from '@hooks/useCustomRouter';
 import classNames from 'classnames';
 import Image from 'next/image';
 
-function Footer() {
+function Footer({ setRoute, check = false }: { setRoute?: (value: TBottomTab) => void; check?: boolean }) {
   const { push, pathname } = useCustomRouter();
 
   const handleBottomRouter = (item: TBottomTab) => {
-    if (!BOTTOM_TAP[item].check.includes(pathname)) {
+    if (setRoute) {
+      setRoute(item);
+    }
+    if (!BOTTOM_TAP[item].check.includes(pathname) && !check) {
       push(BOTTOM_TAP[item].href);
     }
   };
