@@ -14,7 +14,7 @@ function Footer() {
       iconOff: '/images/icon/bottom/home-off.svg',
     },
     {
-      href: '/writing',
+      href: '/diarylist',
       label: '글쓰기',
       iconOn: '/images/icon/bottom/writing-on.svg',
       iconOff: '/images/icon/bottom/writing-off.svg',
