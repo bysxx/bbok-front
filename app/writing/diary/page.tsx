@@ -53,17 +53,16 @@ const WritingDiaryPage = () => {
           <h2 className="mr-2 justify-center text-base font-medium text-gray-65">태그</h2>
           {tag.length === 0 && <Verifier notice={true} text="최대 7개까지 입력이 가능해요" />}
         </div>
-
-        <div className="rounded-[10px] bg-gray-10 py-4 pl-[14px]">
-          {(() => {
-            if (tag.length === 0) {
-              return (
+        {(() => {
+          if (tag.length === 0) {
+            return (
+              <button className="rounded-[10px] bg-gray-10 py-4 pl-[14px]" onClick={() => push('/writing/tag')}>
                 <h5 className="text-sm font-medium text-gray-30">입력하면 일화의 카테고리로 분류해서 볼 수 있어요</h5>
-              );
-            }
-            return <div></div>;
-          })()}
-        </div>
+              </button>
+            );
+          }
+          return <button className="rounded-[10px] bg-gray-10 py-4 pl-[14px]"></button>;
+        })()}
 
         <h2 className="mb-3 mt-8 text-base font-medium text-gray-65">감정</h2>
         <div className="flex gap-3 justify-center">
