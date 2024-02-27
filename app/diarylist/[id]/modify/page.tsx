@@ -1,7 +1,7 @@
 'use client';
 
 import DatePicker from '@components/date-picker';
-import DiaryField from '@components/diary-field';
+import DiaryField from '@components/text-field';
 import { ButtonTopBar } from '@components/top-bar';
 import { useState } from 'react';
 

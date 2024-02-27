@@ -5,11 +5,11 @@ import BoxButton from '@components/buttons/box-button';
 import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
 import DatePicker from '@components/date-picker';
-import DiaryField from '@components/diary-field';
 import Popup from '@components/popup';
 import RadioButton from '@components/radio-button';
 import SearchBar from '@components/search-bar';
 import TagLabel from '@components/tag-label';
+import DiaryField from '@components/text-field';
 import ToggleButton from '@components/toggle-button';
 import { ButtonTopBar, DiaryTopBar, NavTopBar } from '@components/top-bar';
 import { useState } from 'react';
@@ -161,7 +161,7 @@ const PreviewPage = () => {
       <h1 className="m-2">diary field</h1>
       {/* diary field */}
       <div className="m-2">
-        <DiaryField input={textFieldValue} setInput={setTextFieldValue} />
+        <DiaryField input={textFieldValue} setInput={setTextFieldValue} maxLength={1000} />
       </div>
 
       <h1 className="m-2">top bar</h1>
