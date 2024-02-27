@@ -1,19 +1,20 @@
 import RadioButton from '@components/radio-button';
+import type { TCharacter } from '@constants/enums';
+import { Character } from '@constants/enums';
 import { FRIEND_CHARACTER } from '@constants/friend';
-import type { TFriendCharacter } from '@interfaces/friend';
 import { useCallback } from 'react';
 
 interface CharacterProps {
-  type: TFriendCharacter;
+  type: TCharacter;
   selected: boolean;
-  character: TFriendCharacter;
-  setCharacter: (value: TFriendCharacter) => void;
+  character: TCharacter;
+  setCharacter: (value: TCharacter) => void;
   name: string;
 }
 
 const FriendCharacter = ({ type, character, setCharacter, selected, name }: CharacterProps) => {
   const handleSelectedClick = useCallback(() => {
-    setCharacter(character === 'CACTUS' ? 'HEDGEHOG' : 'CACTUS');
+    setCharacter(character === Character.CACTUS ? Character.HEDGEHOG : Character.CACTUS);
   }, [setCharacter, character]);
 
   return (
