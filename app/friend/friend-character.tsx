@@ -1,7 +1,7 @@
 import RadioButton from '@components/radio-button';
+import { FRIEND_CHARACTER } from '@constants/character';
 import type { TCharacter } from '@constants/enums';
 import { Character } from '@constants/enums';
-import { FRIEND_CHARACTER } from '@constants/friend';
 import { useCallback } from 'react';
 
 interface CharacterProps {
