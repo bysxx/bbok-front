@@ -22,7 +22,7 @@ const WritingDiaryPage = () => {
   const { isOpen, onClose, onOpen } = useModal();
   const [date, setDate] = useState<string>('');
   const [diary, setDiary] = useState<string>('');
-  const [tag, setTag] = useState<string[]>([]);
+  const [tag] = useState<string[]>([]);
   const [selectEmoji, setSelectEmoji] = useState<TEmoji>('ANGRY');
   const [check, setCheck] = useState<boolean>(false);
   return (
