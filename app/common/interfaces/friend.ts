@@ -1,9 +1,11 @@
+import { TCharacter } from "@constants/enums";
+
 /**
  * 등록할 친구 request type
  */
 export interface IFriendBody {
   name: string;
-  character: TFriendCharacter;
+  character: TCharacter;
 }
 
 /**
@@ -23,13 +25,11 @@ export interface IFriendList {
   friends: Friend[];
 }
 
-export type TFriendCharacter = 'CACTUS' | 'HEDGEHOG';
-
 /**
  * 캐릭터 이미지 type
  */
 interface CharacterContent {
-  type: TFriendCharacter;
+  type: TCharacter;
   iconUrl: string;
   name: string;
 }

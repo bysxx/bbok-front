@@ -2,6 +2,7 @@
 
 import BoxButton from '@components/buttons/box-button';
 import SearchBar from '@components/search-bar';
+import useCustomRouter from '@hooks/useCustomRouter';
 import type { ChangeEvent } from 'react';
 import { useCallback, useState } from 'react';
 
@@ -9,6 +10,7 @@ import DiaryList from './diary-list';
 import TagButtonsList from './tag-buttons-list';
 
 const DiaryListPage = () => {
+  const { push } = useCustomRouter();
   // 검색 string 옵션
   const [input, setInput] = useState<string>('');
 
@@ -41,7 +43,13 @@ const DiaryListPage = () => {
         <DiaryList time={time} setTime={handleSetTime} input={input} tags={tag} />
       </div>
       <div className="sticky bottom-0 mt-24 h-[90px]">
-        <BoxButton text="일화작성" border={true} onClick={() => {}} />
+        <BoxButton
+          text="일화작성"
+          border={true}
+          onClick={() => {
+            push('/writing');
+          }}
+        />
       </div>
     </div>
   );

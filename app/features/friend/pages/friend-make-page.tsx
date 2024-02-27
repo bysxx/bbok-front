@@ -7,12 +7,12 @@ import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
 import { useFriendMutation, useGetFriendCharater } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/Utils/useInput';
-import type { TFriendCharacter } from '@interfaces/friend';
 import FriendCharacter from 'app/friend/friend-character';
 import { useState } from 'react';
 
 import useNameValidation from '../hooks/useNameValidation';
 import { friendInputVerifier } from '../utils/friendInputVerifier';
+import { TCharacter } from '@constants/enums';
 
 const FriendMakePage = () => {
   const { push } = useCustomRouter();
@@ -20,7 +20,7 @@ const FriendMakePage = () => {
   const { postfriend } = useFriendMutation();
   const { text: name, isValid: error, onChange } = useInput('', friendInputVerifier);
   const { errorMessage } = useNameValidation(name);
-  const [character, setCharacter] = useState<TFriendCharacter>('CACTUS');
+  const [character, setCharacter] = useState<TCharacter>('CACTUS');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleFriendMake = async () => {

@@ -1,7 +1,7 @@
 'use client';
 
 import DatePicker from '@components/date-picker';
-import DiaryField from '@components/diary-field';
+import DiaryField from '@components/text-field';
 import { ButtonTopBar } from '@components/top-bar';
 import { useState } from 'react';
 
@@ -19,7 +19,7 @@ const DiaryDetailModifyPage = () => {
         <h5 className="mb-3 mt-8">날짜</h5>
         <DatePicker date={date} setDate={setDate} />
         <h5 className="mb-3 mt-8">친구와의 일화</h5>
-        <DiaryField input={diary} setInput={setDiary} />
+        <DiaryField input={diary} setInput={setDiary} maxLength={1000} />
         <h5 className="mb-3 mt-8">태그</h5>
         {/* <Input type="tag" inputValue={tag} setInputValue={setTag} /> */}
       </div>

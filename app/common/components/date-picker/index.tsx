@@ -15,7 +15,7 @@ const DatePicker = ({ date, setDate }: DatePickerProps) => {
       <input
         type="date"
         value={date}
-        className="block h-[47px] w-full rounded-lg border border-none bg-gray-10 px-[14px] py-[16px] focus:border-none focus:outline-0"
+        className="block h-[47px] w-full rounded-lg border border-none bg-gray-10 px-[14px] py-[16px] text-gray-35 focus:border-none focus:outline-0"
         placeholder="Select date"
         onChange={handleDateChange}
       />
