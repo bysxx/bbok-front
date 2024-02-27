@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 interface InputProps extends HTMLAttributes<HTMLInputElement> {
   error?: boolean;
   disabled?: boolean;
-  placeholder: string;
+  placeholder?: string;
   inputValue: string;
-  setInputValue: (e: React.FormEvent<HTMLInputElement>) => void;
+  setInputValue?: (e: React.FormEvent<HTMLInputElement>) => void;
   maxLength?: number;
   content?: string;
   errorMessage?: string;
@@ -45,7 +45,9 @@ const Input = ({
           }}
         />
       </div>
-      <Verifier state={!error} text={content!} errorMessage={errorMessage} notice={!focus} />
+      {!disabled && (
+        <Verifier state={!error} className="mt-3" text={content!} errorMessage={errorMessage} notice={!focus} />
+      )}
     </div>
   );
 };
