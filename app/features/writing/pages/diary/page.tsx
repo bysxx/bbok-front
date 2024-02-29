@@ -111,7 +111,12 @@ const DiaryWritingPage = ({ diary, setDiary }: IDiaryWritingPageProps) => {
           <ToggleButton isChecked={check} setIsChecked={setCheck} />
         </div>
 
-        <BoxButton text="완료" onClick={() => push({ pathname: './writing', query: { step: 4 } })} className="mb-8" />
+        <BoxButton
+          text="완료"
+          disabled={diary.tags.length === 0 || !diary.content || !diary.date || !diary.emoji}
+          onClick={() => push({ pathname: './writing', query: { step: 4 } })}
+          className="mb-8"
+        />
       </DefaultLayout>
     </>
   );
