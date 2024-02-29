@@ -12,7 +12,11 @@ const useInput = <T>(initialValue: string, validator?: T) => {
     }
   };
 
-  return { text, isValid, onChange };
+  const onClear = () => {
+    setText('');
+  };
+
+  return { text, isValid, onChange, onClear };
 };
 
 export default useInput;
