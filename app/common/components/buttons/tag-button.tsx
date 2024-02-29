@@ -1,12 +1,14 @@
 import { Tag, TagLabel } from '@chakra-ui/react';
 import ImageLoader from '@components/imageLoader';
 import Image from 'next/image';
+import { MouseEvent } from 'react';
 
 interface ITagButtonProps {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
+  onClickWithEvent?: (event: MouseEvent) => void;
 }
-const TagButton = ({ label, onClick }: ITagButtonProps) => {
+const TagButton = ({ label, onClick, onClickWithEvent }: ITagButtonProps) => {
   return (
     <Tag
       size="large"
@@ -23,7 +25,7 @@ const TagButton = ({ label, onClick }: ITagButtonProps) => {
         alt=""
         width={14}
         height={14}
-        onClick={onClick}
+        onClick={onClick || onClickWithEvent}
       />
     </Tag>
   );
