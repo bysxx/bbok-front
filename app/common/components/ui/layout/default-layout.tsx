@@ -1,6 +1,11 @@
+import cx from 'classnames';
+import type { HTMLAttributes } from 'react';
 import React from 'react';
 
-const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
-  return <div className="flex-1 px-6">{children}</div>;
+interface IDefaultLayoutProps extends HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+const DefaultLayout = ({ children, className }: IDefaultLayoutProps) => {
+  return <div className={cx('flex-1 px-6', className)}>{children}</div>;
 };
 export default DefaultLayout;

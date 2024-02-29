@@ -1,6 +1,6 @@
 'use client';
 
-import { TagButton } from '@components/buttons';
+import { SelectButton } from '@components/buttons';
 
 interface TagListProps {
   selectTag: string[];
@@ -26,11 +26,11 @@ const TagButtonsList = ({ selectTag, setSelectTag }: TagListProps) => {
   return (
     <div className="flex overflow-x-scroll pl-7 pt-3 scrollbar-hide">
       <div className="mr-2">
-        <TagButton selected={selectTag.length === 0} onClick={handleAllTagClick} label={'전체'} />
+        <SelectButton selected={selectTag.length === 0} onClick={handleAllTagClick} label={'전체'} />
       </div>
       {tags.map((tag: string) => (
         <div className="mr-2" key={tag}>
-          <TagButton selected={selectTag.includes(tag)} onClick={() => handleTagClick(tag)} label={tag} />
+          <SelectButton selected={selectTag.includes(tag)} onClick={() => handleTagClick(tag)} label={tag} />
         </div>
       ))}
     </div>
