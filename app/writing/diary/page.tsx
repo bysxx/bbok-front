@@ -88,7 +88,13 @@ const WritingDiaryPage = () => {
           <ToggleButton isChecked={check} setIsChecked={setCheck} />
         </div>
 
-        <BoxButton text="완료" onClick={() => {}} className="mb-8" />
+        <BoxButton
+          text="완료"
+          onClick={() => {
+            push('./list');
+          }}
+          className="mb-8"
+        />
       </DefaultLayout>
     </div>
   );
