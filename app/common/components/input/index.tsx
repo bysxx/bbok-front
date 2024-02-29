@@ -26,7 +26,7 @@ const Input = ({
 }: InputProps) => {
   const [focus, setFocus] = useState(false);
   return (
-    <div>
+    <>
       <div className="relative h-[47px] w-full">
         <input
           className={`text-body-3 ${className} h-[47px] w-full rounded-xl  bg-gray-10 px-[16px]  ${
@@ -45,10 +45,10 @@ const Input = ({
           }}
         />
       </div>
-      {!disabled && (
+      {content && (
         <Verifier state={!error} className="mt-3" text={content!} errorMessage={errorMessage} notice={!focus} />
       )}
-    </div>
+    </>
   );
 };
 export default Input;
