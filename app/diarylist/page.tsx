@@ -47,7 +47,7 @@ const DiaryListPage = () => {
           text="일화작성"
           border={true}
           onClick={() => {
-            push('/writing');
+            push({ pathname: './writing', query: { step: 1 } });
           }}
         />
       </div>
