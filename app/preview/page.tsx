@@ -1,6 +1,6 @@
 'use client';
 
-import { RoundButton, SignInButton, TagButton } from '@components/buttons';
+import { RoundButton, SelectButton, SignInButton } from '@components/buttons';
 import BoxButton from '@components/buttons/box-button';
 import CheckBox from '@components/check-box';
 import { CheckList } from '@components/check-list';
@@ -90,7 +90,7 @@ const PreviewPage = () => {
       </div>
       {/* tag button */}
       <div className="m-4 flex gap-2">
-        <TagButton
+        <SelectButton
           selected={tag}
           label="태그1"
           onClick={() => {
