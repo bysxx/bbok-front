@@ -6,11 +6,13 @@ import { useGetMyChecklist } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { IDiaryRequestBody, TDiaryKey, TDiaryValue } from '@interfaces/diary';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getInitialDiaryList, updateDiaryChecklist } from '../utils/get-diary-checklist';
 import { TYPE_CHECLIST_COMMENT } from '../constants/type-check';
 import { CheckNotNextPage } from '../utils/check-next-page';
 import { LoadingPage } from '@components/ui/pages';
+import { useFriendStore } from '@stores/useFriendStore';
+import { useDiaryMutation } from '@hooks/queries/diary/mutation';
 
 interface IDiaryListPageProps {
   diary: IDiaryRequestBody;
@@ -20,6 +22,9 @@ interface IDiaryListPageProps {
 const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
   const { data, isSuccess, isLoading } = useGetMyChecklist();
   const { push, query } = useCustomRouter();
+  const { friend } = useFriendStore();
+  const { postDiary } = useDiaryMutation();
+  const [loading, setLoading] = useState<boolean>(false);
   const { type } = query;
 
   useEffect(() => {
@@ -34,25 +39,32 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
     return <LoadingPage />;
   }
 
+  const handleMakeDiary = async () => {
+    setLoading(true);
+    const result = { ...diary, id: friend.id };
+    await postDiary.mutateAsync(result);
+  };
+
   return (
     <FooterButtonLayout
       text={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].bottom}
       multi={true}
       onClick={() => {
-        console.log(diary.checklist);
         if (type === 'bad') {
           push({ pathname: './writing', query: { step: 4, type: 'good' } });
         } else {
+          handleMakeDiary();
         }
       }}
       multiOnClick={() => {
-        console.log('패스', diary.checklist);
         if (type === 'bad') {
           push({ pathname: './writing', query: { step: 4, type: 'good' } });
         } else {
+          handleMakeDiary();
         }
       }}
       border={false}
+      isLoading={loading}
     >
       <NavTopBar
         onClick={() => {
