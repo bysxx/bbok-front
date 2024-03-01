@@ -12,6 +12,7 @@ import { ButtonTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
 import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
+import { CheckNotNextPage } from '@features/writing/utils/check-next-page';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/Utils/useModal';
 import { IDiaryRequestBody, TDiaryKey, TDiaryValue } from '@interfaces/diary';
@@ -113,7 +114,7 @@ const DiaryWritingPage = ({ diary, setDiary }: IDiaryWritingPageProps) => {
 
         <BoxButton
           text="완료"
-          disabled={diary.tags.length === 0 || !diary.content || !diary.date || !diary.emoji}
+          disabled={CheckNotNextPage(diary)}
           onClick={() => push({ pathname: './writing', query: { step: 4, type: 'bad' } })}
           className="mb-8"
         />
