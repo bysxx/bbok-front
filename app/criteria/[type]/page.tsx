@@ -3,6 +3,7 @@
 import { NavTopBar } from '@components/top-bar';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
 import { ChecklistTabPage } from '@features/checklist/components';
+import useCustomRouter from '@hooks/useCustomRouter';
 import type { ICheckItem } from '@interfaces/checklist';
 import { useCallback, useState } from 'react';
 
@@ -15,6 +16,7 @@ interface CriteriaProps {
   };
 }
 const CriteriaModifyPage = ({ params }: CriteriaProps) => {
+  const { push } = useCustomRouter();
   const initialModifyList = data[params.type === 'bad' ? 'badChecklist' : 'goodChecklist'];
   const [modifyCheckList, setModifyCheckList] = useState<ICheckItem[]>(initialModifyList);
 
@@ -34,7 +36,7 @@ const CriteriaModifyPage = ({ params }: CriteriaProps) => {
       }}
       text="완료"
     >
-      <NavTopBar label="기준 수정" href="./" />
+      <NavTopBar label="기준 수정" onClick={() => push('./')} />
       <ModifyCheckListTitle type={params.type} list={modifyCheckList} />
       <div className="mt-[34px]">
         <ChecklistTabPage

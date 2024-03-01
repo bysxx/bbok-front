@@ -11,7 +11,7 @@ import SearchBar from '@components/search-bar';
 import TagLabel from '@components/tag-label';
 import DiaryField from '@components/text-field';
 import ToggleButton from '@components/toggle-button';
-import { ButtonTopBar, DiaryTopBar, NavTopBar } from '@components/top-bar';
+import { ButtonTopBar, DiaryTopBar } from '@components/top-bar';
 import { useState } from 'react';
 
 const PreviewPage = () => {
@@ -172,10 +172,6 @@ const PreviewPage = () => {
       {/* diary top bar */}
       <div className="m-2">
         <DiaryTopBar label="일기장" settingClick={() => {}} />
-      </div>
-      {/* nav top bar */}
-      <div className="m-2">
-        <NavTopBar label="설정" href="/" />
       </div>
 
       <h1 className="m-2">modal</h1>

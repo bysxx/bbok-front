@@ -5,6 +5,7 @@ import Input from '@components/input';
 import { NavTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
+import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/Utils/useInput';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
@@ -16,6 +17,7 @@ interface IDiaryTagPageProps {
 const DiaryTagPage = ({ tags, setTags }: IDiaryTagPageProps) => {
   const { text, onChange, onClear } = useInput('');
   const [error, setError] = useState<boolean>(false);
+  const { push } = useCustomRouter();
 
   useEffect(() => {
     if (tags.length < 7 || text.length === 0) {
@@ -44,7 +46,7 @@ const DiaryTagPage = ({ tags, setTags }: IDiaryTagPageProps) => {
 
   return (
     <>
-      <NavTopBar href="./writing?step=2" label="태그 추가" />
+      <NavTopBar label="태그 추가" onClick={() => push({ pathname: './writing', query: { step: 2 } })} />
       <DefaultLayout>
         <div className="mt-3 flex w-full items-center gap-4">
           <div className="flex flex-1">

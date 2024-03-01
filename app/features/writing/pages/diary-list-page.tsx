@@ -40,7 +40,10 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
       }}
       border={false}
     >
-      <NavTopBar href={'/'} label={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].title} />
+      <NavTopBar
+        onClick={() => push({ pathname: './writing', query: { step: 2 } })}
+        label={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].title}
+      />
       <DefaultLayout>
         <div className="mt-6 flex items-center">
           <h1 className="text-title-1 text-gray-70">이 일화에서 친구는</h1>

@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 const SettingPage = () => {
   const { text: value, isValid: error, onChange } = useInput('', friendInputVerifier);
-  const { query } = useCustomRouter();
+  const { query, push } = useCustomRouter();
   const { errorMessage } = useNameValidation(value);
   const { id, name } = query;
   const { patchFriend, deleteFriend } = useFriendMutation();
@@ -48,7 +48,7 @@ const SettingPage = () => {
           일기를 되살리고 싶다면 고객센터에 문의해주세요.
         </p>
       </Popup>
-      <NavTopBar label="일기장 관리" href="./" />
+      <NavTopBar label="일기장 관리" onClick={() => push('./')} />
       <DefaultLayout>
         <h2 className="text-title-3 mt-[22px] text-gray-65">친구 이름 변경</h2>
 
