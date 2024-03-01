@@ -16,6 +16,7 @@ import { CheckNotNextPage } from '@features/writing/utils/check-next-page';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/Utils/useModal';
 import { IDiaryRequestBody, TDiaryKey, TDiaryValue } from '@interfaces/diary';
+import { useFriendStore } from '@stores/useFriendStore';
 import Image from 'next/image';
 import { MouseEvent, useState } from 'react';
 
@@ -26,7 +27,9 @@ interface IDiaryWritingPageProps {
 const DiaryWritingPage = ({ diary, setDiary }: IDiaryWritingPageProps) => {
   const { push } = useCustomRouter();
   const { isOpen, onClose, onOpen } = useModal();
+  const { friend } = useFriendStore();
   const [check, setCheck] = useState<boolean>(false);
+
   return (
     <>
       <Popup
@@ -43,7 +46,7 @@ const DiaryWritingPage = ({ diary, setDiary }: IDiaryWritingPageProps) => {
       <ButtonTopBar label="일화 작성" onClick={onOpen} name="닫기" />
       <DefaultLayout>
         <h2 className="mb-3 mt-[15px] text-base font-medium text-gray-65">친구</h2>
-        <Input disabled={true} inputValue="김도리" />
+        <Input disabled={true} inputValue={friend.name} />
 
         <h2 className="mb-3 mt-8 text-base font-medium text-gray-65">날짜</h2>
         <DatePicker date={diary.date} setDate={(value) => setDiary('date', value)} />
