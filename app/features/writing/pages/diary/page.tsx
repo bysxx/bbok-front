@@ -114,7 +114,7 @@ const DiaryWritingPage = ({ diary, setDiary }: IDiaryWritingPageProps) => {
         <BoxButton
           text="완료"
           disabled={diary.tags.length === 0 || !diary.content || !diary.date || !diary.emoji}
-          onClick={() => push({ pathname: './writing', query: { step: 4 } })}
+          onClick={() => push({ pathname: './writing', query: { step: 4, type: 'bad' } })}
           className="mb-8"
         />
       </DefaultLayout>
