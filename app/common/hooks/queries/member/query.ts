@@ -9,5 +9,7 @@ export const useGetMyChecklist = () => {
   return useQuery<ResponseDTO<IMyCheckList>, AxiosError>({
     queryKey: MEMBER_KEYS.lists(),
     queryFn: memberApi.getList,
+    staleTime: Infinity,
+    gcTime: Infinity,
   });
 };
