@@ -11,25 +11,26 @@ import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier'
 import { useFriendMutation } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/Utils/useInput';
+import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';
 
 const SettingPage = () => {
   const { text: value, isValid: error, onChange } = useInput('', friendInputVerifier);
-  const { query, push } = useCustomRouter();
+  const { push } = useCustomRouter();
   const { errorMessage } = useNameValidation(value);
-  const { id, name } = query;
+  const { friend } = useFriendStore();
   const { patchFriend, deleteFriend } = useFriendMutation();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
 
   const handleModifyFriend = async () => {
     setIsLoading(true);
-    await patchFriend.mutateAsync({ id: id as number, name: value });
+    await patchFriend.mutateAsync({ id: friend.id, name: value });
   };
 
   const handleDeleteFriend = async () => {
     setModal(false);
-    await deleteFriend.mutateAsync(id as number);
+    await deleteFriend.mutateAsync(friend.id);
   };
   return (
     <>
@@ -54,7 +55,7 @@ const SettingPage = () => {
 
         <h5 className="mb-3 mt-[25px] text-sm font-medium text-gray-70">기존 이름</h5>
         <div className="flex h-[47px] w-full items-center rounded-xl bg-gray-10 pl-4">
-          <h5 className="text-body-3 text-gray-65">{name}</h5>
+          <h5 className="text-body-3 text-gray-65">{friend.name}</h5>
         </div>
         <h5 className="mb-3 mt-[22px] text-sm font-medium text-gray-70">새로운 이름</h5>
         <div className="flex w-full gap-2">

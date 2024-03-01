@@ -16,7 +16,7 @@ const FriendCardPage = () => {
   const { push } = useCustomRouter();
   const { setFriend } = useFriendStore();
 
-  const { handleFriendType, friendList, id, name } = useHandleFriendCard(data?.data.friends!);
+  const { handleFriendType, friendList } = useHandleFriendCard(data?.data.friends!);
   const type = handleFriendType();
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const FriendCardPage = () => {
         label={'MY일기장'}
         settingClick={() => {
           if (type === 'BothActiveFriend' || type === 'OneFriend') {
-            push({ pathname: '/setting', query: { id, name } });
+            push('/setting');
           } else {
             showErrorToast('친구를 먼저 생성해주세요');
             push('/friend');
