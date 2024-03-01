@@ -1,16 +1,12 @@
-import Link from 'next/link';
-
 interface NavTopBarInterface {
   label: string;
-  href: string;
+  onClick: () => void;
 }
 
-const NavTopBar = ({ label, href }: NavTopBarInterface) => {
+const NavTopBar = ({ label, onClick }: NavTopBarInterface) => {
   return (
     <div className="flex w-full items-center p-4">
-      <Link href={href}>
-        <img src={'/images/icon/ui/back.svg'} alt="" />
-      </Link>
+      <img src={'/images/icon/ui/back.svg'} alt="" className="cursor-pointer" onClick={onClick} />
       <h5 className="mr-5 grow text-center text-lg font-medium text-gray-70">{label}</h5>
     </div>
   );

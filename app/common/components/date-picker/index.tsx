@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 interface DatePickerProps {
   date: string;
@@ -6,9 +6,9 @@ interface DatePickerProps {
 }
 
 const DatePicker = ({ date, setDate }: DatePickerProps) => {
-  const handleDateChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
-  }, []);
+  };
 
   return (
     <div className="relative">

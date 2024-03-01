@@ -9,7 +9,7 @@ export interface IMyProfile {
 }
 
 /**
- * 내가 설정한 체크리스트 reponse type
+ * 나만의 체크리스트 reponse type
  */
 export interface CheckContent {
   id: number;
@@ -22,7 +22,7 @@ export interface IMyCheckList {
 }
 
 /**
- * 수정할 체크리스트 request body type
+ * 수정할 나만의 체크리스트 request body type
  */
 export interface IMyCheckListBody {
   isGood: boolean;

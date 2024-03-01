@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 export interface IVerifier extends HTMLAttributes<HTMLDivElement> {
   state?: boolean;
-  text: string;
+  text?: string;
   notice?: boolean;
   errorMessage?: string;
 }

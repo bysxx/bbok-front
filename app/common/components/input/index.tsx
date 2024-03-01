@@ -23,12 +23,14 @@ const Input = ({
   className,
   content,
   errorMessage,
+  ...rest
 }: InputProps) => {
   const [focus, setFocus] = useState(false);
   return (
     <>
       <div className="relative h-[47px] w-full">
         <input
+          {...rest}
           className={`text-body-3 ${className} h-[47px] w-full rounded-xl  bg-gray-10 px-[16px]  ${
             error && focus
               ? 'border-2 border-alert text-alert outline-0  placeholder-shown:border-alert focus:border-2 focus:border-alert focus:outline-0'

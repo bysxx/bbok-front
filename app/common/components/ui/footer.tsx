@@ -4,17 +4,23 @@ import ImageLoader from '@components/imageLoader';
 import { TBottomTab } from '@constants/enums';
 import { BOTTOM_TAP, BOTTOM_TAP_ARRAY } from '@constants/tab';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { showErrorToast } from '@libs/showToast';
+import { useFriendStore } from '@stores/useFriendStore';
 import classNames from 'classnames';
 import Image from 'next/image';
 
 function Footer({ setRoute, check = false }: { setRoute?: (value: TBottomTab) => void; check?: boolean }) {
   const { push, pathname } = useCustomRouter();
+  const { friend } = useFriendStore();
 
   const handleBottomRouter = (item: TBottomTab) => {
     if (setRoute) {
       setRoute(item);
     }
-    if (!BOTTOM_TAP[item].check.includes(pathname) && !check) {
+    if (item === 'Diary' && friend.id === 0) {
+      showErrorToast('친구를 먼저 생성해주세요.');
+      push('./');
+    } else if (!BOTTOM_TAP[item].check.includes(pathname) && !check) {
       push(BOTTOM_TAP[item].href);
     }
   };

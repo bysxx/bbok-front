@@ -1,52 +1,33 @@
 'use client';
 
-import ImageLoader from '@components/imageLoader';
-import { CancelTopBar } from '@components/top-bar';
-import { FooterButtonLayout } from '@components/ui/layout';
-import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
 import { TEmoji } from '@constants/enums/emoji';
+import { DiaryWritingLayout } from '@features/writing/components';
+import useHandleDiary from '@features/writing/hooks/useHandleDiary';
+import { CheckEmojiPage, DiaryListPage, DiaryTagPage, DiaryWritingPage } from '@features/writing/pages';
+
 import useCustomRouter from '@hooks/useCustomRouter';
-import Image from 'next/image';
-import { useState } from 'react';
 
 const WritingPage = () => {
-  const { push } = useCustomRouter();
-  const [selectEmoji, setSelectEmoji] = useState<TEmoji | ''>('');
+  const { query } = useCustomRouter();
+  const { diary, onChangeDiary } = useHandleDiary();
+  const { step } = query;
 
   return (
-    <FooterButtonLayout
-      text="다음"
-      onClick={() => {
-        push('writing/diary');
-      }}
-      disabled={selectEmoji === ''}
-      border={false}
-    >
-      <CancelTopBar onClick={() => {}} />
-      <div className="flex flex-1 flex-col items-center justify-center mb-[52px]">
-        <h1 className="text-title-1 mb-11 text-gray-70">쓸 일화의 감정은 어떤가요?</h1>
-        <div className="grid grid-cols-3 justify-center gap-6">
-          {DIARY_EMOJI_ARRAY.map((emoji) => (
-            <Image
-              key={emoji}
-              width={56}
-              height={56}
-              loader={ImageLoader}
-              src={
-                selectEmoji === ''
-                  ? DIARY_EMOJI[emoji].select
-                  : selectEmoji === emoji
-                    ? DIARY_EMOJI[emoji].select
-                    : DIARY_EMOJI[emoji].notSelect
-              }
-              onClick={() => setSelectEmoji(emoji)}
-              alt=""
-              className="cursor-pointer"
-            />
-          ))}
-        </div>
-      </div>
-    </FooterButtonLayout>
+    <>
+      {step === '1' && (
+        <CheckEmojiPage
+          selectEmoji={diary.emoji}
+          setSelectEmoji={(emoji: TEmoji | '') => onChangeDiary('emoji', emoji)}
+        />
+      )}
+      {step === '2' && (
+        <DiaryWritingLayout>
+          <DiaryWritingPage diary={diary} setDiary={onChangeDiary} />
+        </DiaryWritingLayout>
+      )}
+      {step === '3' && <DiaryTagPage tags={diary.tags} setTags={(value: string[]) => onChangeDiary('tags', value)} />}
+      {step === '4' && <DiaryListPage diary={diary} setDiary={onChangeDiary} />}
+    </>
   );
 };
 export default WritingPage;

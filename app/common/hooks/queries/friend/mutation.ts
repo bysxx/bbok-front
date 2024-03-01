@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 
 export const useFriendMutation = () => {
   const queryClient = useQueryClient();
-  const {push} = useCustomRouter();
+  const { push } = useCustomRouter();
 
   /**
    * 친구 등록
@@ -37,8 +37,8 @@ export const useFriendMutation = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
       push('/');
-    }
-  })
+    },
+  });
 
   /**
    * 친구 관계 정리
@@ -48,9 +48,9 @@ export const useFriendMutation = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
       push('/');
-      showSuccessToast("관계 정리가 완료됐어요. 새일기장을 추가해보세요.")
-    }
-  })
+      showSuccessToast('관계 정리가 완료됐어요. 새일기장을 추가해보세요.');
+    },
+  });
 
-  return {postfriend, patchFriend, deleteFriend}
-}
+  return { postfriend, patchFriend, deleteFriend };
+};

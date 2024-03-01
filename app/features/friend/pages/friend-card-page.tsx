@@ -5,16 +5,31 @@ import { DiaryTopBar } from '@components/top-bar';
 import { useGetFriend } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { showErrorToast } from '@libs/showToast';
+import { useFriendStore } from '@stores/useFriendStore';
+import { useEffect } from 'react';
 
 import { EmptyFriend, FriendCard, KeyFriendCard } from '../component';
 import useHandleFriendCard from '../hooks/useHandleFriendCard';
 
 const FriendCardPage = () => {
-  const { data } = useGetFriend();
+  const { data, isSuccess } = useGetFriend();
   const { push } = useCustomRouter();
+  const { setFriend } = useFriendStore();
 
-  const { handleFriendType, friendList, id, name } = useHandleFriendCard(data?.data.friends!);
+  const { handleFriendType, friendList } = useHandleFriendCard(data?.data.friends!);
   const type = handleFriendType();
+
+  useEffect(() => {
+    if (isSuccess) {
+      const [result] = data.data.friends.filter((value) => value.active);
+      if (result) {
+        setFriend({
+          id: result.id,
+          name: result.name,
+        });
+      }
+    }
+  }, [isSuccess, data]);
 
   return (
     <div>
@@ -22,7 +37,7 @@ const FriendCardPage = () => {
         label={'MY일기장'}
         settingClick={() => {
           if (type === 'BothActiveFriend' || type === 'OneFriend') {
-            push({ pathname: '/setting', query: { id, name } });
+            push('/setting');
           } else {
             showErrorToast('친구를 먼저 생성해주세요');
             push('/friend');

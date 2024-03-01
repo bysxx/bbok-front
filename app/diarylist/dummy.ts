@@ -1,6 +1,4 @@
-import type { IDiaryListItem } from '@interfaces/diary';
-
-export const diaries: IDiaryListItem[] = [
+export const diaries = [
   {
     id: 1,
     emoji: 'Angry',
@@ -259,7 +257,7 @@ export const diaries: IDiaryListItem[] = [
   },
 ];
 
-export const diary: IDiaryListItem = {
+export const diary = {
   id: 1,
   emoji: 'Angry',
   emojiUrl: 'https://i.ibb.co/zbHrDVm/angry.png',

@@ -15,6 +15,6 @@ export const useGetFriend = () => {
 export const useGetFriendCharater = () => {
   return useQuery<ResponseDTO<ICharacterImage>, AxiosError>({
     queryKey: FRIEND_KEYS.details(),
-    queryFn: friendApi.character
-  })
-}
+    queryFn: friendApi.character,
+  });
+};
