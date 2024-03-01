@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { getInitialDiaryList, updateDiaryChecklist } from '../utils/get-diary-checklist';
 import { TYPE_CHECLIST_COMMENT } from '../constants/type-check';
+import { CheckNotNextPage } from '../utils/check-next-page';
 
 interface IDiaryListPageProps {
   diary: IDiaryRequestBody;
@@ -16,12 +17,14 @@ interface IDiaryListPageProps {
 }
 
 const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
-  const { data, isSuccess } = useGetMyChecklist();
+  const { data, isSuccess, isLoading } = useGetMyChecklist();
   const { push, query } = useCustomRouter();
-
   const { type } = query;
+
   useEffect(() => {
-    if (data && isSuccess && diary.checklist.length === 0) {
+    if (CheckNotNextPage(diary)) {
+      push({ pathname: './writing', query: { step: 2 } });
+    } else if (data && isSuccess && diary.checklist.length === 0) {
       setDiary('checklist', getInitialDiaryList(data.data));
     }
   }, [isSuccess]);
