@@ -19,29 +19,41 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
   const { data, isSuccess } = useGetMyChecklist();
   const { push, query } = useCustomRouter();
 
-  console.log(diary.checklist);
   const { type } = query;
   useEffect(() => {
-    if (data && isSuccess) {
+    if (data && isSuccess && diary.checklist.length === 0) {
       setDiary('checklist', getInitialDiaryList(data.data));
     }
   }, [isSuccess]);
 
   return (
     <FooterButtonLayout
-      text="다음"
+      text={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].bottom}
       multi={true}
       onClick={() => {
         console.log(diary.checklist);
+        if (type === 'bad') {
+          push({ pathname: './writing', query: { step: 4, type: 'good' } });
+        } else {
+        }
       }}
       multiOnClick={() => {
         console.log('패스', diary.checklist);
-        push({ pathname: './writing', query: { step: 4, type: 'good' } });
+        if (type === 'bad') {
+          push({ pathname: './writing', query: { step: 4, type: 'good' } });
+        } else {
+        }
       }}
       border={false}
     >
       <NavTopBar
-        onClick={() => push({ pathname: './writing', query: { step: 2 } })}
+        onClick={() => {
+          if (type === 'bad') {
+            push({ pathname: './writing', query: { step: 2 } });
+          } else {
+            push({ pathname: './writing', query: { step: 4, type: 'bad' } });
+          }
+        }}
         label={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].title}
       />
       <DefaultLayout>
@@ -62,6 +74,18 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
         </div>
         {type === 'bad' &&
           data?.data.badChecklist.slice(0, 5).map((list) => (
+            <div className="mb-3" key={list.id}>
+              <CheckList
+                selected={diary.checklist.filter((checklist) => checklist.id === list.id)[0]?.isChecked!}
+                label={list.criteria}
+                key={list.id}
+                onClick={() => setDiary('checklist', updateDiaryChecklist(list.id, diary.checklist))}
+                side="right"
+              />
+            </div>
+          ))}
+        {type === 'good' &&
+          data?.data.goodChecklist.slice(0, 5).map((list) => (
             <div className="mb-3" key={list.id}>
               <CheckList
                 selected={diary.checklist.filter((checklist) => checklist.id === list.id)[0]?.isChecked!}
