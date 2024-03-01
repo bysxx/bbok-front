@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { getInitialDiaryList, updateDiaryChecklist } from '../utils/get-diary-checklist';
 import { TYPE_CHECLIST_COMMENT } from '../constants/type-check';
 import { CheckNotNextPage } from '../utils/check-next-page';
+import { LoadingPage } from '@components/ui/pages';
 
 interface IDiaryListPageProps {
   diary: IDiaryRequestBody;
@@ -28,6 +29,10 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
       setDiary('checklist', getInitialDiaryList(data.data));
     }
   }, [isSuccess]);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <FooterButtonLayout
