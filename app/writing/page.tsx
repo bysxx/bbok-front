@@ -2,7 +2,13 @@
 
 import { TEmoji } from '@constants/enums/emoji';
 import useHandleDiary from '@features/writing/hooks/useHandleDiary';
-import { CheckEmojiPage, DiaryTagPage, DiaryWritingLayout, DiaryWritingPage } from '@features/writing/pages';
+import {
+  CheckEmojiPage,
+  DiaryListPage,
+  DiaryTagPage,
+  DiaryWritingLayout,
+  DiaryWritingPage,
+} from '@features/writing/pages';
 
 import useCustomRouter from '@hooks/useCustomRouter';
 
@@ -25,6 +31,7 @@ const WritingPage = () => {
         </DiaryWritingLayout>
       )}
       {step === '3' && <DiaryTagPage tags={diary.tags} setTags={(value: string[]) => onChangeDiary('tags', value)} />}
+      {step === '4' && <DiaryListPage diary={diary} setDiary={onChangeDiary} />}
     </>
   );
 };
