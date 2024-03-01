@@ -1,9 +1,8 @@
 import TagLabel from '@components/tag-label';
-import type { IDiaryListItem } from '@interfaces/diary';
 import { getTime } from '@libs/getTime';
 
 interface DiaryProp {
-  data: IDiaryListItem;
+  data: any;
 }
 const Diary = ({ data }: DiaryProp) => {
   const diaryDate = getTime(data.date);

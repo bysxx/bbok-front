@@ -1,6 +1,5 @@
 import { IDiaryCheckListItem } from '@interfaces/checklist';
-import { CheckContent, IMyCheckList } from '@interfaces/member';
-import result from 'postcss/lib/result';
+import { IMyCheckList } from '@interfaces/member';
 
 /**
  * 일화 리스트 초기 배열 return

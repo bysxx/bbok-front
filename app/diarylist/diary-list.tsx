@@ -1,4 +1,3 @@
-import type { IDiaryListItem } from '@interfaces/diary';
 import Link from 'next/link';
 import type { ChangeEvent } from 'react';
 
@@ -24,7 +23,7 @@ const DiaryList = ({ time, setTime, tags, input }: DiaryListProps) => {
         </select>
       </div>
 
-      {diaries.map((d: IDiaryListItem) => (
+      {diaries.map((d: any) => (
         <Link href={`./diarylist/${d.id}`} key={d.id}>
           <Diary data={d} />
         </Link>
