@@ -32,3 +32,33 @@ export interface IPostDiaryResponse {
     reference: string;
   };
 }
+
+/**
+ * 일화 리스트 response type
+ */
+export interface IDiaryListChecklist {
+  criteria: string;
+  id: number;
+  isChecked: boolean;
+}
+export interface IDiaryListResponse {
+  diaries: [
+    {
+      badChecklist: IDiaryListChecklist[];
+      content: string;
+      date: string;
+      emoji: TEmoji;
+      emojiUrl: string;
+      goodChecklist: IDiaryListChecklist[];
+      id: number;
+      sticker: string;
+      tags: string[];
+    },
+  ];
+  numberOfElements: number;
+  offset: number;
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+}
