@@ -1,5 +1,6 @@
 import { TEmoji } from '@constants/enums';
 import { IDiaryCheckListItem } from './checklist';
+import { TDate } from '@constants/enums/date';
 
 /**
  * 일화 생성 request body
@@ -61,4 +62,15 @@ export interface IDiaryListResponse {
   pageSize: number;
   totalElements: number;
   totalPages: number;
+}
+
+/**
+ * 일화 리스트 request body
+ */
+export interface IDiaryListRequest {
+  id: number;
+  offset?: number;
+  order?: TDate;
+  q?: string;
+  tag?: string[];
 }
