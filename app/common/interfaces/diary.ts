@@ -1,6 +1,5 @@
-import { TEmoji } from '@constants/enums';
+import { TDate, TEmoji } from '@constants/enums';
 import { IDiaryCheckListItem } from './checklist';
-import { TDate } from '@constants/enums/date';
 
 /**
  * 일화 생성 request body
