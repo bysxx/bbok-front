@@ -1,6 +1,6 @@
 'use client';
 
-import Loading from '@components/ui/loading';
+import { LoadingPage } from '@components/ui/pages';
 import { redirectUri } from '@libs/config';
 import authApi from '@requests/auth';
 import { useUserStore } from '@stores/useUserStore';
@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 export default function KakaoPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { setUserData, userData } = useUserStore();
+  const { setUserData } = useUserStore();
 
   useEffect(() => {
     if (searchParams.get('code')) {
@@ -29,10 +29,5 @@ export default function KakaoPage() {
     }
   }, [searchParams]);
 
-  return (
-    <main className="flex h-screen items-center justify-center">
-      <Loading />
-      {userData?.accessToken}
-    </main>
-  );
+  return <LoadingPage />;
 }
