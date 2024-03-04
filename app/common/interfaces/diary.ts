@@ -66,10 +66,12 @@ export interface IDiaryListResponse {
 /**
  * 일화 리스트 request body
  */
-export interface IDiaryListRequest {
+export interface IDiaryInfiniteRequest {
   id: number;
-  offset?: number;
-  order?: TDate;
-  q?: string;
-  tag?: string[];
+  order: TDate;
+  q: string;
+  tag: string[];
+}
+export interface IDiaryListRequest extends IDiaryInfiniteRequest {
+  offset: number;
 }
