@@ -41,20 +41,20 @@ export interface IDiaryListChecklist {
   id: number;
   isChecked: boolean;
 }
+export interface IDiariesItem {
+  badChecklist: IDiaryListChecklist[];
+  content: string;
+  date: string;
+  emoji: TEmoji;
+  emojiUrl: string;
+  goodChecklist: IDiaryListChecklist[];
+  id: number;
+  sticker: string;
+  tags: string[];
+}
+
 export interface IDiaryListResponse {
-  diaries: [
-    {
-      badChecklist: IDiaryListChecklist[];
-      content: string;
-      date: string;
-      emoji: TEmoji;
-      emojiUrl: string;
-      goodChecklist: IDiaryListChecklist[];
-      id: number;
-      sticker: string;
-      tags: string[];
-    },
-  ];
+  diaries: IDiariesItem[];
   numberOfElements: number;
   offset: number;
   pageNumber: number;
