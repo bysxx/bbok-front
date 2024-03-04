@@ -23,7 +23,11 @@ const CheckEmojiPage = ({ selectEmoji, setSelectEmoji }: ICheckEmojiPage) => {
       disabled={selectEmoji === ''}
       border={false}
     >
-      <CancelTopBar onClick={() => {}} />
+      <CancelTopBar
+        onClick={() => {
+          push('./diarylist');
+        }}
+      />
       <div className="mb-[52px] flex flex-1 flex-col items-center justify-center">
         <h1 className="text-title-1 mb-11 text-gray-70">쓸 일화의 감정은 어떤가요?</h1>
         <div className="grid grid-cols-3 justify-center gap-6">
