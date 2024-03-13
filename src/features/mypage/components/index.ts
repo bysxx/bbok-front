@@ -1,2 +1,2 @@
+export { default as MypageLayout } from './mypage-layout';
 export { default as Profile } from './profile';
-export { default as TabContainer } from './tab-container';
