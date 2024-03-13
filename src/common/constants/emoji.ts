@@ -1,4 +1,4 @@
-import { TEmoji } from './enums/emoji';
+import { TEmoji } from '../interfaces/enums/emoji';
 
 interface IEmoji {
   select: string;

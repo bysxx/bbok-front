@@ -1,4 +1,4 @@
-import { TDate, TEmoji } from '@constants/enums';
+import { TDate, TEmoji } from '@interfaces/enums';
 import { IDiaryCheckListItem } from './checklist';
 
 /**

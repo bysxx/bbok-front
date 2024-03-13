@@ -1,4 +1,4 @@
-import { TCharacter } from "./enums";
+import { TCharacter } from '../interfaces/enums';
 
 interface IFriendChracterContent {
   label: string;

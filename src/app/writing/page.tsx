@@ -1,6 +1,6 @@
 'use client';
 
-import { TEmoji } from '@constants/enums/emoji';
+import { TEmoji } from '@interfaces/enums/emoji';
 import { DiaryWritingLayout } from '@features/writing/components';
 import useHandleDiary from '@features/writing/hooks/useHandleDiary';
 import { CheckEmojiPage, DiaryListPage, DiaryTagPage, DiaryWritingPage } from '@features/writing/pages';
