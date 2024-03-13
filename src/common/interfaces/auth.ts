@@ -1,10 +1,18 @@
-// 토큰 재발급 type
+import { TAuth } from './enums/auth';
+
+/**
+ * 토큰 재발 reponse type
+ */
 export interface IExpireToken {
   accessToken: string;
   refreshToken: string;
 }
 
-// 카카오 로그인 후 토큰 발급 type
+/**
+ * 로그인 reponse type
+ */
 export interface ILoginToken extends IExpireToken {
   memberId: string;
+  newMember: boolean;
+  provider: TAuth;
 }
