@@ -1,5 +1,4 @@
-import type { TMypageTab } from '@interfaces/enums';
-import { MypageTab } from '@interfaces/enums';
+import { AccountTab, MypageTab } from '@interfaces/enums';
 
 export const TAP_LIST: ITabContent[] = [
   {
@@ -20,7 +19,18 @@ export const TAP_LIST: ITabContent[] = [
   },
 ];
 
+export const ACCOUNT_TAB_LIST = [
+  {
+    label: '서비스 초기화',
+    value: AccountTab.initial,
+  },
+  {
+    label: '서비스 탈퇴',
+    value: AccountTab.widthDraw,
+  },
+];
+
 interface ITabContent {
   label: string;
-  value: TMypageTab;
+  value: string;
 }

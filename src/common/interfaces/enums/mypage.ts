@@ -4,5 +4,3 @@ export const enum MypageTab {
   'service' = 'service',
   'account' = 'account',
 }
-
-export type TMypageTab = keyof typeof MypageTab;
