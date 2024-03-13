@@ -23,7 +23,7 @@ const MyInfoPage = () => {
           divider={i !== TAP_LIST.length - 1}
           onClick={() => {
             if (tap.value === MypageTab.logout) {
-              // 로그아웃 api 수행
+              // TODO: 로그아웃 api 수행
             } else {
               push(`/mypage/${tap.value}`);
             }
