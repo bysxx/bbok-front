@@ -7,7 +7,6 @@ import { CheckList } from '@components/check-list';
 import DatePicker from '@components/date-picker';
 import Popup from '@components/popup';
 import RadioButton from '@components/radio-button';
-import SearchBar from '@components/search-bar';
 import TagLabel from '@components/tag-label';
 import DiaryField from '@components/text-field';
 import ToggleButton from '@components/toggle-button';
@@ -24,8 +23,6 @@ const PreviewPage = () => {
   // datepicker 상태
   const [date, setDate] = useState('');
 
-  // 검색 input 상태
-  const [searchInput, setSearchInput] = useState('');
   // textfield 상태
   const [textFieldValue, setTextFieldValue] = useState('');
 
@@ -145,12 +142,6 @@ const PreviewPage = () => {
       </div>
 
       <h1 className="m-2">input</h1>
-
-      <h1 className="m-2">search bar</h1>
-      {/* search bar */}
-      <div className="m-2">
-        <SearchBar input={searchInput} setInput={setSearchInput} onClick={() => {}} href="/" />
-      </div>
 
       <h1 className="m-2">date picker</h1>
       {/* date picker */}

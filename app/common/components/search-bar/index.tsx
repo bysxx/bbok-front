@@ -1,34 +1,31 @@
 import Link from 'next/link';
-import React, { useCallback } from 'react';
+import React from 'react';
 
 interface SearchBarProps {
   input: string;
-  setInput: (value: string) => void;
+  setInput: (e: React.FormEvent<HTMLInputElement>) => void;
   onClick: () => void;
   href: string;
 }
 
 const SearchBar = ({ input, setInput, onClick, href }: SearchBarProps) => {
-  const handleSearchInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  }, []);
   return (
-    <div className="flex items-center justify-center pl-4 pr-6">
+    <div className="flex w-full items-center justify-center py-[10px] pl-4 pr-6">
       <Link href={href}>
         <img src="/images/icon/ui/back.svg" alt="" className="mr-2" />
       </Link>
-      <form className="h-full w-full">
+      <form className="size-full">
         <div className="relative">
           <input
             type="input"
             id="default-search"
             className="block w-full rounded-lg border border-none bg-gray-10 py-[11px] pl-[12px] text-gray-70 focus:outline-0"
             placeholder="키워드로 일화를 검색할 수 있어요"
-            onChange={handleSearchInputChange}
+            onChange={setInput}
             value={input}
             required
           />
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-[12px]">
+          <div className="absolute inset-y-0 right-0 flex cursor-pointer items-center px-[12px]">
             <svg
               width="20"
               height="20"

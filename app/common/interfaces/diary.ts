@@ -1,4 +1,4 @@
-import { TEmoji } from '@constants/enums';
+import { TDate, TEmoji } from '@constants/enums';
 import { IDiaryCheckListItem } from './checklist';
 
 /**
@@ -31,4 +31,47 @@ export interface IPostDiaryResponse {
     isMarked: boolean;
     reference: string;
   };
+}
+
+/**
+ * 일화 리스트 response type
+ */
+export interface IDiaryListChecklist {
+  criteria: string;
+  id: number;
+  isChecked: boolean;
+}
+export interface IDiariesItem {
+  badChecklist: IDiaryListChecklist[];
+  content: string;
+  date: string;
+  emoji: TEmoji;
+  emojiUrl: string;
+  goodChecklist: IDiaryListChecklist[];
+  id: number;
+  sticker: string;
+  tags: string[];
+}
+
+export interface IDiaryListResponse {
+  diaries: IDiariesItem[];
+  numberOfElements: number;
+  offset: number;
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+}
+
+/**
+ * 일화 리스트 request body
+ */
+export interface IDiaryInfiniteRequest {
+  id: number;
+  order: TDate;
+  q: string;
+  tag: string[];
+}
+export interface IDiaryListRequest extends IDiaryInfiniteRequest {
+  offset: number;
 }

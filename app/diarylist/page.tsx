@@ -1,57 +1,68 @@
 'use client';
 
-import BoxButton from '@components/buttons/box-button';
+import { TDate } from '@constants/enums';
+import { EmptyDiaryListPage } from '@features/diary/pages';
+import useInput from '@hooks/Utils/useInput';
+import { useGetDiaryList } from '@hooks/queries/diary';
+import { useFriendStore } from '@stores/useFriendStore';
+import { ChangeEvent, useState } from 'react';
+import { dummyDiaries } from './dummy';
 import SearchBar from '@components/search-bar';
-import useCustomRouter from '@hooks/useCustomRouter';
-import type { ChangeEvent } from 'react';
-import { useCallback, useState } from 'react';
 
-import DiaryList from './diary-list';
-import TagButtonsList from './tag-buttons-list';
+import useCustomRouter from '@hooks/useCustomRouter';
+import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
+import { TagButtonsList } from '@features/diary/components';
+import Link from 'next/link';
+import Diary from './diary';
 
 const DiaryListPage = () => {
   const { push } = useCustomRouter();
-  // 검색 string 옵션
-  const [input, setInput] = useState<string>('');
-
-  // 카테고리 옵션
+  const { text, onChange } = useInput('');
+  const { friend } = useFriendStore();
   const [tag, setTag] = useState<string[]>([]);
-  const handleSetTag = useCallback(
-    (value: string[]) => {
-      setTag(value);
-    },
-    [setTag],
-  );
+  const [order, setOrder] = useState<TDate>('desc');
+  const { data, isSuccess } = useGetDiaryList({ id: friend.id, order, q: text, tag });
 
-  // 시간 순 옵션
-  const [time, setTime] = useState<string>('desc');
-  const handleSetTime = useCallback(
-    (event: ChangeEvent<HTMLSelectElement>) => {
-      setTime(event.target.value);
-    },
-    [setTime],
-  );
+  console.log(tag, order, text);
+
+  const handleSetTime = (event: ChangeEvent<HTMLSelectElement>) => {
+    setOrder(event.target.value as TDate);
+  };
+
+  //const diaries = data ? data?.pages.flatMap((page) => page.data.diaries) : [];
+  const diaries = data ? dummyDiaries : [];
+
+  if (isSuccess && diaries.length === 0) {
+    return <EmptyDiaryListPage />;
+  }
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex flex-1 flex-col">
-        <div className="py-[10px]">
-          <SearchBar input={input} setInput={setInput} onClick={() => {}} href="./" />
+    <FooterButtonLayout
+      text="일화작성"
+      onClick={() => {
+        push({ pathname: './writing', query: { step: 1 } });
+      }}
+    >
+      {' '}
+      <div className="py-[10px]">
+        <SearchBar input={text} setInput={onChange} onClick={() => {}} href="./" />
+      </div>
+      <TagButtonsList selectTag={tag} setSelectTag={setTag} />
+      <DefaultLayout className="mb-6">
+        <div className="mb-[2px] mt-[38px] flex justify-between">
+          <h5 className="text-caption-1 text-gray-25">총 일화 수 1</h5>
+          <select className="text-caption-1 text-gray-30" value={order} onChange={(e) => handleSetTime(e)}>
+            <option value={'desc'}>최신순</option>
+            <option value={'asc'}>오래된순</option>
+          </select>
         </div>
-        <TagButtonsList selectTag={tag} setSelectTag={handleSetTag} />
-
-        <DiaryList time={time} setTime={handleSetTime} input={input} tags={tag} />
-      </div>
-      <div className="sticky bottom-0 mt-24 h-[90px]">
-        <BoxButton
-          text="일화작성"
-          border={true}
-          onClick={() => {
-            push({ pathname: './writing', query: { step: 1 } });
-          }}
-        />
-      </div>
-    </div>
+        {dummyDiaries.map((d: any) => (
+          <Link href={`./diarylist/${d.id}`} key={d.id}>
+            <Diary data={d} />
+          </Link>
+        ))}
+      </DefaultLayout>
+    </FooterButtonLayout>
   );
 };
 export default DiaryListPage;
