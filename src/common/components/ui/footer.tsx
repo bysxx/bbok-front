@@ -1,7 +1,7 @@
 'use client';
 
 import ImageLoader from '@components/imageLoader';
-import { TBottomTab } from '@constants/enums';
+import { TBottomTab } from '@interfaces/enums';
 import { BOTTOM_TAP, BOTTOM_TAP_ARRAY } from '@constants/tab';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { showErrorToast } from '@libs/showToast';

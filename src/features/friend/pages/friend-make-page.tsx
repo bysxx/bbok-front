@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 import useNameValidation from '../hooks/useNameValidation';
 import { friendInputVerifier } from '../utils/friendInputVerifier';
-import { TCharacter } from '@constants/enums';
+import { TCharacter } from '@interfaces/enums';
 import FriendCharacter from 'src/app/friend/friend-character';
 
 const FriendMakePage = () => {

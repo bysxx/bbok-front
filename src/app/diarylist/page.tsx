@@ -1,6 +1,6 @@
 'use client';
 
-import { TDate } from '@constants/enums';
+import { TDate } from '@interfaces/enums';
 import { EmptyDiaryListPage } from '@features/diary/pages';
 import useInput from '@hooks/Utils/useInput';
 import { useGetDiaryList } from '@hooks/queries/diary';

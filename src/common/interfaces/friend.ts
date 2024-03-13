@@ -1,4 +1,4 @@
-import { TCharacter } from "@constants/enums";
+import { TCharacter } from '@interfaces/enums';
 
 /**
  * 등록할 친구 request type

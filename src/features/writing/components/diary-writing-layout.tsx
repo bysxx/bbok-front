@@ -2,7 +2,7 @@
 
 import Popup from '@components/popup';
 import Footer from '@components/ui/footer';
-import { TBottomTab } from '@constants/enums';
+import { TBottomTab } from '@interfaces/enums';
 import useModal from '@hooks/Utils/useModal';
 import useCustomRouter from '@hooks/useCustomRouter';
 import React, { useEffect, useState } from 'react';

@@ -4,7 +4,7 @@ import ImageLoader from '@components/imageLoader';
 import { CancelTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
 import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
-import { TEmoji } from '@constants/enums';
+import { TEmoji } from '@interfaces/enums';
 import useCustomRouter from '@hooks/useCustomRouter';
 import Image from 'next/image';
 
