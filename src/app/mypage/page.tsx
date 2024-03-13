@@ -1,14 +1,12 @@
-'use client';
-
-import { useUserStore } from '@stores/useUserStore';
+import memberServerApi from '@apis/member/member.server';
+import { PrefetchHydration } from '@components/react-query';
+import { MEMBER_KEYS } from '@constants/queryKeys';
+import { MyInfoPage } from '@features/mypage/pages';
 
 export default function MyPage() {
-  const { userData } = useUserStore();
-
   return (
-    <div>
-      <h1>My Page</h1>
-      <p>{userData?.memberId}</p>
-    </div>
+    <PrefetchHydration queryKey={MEMBER_KEYS.details()} queryFn={memberServerApi.get}>
+      <MyInfoPage />
+    </PrefetchHydration>
   );
 }
