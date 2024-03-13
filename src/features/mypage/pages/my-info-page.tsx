@@ -2,7 +2,7 @@
 
 import { useGetMyInfo } from '@hooks/queries/member';
 
-import { Profile } from '../components';
+import { Profile, TabContainer } from '../components';
 
 const MyInfoPage = () => {
   const { data } = useGetMyInfo();
@@ -12,6 +12,7 @@ const MyInfoPage = () => {
         <h1 className="text-title-1 text-gray-70">내정보</h1>
       </div>
       <Profile src={data?.data.profileUrl!!} name={data?.data.memberName!!} />
+      <TabContainer />
     </>
   );
 };
