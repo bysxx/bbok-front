@@ -75,3 +75,15 @@ export interface IDiaryInfiniteRequest {
 export interface IDiaryListRequest extends IDiaryInfiniteRequest {
   offset: number;
 }
+
+/**
+ * 일화 태그 목록 조회 response type
+ */
+export interface IDiaryTag {
+  id: number;
+  name: string;
+}
+
+export interface IDiaryTagReponse {
+  tags: IDiaryTag[];
+}
