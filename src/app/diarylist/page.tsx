@@ -51,7 +51,7 @@ const DiaryListPage = () => {
             <option value={DateOption.asc}>{DATE_SELECT[DateOption.asc]}</option>
           </select>
         </div>
-        {diaryList.length === 0 ? <EmptyDiarylistCard /> : <DiarylistCard diaryList={diaryList} />}
+        {diaryList.length === 0 ? <EmptyDiarylistCard /> : <DiarylistCard diaryList={diaryList} search={text} />}
 
         {isFetchingNextPage && (
           <div className="flex items-center justify-center">
