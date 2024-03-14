@@ -1,6 +1,11 @@
 import { DiaryDetailPage } from '@features/detail/pages';
 
-const DiarylistDetailPage = () => {
-  return <DiaryDetailPage />;
+interface IDiaryDetailProp {
+  params: {
+    id: number;
+  };
+}
+const DiarylistDetailPage = ({ params }: IDiaryDetailProp) => {
+  return <DiaryDetailPage id={params.id} />;
 };
 export default DiarylistDetailPage;
