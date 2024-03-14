@@ -1,9 +1,9 @@
 import { DIARY_KEYS } from '@constants/queryKeys';
-import { IDiaryInfiniteRequest, IDiaryListResponse } from '@interfaces/diary';
+import { IDiaryInfiniteRequest, IDiaryListResponse, IDiaryTagReponse } from '@interfaces/diary';
 
 import { ResponseDTO } from '@interfaces/common';
 import diaryApi from '@apis/diary/diary.client';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 export const useGetDiaryList = (body: IDiaryInfiniteRequest) => {
@@ -14,5 +14,12 @@ export const useGetDiaryList = (body: IDiaryInfiniteRequest) => {
     getNextPageParam: (lastPage) => {
       return lastPage.data.pageNumber === lastPage.data.totalPages - 1 ? undefined : lastPage.data.pageNumber + 1;
     },
+  });
+};
+
+export const useGetDiaryTagList = (id: number) => {
+  return useQuery<ResponseDTO<IDiaryTagReponse>, AxiosError>({
+    queryKey: DIARY_KEYS.list([{ id }]),
+    queryFn: () => diaryApi.tag(id),
   });
 };

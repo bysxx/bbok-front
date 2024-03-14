@@ -3,7 +3,7 @@
 import SearchBar from '@components/search-bar';
 import Spinner from '@components/spinner';
 import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
-import { DiarylistCard, DiarylistOption, EmptyDiarylistCard } from '@features/diary/components';
+import { DiarylistCard, DiarylistOption, EmptyDiarylistCard, TagButtonsList } from '@features/diary/components';
 import { EmptyDiaryListPage } from '@features/diary/pages';
 import { useGetDiaryList } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
@@ -19,7 +19,6 @@ const DiaryListPage = () => {
   const [tag, setTag] = useState<string>('');
   const [order, setOrder] = useState<TDate>('desc');
   const { data, isSuccess, isFetchingNextPage } = useGetDiaryList({ id: friend.id, order, q: text, tag });
-
   const diaryList = data?.pages ? data.pages.flatMap((page) => page.data.diaries) : [];
 
   if (isSuccess && diaryList.length === 0 && text === '' && tag === '') {
@@ -36,7 +35,7 @@ const DiaryListPage = () => {
       <div className="py-[10px]">
         <SearchBar input={text} setInput={onChange} onClick={() => {}} href="./" />
       </div>
-      {/* <TagButtonsList selectTag={tag} setSelectTag={setTag} /> */}
+      <TagButtonsList selectTag={tag} setSelectTag={setTag} />
       <DefaultLayout className="mb-6">
         <DiarylistOption length={diaryList.length} order={order} setOrder={setOrder} />
         {diaryList.length === 0 ? <EmptyDiarylistCard /> : <DiarylistCard diaryList={diaryList} search={text} />}

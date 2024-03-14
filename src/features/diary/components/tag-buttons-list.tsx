@@ -1,36 +1,29 @@
 'use client';
 
 import { SelectButton } from '@components/buttons';
+import { useGetDiaryTagList } from '@hooks/queries/diary';
+import { useFriendStore } from '@stores/useFriendStore';
 
 interface TagListProps {
-  selectTag: string[];
-  setSelectTag: (value: string[]) => void;
+  selectTag: string;
+  setSelectTag: (value: string) => void;
 }
 
 const TagButtonsList = ({ selectTag, setSelectTag }: TagListProps) => {
-  const tags = ['태그1', '태그2', '태그3', '태그4', '태그5', '태그6', '태그7', '태그8', '태그9', '태그10'];
-
-  const handleAllTagClick = () => {
-    if (selectTag.length > 0) {
-      setSelectTag([]);
-    }
-  };
+  const { friend } = useFriendStore();
+  const { data } = useGetDiaryTagList(friend.id);
 
   const handleTagClick = (tag: string) => {
-    if (selectTag.includes(tag)) {
-      setSelectTag(selectTag.filter((t) => t !== tag));
-    } else if (selectTag.length < 7) {
-      setSelectTag([...selectTag, tag]);
-    }
+    setSelectTag(tag);
   };
   return (
     <div className="flex overflow-x-scroll pl-7 pt-3 scrollbar-hide">
       <div className="mr-2">
-        <SelectButton selected={selectTag.length === 0} onClick={handleAllTagClick} label={'전체'} />
+        <SelectButton selected={selectTag.length === 0} onClick={() => handleTagClick('')} label={'전체'} />
       </div>
-      {tags.map((tag: string) => (
-        <div className="mr-2" key={tag}>
-          <SelectButton selected={selectTag.includes(tag)} onClick={() => handleTagClick(tag)} label={tag} />
+      {data?.data.tags.map((tag) => (
+        <div className="mr-2" key={tag.id}>
+          <SelectButton selected={selectTag === tag.name} onClick={() => handleTagClick(tag.name)} label={tag.name} />
         </div>
       ))}
     </div>
