@@ -70,8 +70,20 @@ export interface IDiaryInfiniteRequest {
   id: number;
   order: TDate;
   q: string;
-  tag: string[];
+  tag: string;
 }
 export interface IDiaryListRequest extends IDiaryInfiniteRequest {
   offset: number;
+}
+
+/**
+ * 일화 태그 목록 조회 response type
+ */
+export interface IDiaryTag {
+  id: number;
+  name: string;
+}
+
+export interface IDiaryTagReponse {
+  tags: IDiaryTag[];
 }
