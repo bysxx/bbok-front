@@ -70,7 +70,7 @@ export interface IDiaryInfiniteRequest {
   id: number;
   order: TDate;
   q: string;
-  tag: string[];
+  tag: string;
 }
 export interface IDiaryListRequest extends IDiaryInfiniteRequest {
   offset: number;
