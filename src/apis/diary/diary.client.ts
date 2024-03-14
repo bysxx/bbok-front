@@ -1,4 +1,10 @@
-import { IDiaryBody, IDiaryListRequest, IDiaryListResponse, IPostDiaryResponse } from '@interfaces/diary';
+import {
+  IDiaryBody,
+  IDiaryListRequest,
+  IDiaryListResponse,
+  IDiaryTagReponse,
+  IPostDiaryResponse,
+} from '@interfaces/diary';
 
 import { http } from '@libs/http.client';
 import { ResponseDTO } from '@interfaces/common';
@@ -20,5 +26,10 @@ const diaryApi = {
     const query = rest ? getQueryString(rest) : '';
     return await http.get<ResponseDTO<IDiaryListResponse>>(`/friend/${id}/diary?${query}`);
   },
+
+  /**
+   * @description 일화 태그 목록 조회
+   */
+  tag: async (id: number) => await http.get<ResponseDTO<IDiaryTagReponse>>(`/friend/${id}/tag`),
 };
 export default diaryApi;
