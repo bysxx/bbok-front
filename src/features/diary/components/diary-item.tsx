@@ -10,7 +10,7 @@ interface IDiaryItemProps {
 const DiaryItem = ({ data }: IDiaryItemProps) => {
   const { content, date, tags, emojiUrl } = data;
   return (
-    <div className="mt-3 bg-gray-10 p-5">
+    <div className="mt-3 bg-gray-10 p-5 rounded-md">
       <h4 className="text-caption-1 text-gray-25">{getTime(date)}</h4>
       <h3 className="text-body-4 mr-11 mt-[6px] text-gray-65">{content}</h3>
       <div className="flex items-end justify-between">
