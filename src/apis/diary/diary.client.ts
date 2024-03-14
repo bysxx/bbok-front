@@ -1,5 +1,6 @@
 import {
   IDiaryBody,
+  IDiaryDetailResponse,
   IDiaryListRequest,
   IDiaryListResponse,
   IDiaryTagReponse,
@@ -31,5 +32,10 @@ const diaryApi = {
    * @description 일화 태그 목록 조회
    */
   tag: async (id: number) => await http.get<ResponseDTO<IDiaryTagReponse>>(`/friend/${id}/tag`),
+
+  /**
+   * @description 일화 상세 조회
+   */
+  detail: async (id: number) => await http.get<ResponseDTO<IDiaryDetailResponse>>(`/friend/diary/detail/${id}`),
 };
 export default diaryApi;

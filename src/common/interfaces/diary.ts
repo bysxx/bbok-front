@@ -91,7 +91,7 @@ export interface IDiaryTagReponse {
 /**
  * 일화 디테일 상세 response type
  */
-export interface IDiaryDetail {
+export interface IDiaryDetailResponse {
   badChecklist: IDiaryListChecklist[];
   content: string;
   date: string;
