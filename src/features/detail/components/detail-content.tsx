@@ -4,9 +4,9 @@ import Popup from '@components/popup';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import StickerBottomModal from './sticker-bottom-modal';
+import StickerBottomModal from '../../../app/diarylist/[id]/sticker-bottom-modal';
 
-const DiaryDetailContent = ({ content }: { content: string }) => {
+const DetailContent = ({ content }: { content: string }) => {
   const [stickerModal, setStickerModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const deleteModalHandler = () => {
@@ -75,4 +75,4 @@ const DiaryDetailContent = ({ content }: { content: string }) => {
     </>
   );
 };
-export default DiaryDetailContent;
+export default DetailContent;
