@@ -18,7 +18,12 @@ const DiaryListPage = () => {
   const { friend } = useFriendStore();
   const [tag, setTag] = useState<string>('');
   const [order, setOrder] = useState<TDate>('desc');
-  const { data, isSuccess, isFetchingNextPage } = useGetDiaryList({ id: friend.id, order, q: text, tag });
+  const { data, isSuccess, isFetchingNextPage } = useGetDiaryList({
+    id: friend.id,
+    order,
+    q: text,
+    tag,
+  });
   const diaryList = data?.pages ? data.pages.flatMap((page) => page.data.diaries) : [];
 
   if (isSuccess && diaryList.length === 0 && text === '' && tag === '') {
