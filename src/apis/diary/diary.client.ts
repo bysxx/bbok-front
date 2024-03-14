@@ -37,5 +37,10 @@ const diaryApi = {
    * @description 일화 상세 조회
    */
   detail: async (id: number) => await http.get<ResponseDTO<IDiaryDetailResponse>>(`/friend/diary/detail/${id}`),
+
+  /**
+   * @description 일화 상세 삭제
+   */
+  delete: async (id: number) => await http.delete<ResponseDTO<string>>(`/friend/diary/${id}`),
 };
 export default diaryApi;
