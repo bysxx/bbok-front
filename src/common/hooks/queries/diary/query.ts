@@ -12,7 +12,7 @@ export const useGetDiaryList = (body: IDiaryInfiniteRequest) => {
     queryFn: ({ pageParam = 0 }) => diaryApi.list({ ...body, offset: pageParam as number }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      return lastPage.data.pageNumber === lastPage.data.totalPages ? undefined : lastPage.data.pageNumber + 1;
+      return lastPage.data.pageNumber === lastPage.data.totalPages - 1 ? undefined : lastPage.data.pageNumber + 1;
     },
   });
 };
