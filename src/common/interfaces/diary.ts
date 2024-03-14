@@ -87,3 +87,18 @@ export interface IDiaryTag {
 export interface IDiaryTagReponse {
   tags: IDiaryTag[];
 }
+
+/**
+ * 일화 디테일 상세 response type
+ */
+export interface IDiaryDetail {
+  badChecklist: IDiaryListChecklist[];
+  content: string;
+  date: string;
+  emoji: TEmoji;
+  emojiUrl: string;
+  goodChecklist: IDiaryListChecklist[];
+  id: number;
+  sticker: string;
+  tags: string[];
+}
