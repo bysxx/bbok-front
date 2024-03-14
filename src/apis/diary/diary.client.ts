@@ -2,6 +2,7 @@ import { IDiaryBody, IDiaryListRequest, IDiaryListResponse, IPostDiaryResponse }
 
 import { http } from '@libs/http.client';
 import { ResponseDTO } from '@interfaces/common';
+import { getQueryString } from '@libs/getQueryString';
 
 const diaryApi = {
   /**
@@ -14,9 +15,10 @@ const diaryApi = {
   /**
    * @description 일화 리스트 조회 api
    */
-  list: async (body: IDiaryListRequest) =>
-    await http.get<ResponseDTO<IDiaryListResponse>>(
-      `/friend/${body.id}/diary?offset=${body.offset}&order=${body.order}&q=${body.q}&tag=${body.tag}`,
-    ),
+  list: async (body: IDiaryListRequest) => {
+    const { id, ...rest } = body;
+    const query = rest ? getQueryString(rest) : '';
+    return await http.get<ResponseDTO<IDiaryListResponse>>(`/friend/${id}/diary?${query}`);
+  },
 };
 export default diaryApi;
