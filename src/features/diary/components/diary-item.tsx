@@ -3,12 +3,7 @@ import { IDiariesItem } from '@interfaces/diary';
 import { getTime } from '@libs/getTime';
 import Image from 'next/image';
 
-interface IDiaryItemProps {
-  data: IDiariesItem;
-}
-
-const DiaryItem = ({ data }: IDiaryItemProps) => {
-  const { content, date, tags, emojiUrl } = data;
+const DiaryItem = ({ content, date, tags, emojiUrl }: IDiariesItem) => {
   return (
     <div className="mt-3 bg-gray-10 p-5 rounded-md">
       <h4 className="text-caption-1 text-gray-25">{getTime(date)}</h4>
