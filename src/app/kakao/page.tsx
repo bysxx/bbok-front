@@ -2,15 +2,16 @@
 
 import authApi from '@apis/auth';
 import { LoadingPage } from '@components/ui/pages';
+import useCustomRouter from '@hooks/useCustomRouter';
 import { redirectUri } from '@libs/config';
 import { useUserStore } from '@stores/useUserStore';
 import { setCookie } from 'cookies-next';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 // page for redirect(kakao -> main)
 export default function KakaoPage() {
-  const router = useRouter();
+  const { push } = useCustomRouter();
   const searchParams = useSearchParams();
   const { setUserData } = useUserStore();
 
@@ -21,10 +22,11 @@ export default function KakaoPage() {
         setCookie('accessToken', res.data.accessToken);
         setCookie('refreshToken', res.data.refreshToken);
         setCookie('isVisited', true);
-        // 처음 사용하는 유저이면
-        router.replace('/checklist');
-        // 이전에도 사용한 유저이면
-        // router.replace('/');
+        if (res.data.newMember) {
+          push('/checklist');
+        } else {
+          push('/');
+        }
       });
     }
   }, [searchParams]);
