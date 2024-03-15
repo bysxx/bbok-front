@@ -13,8 +13,9 @@ import { useEffect, useState } from 'react';
 interface IDiaryTagPageProps {
   tags: string[];
   setTags: (value: string[]) => void;
+  type?: 'create' | 'modify';
 }
-const DiaryTagPage = ({ tags, setTags }: IDiaryTagPageProps) => {
+const DiaryTagPage = ({ tags, setTags, type }: IDiaryTagPageProps) => {
   const { text, onChange, onClear } = useInput('');
   const [error, setError] = useState<boolean>(false);
   const { back } = useCustomRouter();
@@ -46,7 +47,7 @@ const DiaryTagPage = ({ tags, setTags }: IDiaryTagPageProps) => {
 
   return (
     <>
-      <NavTopBar label="태그 추가" onClick={back} />
+      <NavTopBar label={type === 'create' ? '태그 추가' : '태그 수정'} onClick={back} />
       <DefaultLayout>
         <div className="mt-3 flex w-full items-center gap-4">
           <div className="flex flex-1">
