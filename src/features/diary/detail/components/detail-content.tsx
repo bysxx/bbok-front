@@ -19,7 +19,6 @@ const DetailContent = ({ content, id }: { content: string; id: number }) => {
   const { isOpen: deleteIsOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useModal();
 
   const deleteDiaryHandler = async () => {
-    console.log('응');
     await deleteDiary.mutateAsync(id);
     onDeleteClose();
   };

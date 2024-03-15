@@ -3,8 +3,8 @@
 import SearchBar from '@components/search-bar';
 import Spinner from '@components/spinner';
 import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
-import { DiarylistCard, DiarylistOption, EmptyDiarylistCard, TagButtonsList } from '@features/diary/components';
-import { EmptyDiaryListPage } from '@features/diary/pages';
+import { DiarylistCard, DiarylistOption, EmptyDiarylistCard, TagButtonsList } from '@features/diarylist/components';
+import { EmptyDiaryListPage } from '@features/diarylist/pages';
 import { useGetDiaryList } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/Utils/useInput';
