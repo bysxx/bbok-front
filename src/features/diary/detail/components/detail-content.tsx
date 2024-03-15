@@ -8,8 +8,8 @@ import useModal from '@hooks/Utils/useModal';
 import { DetailOption } from '@interfaces/enums';
 import Image from 'next/image';
 
-import StickerBottomModal from '../../../app/diarylist/[id]/sticker-bottom-modal';
 import { DETAIL_OPTIONS } from '../constants';
+import StickerBottomModal from './sticker-bottom-modal';
 
 const DetailContent = ({ content, id }: { content: string; id: number }) => {
   const { push } = useCustomRouter();
