@@ -28,5 +28,7 @@ export const useGetDiaryDetail = (id: number) => {
   return useQuery<ResponseDTO<IDiaryDetailResponse>, AxiosError>({
     queryKey: DIARY_KEYS.detail([{ id }]),
     queryFn: () => diaryApi.detail(id),
+    staleTime: Infinity,
+    gcTime: Infinity,
   });
 };
