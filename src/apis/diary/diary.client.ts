@@ -42,5 +42,10 @@ const diaryApi = {
    * @description 일화 상세 삭제
    */
   delete: async (id: number) => await http.delete<ResponseDTO<string>>(`/friend/diary/${id}`),
+
+  /**
+   * @description 일화 상세 수정
+   */
+  patch: async (id: number) => await http.patch<ResponseDTO<string>>(`/friend/diary/${id}`),
 };
 export default diaryApi;
