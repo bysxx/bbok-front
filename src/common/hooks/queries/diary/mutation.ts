@@ -31,5 +31,15 @@ export const useDiaryMutation = () => {
     },
   });
 
-  return { postDiary, deleteDiary };
+  /**
+   * 일화 수정
+   */
+  const patchDiary = useMutation({
+    mutationFn: diaryApi.patch,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: DIARY_KEYS.all });
+    },
+  });
+
+  return { postDiary, deleteDiary, patchDiary };
 };

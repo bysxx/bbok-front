@@ -13,6 +13,7 @@ import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
 import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
 import { CheckNotNextPage } from '@features/writing/utils/check-next-page';
+import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/Utils/useModal';
 import { IDiaryRequestBody, TDiaryKey, TDiaryValue } from '@interfaces/diary';
@@ -27,17 +28,18 @@ interface IDiaryWritingPageProps {
   id?: number;
 }
 const DiaryWritingPage = ({ diary, setDiary, type = 'create', id }: IDiaryWritingPageProps) => {
-  const { push } = useCustomRouter();
+  const { push, back } = useCustomRouter();
   const { isOpen, onClose, onOpen } = useModal();
   const { friend } = useFriendStore();
   const [check, setCheck] = useState<boolean>(false);
+  const { patchDiary } = useDiaryMutation();
 
-  const onClickToBarButton = () => {
+  const onClickToBarButton = async () => {
     if (type === 'create') {
       onOpen();
     } else if (type === 'modify' && id) {
-      // TODO: 일화 수정 api 호출
-      console.log(diary);
+      await patchDiary.mutateAsync({ ...diary, id });
+      back();
     }
   };
 
