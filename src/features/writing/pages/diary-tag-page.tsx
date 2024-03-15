@@ -17,7 +17,7 @@ interface IDiaryTagPageProps {
 const DiaryTagPage = ({ tags, setTags }: IDiaryTagPageProps) => {
   const { text, onChange, onClear } = useInput('');
   const [error, setError] = useState<boolean>(false);
-  const { push } = useCustomRouter();
+  const { back } = useCustomRouter();
 
   useEffect(() => {
     if (tags.length < 7 || text.length === 0) {
@@ -46,7 +46,7 @@ const DiaryTagPage = ({ tags, setTags }: IDiaryTagPageProps) => {
 
   return (
     <>
-      <NavTopBar label="태그 추가" onClick={() => push({ pathname: './writing', query: { step: 2 } })} />
+      <NavTopBar label="태그 추가" onClick={back} />
       <DefaultLayout>
         <div className="mt-3 flex w-full items-center gap-4">
           <div className="flex flex-1">

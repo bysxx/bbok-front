@@ -21,7 +21,7 @@ interface IDiaryListPageProps {
 
 const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
   const { data, isSuccess, isLoading } = useGetMyChecklist();
-  const { push, query } = useCustomRouter();
+  const { push, query, back } = useCustomRouter();
   const { friend } = useFriendStore();
   const { postDiary } = useDiaryMutation();
   const [loading, setLoading] = useState<boolean>(false);
@@ -66,16 +66,7 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
       border={false}
       isLoading={loading}
     >
-      <NavTopBar
-        onClick={() => {
-          if (type === 'bad') {
-            push({ pathname: './writing', query: { step: 2 } });
-          } else {
-            push({ pathname: './writing', query: { step: 4, type: 'bad' } });
-          }
-        }}
-        label={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].title}
-      />
+      <NavTopBar onClick={back} label={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].title} />
       <DefaultLayout>
         <div className="mt-6 flex items-center">
           <h1 className="text-title-1 text-gray-70">이 일화에서 친구는</h1>

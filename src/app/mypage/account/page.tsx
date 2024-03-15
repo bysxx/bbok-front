@@ -9,7 +9,7 @@ import { AccountTab } from '@interfaces/enums';
 import { useState } from 'react';
 
 const MyPageAccountPage = () => {
-  const { push } = useCustomRouter();
+  const { back } = useCustomRouter();
   const [withDraw, setWithDraw] = useState<boolean>(false);
   const [initial, setInitial] = useState<boolean>(false);
   return (
@@ -44,13 +44,7 @@ const MyPageAccountPage = () => {
           작성한 일화들은 복구가 불가능해요.
         </p>
       </Popup>
-      <NavTopBar
-        onClick={() => {
-          push('/mypage');
-        }}
-        label="내 계정"
-        className="mb-[10px]"
-      />
+      <NavTopBar onClick={back} label="내 계정" className="mb-[10px]" />
       {ACCOUNT_TAB_LIST.map((tab, i) => (
         <Tab
           key={tab.value}

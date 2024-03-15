@@ -92,7 +92,7 @@ const DiaryWritingPage = ({ diary, setDiary, type = 'create', id }: IDiaryWritin
                 if (type === 'create') {
                   push({ pathname: './writing', query: { step: 3 } });
                 } else if (type === 'modify') {
-                  push({ pathname: './', query: { type: 'tag' } });
+                  push({ pathname: './modify', query: { type: 'tag' } });
                 }
               }}
             >
