@@ -9,8 +9,8 @@ import useCustomRouter from '@hooks/useCustomRouter';
 import Image from 'next/image';
 
 interface ICheckEmojiPage {
-  selectEmoji: TEmoji | '';
-  setSelectEmoji: (value: TEmoji | '') => void;
+  selectEmoji: TEmoji | null;
+  setSelectEmoji: (value: TEmoji | null) => void;
 }
 const CheckEmojiPage = ({ selectEmoji, setSelectEmoji }: ICheckEmojiPage) => {
   const { push } = useCustomRouter();
@@ -20,7 +20,7 @@ const CheckEmojiPage = ({ selectEmoji, setSelectEmoji }: ICheckEmojiPage) => {
       onClick={() => {
         push({ pathname: './writing', query: { step: 2 } });
       }}
-      disabled={selectEmoji === ''}
+      disabled={!selectEmoji}
       border={false}
     >
       <CancelTopBar
@@ -38,7 +38,7 @@ const CheckEmojiPage = ({ selectEmoji, setSelectEmoji }: ICheckEmojiPage) => {
               height={56}
               loader={ImageLoader}
               src={
-                selectEmoji === ''
+                !selectEmoji
                   ? DIARY_EMOJI[emoji].select
                   : selectEmoji === emoji
                     ? DIARY_EMOJI[emoji].select

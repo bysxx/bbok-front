@@ -7,7 +7,7 @@ const useHandleDiary = () => {
     checklist: [],
     content: '',
     date: '',
-    emoji: '',
+    emoji: null,
     sticker: '',
     tags: [],
   });

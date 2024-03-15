@@ -8,7 +8,7 @@ export interface IDiaryRequestBody {
   checklist: IDiaryCheckListItem[];
   content: string;
   date: string;
-  emoji: TEmoji | '';
+  emoji: TEmoji | null;
   sticker: string;
   tags: string[];
 }
@@ -102,3 +102,8 @@ export interface IDiaryDetailResponse {
   sticker: string;
   tags: string[];
 }
+
+/**
+ * 일화 수정 request body
+ */
+export type TDiaryModifyRequestBody = NonNullable<IDiaryBody>;

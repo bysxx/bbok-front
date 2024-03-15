@@ -5,6 +5,7 @@ import {
   IDiaryListResponse,
   IDiaryTagReponse,
   IPostDiaryResponse,
+  TDiaryModifyRequestBody,
 } from '@interfaces/diary';
 
 import { http } from '@libs/http.client';
@@ -15,8 +16,7 @@ const diaryApi = {
   /**
    * @description 작성한 일화 생성 api
    */
-  post: async (body: IDiaryBody) => {
-    const { id, ...rest } = body;
+  post: async ({ id, ...rest }: IDiaryBody) => {
     await http.post<ResponseDTO<IPostDiaryResponse>>(`/friend/${id}/diary`, rest);
   },
   /**
@@ -46,6 +46,7 @@ const diaryApi = {
   /**
    * @description 일화 상세 수정
    */
-  patch: async (id: number) => await http.patch<ResponseDTO<string>>(`/friend/diary/${id}`),
+  patch: async ({ id, ...rest }: TDiaryModifyRequestBody) =>
+    await http.patch<ResponseDTO<string>>(`/friend/diary/${id}`, rest),
 };
 export default diaryApi;
