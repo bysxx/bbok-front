@@ -2,6 +2,7 @@
 
 import ImageLoader from '@components/imageLoader';
 import Popup from '@components/popup';
+import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/Utils/useModal';
 import { DetailOption } from '@interfaces/enums';
@@ -12,12 +13,25 @@ import { DETAIL_OPTIONS } from '../constants';
 
 const DetailContent = ({ content, id }: { content: string; id: number }) => {
   const { push } = useCustomRouter();
+  const { deleteDiary } = useDiaryMutation();
 
   const { isOpen: stickerIsOpen, onOpen: onStickerOpen, onClose: onStickerClose } = useModal();
   const { isOpen: deleteIsOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useModal();
+
+  const deleteDiaryHandler = async () => {
+    console.log('응');
+    await deleteDiary.mutateAsync(id);
+    onDeleteClose();
+  };
   return (
     <>
-      <Popup isOpen={deleteIsOpen} onClose={onDeleteClose} label="삭제" onClick={() => {}} title="정말 삭제하시겠어요?">
+      <Popup
+        isOpen={deleteIsOpen}
+        onClose={onDeleteClose}
+        label="삭제"
+        onClick={deleteDiaryHandler}
+        title="정말 삭제하시겠어요?"
+      >
         <p className="text-caption-1 text-center text-gray-40">삭제한 일화는 다시 복구할 수 없어요.</p>
       </Popup>
       {stickerIsOpen && <StickerBottomModal onClose={onStickerClose} />}

@@ -19,5 +19,17 @@ export const useDiaryMutation = () => {
     },
   });
 
-  return { postDiary };
+  /**
+   * 일화 삭제
+   */
+  const deleteDiary = useMutation({
+    mutationFn: diaryApi.delete,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
+      queryClient.invalidateQueries({ queryKey: DIARY_KEYS.all });
+      push('/diarylist');
+    },
+  });
+
+  return { postDiary, deleteDiary };
 };
