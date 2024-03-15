@@ -1,4 +1,5 @@
 import { IDiaryCheckListItem } from '@interfaces/checklist';
+import { IDiaryListChecklist } from '@interfaces/diary';
 import { IMyCheckList } from '@interfaces/member';
 
 /**
@@ -21,6 +22,33 @@ export const getInitialDiaryList = (list: IMyCheckList): IDiaryCheckListItem[] =
   });
 
   return [...goodList, ...badList];
+};
+
+/**
+ * 일화 디테일 배열 return
+ */
+export const getDiaryChecklist = (
+  badChecklist: IDiaryListChecklist[],
+  goodChecklist: IDiaryListChecklist[],
+): IDiaryCheckListItem[] => {
+  const checklist: IDiaryCheckListItem[] = [];
+  badChecklist.forEach((baditem) =>
+    checklist.push({
+      id: baditem.id,
+      isChecked: baditem.isChecked,
+      isGood: false,
+    }),
+  );
+
+  goodChecklist.forEach((gooditem) =>
+    checklist.push({
+      id: gooditem.id,
+      isChecked: gooditem.isChecked,
+      isGood: true,
+    }),
+  );
+
+  return checklist;
 };
 
 /**
