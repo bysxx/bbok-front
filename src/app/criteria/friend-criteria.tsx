@@ -1,18 +1,19 @@
+import { TQuery, TypeQuery } from '@interfaces/enums';
 import { CheckContent } from '@interfaces/member';
 import Link from 'next/link';
 import { useMemo } from 'react';
 
 interface CriteriaProps {
-  type: 'bad' | 'good';
+  type: TQuery;
   list: CheckContent[];
 }
 
-const title = {
-  bad: {
+const title: { [key in TQuery]: { image: string; label: string } } = {
+  [TypeQuery.bad]: {
     image: '/images/icon/ui/broken-heart.svg',
     label: '기피하는 친구 유형',
   },
-  good: {
+  [TypeQuery.good]: {
     image: '/images/icon/ui/heart.svg',
     label: '적합한 친구 유형',
   },

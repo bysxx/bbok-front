@@ -9,9 +9,10 @@ import type { ICheckItem } from '@interfaces/checklist';
 import uuid from 'react-uuid';
 
 import { updateChecklist } from '../utils/getChecklist';
+import { TQuery } from '@interfaces/enums';
 
 interface TypeCheckListProps {
-  type: 'good' | 'bad';
+  type: TQuery;
   allList: ICheckItem[];
   setAllList: (value: ICheckItem[]) => void;
   length: number;

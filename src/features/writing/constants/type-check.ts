@@ -1,5 +1,7 @@
+import { TQuery } from '@interfaces/enums';
+
 export const TYPE_CHECLIST_COMMENT: {
-  [key in 'good' | 'bad']: { title: string; subTitle: string; img: string; bottom: string };
+  [key in TQuery]: { title: string; subTitle: string; img: string; bottom: string };
 } = {
   bad: {
     title: '기피 기준체크',

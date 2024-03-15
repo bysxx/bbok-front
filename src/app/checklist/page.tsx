@@ -8,6 +8,7 @@ import useHandleChecklist from '@features/checklist/hooks/useHandleChecklist';
 import { getChecklistComplete } from '@features/checklist/utils/getChecklist';
 import { usePostChecklist } from '@hooks/queries/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
 
 import CheckListTitle from './checklist-title';
@@ -66,7 +67,7 @@ const CheckListPage = () => {
           if (type === 'first') {
             return (
               <ChecklistTabPage
-                type="bad"
+                type={TypeQuery.bad}
                 allList={allBadList}
                 setAllList={setAllBadList}
                 length={BAD_CHECK_COUNT}
@@ -76,7 +77,7 @@ const CheckListPage = () => {
           }
           return (
             <ChecklistTabPage
-              type="good"
+              type={TypeQuery.good}
               allList={allGoodList}
               setAllList={setAllGoodList}
               length={GOOD_CHECK_COUNT}

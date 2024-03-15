@@ -13,6 +13,7 @@ import { CheckNotNextPage } from '../utils/check-next-page';
 import { LoadingPage } from '@components/ui/pages';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useDiaryMutation } from '@hooks/queries/diary/mutation';
+import { TQuery, TypeQuery } from '@interfaces/enums';
 
 interface IDiaryListPageProps {
   diary: IDiaryRequestBody;
@@ -47,18 +48,18 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
 
   return (
     <FooterButtonLayout
-      text={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].bottom}
+      text={TYPE_CHECLIST_COMMENT[type as TQuery].bottom}
       multi={true}
       onClick={() => {
-        if (type === 'bad') {
-          push({ pathname: './writing', query: { step: 4, type: 'good' } });
+        if (type === TypeQuery.bad) {
+          push({ pathname: './writing', query: { step: 4, type: TypeQuery.good } });
         } else {
           handleMakeDiary();
         }
       }}
       multiOnClick={() => {
-        if (type === 'bad') {
-          push({ pathname: './writing', query: { step: 4, type: 'good' } });
+        if (type === TypeQuery.bad) {
+          push({ pathname: './writing', query: { step: 4, type: TypeQuery.good } });
         } else {
           handleMakeDiary();
         }
@@ -66,7 +67,7 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
       border={false}
       isLoading={loading}
     >
-      <NavTopBar onClick={back} label={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].title} />
+      <NavTopBar onClick={back} label={TYPE_CHECLIST_COMMENT[type as TQuery].title} />
       <DefaultLayout>
         <div className="mt-6 flex items-center">
           <h1 className="text-title-1 text-gray-70">이 일화에서 친구는</h1>
@@ -74,16 +75,10 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
           <h1 className="text-title-1 text-orange-1">어떤 친구였나요?</h1>
         </div>
         <div className="mb-5 mt-7 flex items-center">
-          <Image
-            loader={ImageLoader}
-            src={TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].img}
-            alt=""
-            width={24}
-            height={24}
-          />
-          <h4 className="text-title-3">{TYPE_CHECLIST_COMMENT[type as 'good' | 'bad'].subTitle}</h4>
+          <Image loader={ImageLoader} src={TYPE_CHECLIST_COMMENT[type as TQuery].img} alt="" width={24} height={24} />
+          <h4 className="text-title-3">{TYPE_CHECLIST_COMMENT[type as TQuery].subTitle}</h4>
         </div>
-        {type === 'bad' &&
+        {type === TypeQuery.bad &&
           data?.data.badChecklist.slice(0, 5).map((list) => (
             <div className="mb-3" key={list.id}>
               <CheckList
@@ -95,7 +90,7 @@ const DiaryListPage = ({ diary, setDiary }: IDiaryListPageProps) => {
               />
             </div>
           ))}
-        {type === 'good' &&
+        {type === TypeQuery.good &&
           data?.data.goodChecklist.slice(0, 5).map((list) => (
             <div className="mb-3" key={list.id}>
               <CheckList
