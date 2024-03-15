@@ -5,6 +5,7 @@ import Popup from '@components/popup';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/Utils/useModal';
+import type { TDetailOption } from '@interfaces/enums';
 import { DetailOption } from '@interfaces/enums';
 import Image from 'next/image';
 
@@ -22,6 +23,15 @@ const DetailContent = ({ content, id }: { content: string; id: number }) => {
     await deleteDiary.mutateAsync(id);
     onDeleteClose();
   };
+
+  const detailContentClick: Record<TDetailOption, () => void> = {
+    [DetailOption.modify]: () => push(`/diarylist/${id}/${DetailOption.modify}`),
+    [DetailOption.delete]: () => onDeleteOpen(),
+    [DetailOption.sticker]: () => onStickerOpen(),
+    [DetailOption.criteria]: () =>
+      push({ pathname: `/diarylist/${id}/${DetailOption.criteria}`, query: { type: 'bad' } }),
+  };
+
   return (
     <>
       <Popup
@@ -43,15 +53,7 @@ const DetailContent = ({ content, id }: { content: string; id: number }) => {
               <section
                 key={option.label}
                 className="ml-4 flex cursor-pointer flex-col items-center justify-center"
-                onClick={() => {
-                  if (option.value === DetailOption.criteria || option.value === DetailOption.modify) {
-                    push(`/diarylist/${id}/${option.value}`);
-                  } else if (option.value === DetailOption.delete) {
-                    onDeleteOpen();
-                  } else if (option.value === DetailOption.sticker) {
-                    onStickerOpen();
-                  }
-                }}
+                onClick={detailContentClick[option.value]}
               >
                 <Image loader={ImageLoader} width={24} height={24} src={option.image} alt="" />
                 <h5 className=" text-[10px] font-medium text-gray-25">{option.label}</h5>
