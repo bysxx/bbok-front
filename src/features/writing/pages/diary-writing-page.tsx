@@ -89,7 +89,11 @@ const DiaryWritingPage = ({ diary, setDiary, type = 'create', id }: IDiaryWritin
               className="mt-4 flex flex-wrap gap-[10px] bg-gray-10 rounded-[10px] py-2 px-3 cursor-pointer mb-8"
               onClick={(e: MouseEvent) => {
                 e.stopPropagation();
-                push({ pathname: './writing', query: { step: 3 } });
+                if (type === 'create') {
+                  push({ pathname: './writing', query: { step: 3 } });
+                } else if (type === 'modify') {
+                  push({ pathname: './', query: { type: 'tag' } });
+                }
               }}
             >
               {diary.tags.map((tag, i) => (
