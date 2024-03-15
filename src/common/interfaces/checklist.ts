@@ -9,7 +9,7 @@ export interface ICheckList {
 export interface ICheckItem {
   id: string | number;
   criteria: string;
-  checked: boolean;
+  isChecked: boolean;
 }
 
 /**

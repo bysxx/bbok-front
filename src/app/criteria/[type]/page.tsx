@@ -9,10 +9,11 @@ import { useCallback, useState } from 'react';
 
 import { data } from './dummy';
 import ModifyCheckListTitle from './modify-checklist-title';
+import { TQuery } from '@interfaces/enums';
 
 interface CriteriaProps {
   params: {
-    type: 'good' | 'bad';
+    type: TQuery;
   };
 }
 const CriteriaModifyPage = ({ params }: CriteriaProps) => {
@@ -29,7 +30,7 @@ const CriteriaModifyPage = ({ params }: CriteriaProps) => {
 
   return (
     <FooterButtonLayout
-      disabled={modifyCheckList.filter((c) => c.checked === true).length !== 5}
+      disabled={modifyCheckList.filter((c) => c.isChecked === true).length !== 5}
       onClick={() => {
         // 통신 & 페이지 이동
         console.log(modifyCheckList);

@@ -34,8 +34,8 @@ const CheckListPage = () => {
     <FooterButtonLayout
       disabled={
         type === 'first'
-          ? allBadList.filter((bad) => bad.checked === true).length !== 5
-          : allGoodList.filter((good) => good.checked === true).length !== 5
+          ? allBadList.filter((bad) => bad.isChecked === true).length !== 5
+          : allGoodList.filter((good) => good.isChecked === true).length !== 5
       }
       onClick={
         type === 'first'

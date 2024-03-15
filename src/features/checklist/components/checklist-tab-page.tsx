@@ -22,12 +22,13 @@ interface TypeCheckListProps {
 function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }: TypeCheckListProps) {
   // 체크리스트 아이템을 클릭했을 때
   const handleCheckItemClick = (item: ICheckItem) => {
+    console.log(item);
     setAllList(updateChecklist(allList, item.id));
   };
 
   // 체크리스트 아이템을 생성할 때
   const handlePlusCountClick = () => {
-    const updateItem: ICheckItem[] = [...allList, { id: uuid(), criteria: '', checked: false }];
+    const updateItem: ICheckItem[] = [...allList, { id: uuid(), criteria: '', isChecked: false }];
     setAllList(updateItem);
   };
 
@@ -49,7 +50,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
               {allList.slice(0, length).map((item: ICheckItem) => (
                 <div key={item.id} className="mb-[12px]">
                   <CheckList
-                    selected={item.checked}
+                    selected={item.isChecked}
                     label={item.criteria}
                     key={item.id}
                     onClick={() => handleCheckItemClick(item)}
@@ -59,7 +60,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
               {allList.slice(length)?.map((item) => (
                 <div className="mb-4" key={item.id}>
                   <WriteCheckList
-                    selected={item.checked}
+                    selected={item.isChecked}
                     onClick={() => handleCheckItemClick(item)}
                     value={item}
                     setValue={setAllList}
@@ -83,7 +84,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
             {allList.map((item: ICheckItem) => (
               <div key={item.id} className="mb-[12px]">
                 <CheckList
-                  selected={item.checked}
+                  selected={item.isChecked}
                   label={item.criteria}
                   key={item.id}
                   onClick={() => handleCheckItemClick(item)}
