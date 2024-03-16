@@ -9,11 +9,11 @@ export interface ICheckList {
 export interface ICheckItem {
   id: string | number;
   criteria: string;
-  checked: boolean;
+  isChecked: boolean;
 }
 
 /**
- * 일화 생성 체크리스트 item type
+ * 일화 생성 및 수정 체크리스트 item type
  */
 export interface IDiaryCheckListItem {
   id: number;

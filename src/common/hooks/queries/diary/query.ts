@@ -1,5 +1,5 @@
 import { DIARY_KEYS } from '@constants/queryKeys';
-import { IDiaryInfiniteRequest, IDiaryListResponse, IDiaryTagReponse } from '@interfaces/diary';
+import { IDiaryDetailResponse, IDiaryInfiniteRequest, IDiaryListResponse, IDiaryTagReponse } from '@interfaces/diary';
 
 import { ResponseDTO } from '@interfaces/common';
 import diaryApi from '@apis/diary/diary.client';
@@ -21,5 +21,14 @@ export const useGetDiaryTagList = (id: number) => {
   return useQuery<ResponseDTO<IDiaryTagReponse>, AxiosError>({
     queryKey: DIARY_KEYS.list([{ id }]),
     queryFn: () => diaryApi.tag(id),
+  });
+};
+
+export const useGetDiaryDetail = (id: number) => {
+  return useQuery<ResponseDTO<IDiaryDetailResponse>, AxiosError>({
+    queryKey: DIARY_KEYS.detail([{ id }]),
+    queryFn: () => diaryApi.detail(id),
+    staleTime: Infinity,
+    gcTime: Infinity,
   });
 };

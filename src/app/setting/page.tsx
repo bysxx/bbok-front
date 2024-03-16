@@ -10,13 +10,13 @@ import useNameValidation from '@features/friend/hooks/useNameValidation';
 import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
 import { useFriendMutation } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/Utils/useInput';
+import useInput from '@hooks/useInput';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';
 
 const SettingPage = () => {
   const { text: value, isValid: error, onChange } = useInput('', friendInputVerifier);
-  const { push } = useCustomRouter();
+  const { back } = useCustomRouter();
   const { errorMessage } = useNameValidation(value);
   const { friend } = useFriendStore();
   const { patchFriend, deleteFriend } = useFriendMutation();
@@ -49,7 +49,7 @@ const SettingPage = () => {
           일기를 되살리고 싶다면 고객센터에 문의해주세요.
         </p>
       </Popup>
-      <NavTopBar label="일기장 관리" onClick={() => push('./')} />
+      <NavTopBar label="일기장 관리" onClick={back} />
       <DefaultLayout>
         <h2 className="text-title-3 mt-[22px] text-gray-65">친구 이름 변경</h2>
 

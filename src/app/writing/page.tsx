@@ -1,10 +1,8 @@
 'use client';
 
-import { TEmoji } from '@interfaces/enums/emoji';
 import { DiaryWritingLayout } from '@features/writing/components';
 import useHandleDiary from '@features/writing/hooks/useHandleDiary';
 import { CheckEmojiPage, DiaryListPage, DiaryTagPage, DiaryWritingPage } from '@features/writing/pages';
-
 import useCustomRouter from '@hooks/useCustomRouter';
 
 const WritingPage = () => {
@@ -15,10 +13,7 @@ const WritingPage = () => {
   return (
     <>
       {step === '1' && (
-        <CheckEmojiPage
-          selectEmoji={diary.emoji}
-          setSelectEmoji={(emoji: TEmoji | '') => onChangeDiary('emoji', emoji)}
-        />
+        <CheckEmojiPage selectEmoji={diary.emoji} setSelectEmoji={(emoji) => onChangeDiary('emoji', emoji)} />
       )}
       {step === '2' && (
         <DiaryWritingLayout>

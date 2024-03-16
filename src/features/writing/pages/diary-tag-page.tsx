@@ -6,18 +6,19 @@ import { NavTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/Utils/useInput';
+import useInput from '@hooks/useInput';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
 
 interface IDiaryTagPageProps {
   tags: string[];
   setTags: (value: string[]) => void;
+  type?: 'create' | 'modify';
 }
-const DiaryTagPage = ({ tags, setTags }: IDiaryTagPageProps) => {
+const DiaryTagPage = ({ tags, setTags, type }: IDiaryTagPageProps) => {
   const { text, onChange, onClear } = useInput('');
   const [error, setError] = useState<boolean>(false);
-  const { push } = useCustomRouter();
+  const { back } = useCustomRouter();
 
   useEffect(() => {
     if (tags.length < 7 || text.length === 0) {
@@ -46,7 +47,7 @@ const DiaryTagPage = ({ tags, setTags }: IDiaryTagPageProps) => {
 
   return (
     <>
-      <NavTopBar label="태그 추가" onClick={() => push({ pathname: './writing', query: { step: 2 } })} />
+      <NavTopBar label={type === 'create' ? '태그 추가' : '태그 수정'} onClick={back} />
       <DefaultLayout>
         <div className="mt-3 flex w-full items-center gap-4">
           <div className="flex flex-1">

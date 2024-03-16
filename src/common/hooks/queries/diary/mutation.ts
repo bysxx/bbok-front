@@ -1,6 +1,7 @@
 import diaryApi from '@apis/diary/diary.client';
 import { DIARY_KEYS, FRIEND_KEYS } from '@constants/queryKeys';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { showSuccessToast } from '@libs/showToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useDiaryMutation = () => {
@@ -19,5 +20,28 @@ export const useDiaryMutation = () => {
     },
   });
 
-  return { postDiary };
+  /**
+   * 일화 삭제
+   */
+  const deleteDiary = useMutation({
+    mutationFn: diaryApi.delete,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
+      queryClient.invalidateQueries({ queryKey: DIARY_KEYS.all });
+      push('/diarylist');
+    },
+  });
+
+  /**
+   * 일화 수정
+   */
+  const patchDiary = useMutation({
+    mutationFn: diaryApi.patch,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: DIARY_KEYS.all });
+      showSuccessToast('일화 수정이 완료되었어요');
+    },
+  });
+
+  return { postDiary, deleteDiary, patchDiary };
 };

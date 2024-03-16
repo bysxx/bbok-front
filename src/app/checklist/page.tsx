@@ -2,15 +2,14 @@
 
 import { ChangeTopBar } from '@components/top-bar';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
-import { ChecklistCount, ChecklistTabPage } from '@features/checklist/components';
+import { ChecklistCount, ChecklistTabPage, ChecklistTitle } from '@features/checklist/components';
 import { BAD_CHECK_COUNT, GOOD_CHECK_COUNT } from '@features/checklist/constants/checklist';
 import useHandleChecklist from '@features/checklist/hooks/useHandleChecklist';
 import { getChecklistComplete } from '@features/checklist/utils/getChecklist';
 import { usePostChecklist } from '@hooks/queries/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
-
-import CheckListTitle from './checklist-title';
 
 const CheckListPage = () => {
   const [type, setType] = useState<'first' | 'second'>('first');
@@ -33,8 +32,8 @@ const CheckListPage = () => {
     <FooterButtonLayout
       disabled={
         type === 'first'
-          ? allBadList.filter((bad) => bad.checked === true).length !== 5
-          : allGoodList.filter((good) => good.checked === true).length !== 5
+          ? allBadList.filter((bad) => bad.isChecked === true).length !== 5
+          : allGoodList.filter((good) => good.isChecked === true).length !== 5
       }
       onClick={
         type === 'first'
@@ -57,7 +56,7 @@ const CheckListPage = () => {
         }}
       />
       <div className="ml-8 w-full">
-        <CheckListTitle type={type} />
+        <ChecklistTitle type={type} />
         <ChecklistCount list={type === 'first' ? allBadList : allGoodList} />
       </div>
 
@@ -66,7 +65,7 @@ const CheckListPage = () => {
           if (type === 'first') {
             return (
               <ChecklistTabPage
-                type="bad"
+                type={TypeQuery.bad}
                 allList={allBadList}
                 setAllList={setAllBadList}
                 length={BAD_CHECK_COUNT}
@@ -76,7 +75,7 @@ const CheckListPage = () => {
           }
           return (
             <ChecklistTabPage
-              type="good"
+              type={TypeQuery.good}
               allList={allGoodList}
               setAllList={setAllGoodList}
               length={GOOD_CHECK_COUNT}

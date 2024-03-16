@@ -9,9 +9,10 @@ import type { ICheckItem } from '@interfaces/checklist';
 import uuid from 'react-uuid';
 
 import { updateChecklist } from '../utils/getChecklist';
+import { TQuery } from '@interfaces/enums';
 
 interface TypeCheckListProps {
-  type: 'good' | 'bad';
+  type: TQuery;
   allList: ICheckItem[];
   setAllList: (value: ICheckItem[]) => void;
   length: number;
@@ -26,7 +27,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
 
   // 체크리스트 아이템을 생성할 때
   const handlePlusCountClick = () => {
-    const updateItem: ICheckItem[] = [...allList, { id: uuid(), criteria: '', checked: false }];
+    const updateItem: ICheckItem[] = [...allList, { id: uuid(), criteria: '', isChecked: false }];
     setAllList(updateItem);
   };
 
@@ -48,7 +49,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
               {allList.slice(0, length).map((item: ICheckItem) => (
                 <div key={item.id} className="mb-[12px]">
                   <CheckList
-                    selected={item.checked}
+                    selected={item.isChecked}
                     label={item.criteria}
                     key={item.id}
                     onClick={() => handleCheckItemClick(item)}
@@ -58,7 +59,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
               {allList.slice(length)?.map((item) => (
                 <div className="mb-4" key={item.id}>
                   <WriteCheckList
-                    selected={item.checked}
+                    selected={item.isChecked}
                     onClick={() => handleCheckItemClick(item)}
                     value={item}
                     setValue={setAllList}
@@ -82,7 +83,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
             {allList.map((item: ICheckItem) => (
               <div key={item.id} className="mb-[12px]">
                 <CheckList
-                  selected={item.checked}
+                  selected={item.isChecked}
                   label={item.criteria}
                   key={item.id}
                   onClick={() => handleCheckItemClick(item)}

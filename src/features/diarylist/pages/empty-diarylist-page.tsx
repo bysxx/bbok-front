@@ -4,7 +4,7 @@ import ImageLoader from '@components/imageLoader';
 import SearchBar from '@components/search-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/Utils/useInput';
+import useInput from '@hooks/useInput';
 import Image from 'next/image';
 
 const EmptyDiaryListPage = () => {
