@@ -4,12 +4,12 @@
  * @description 모든 체크 리스트 보여주는 컴포넌트
  */
 import BoxButton from '@components/buttons/box-button';
-import { CheckList, WriteCheckList } from '@components/check-list';
 import type { ICheckItem } from '@interfaces/checklist';
+import { TQuery } from '@interfaces/enums';
 import uuid from 'react-uuid';
 
-import { updateChecklist } from '../utils/getChecklist';
-import { TQuery } from '@interfaces/enums';
+import { updateChecklist } from '../../utils/getChecklist';
+import { ChecklistItem, WriteChecklistItem } from '../molecules';
 
 interface TypeCheckListProps {
   type: TQuery;
@@ -48,7 +48,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
             <>
               {allList.slice(0, length).map((item: ICheckItem) => (
                 <div key={item.id} className="mb-[12px]">
-                  <CheckList
+                  <ChecklistItem
                     selected={item.isChecked}
                     label={item.criteria}
                     key={item.id}
@@ -58,7 +58,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
               ))}
               {allList.slice(length)?.map((item) => (
                 <div className="mb-4" key={item.id}>
-                  <WriteCheckList
+                  <WriteChecklistItem
                     selected={item.isChecked}
                     onClick={() => handleCheckItemClick(item)}
                     value={item}
@@ -82,7 +82,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
           <>
             {allList.map((item: ICheckItem) => (
               <div key={item.id} className="mb-[12px]">
-                <CheckList
+                <ChecklistItem
                   selected={item.isChecked}
                   label={item.criteria}
                   key={item.id}

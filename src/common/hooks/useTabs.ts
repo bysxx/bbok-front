@@ -6,7 +6,7 @@ interface Content<T> {
 }
 
 export const useTabs = <T>(initialTab: number, allTabs: Content<T>[]) => {
-  const [currentIndex, setCurrentIndex] = useState(initialTab);
+  const [currentIndex, setCurrentIndex] = useState<number>(initialTab);
 
   return {
     currentItem: allTabs[currentIndex],

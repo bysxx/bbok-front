@@ -1,4 +1,4 @@
-import CheckListCount from '@features/checklist/components/checklist-count';
+import CheckListCount from '@features/checklist/components/molecules/checklist-count';
 import type { ICheckItem } from '@interfaces/checklist';
 
 interface CheckListTitleProps {

@@ -2,17 +2,17 @@
 
 import { NavTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
-import { ChecklistTabPage } from '@features/checklist/components';
 import useHandleDiary from '@features/writing/hooks/useHandleDiary';
 import { getDiaryChecklist } from '@features/writing/utils/get-diary-checklist';
 import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import type { TQuery } from '@interfaces/enums';
 import { TypeQuery } from '@interfaces/enums';
+import { ICheckItem } from '@interfaces/checklist';
+import { ChecklistTabPage } from '@features/checklist/components/organisms';
 import { useEffect } from 'react';
 
 import { DIARY_CRITERIA_TEXT } from '../constants';
-import { ICheckItem } from '@interfaces/checklist';
 
 const DiaryCriteriaPage = ({ id }: { id: number }) => {
   const { back, query, push } = useCustomRouter();
