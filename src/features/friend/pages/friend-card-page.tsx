@@ -55,14 +55,7 @@ const FriendCardPage = () => {
         <div className="flex gap-4 overflow-x-scroll px-9 py-4 scrollbar-hide">
           {friendList.map((friend) => (
             <>
-              <FriendCard
-                key={friend?.id}
-                countingDiary={friend?.countingDiary!}
-                startedAt={friend?.startedAt!}
-                name={friend?.name!}
-                score={friend?.score!}
-                url={friend?.characterUrl!}
-              />
+              <FriendCard key={friend?.id} {...friend} />
               <KeyFriendCard name={friend?.name!} lock={true} />
             </>
           ))}
@@ -73,15 +66,7 @@ const FriendCardPage = () => {
       {type === 'BothActiveFriend' && (
         <div className="flex gap-4 overflow-x-scroll px-9 py-4 scrollbar-hide">
           {friendList.map((friend) => (
-            <FriendCard
-              key={friend?.id}
-              countingDiary={friend?.countingDiary!}
-              startedAt={friend?.startedAt!}
-              name={friend?.name!}
-              score={friend?.score!}
-              url={friend?.characterUrl!}
-              active={friend?.active!}
-            />
+            <FriendCard key={friend?.id} {...friend} />
           ))}
         </div>
       )}
@@ -91,15 +76,7 @@ const FriendCardPage = () => {
         <div className="flex gap-4 overflow-x-scroll px-9 py-4 scrollbar-hide">
           <KeyFriendCard name={''} lock={false} />
           {friendList.map((friend) => (
-            <FriendCard
-              key={friend?.id}
-              countingDiary={friend?.countingDiary!}
-              startedAt={friend?.startedAt!}
-              name={friend?.name!}
-              score={friend?.score!}
-              url={friend?.characterUrl!}
-              active={friend?.active!}
-            />
+            <FriendCard key={friend.id} {...friend} />
           ))}
         </div>
       )}

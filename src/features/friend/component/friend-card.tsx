@@ -1,22 +1,25 @@
 import { getSinceTime } from '@libs/getTime';
 import Image from 'next/image';
+import cx from 'classnames';
 
 import FriendProgressBar from './progress-bar';
+import { Friend } from '@interfaces/friend';
+import { FRIEND_CHARACTER_STYLE } from '../constants';
+import ImageLoader from '@components/imageLoader';
 
-interface IFriendCardProps {
-  countingDiary: number;
-  startedAt: string;
-  name: string;
-  active?: boolean;
-  url: string;
-  score: number;
-}
-export default function FriendCard({ countingDiary, startedAt, name, score, active = true }: IFriendCardProps) {
+const FriendCard = (data: Friend) => {
+  const { countingDiary, startedAt, name, score, active, characterType, characterUrl } = data;
   return (
-    <div className=" min-w-[250px] rounded-3xl border-2 border-orange-4 bg-orange-3 px-4 pb-6 pt-[18px] shadow-friend-card">
+    <div
+      className={cx(
+        'min-w-[250px] rounded-3xl border-2 px-4 pb-6 pt-[18px] shadow-friend-card',
+        FRIEND_CHARACTER_STYLE[characterType].style,
+      )}
+    >
       <div className="relative flex flex-col items-center gap-6 text-white">
         <div className="absolute left-0 top-0 flex items-center gap-0.5">
-          <Image src={'/images/home/card-diary.svg'} alt="" width={20} height={20} />
+          <Image loader={ImageLoader} src={'home/card-diary.svg'} alt="" width={20} height={20} />
+
           <span className="text-friend-card-head leading-none">{countingDiary}</span>
         </div>
 
@@ -31,14 +34,12 @@ export default function FriendCard({ countingDiary, startedAt, name, score, acti
         })()}
 
         <figure className="size-[102px] rounded-full bg-white p-2.5">
-          {/* TODO: 백엔드 url 이미지 바꾸기 */}
-          <Image src={'/images/illustration/large-kaka.svg'} alt="" width={102} height={102} />
-          {/* <Image src={url} alt="" width={102} height={102} /> */}
+          <Image src={characterUrl} alt="" width={102} height={102} />
         </figure>
 
         <div className="text-friend-card-name rounded-[38px] bg-white px-3.5 py-2 text-gray-65">{name}</div>
 
-        <FriendProgressBar percent={score} />
+        <FriendProgressBar type={characterType} percent={score} />
 
         {(() => {
           if (!active) {
@@ -67,4 +68,5 @@ export default function FriendCard({ countingDiary, startedAt, name, score, acti
       </div>
     </div>
   );
-}
+};
+export default FriendCard;
