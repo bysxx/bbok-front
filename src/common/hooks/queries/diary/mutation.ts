@@ -1,6 +1,7 @@
 import diaryApi from '@apis/diary/diary.client';
 import { DIARY_KEYS, FRIEND_KEYS } from '@constants/queryKeys';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { showSuccessToast } from '@libs/showToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useDiaryMutation = () => {
@@ -38,6 +39,7 @@ export const useDiaryMutation = () => {
     mutationFn: diaryApi.patch,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: DIARY_KEYS.all });
+      showSuccessToast('일화 수정이 완료되었어요');
     },
   });
 

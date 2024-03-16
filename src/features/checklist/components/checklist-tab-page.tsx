@@ -22,7 +22,6 @@ interface TypeCheckListProps {
 function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }: TypeCheckListProps) {
   // 체크리스트 아이템을 클릭했을 때
   const handleCheckItemClick = (item: ICheckItem) => {
-    console.log(item);
     setAllList(updateChecklist(allList, item.id));
   };
 
