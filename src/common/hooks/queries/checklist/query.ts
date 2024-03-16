@@ -7,7 +7,7 @@ import { AxiosError } from 'axios';
 
 export const useGetChecklist = () => {
   return useQuery<ResponseDTO<ICheckList>, AxiosError>({
-    queryKey: [CHECKLIST_KEYS.all],
+    queryKey: CHECKLIST_KEYS.lists(),
     queryFn: checklistApi.allchecklist,
   });
 };

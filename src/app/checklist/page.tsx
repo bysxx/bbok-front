@@ -8,11 +8,18 @@ import useHandleChecklist from '@features/checklist/hooks/useHandleChecklist';
 import { getChecklistComplete } from '@features/checklist/utils/getChecklist';
 import { usePostChecklist } from '@hooks/queries/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { useTabs } from '@hooks/useTabs';
+import type { TQuery } from '@interfaces/enums';
 import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
 
 const CheckListPage = () => {
-  const [type, setType] = useState<'first' | 'second'>('first');
+  const tabs: { tab: TQuery; content: string }[] = [
+    { tab: TypeQuery.bad, content: '다음' },
+    { tab: TypeQuery.good, content: '완료' },
+  ];
+  const { currentItem, changeItem } = useTabs<TQuery>(0, tabs);
+
   const { allBadList, setAllBadList, allGoodList, setAllGoodList } = useHandleChecklist();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -31,38 +38,39 @@ const CheckListPage = () => {
   return (
     <FooterButtonLayout
       disabled={
-        type === 'first'
+        currentItem?.tab === TypeQuery.bad
           ? allBadList.filter((bad) => bad.isChecked === true).length !== 5
           : allGoodList.filter((good) => good.isChecked === true).length !== 5
       }
       onClick={
-        type === 'first'
+        currentItem?.tab === TypeQuery.bad
           ? () => {
-              setType('second');
+              changeItem(1);
             }
           : handleCheckListComplete
       }
-      text={type === 'first' ? '다음' : '완료'}
+      text={currentItem?.content!}
       isLoading={isLoading}
     >
       <ChangeTopBar
-        type={type}
+        index={1}
+        total={2}
         onClick={() => {
-          if (type === 'first') {
+          if (currentItem?.tab === TypeQuery.bad) {
             push('/login');
           } else {
-            setType('first');
+            changeItem(0);
           }
         }}
       />
       <div className="ml-8 w-full">
-        <ChecklistTitle type={type} />
-        <ChecklistCount list={type === 'first' ? allBadList : allGoodList} />
+        <ChecklistTitle type={currentItem?.tab!} />
+        <ChecklistCount list={currentItem?.tab === TypeQuery.bad ? allBadList : allGoodList} />
       </div>
 
       <div className="mb-8 mt-[38px] flex flex-col items-center justify-center">
         {(() => {
-          if (type === 'first') {
+          if (currentItem?.tab === TypeQuery.bad) {
             return (
               <ChecklistTabPage
                 type={TypeQuery.bad}
