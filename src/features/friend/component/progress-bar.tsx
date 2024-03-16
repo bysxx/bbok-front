@@ -1,11 +1,18 @@
 'use client';
 
+import type { TCharacter } from '@interfaces/enums';
+import { Character } from '@interfaces/enums';
+import cx from 'classnames';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 const HEART_WIDTH = 32;
 
-export default function FriendProgressBar({ percent }: { percent: number }) {
+interface IFriendProgressBarProps {
+  percent: number;
+  type: TCharacter;
+}
+const FriendProgressBar = ({ percent, type }: IFriendProgressBarProps) => {
   const fillRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -16,8 +23,10 @@ export default function FriendProgressBar({ percent }: { percent: number }) {
     }
   }, [fillRef, imgRef, percent]);
 
+  const style = type === Character.CACTUS ? 'bg-[rgb(255,204,170)]' : 'bg-green-4';
+
   return (
-    <div className="relative h-3 w-full rounded-full bg-[rgb(255,204,170)]">
+    <div className={cx('relative h-3 w-full rounded-full', style)}>
       <div
         ref={fillRef}
         style={{ width: '0px' }}
@@ -36,4 +45,5 @@ export default function FriendProgressBar({ percent }: { percent: number }) {
       )}
     </div>
   );
-}
+};
+export default FriendProgressBar;
