@@ -2,7 +2,7 @@
 
 import { ChangeTopBar } from '@components/top-bar';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
-import { ChecklistCount, ChecklistTabPage } from '@features/checklist/components';
+import { ChecklistCount, ChecklistTabPage, ChecklistTitle } from '@features/checklist/components';
 import { BAD_CHECK_COUNT, GOOD_CHECK_COUNT } from '@features/checklist/constants/checklist';
 import useHandleChecklist from '@features/checklist/hooks/useHandleChecklist';
 import { getChecklistComplete } from '@features/checklist/utils/getChecklist';
@@ -10,8 +10,6 @@ import { usePostChecklist } from '@hooks/queries/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
-
-import CheckListTitle from './checklist-title';
 
 const CheckListPage = () => {
   const [type, setType] = useState<'first' | 'second'>('first');
@@ -58,7 +56,7 @@ const CheckListPage = () => {
         }}
       />
       <div className="ml-8 w-full">
-        <CheckListTitle type={type} />
+        <ChecklistTitle type={type} />
         <ChecklistCount list={type === 'first' ? allBadList : allGoodList} />
       </div>
 
