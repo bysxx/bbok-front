@@ -7,7 +7,7 @@ import { DiarylistCard, DiarylistOption, EmptyDiarylistCard, TagButtonsList } fr
 import { EmptyDiaryListPage } from '@features/diarylist/pages';
 import { useGetDiaryList } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/Utils/useInput';
+import useInput from '@hooks/useInput';
 import { type TDate } from '@interfaces/enums';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';

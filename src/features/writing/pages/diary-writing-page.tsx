@@ -15,7 +15,7 @@ import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
 import { CheckNotNextPage } from '@features/writing/utils/check-next-page';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useModal from '@hooks/Utils/useModal';
+import useModal from '@hooks/useModal';
 import { IDiaryRequestBody, TDiaryKey, TDiaryValue } from '@interfaces/diary';
 import { useFriendStore } from '@stores/useFriendStore';
 import Image from 'next/image';

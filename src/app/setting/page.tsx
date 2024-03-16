@@ -10,7 +10,7 @@ import useNameValidation from '@features/friend/hooks/useNameValidation';
 import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
 import { useFriendMutation } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/Utils/useInput';
+import useInput from '@hooks/useInput';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';
 

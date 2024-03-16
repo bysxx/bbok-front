@@ -6,7 +6,7 @@ import DefaultLayout from '@components/ui/layout/default-layout';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
 import { useFriendMutation, useGetFriendCharater } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/Utils/useInput';
+import useInput from '@hooks/useInput';
 
 import { useState } from 'react';
 
