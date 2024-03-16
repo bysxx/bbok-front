@@ -15,6 +15,7 @@ export interface Friend {
   active: boolean;
   characterUrl: string;
   countingDiary: number;
+  characterType: TCharacter;
   id: number;
   name: string;
   score: number;
