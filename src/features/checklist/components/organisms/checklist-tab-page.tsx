@@ -10,6 +10,7 @@ import uuid from 'react-uuid';
 
 import { updateChecklist } from '../../utils/getChecklist';
 import { ChecklistItem, WriteChecklistItem } from '../molecules';
+import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 
 interface TypeCheckListProps {
   type: TQuery;
@@ -38,7 +39,7 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
 
   return (
     <div className="w-full px-8">
-      <h5 className="text-body-3 mb-4">{`내 기준에 ${type === 'bad' ? '벗어난' : '적합한'} 친구`}</h5>
+      <h5 className="text-body-3 mb-4">{DIARY_CRITERIA_TEXT[type].label}</h5>
       {(() => {
         /**
          * 체크리스트 기준 생성하는 경우

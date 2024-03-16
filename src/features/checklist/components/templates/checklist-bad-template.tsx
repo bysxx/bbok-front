@@ -2,12 +2,11 @@ import { ChangeTopBar } from '@components/top-bar';
 import { BAD_CHECK_COUNT } from '@features/checklist/constants/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { TypeQuery } from '@interfaces/enums';
-
-import { ChecklistCount, ChecklistTitle } from '../molecules';
-import { ChecklistTabPage } from '../organisms';
 import { ICheckItem } from '@interfaces/checklist';
 import { CHECK_LIST_TABS_COUNT } from '@features/checklist/constants';
 
+import { ChecklistCount, ChecklistTitle } from '../molecules';
+import { ChecklistTabPage } from '../organisms';
 interface IChecklistBadProps {
   allBadList: ICheckItem[];
   setAllBadList: (value: ICheckItem[]) => void;
