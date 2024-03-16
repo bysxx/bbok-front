@@ -36,7 +36,12 @@ module.exports = {
         red: '#FFDFCA',
         yellow: '#FFF9E9',
         login: '#FEE500',
-        green: '71C89E',
+        green: {
+          1: '#71C89E',
+          2: '#459E73',
+          3: '#346D52',
+          4: '#C5EAD8',
+        },
         success: '#3988FF',
         success2: '53BD6A',
         alert: '#EB4646',
@@ -48,7 +53,8 @@ module.exports = {
         modal: '0px -2px 28px 0px rgba(0, 0, 0, 0.28)',
         bottom: '0 6px 13px 0px rgba(0, 0, 0, 0.15)',
         button: '0px -9px 13px 0px #00000026',
-        'friend-card': '0px 7px 0px 0px #EF6106',
+        'friend-card-orange': '0px 7px 0px 0px #EF6106',
+        'friend-card-green': '0px 7px 0px 0px #346D52',
         'locked-friend-card': '0px 7px 0px 0px #1B1B1B',
       },
       backgroundImage: {
