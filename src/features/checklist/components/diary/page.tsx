@@ -2,7 +2,6 @@
 
 import { NavTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
-import { ChecklistTabPage } from '@features/checklist/components/organisms';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import useHandleDiary from '@features/writing/hooks/useHandleDiary';
 import { getDiaryChecklist } from '@features/writing/utils/get-diary-checklist';
@@ -12,6 +11,8 @@ import { ICheckItem } from '@interfaces/checklist';
 import type { TQuery } from '@interfaces/enums';
 import { TypeQuery } from '@interfaces/enums';
 import { useEffect } from 'react';
+
+import ChecklistTab from '../tab';
 
 const DiaryChecklistModifyPage = ({ id }: { id: number }) => {
   const { back, query, push } = useCustomRouter();
@@ -60,7 +61,7 @@ const DiaryChecklistModifyPage = ({ id }: { id: number }) => {
       <NavTopBar label="선택 기준 수정" onClick={back} />
       <h2 className="px-8 pt-7 text-[17px] font-medium text-gray-70">{DIARY_CRITERIA_TEXT[type].label}</h2>
       <div className="mt-[34px]">
-        <ChecklistTabPage
+        <ChecklistTab
           type={type}
           allList={modifyChecklist[type].list}
           setAllList={modifyChecklist[type].setList}

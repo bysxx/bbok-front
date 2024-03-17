@@ -21,7 +21,7 @@ const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
         </div>
 
         <ul className="ml-6 list-disc">
-          {target.slice(0, 5).map((l) => (
+          {target.map((l) => (
             <li key={l.id} className="text-body-3 mb-[14px] ">
               {l.criteria}
             </li>

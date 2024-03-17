@@ -5,7 +5,7 @@ import { useGetMyChecklist } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { TypeQuery } from '@interfaces/enums';
 
-import { FriendCriteriaCard } from '../organisms';
+import FriendCriteriaCard from './card';
 
 const ChecklistCriteriaPage = () => {
   const { data } = useGetMyChecklist();
