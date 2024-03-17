@@ -10,9 +10,9 @@ const HEART_WIDTH = 32;
 
 interface IFriendProgressBarProps {
   percent: number;
-  type: TCharacter;
+  type?: TCharacter;
 }
-const FriendProgressBar = ({ percent, type }: IFriendProgressBarProps) => {
+const FriendProgressBar = ({ percent, type = 'CACTUS' }: IFriendProgressBarProps) => {
   const fillRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
