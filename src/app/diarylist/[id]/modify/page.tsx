@@ -1,7 +1,7 @@
 import diaryServerApi from '@apis/diary/diary.server';
 import { PrefetchHydration } from '@components/react-query';
 import { DIARY_KEYS } from '@constants/queryKeys';
-import { DiaryModifyPage } from '@features/diary/modify/pages';
+import { DiaryModifyPage } from '@features/diary/components/modify';
 
 interface IDiaryDetailModifyProp {
   params: {

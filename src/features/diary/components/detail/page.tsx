@@ -6,9 +6,10 @@ import useCustomRouter from '@hooks/useCustomRouter';
 import { getTime } from '@libs/getTime';
 import Image from 'next/image';
 
-import { DetailContent, TagList } from '../components';
+import DetailContent from './content';
+import TagList from './tags';
 
-const DiaryDetail = ({ id }: { id: number }) => {
+const DiaryDetailPage = ({ id }: { id: number }) => {
   const { push } = useCustomRouter();
   const { data } = useGetDiaryDetail(id);
   const diaryDate = getTime(data?.data.date!);
@@ -31,4 +32,4 @@ const DiaryDetail = ({ id }: { id: number }) => {
     </div>
   );
 };
-export default DiaryDetail;
+export default DiaryDetailPage;
