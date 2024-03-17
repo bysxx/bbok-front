@@ -1,7 +1,7 @@
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import type { TQuery } from '@interfaces/enums';
 
-const CheckListTitle = ({ type }: { type: TQuery }) => {
+const ChecklistTitle = ({ type }: { type: TQuery }) => {
   return (
     <div className="flex flex-col">
       <div className="flex items-center">
@@ -13,4 +13,4 @@ const CheckListTitle = ({ type }: { type: TQuery }) => {
     </div>
   );
 };
-export default CheckListTitle;
+export default ChecklistTitle;

@@ -4,7 +4,7 @@ interface CheckCountProp<T> {
   list: ICheckItem<T>[];
 }
 
-function CheckListCount<T = number>({ list }: CheckCountProp<T>) {
+function ChecklistCount<T = number>({ list }: CheckCountProp<T>) {
   return (
     <h2
       className={`text-body-4 mt-1 ${
@@ -13,4 +13,4 @@ function CheckListCount<T = number>({ list }: CheckCountProp<T>) {
     >{`${list.filter((l: ICheckItem<T>) => l.isChecked === true).length}/5`}</h2>
   );
 }
-export default CheckListCount;
+export default ChecklistCount;

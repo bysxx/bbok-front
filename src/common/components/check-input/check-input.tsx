@@ -2,7 +2,7 @@ import CheckBox from '@components/check-box';
 import cx from 'classnames';
 import React from 'react';
 
-interface CheckListProps {
+interface CheckInputProps {
   label?: string;
   selected: boolean;
   onClick: () => void;
@@ -11,7 +11,7 @@ interface CheckListProps {
 
 const commonStyle = 'flex h-[52px] w-full items-center rounded-lg px-4 py-[15px] border';
 
-const CheckListItem = ({ label, selected, onClick, side = 'left' }: CheckListProps) => {
+const CheckInput = ({ label, selected, onClick, side = 'left' }: CheckInputProps) => {
   return (
     <>
       {(() => {
@@ -35,4 +35,4 @@ const CheckListItem = ({ label, selected, onClick, side = 'left' }: CheckListPro
     </>
   );
 };
-export default CheckListItem;
+export default CheckInput;

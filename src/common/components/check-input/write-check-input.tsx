@@ -2,7 +2,7 @@ import CheckBox from '@components/check-box';
 import type { ICheckItem } from '@interfaces/checklist';
 import React from 'react';
 
-interface WriteCheckListProps<T> {
+interface IWriteCheckInputProps<T> {
   selected: boolean;
   onClick: () => void;
   value: ICheckItem<T>;
@@ -11,14 +11,14 @@ interface WriteCheckListProps<T> {
   allList: ICheckItem<T>[];
 }
 
-function WriteCheckListItem<T = string>({
+function WriteCheckInput<T = string>({
   selected,
   onClick,
   value,
   setValue,
   onDelete,
   allList,
-}: WriteCheckListProps<T>) {
+}: IWriteCheckInputProps<T>) {
   // 체크리스트 아이템 작성할 때
   const handleCheckListChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updateItem = allList.map((i) => {
@@ -45,7 +45,7 @@ function WriteCheckListItem<T = string>({
           <input
             className={`${
               selected ? 'bg-[#FFF9E9]' : ''
-            } w-full border-b border-gray-20 focus:border-b focus:border-gray-20 focus:outline-0 active:border-b`}
+            } w-full border-b border-gray-20 placeholder:text-gray-25 focus:border-b focus:border-gray-20 focus:outline-0 active:border-b`}
             placeholder="나만의 기준을 입력하세요"
             value={value.criteria}
             onChange={handleCheckListChange}
@@ -56,4 +56,4 @@ function WriteCheckListItem<T = string>({
     </div>
   );
 }
-export default WriteCheckListItem;
+export default WriteCheckInput;

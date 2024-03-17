@@ -1,7 +1,7 @@
 import checklistServerApi from '@apis/checklist/checklist.server';
 import { PrefetchHydration } from '@components/react-query';
 import { DIARY_KEYS } from '@constants/queryKeys';
-import { ChecklistCreatePage } from '@features/checklist/components/pages';
+import { ChecklistCreatePage } from '@features/checklist/components/create';
 
 const CheckListPage = () => {
   return (
