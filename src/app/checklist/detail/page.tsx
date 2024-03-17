@@ -1,14 +1,13 @@
 import memberServerApi from '@apis/member/member.server';
 import { PrefetchHydration } from '@components/react-query';
 import { MEMBER_KEYS } from '@constants/queryKeys';
+import { ChecklistCriteriaPage } from '@features/checklist/components/pages';
 
-import MyCriteriaList from './my-criteria-list';
-
-const CriteriaPage = () => {
+const ChecklistDetailLayout = () => {
   return (
     <PrefetchHydration queryKey={MEMBER_KEYS.lists()} queryFn={memberServerApi.getList}>
-      <MyCriteriaList />
+      <ChecklistCriteriaPage />
     </PrefetchHydration>
   );
 };
-export default CriteriaPage;
+export default ChecklistDetailLayout;
