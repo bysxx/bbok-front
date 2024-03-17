@@ -9,7 +9,7 @@ export const useTabs = <T>(initialTab: number, allTabs: Content<T>[]) => {
   const [currentIndex, setCurrentIndex] = useState<number>(initialTab);
 
   return {
-    currentItem: allTabs[currentIndex],
+    currentItem: allTabs[currentIndex] as Content<T>,
     changeItem: setCurrentIndex,
   };
 };
