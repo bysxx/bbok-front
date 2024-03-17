@@ -3,7 +3,6 @@ import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { TQuery } from '@interfaces/enums';
 import { CheckContent } from '@interfaces/member';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useMemo } from 'react';
 
 interface CriteriaProps {
@@ -30,9 +29,9 @@ const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
         </ul>
       </div>
 
-      <Link href={`./checklist/modify/${type}`}>
-        <span className="text-body-4 text-gray-40">수정</span>
-      </Link>
+      {/*<Link href={`./checklist/modify/${type}`}>*/}
+      <span className="text-body-4 text-gray-40">수정</span>
+      {/*</Link>*/}
     </section>
   );
 };
