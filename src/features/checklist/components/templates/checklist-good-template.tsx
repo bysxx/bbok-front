@@ -8,8 +8,8 @@ import { ChecklistCount, ChecklistTitle } from '../molecules';
 import { ChecklistTabPage } from '../organisms';
 
 interface IChecklistGoodProps {
-  allGoodList: ICheckItem[];
-  setAllGoodList: (value: ICheckItem[]) => void;
+  allGoodList: ICheckItem<string>[];
+  setAllGoodList: (value: ICheckItem<string>[]) => void;
   changeItem: (value: number) => void;
 }
 const ChecklistGoodTemplate = ({ changeItem, allGoodList, setAllGoodList }: IChecklistGoodProps) => {

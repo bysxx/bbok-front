@@ -3,7 +3,7 @@ import { ICheckItem } from '@interfaces/checklist';
 /**
  * 체크리스트 생성 리스트 가공
  */
-const getChecklistComplete = (checklists: ICheckItem[]): string[] => {
+const getChecklistComplete = (checklists: ICheckItem<string>[]): string[] => {
   const result = checklists
     .filter((checklist) => checklist.isChecked === true)
     .map((list) => {
@@ -15,8 +15,8 @@ const getChecklistComplete = (checklists: ICheckItem[]): string[] => {
 /**
  * 체크리스트 update
  */
-const updateChecklist = (checklists: ICheckItem[], id: string | number): ICheckItem[] => {
-  const updateItem = checklists.map((checklist: ICheckItem) => {
+const updateChecklist = <T>(checklists: ICheckItem<T>[], id: T): ICheckItem<T>[] => {
+  const updateItem = checklists.map((checklist: ICheckItem<T>) => {
     if (checklist.id === id) {
       return {
         ...checklist,

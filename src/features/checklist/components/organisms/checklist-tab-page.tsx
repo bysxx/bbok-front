@@ -12,28 +12,34 @@ import { updateChecklist } from '../../utils/getChecklist';
 import { ChecklistItem, WriteChecklistItem } from '../molecules';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 
-interface TypeCheckListProps {
+interface TypeCheckListProps<T> {
   type: TQuery;
-  allList: ICheckItem[];
-  setAllList: (value: ICheckItem[]) => void;
+  allList: ICheckItem<T>[];
+  setAllList: (value: ICheckItem<T>[]) => void;
   length: number;
   use?: 'make' | 'modify'; // 체크 리스트를 생성할 때 혹은 체크 리스트를 수정할 때
 }
 
-function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }: TypeCheckListProps) {
+function CheckListTabPage<T = number | string>({
+  use = 'modify',
+  type,
+  allList,
+  setAllList,
+  length,
+}: TypeCheckListProps<T>) {
   // 체크리스트 아이템을 클릭했을 때
-  const handleCheckItemClick = (item: ICheckItem) => {
+  const handleCheckItemClick = (item: ICheckItem<T>) => {
     setAllList(updateChecklist(allList, item.id));
   };
 
   // 체크리스트 아이템을 생성할 때
   const handlePlusCountClick = () => {
-    const updateItem: ICheckItem[] = [...allList, { id: uuid(), criteria: '', isChecked: false }];
+    const updateItem: ICheckItem<T>[] = [...allList, { id: uuid() as T, criteria: '', isChecked: false }];
     setAllList(updateItem);
   };
 
   // 체크리스트 아이템을 삭제할 때
-  const handleCheckListDelete = (item: ICheckItem) => {
+  const handleCheckListDelete = (item: ICheckItem<T>) => {
     setAllList(allList.filter((i) => i.id !== item.id));
   };
 
@@ -47,18 +53,17 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
         if (use === 'make') {
           return (
             <>
-              {allList.slice(0, length).map((item: ICheckItem) => (
-                <div key={item.id} className="mb-[12px]">
+              {allList.slice(0, length).map((item: ICheckItem<T>, i) => (
+                <div key={i} className="mb-[12px]">
                   <ChecklistItem
                     selected={item.isChecked}
                     label={item.criteria}
-                    key={item.id}
                     onClick={() => handleCheckItemClick(item)}
                   />
                 </div>
               ))}
-              {allList.slice(length)?.map((item) => (
-                <div className="mb-4" key={item.id}>
+              {allList.slice(length)?.map((item, i) => (
+                <div className="mb-4" key={i}>
                   <WriteChecklistItem
                     selected={item.isChecked}
                     onClick={() => handleCheckItemClick(item)}
@@ -81,12 +86,11 @@ function CheckListTabPage({ use = 'modify', type, allList, setAllList, length }:
          */
         return (
           <>
-            {allList.map((item: ICheckItem) => (
-              <div key={item.id} className="mb-[12px]">
+            {allList.map((item: ICheckItem<T>, i) => (
+              <div key={i} className="mb-[12px]">
                 <ChecklistItem
                   selected={item.isChecked}
                   label={item.criteria}
-                  key={item.id}
                   onClick={() => handleCheckItemClick(item)}
                 />
               </div>

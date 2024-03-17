@@ -3,7 +3,7 @@ import type { ICheckItem } from '@interfaces/checklist';
 
 interface CheckListTitleProps {
   type: 'bad' | 'good';
-  list: ICheckItem[];
+  list: ICheckItem<string>[];
 }
 
 const ModifyCheckListTitle = ({ type, list }: CheckListTitleProps) => {

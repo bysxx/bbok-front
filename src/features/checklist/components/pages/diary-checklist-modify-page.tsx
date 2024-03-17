@@ -2,16 +2,15 @@
 
 import { NavTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
+import { ChecklistTabPage } from '@features/checklist/components/organisms';
+import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import useHandleDiary from '@features/writing/hooks/useHandleDiary';
 import { getDiaryChecklist } from '@features/writing/utils/get-diary-checklist';
-import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
-import { ChecklistTabPage } from '@features/checklist/components/organisms';
 import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { ICheckItem } from '@interfaces/checklist';
 import type { TQuery } from '@interfaces/enums';
 import { TypeQuery } from '@interfaces/enums';
-import { ICheckItem } from '@interfaces/checklist';
-
 import { useEffect } from 'react';
 
 const DiaryChecklistModifyPage = ({ id }: { id: number }) => {
@@ -36,7 +35,10 @@ const DiaryChecklistModifyPage = ({ id }: { id: number }) => {
     push(`/diarylist/${id}`);
   };
 
-  const modifyChecklist = {
+  const modifyChecklist: Record<
+    TQuery,
+    { list: ICheckItem[]; setList: (value: ICheckItem[]) => void; onClick: () => void }
+  > = {
     [TypeQuery.good]: {
       list: goodChecklist,
       setList: setGoodChecklist,
@@ -61,7 +63,7 @@ const DiaryChecklistModifyPage = ({ id }: { id: number }) => {
         <ChecklistTabPage
           type={type}
           allList={modifyChecklist[type].list}
-          setAllList={modifyChecklist[type].setList as (value: ICheckItem[]) => void}
+          setAllList={modifyChecklist[type].setList}
           length={modifyChecklist[type].list.length}
         />
       </div>

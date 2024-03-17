@@ -2,16 +2,23 @@ import CheckBox from '@components/check-box';
 import type { ICheckItem } from '@interfaces/checklist';
 import React from 'react';
 
-interface WriteCheckListProps {
+interface WriteCheckListProps<T> {
   selected: boolean;
   onClick: () => void;
-  value: ICheckItem;
-  setValue: (value: ICheckItem[]) => void;
+  value: ICheckItem<T>;
+  setValue: (value: ICheckItem<T>[]) => void;
   onDelete: () => void;
-  allList: ICheckItem[];
+  allList: ICheckItem<T>[];
 }
 
-const WriteCheckListItem = ({ selected, onClick, value, setValue, onDelete, allList }: WriteCheckListProps) => {
+function WriteCheckListItem<T = string>({
+  selected,
+  onClick,
+  value,
+  setValue,
+  onDelete,
+  allList,
+}: WriteCheckListProps<T>) {
   // 체크리스트 아이템 작성할 때
   const handleCheckListChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updateItem = allList.map((i) => {
@@ -48,5 +55,5 @@ const WriteCheckListItem = ({ selected, onClick, value, setValue, onDelete, allL
       </div>
     </div>
   );
-};
+}
 export default WriteCheckListItem;

@@ -2,14 +2,14 @@
 
 import { NavTopBar } from '@components/top-bar';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
-import { ChecklistTabPage } from '@features/checklist/components';
 import useCustomRouter from '@hooks/useCustomRouter';
 import type { ICheckItem } from '@interfaces/checklist';
+import { TQuery } from '@interfaces/enums';
+import { ChecklistTabPage } from '@features/checklist/components/organisms';
 import { useCallback, useState } from 'react';
 
 import { data } from './dummy';
 import ModifyCheckListTitle from './modify-checklist-title';
-import { TQuery } from '@interfaces/enums';
 
 interface CriteriaProps {
   params: {
@@ -19,10 +19,10 @@ interface CriteriaProps {
 const CriteriaModifyPage = ({ params }: CriteriaProps) => {
   const { push } = useCustomRouter();
   const initialModifyList = data[params.type === 'bad' ? 'badChecklist' : 'goodChecklist'];
-  const [modifyCheckList, setModifyCheckList] = useState<ICheckItem[]>(initialModifyList);
+  const [modifyCheckList, setModifyCheckList] = useState<ICheckItem<string>[]>(initialModifyList);
 
   const handleSetModifyCheckList = useCallback(
-    (item: ICheckItem[]) => {
+    (item: ICheckItem<string>[]) => {
       setModifyCheckList(item);
     },
     [setModifyCheckList],

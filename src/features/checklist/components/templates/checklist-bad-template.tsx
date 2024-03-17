@@ -8,8 +8,8 @@ import { CHECK_LIST_TABS_COUNT } from '@features/checklist/constants';
 import { ChecklistCount, ChecklistTitle } from '../molecules';
 import { ChecklistTabPage } from '../organisms';
 interface IChecklistBadProps {
-  allBadList: ICheckItem[];
-  setAllBadList: (value: ICheckItem[]) => void;
+  allBadList: ICheckItem<string>[];
+  setAllBadList: (value: ICheckItem<string>[]) => void;
 }
 const ChecklistBadTemplate = ({ allBadList, setAllBadList }: IChecklistBadProps) => {
   const { push } = useCustomRouter();
