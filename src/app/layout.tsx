@@ -8,6 +8,9 @@ import { Toaster } from 'react-hot-toast';
 export const metadata = {
   title: 'BBOK',
   description: 'BBOK',
+  icons: {
+    icon: '/images/icon/bbok.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
