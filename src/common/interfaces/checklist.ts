@@ -6,8 +6,8 @@ export interface ICheckList {
   goodChecklist: string[];
 }
 
-export interface ICheckItem {
-  id: string | number;
+export interface ICheckItem<T = number> {
+  id: T;
   criteria: string;
   isChecked: boolean;
 }

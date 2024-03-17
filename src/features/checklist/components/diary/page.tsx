@@ -2,19 +2,19 @@
 
 import { NavTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
-import { ChecklistTabPage } from '@features/checklist/components';
+import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import useHandleDiary from '@features/writing/hooks/useHandleDiary';
 import { getDiaryChecklist } from '@features/writing/utils/get-diary-checklist';
 import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { ICheckItem } from '@interfaces/checklist';
 import type { TQuery } from '@interfaces/enums';
 import { TypeQuery } from '@interfaces/enums';
 import { useEffect } from 'react';
 
-import { DIARY_CRITERIA_TEXT } from '../constants';
-import { ICheckItem } from '@interfaces/checklist';
+import ChecklistTab from '../tab';
 
-const DiaryCriteriaPage = ({ id }: { id: number }) => {
+const DiaryChecklistModifyPage = ({ id }: { id: number }) => {
   const { back, query, push } = useCustomRouter();
   const { data, isSuccess } = useGetDiaryDetail(id);
   const { diary, onSetDiary, goodChecklist, setGoodChecklist, badChecklist, setBadChecklist } = useHandleDiary();
@@ -36,7 +36,10 @@ const DiaryCriteriaPage = ({ id }: { id: number }) => {
     push(`/diarylist/${id}`);
   };
 
-  const modifyChecklist = {
+  const modifyChecklist: Record<
+    TQuery,
+    { list: ICheckItem[]; setList: (value: ICheckItem[]) => void; onClick: () => void }
+  > = {
     [TypeQuery.good]: {
       list: goodChecklist,
       setList: setGoodChecklist,
@@ -58,14 +61,14 @@ const DiaryCriteriaPage = ({ id }: { id: number }) => {
       <NavTopBar label="선택 기준 수정" onClick={back} />
       <h2 className="px-8 pt-7 text-[17px] font-medium text-gray-70">{DIARY_CRITERIA_TEXT[type].label}</h2>
       <div className="mt-[34px]">
-        <ChecklistTabPage
+        <ChecklistTab
           type={type}
           allList={modifyChecklist[type].list}
-          setAllList={modifyChecklist[type].setList as (value: ICheckItem[]) => void}
+          setAllList={modifyChecklist[type].setList}
           length={modifyChecklist[type].list.length}
         />
       </div>
     </FooterButtonLayout>
   );
 };
-export default DiaryCriteriaPage;
+export default DiaryChecklistModifyPage;

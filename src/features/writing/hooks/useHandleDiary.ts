@@ -1,12 +1,7 @@
-import {
-  IDiaryDetailResponse,
-  IDiaryListChecklist,
-  IDiaryRequestBody,
-  TDiaryKey,
-  TDiaryValue,
-} from '@interfaces/diary';
+import { IDiaryDetailResponse, IDiaryRequestBody, TDiaryKey, TDiaryValue } from '@interfaces/diary';
 import { useState } from 'react';
 import { getDiaryChecklist } from '../utils/get-diary-checklist';
+import { ICheckItem } from '@interfaces/checklist';
 
 const useHandleDiary = () => {
   const [diary, setDiary] = useState<IDiaryRequestBody>({
@@ -17,8 +12,8 @@ const useHandleDiary = () => {
     sticker: '',
     tags: [],
   });
-  const [goodChecklist, setGoodChecklist] = useState<IDiaryListChecklist[]>([]);
-  const [badChecklist, setBadChecklist] = useState<IDiaryListChecklist[]>([]);
+  const [goodChecklist, setGoodChecklist] = useState<ICheckItem[]>([]);
+  const [badChecklist, setBadChecklist] = useState<ICheckItem[]>([]);
 
   const onChangeDiary = (inputName: TDiaryKey, value: TDiaryValue) => {
     setDiary({ ...diary, [inputName]: value });

@@ -1,17 +1,20 @@
 interface ChangeTopBarProp {
-  type: 'first' | 'second';
+  index: number;
+  total: number;
   onClick: () => void;
 }
 
-const ChangeTopBar = ({ type, onClick }: ChangeTopBarProp) => {
+const ChangeTopBar = ({ index, total, onClick }: ChangeTopBarProp) => {
+  const dots = Array.from({ length: total }, (_, i) => i + 1);
   return (
-    <div className="flex h-[52px] w-full items-center justify-between">
-      <div className="ml-4" onClick={onClick}>
+    <div className="flex h-[52px] w-full items-center justify-between pl-4 pr-[26px]">
+      <div className="cursor-pointer" onClick={onClick}>
         <img src="/images/icon/ui/back.svg" alt="" />
       </div>
-      <div className="mr-[26px] flex items-center">
-        <div className={`size-2 rounded-lg ${type === 'first' ? 'bg-orange-1' : 'bg-gray-15'} `} />
-        <div className={`ml-2 size-2 rounded-lg ${type === 'second' ? 'bg-orange-1' : 'bg-gray-15'} `} />
+      <div className="flex items-center gap-2">
+        {dots.map((num) => (
+          <div key={num} className={`size-2 rounded-lg ${num === index ? 'bg-orange-1' : 'bg-gray-15'}`} />
+        ))}
       </div>
     </div>
   );

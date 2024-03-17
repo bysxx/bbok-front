@@ -1,5 +1,5 @@
 import { TDate, TEmoji } from '@interfaces/enums';
-import { IDiaryCheckListItem } from './checklist';
+import { ICheckItem, IDiaryCheckListItem } from './checklist';
 
 /**
  * 일화 생성 request body
@@ -36,18 +36,13 @@ export interface IPostDiaryResponse {
 /**
  * 일화 리스트 response type
  */
-export interface IDiaryListChecklist {
-  criteria: string;
-  id: number;
-  isChecked: boolean;
-}
 export interface IDiariesItem {
-  badChecklist: IDiaryListChecklist[];
+  badChecklist: ICheckItem[];
   content: string;
   date: string;
   emoji: TEmoji;
   emojiUrl: string;
-  goodChecklist: IDiaryListChecklist[];
+  goodChecklist: ICheckItem[];
   id: number;
   sticker: string;
   tags: string[];
@@ -92,12 +87,12 @@ export interface IDiaryTagReponse {
  * 일화 디테일 상세 response type
  */
 export interface IDiaryDetailResponse {
-  badChecklist: IDiaryListChecklist[];
+  badChecklist: ICheckItem[];
   content: string;
   date: string;
   emoji: TEmoji;
   emojiUrl: string;
-  goodChecklist: IDiaryListChecklist[];
+  goodChecklist: ICheckItem[];
   id: number;
   sticker: string;
   tags: string[];

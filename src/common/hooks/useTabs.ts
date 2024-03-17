@@ -1,17 +1,15 @@
 import { useState } from 'react';
 
-interface Content {
-  tab: string;
+interface Content<T> {
+  tab: T;
   content: string;
 }
 
-const useTabs = (initialTab: number, allTabs: Content[]) => {
-  const [currentIndex, setCurrentIndex] = useState(initialTab);
+export const useTabs = <T>(initialTab: number, allTabs: Content<T>[]) => {
+  const [currentIndex, setCurrentIndex] = useState<number>(initialTab);
 
   return {
-    currentItem: allTabs[currentIndex],
+    currentItem: allTabs[currentIndex] as Content<T>,
     changeItem: setCurrentIndex,
   };
 };
-
-export default useTabs;

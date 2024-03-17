@@ -86,7 +86,7 @@ const FriendCardPage = () => {
           text="나의 친구 기준 보기"
           size="small"
           onClick={() => {
-            push('/criteria');
+            push('/checklist/detail');
           }}
           bg="orange6"
           color="orange1"

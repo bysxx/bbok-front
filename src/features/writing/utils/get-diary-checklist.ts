@@ -1,5 +1,5 @@
-import { IDiaryCheckListItem } from '@interfaces/checklist';
-import { IDiaryListChecklist } from '@interfaces/diary';
+import { ICheckItem, IDiaryCheckListItem } from '@interfaces/checklist';
+
 import { IMyCheckList } from '@interfaces/member';
 
 /**
@@ -27,10 +27,7 @@ export const getInitialDiaryList = (list: IMyCheckList): IDiaryCheckListItem[] =
 /**
  * 일화 디테일 배열 return
  */
-export const getDiaryChecklist = (
-  badChecklist: IDiaryListChecklist[],
-  goodChecklist: IDiaryListChecklist[],
-): IDiaryCheckListItem[] => {
+export const getDiaryChecklist = (badChecklist: ICheckItem[], goodChecklist: ICheckItem[]): IDiaryCheckListItem[] => {
   const checklist: IDiaryCheckListItem[] = [];
   badChecklist.forEach((baditem) =>
     checklist.push({
