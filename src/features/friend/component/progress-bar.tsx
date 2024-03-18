@@ -1,5 +1,6 @@
 'use client';
 
+import ImageLoader from '@components/imageLoader';
 import type { TCharacter } from '@interfaces/enums';
 import { Character } from '@interfaces/enums';
 import cx from 'classnames';
@@ -10,9 +11,9 @@ const HEART_WIDTH = 32;
 
 interface IFriendProgressBarProps {
   percent: number;
-  type: TCharacter;
+  type?: TCharacter;
 }
-const FriendProgressBar = ({ percent, type }: IFriendProgressBarProps) => {
+const FriendProgressBar = ({ percent, type = 'CACTUS' }: IFriendProgressBarProps) => {
   const fillRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -35,9 +36,10 @@ const FriendProgressBar = ({ percent, type }: IFriendProgressBarProps) => {
       {percent > 0 && (
         <Image
           ref={imgRef}
+          loader={ImageLoader}
           style={{ left: '0px' }}
           className="absolute -top-2.5 transition-all duration-1000"
-          src="/images/home/heart.svg"
+          src="home/heart.svg"
           alt=""
           width={HEART_WIDTH}
           height={HEART_WIDTH}
