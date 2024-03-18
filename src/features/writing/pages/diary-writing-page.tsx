@@ -69,7 +69,12 @@ const DiaryWritingPage = ({ diary, setDiary, type = 'create', id }: IDiaryWritin
         <DatePicker date={diary.date} setDate={(value) => setDiary('date', value)} />
 
         <h2 className="mb-3 mt-8 text-base font-medium text-gray-65">친구 일화</h2>
-        <TextField input={diary.content} setInput={(value) => setDiary('content', value)} maxLength={1000} />
+        <TextField
+          placeholder=""
+          input={diary.content}
+          setInput={(value) => setDiary('content', value)}
+          maxLength={1000}
+        />
 
         <div className="mb-3 mt-8 flex items-center">
           <h2 className="mr-2 justify-center text-base font-medium text-gray-65">태그</h2>
