@@ -30,7 +30,7 @@ const WritingEmojiPage = () => {
     <FooterButtonLayout
       text="다음"
       onClick={() => {
-        push('./writing/diary');
+        push('./diary');
       }}
       disabled={!selectEmoji}
       border={false}
