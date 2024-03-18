@@ -4,7 +4,7 @@ import Input from '@components/input';
 import Popup from '@components/popup';
 import { ButtonTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
-import { WritingDiaryForm } from '@features/writing/components';
+import { WritingDiaryForm, WritingTagsList } from '@features/writing/components';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/useModal';
 import { useFriendStore } from '@stores/useFriendStore';
@@ -13,7 +13,6 @@ const WritingDiaryPage = () => {
   const { isOpen, onClose, onOpen } = useModal();
   const { push } = useCustomRouter();
   const { friend } = useFriendStore();
-  // const { register, getValues, control } = useFormContext<IDiaryRequestBody>();
 
   return (
     <>
@@ -34,6 +33,8 @@ const WritingDiaryPage = () => {
         <Input disabled={true} inputValue={friend.name} />
 
         <WritingDiaryForm />
+
+        <WritingTagsList />
       </DefaultLayout>
     </>
   );

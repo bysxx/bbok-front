@@ -23,7 +23,6 @@ const WritingDiaryForm = () => {
         input={contentField.value}
         placeholder={`힘들었던 일, 슬펐던 일 그 어떤 얘기도 좋아요. ${'\n'}뽁이 생각 정리를 도와줄게요!`}
         setInput={contentField.onChange}
-        defaultValue={''}
         maxLength={1000}
       />
     </>
