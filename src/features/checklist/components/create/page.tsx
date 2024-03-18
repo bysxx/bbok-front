@@ -27,6 +27,7 @@ const ChecklistCreatePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { mutateAsync } = usePostChecklist();
   const { push } = useCustomRouter();
+  // const { data } = useGetChecklist();
 
   const handleCheckListComplete = async () => {
     setIsLoading(true);
