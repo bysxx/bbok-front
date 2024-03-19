@@ -4,7 +4,7 @@ import Input from '@components/input';
 import Popup from '@components/popup';
 import { ButtonTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
-import { WritingTagsList, WritingTextForm } from '@features/writing/components';
+import { WritingEmojiForm, WritingTagsList, WritingTextForm } from '@features/writing/components';
 import WritingDateForm from '@features/writing/components/date-form';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/useModal';
@@ -35,6 +35,7 @@ const WritingDiaryPage = () => {
         <WritingDateForm />
         <WritingTextForm />
         <WritingTagsList />
+        <WritingEmojiForm />
       </DefaultLayout>
     </>
   );
