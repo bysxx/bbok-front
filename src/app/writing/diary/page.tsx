@@ -32,11 +32,8 @@ const WritingDiaryPage = () => {
       <DefaultLayout>
         <h2 className="mb-3 mt-[15px] text-base font-medium text-gray-65">친구</h2>
         <Input disabled={true} inputValue={friend.name} />
-
         <WritingDateForm />
-
         <WritingTextForm />
-
         <WritingTagsList />
       </DefaultLayout>
     </>

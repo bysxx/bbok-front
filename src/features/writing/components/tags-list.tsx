@@ -15,7 +15,6 @@ const WritingTagsList = () => {
   const { field } = useController({
     name: 'tags',
     control,
-    defaultValue: [],
   });
   const { value, onChange } = field;
 
