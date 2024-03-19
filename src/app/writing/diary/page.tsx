@@ -1,19 +1,35 @@
 'use client';
 
+import BoxButton from '@components/buttons/box-button';
 import Input from '@components/input';
 import Popup from '@components/popup';
 import { ButtonTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import { WritingEmojiForm, WritingTagsList, WritingTextForm } from '@features/writing/components';
 import WritingDateForm from '@features/writing/components/date-form';
+import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/useModal';
+import { IDiaryRequestBody } from '@interfaces/diary';
 import { useFriendStore } from '@stores/useFriendStore';
+import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 
 const WritingDiaryPage = () => {
+  const [check, setCheck] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { isOpen, onClose, onOpen } = useModal();
   const { push } = useCustomRouter();
   const { friend } = useFriendStore();
+  const { getValues } = useFormContext<IDiaryRequestBody>();
+  const { postDiary } = useDiaryMutation();
+  const { tags, content, date, emoji } = getValues();
+
+  const handleCreateDiary = async () => {
+    setIsLoading(true);
+    const result = { content, sticker: '', tags, emoji, date, checklist: [], id: friend.id };
+    await postDiary.mutateAsync(result);
+  };
 
   return (
     <>
@@ -35,7 +51,21 @@ const WritingDiaryPage = () => {
         <WritingDateForm />
         <WritingTextForm />
         <WritingTagsList />
-        <WritingEmojiForm />
+        <WritingEmojiForm check={check} setCheck={setCheck} />
+
+        <BoxButton
+          text="완료"
+          disabled={!tags || content.length === 0 || !date || !emoji}
+          isLoading={isLoading}
+          onClick={() => {
+            if (check) {
+              push('./checklist');
+            } else {
+              handleCreateDiary();
+            }
+          }}
+          className="mb-8"
+        />
       </DefaultLayout>
     </>
   );
