@@ -21,16 +21,13 @@ const WritingTagPage = () => {
     register,
     setValue,
     getValues,
-    control,
     formState: { errors },
   } = useFormContext<IDiaryRequestBody>();
-  const { field } = useController({
-    name: 'tags',
-    control,
-  });
 
   useEffect(() => {
-    setTags(getValues('tags'));
+    if (getValues('tags')) {
+      setTags(getValues('tags'));
+    }
   }, [getValues]);
 
   useEffect(() => {
@@ -81,7 +78,15 @@ const WritingTagPage = () => {
 
         <h1 className="mb-4 mt-5 text-base font-bold">MY 태그</h1>
 
-        <div className="mt-4 flex flex-wrap gap-[10px]" {...register('tags')}>
+        <div
+          className="mt-4 flex flex-wrap gap-[10px]"
+          {...register('tags', {
+            max: {
+              value: 7,
+              message: '최대 7개까지 선택이 가능합니다.',
+            },
+          })}
+        >
           {tags.map((tag, i) => (
             <TagButton
               label={tag}
