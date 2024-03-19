@@ -9,8 +9,11 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-const WritingEmojiForm = () => {
-  const [check, setCheck] = useState<boolean>(false);
+interface IWritingEmojiForm {
+  check: boolean;
+  setCheck: (value: boolean) => void;
+}
+const WritingEmojiForm = ({ check, setCheck }: IWritingEmojiForm) => {
   const [selectEmoji, setSelectEmoji] = useState<TEmoji | null>(null);
   const { register, getValues, setValue } = useFormContext<IDiaryRequestBody>();
 

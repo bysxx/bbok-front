@@ -37,7 +37,7 @@ const WritingEmojiPage = () => {
     >
       <CancelTopBar
         onClick={() => {
-          push('./diarylist');
+          push('/diarylist');
         }}
       />
       <div className="mb-[52px] flex flex-1 flex-col items-center justify-center">
