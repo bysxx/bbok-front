@@ -4,7 +4,8 @@ import Input from '@components/input';
 import Popup from '@components/popup';
 import { ButtonTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
-import { WritingDiaryForm, WritingTagsList } from '@features/writing/components';
+import { WritingTagsList, WritingTextForm } from '@features/writing/components';
+import WritingDateForm from '@features/writing/components/date-form';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/useModal';
 import { useFriendStore } from '@stores/useFriendStore';
@@ -32,7 +33,9 @@ const WritingDiaryPage = () => {
         <h2 className="mb-3 mt-[15px] text-base font-medium text-gray-65">친구</h2>
         <Input disabled={true} inputValue={friend.name} />
 
-        <WritingDiaryForm />
+        <WritingDateForm />
+
+        <WritingTextForm />
 
         <WritingTagsList />
       </DefaultLayout>

@@ -4,7 +4,7 @@ import TextField from '@components/text-field';
 import { IDiaryRequestBody } from '@interfaces/diary';
 import { useController, useFormContext } from 'react-hook-form';
 
-const WritingDiaryForm = () => {
+const WritingTextForm = () => {
   const { register, control } = useFormContext<IDiaryRequestBody>();
   const { field } = useController({ name: 'content', control, defaultValue: '' });
 
@@ -24,4 +24,4 @@ const WritingDiaryForm = () => {
     </>
   );
 };
-export default WritingDiaryForm;
+export default WritingTextForm;
