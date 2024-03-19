@@ -10,19 +10,14 @@ import useInput from '@hooks/useInput';
 import { IDiaryRequestBody } from '@interfaces/diary';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 const WritingTagPage = () => {
   const [tags, setTags] = useState<string[]>([]);
   const { text, onChange, onClear } = useInput('');
   const [error, setError] = useState<boolean>(false);
   const { back } = useCustomRouter();
-  const {
-    register,
-    setValue,
-    getValues,
-    formState: { errors },
-  } = useFormContext<IDiaryRequestBody>();
+  const { register, setValue, getValues } = useFormContext<IDiaryRequestBody>();
 
   useEffect(() => {
     if (getValues('tags')) {
@@ -78,15 +73,7 @@ const WritingTagPage = () => {
 
         <h1 className="mb-4 mt-5 text-base font-bold">MY 태그</h1>
 
-        <div
-          className="mt-4 flex flex-wrap gap-[10px]"
-          {...register('tags', {
-            max: {
-              value: 7,
-              message: '최대 7개까지 선택이 가능합니다.',
-            },
-          })}
-        >
+        <div className="mt-4 flex flex-wrap gap-[10px]" {...register('tags')}>
           {tags.map((tag, i) => (
             <TagButton
               label={tag}
