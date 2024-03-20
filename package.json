@@ -16,7 +16,10 @@
     "lint": "next lint",
     "format": "next lint --fix && prettier '**/*.{json,yaml}' --write",
     "type": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -71,10 +74,19 @@
     "eslint-plugin-tailwindcss": "^3.14.2",
     "eslint-plugin-testing-library": "^6.2.0",
     "eslint-plugin-unused-imports": "^3.1.0",
+    "husky": "^8.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.2.2",
+    "pinst": "^3.0.0",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "packageManager": "yarn@4.1.0"
 }
