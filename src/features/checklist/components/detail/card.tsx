@@ -1,5 +1,6 @@
 import ImageLoader from '@components/imageLoader';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
+import useCustomRouter from '@hooks/useCustomRouter';
 import { TQuery } from '@interfaces/enums';
 import { CheckContent } from '@interfaces/member';
 import Image from 'next/image';
@@ -12,6 +13,7 @@ interface CriteriaProps {
 
 const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
   const target = useMemo(() => list.filter((item) => item.isUsed), [list]);
+  const { push } = useCustomRouter();
   return (
     <section className="flex justify-between rounded-xl bg-yellow py-5 pl-5 pr-4">
       <div className="flex flex-col">
@@ -29,9 +31,14 @@ const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
         </ul>
       </div>
 
-      {/*<Link href={`./checklist/modify/${type}`}>*/}
-      <span className="text-body-4 text-gray-40">수정</span>
-      {/*</Link>*/}
+      <span
+        className="cursor-pointer text-body-4 text-gray-40"
+        onClick={() => {
+          push({ pathname: './modify', query: { type } });
+        }}
+      >
+        수정
+      </span>
     </section>
   );
 };
