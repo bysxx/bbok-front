@@ -4,7 +4,7 @@ import { NavTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import useHandleDiary from '@features/writing/hooks/useHandleDiary';
-import { getDiaryChecklist } from '@features/writing/utils/get-diary-checklist';
+import { getDiaryChecklist } from '@features/diary/utils/get-diary-checklist';
 import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { ICheckItem } from '@interfaces/checklist';
