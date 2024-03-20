@@ -25,11 +25,10 @@ const DetailContent = ({ content, id }: { content: string; id: number }) => {
   };
 
   const detailContentClick: Record<TDetailOption, () => void> = {
-    [DetailOption.modify]: () => push(`/diarylist/${id}/${DetailOption.modify}`),
+    [DetailOption.diary]: () => push(`/diarylist/${id}/modify/${DetailOption.diary}`),
     [DetailOption.delete]: () => onDeleteOpen(),
     [DetailOption.sticker]: () => onStickerOpen(),
-    [DetailOption.criteria]: () =>
-      push({ pathname: `/diarylist/${id}/${DetailOption.criteria}`, query: { type: 'bad' } }),
+    [DetailOption.checklist]: () => push(`/diarylist/${id}/modify/${DetailOption.checklist}`),
   };
 
   return (

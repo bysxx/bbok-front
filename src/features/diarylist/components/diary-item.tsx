@@ -1,4 +1,6 @@
+import ImageLoader from '@components/imageLoader';
 import TagLabel from '@components/tag-label';
+import { DIARY_EMOJI } from '@constants/emoji';
 import { IDiariesItem } from '@interfaces/diary';
 import { getTime } from '@libs/getTime';
 import Image from 'next/image';
@@ -7,9 +9,8 @@ interface IDiaryItemProps extends IDiariesItem {
   search: string;
 }
 
-const DiaryItem = ({ content, date, tags, emojiUrl, search }: IDiaryItemProps) => {
+const DiaryItem = ({ content, date, tags, emoji, search }: IDiaryItemProps) => {
   const [first, second] = content.split(search);
-
   return (
     <div className="mt-3 bg-gray-10 p-5 rounded-md">
       <h4 className="text-caption-1 text-gray-25">{getTime(date)}</h4>
@@ -31,7 +32,7 @@ const DiaryItem = ({ content, date, tags, emojiUrl, search }: IDiaryItemProps) =
             </div>
           ))}
         </div>
-        <Image width={40} height={40} src={emojiUrl} alt="" />
+        {emoji && <Image loader={ImageLoader} width={40} height={40} src={DIARY_EMOJI[emoji].select} alt="" />}
       </div>
     </div>
   );

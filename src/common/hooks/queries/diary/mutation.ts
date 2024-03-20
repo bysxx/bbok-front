@@ -16,7 +16,7 @@ export const useDiaryMutation = () => {
       // 친구 리스트 바로 실행
       queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
       queryClient.invalidateQueries({ queryKey: DIARY_KEYS.all });
-      push('./writing/distance');
+      push('./distance');
     },
   });
 
@@ -29,6 +29,7 @@ export const useDiaryMutation = () => {
       queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
       queryClient.invalidateQueries({ queryKey: DIARY_KEYS.all });
       push('/diarylist');
+      showSuccessToast('일화가 삭제되었어요');
     },
   });
 

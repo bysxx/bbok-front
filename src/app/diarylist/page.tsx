@@ -34,7 +34,7 @@ const DiaryListPage = () => {
     <FooterButtonLayout
       text="일화작성"
       onClick={() => {
-        push({ pathname: './writing', query: { step: 1 } });
+        push('./writing/emoji');
       }}
     >
       <div className="py-[10px]">

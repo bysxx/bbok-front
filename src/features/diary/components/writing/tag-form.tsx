@@ -7,18 +7,27 @@ import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/useInput';
+import { IDiaryRequestBody } from '@interfaces/diary';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
 
-interface IDiaryTagPageProps {
-  tags: string[];
-  setTags: (value: string[]) => void;
-  type?: 'create' | 'modify';
+interface IWritingTagFormProp {
+  defaultValue: string[];
 }
-const DiaryTagPage = ({ tags, setTags, type }: IDiaryTagPageProps) => {
+const WritingTagForm = ({ defaultValue }: IWritingTagFormProp) => {
+  const [tags, setTags] = useState<string[]>([]);
   const { text, onChange, onClear } = useInput('');
   const [error, setError] = useState<boolean>(false);
   const { back } = useCustomRouter();
+  const { register, setValue, getValues, control } = useFormContext<IDiaryRequestBody>();
+  useController({ name: 'tags', control, defaultValue: defaultValue ? defaultValue : [] });
+
+  useEffect(() => {
+    if (getValues('tags')) {
+      setTags(getValues('tags'));
+    }
+  }, [getValues]);
 
   useEffect(() => {
     if (tags.length < 7 || text.length === 0) {
@@ -35,6 +44,7 @@ const DiaryTagPage = ({ tags, setTags, type }: IDiaryTagPageProps) => {
       setError(true);
     } else if (text.length > 0 && !isInTags && tags.length < 7) {
       setTags([...tags, text]);
+      setValue('tags', [...tags, text]);
       onClear();
     }
   };
@@ -47,7 +57,7 @@ const DiaryTagPage = ({ tags, setTags, type }: IDiaryTagPageProps) => {
 
   return (
     <>
-      <NavTopBar label={type === 'create' ? '태그 추가' : '태그 수정'} onClick={back} />
+      <NavTopBar label={'태그 추가'} onClick={back} />
       <DefaultLayout>
         <div className="mt-3 flex w-full items-center gap-4">
           <div className="flex flex-1">
@@ -67,13 +77,17 @@ const DiaryTagPage = ({ tags, setTags, type }: IDiaryTagPageProps) => {
 
         <h1 className="mb-4 mt-5 text-base font-bold">MY 태그</h1>
 
-        <div className="mt-4 flex flex-wrap gap-[10px]">
+        <div className="mt-4 flex flex-wrap gap-[10px]" {...register('tags')}>
           {tags.map((tag, i) => (
             <TagButton
               label={tag}
               key={i}
               onClick={() => {
                 setTags(tags.filter((value) => value !== tag));
+                setValue(
+                  'tags',
+                  tags.filter((value) => value !== tag),
+                );
               }}
             />
           ))}
@@ -83,4 +97,4 @@ const DiaryTagPage = ({ tags, setTags, type }: IDiaryTagPageProps) => {
   );
 };
 
-export default DiaryTagPage;
+export default WritingTagForm;

@@ -6,9 +6,10 @@ import FriendProgressBar from './progress-bar';
 import { Friend } from '@interfaces/friend';
 import { FRIEND_CHARACTER_STYLE } from '../constants';
 import ImageLoader from '@components/imageLoader';
+import { FRIEND_CHARACTER } from '@constants/character';
 
 const FriendCard = (data: Friend) => {
-  const { countingDiary, startedAt, name, score, active, characterType, characterUrl } = data;
+  const { countingDiary, startedAt, name, score, active, characterType } = data;
   return (
     <div
       className={cx(
@@ -34,7 +35,7 @@ const FriendCard = (data: Friend) => {
         })()}
 
         <figure className="size-[102px] rounded-full bg-white p-2.5">
-          <Image src={characterUrl} alt="" width={102} height={102} />
+          <Image loader={ImageLoader} src={FRIEND_CHARACTER[characterType].selected} alt="" width={102} height={102} />
         </figure>
 
         <div className="text-friend-card-name rounded-[38px] bg-white px-3.5 py-2 text-gray-65">{name}</div>
