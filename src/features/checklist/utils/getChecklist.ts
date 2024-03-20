@@ -1,14 +1,15 @@
-import { ICheckItem, IChecklistLandingItem } from '@interfaces/checklist';
+import { ICheckItem, IChecklistCreateItem } from '@interfaces/checklist';
+import { CHECK_LIST } from '../constants';
+import uuid from 'react-uuid';
+import { IChecklistItem } from '../types';
 
 /**
- * 체크리스트 생성 리스트 가공
+ * 체크리스트 생성 최종 request body 리스트 가공
  */
-const getChecklistComplete = (checklists: ICheckItem<string>[]): IChecklistLandingItem[] => {
-  const result = checklists
-    .filter((checklist) => checklist.isChecked === true)
-    .map((list) => {
-      return { criteria: list.criteria, isUsed: true };
-    });
+const getCreatehecklistComplete = (checklists: IChecklistItem<string>[]): IChecklistCreateItem[] => {
+  const result = checklists.map((list) => {
+    return { criteria: list.criteria, isUsed: list.isUsed };
+  });
   return result;
 };
 
@@ -29,4 +30,49 @@ const updateChecklist = <T>(checklists: ICheckItem<T>[], id: T): ICheckItem<T>[]
   return updateItem;
 };
 
-export { updateChecklist, getChecklistComplete };
+/**
+ * good 체크리스트 초기 initial data return
+ */
+const getGoodChecklistInitialData = (): IChecklistItem<string>[] => {
+  return CHECK_LIST.good.map((badchecklists) => {
+    return {
+      id: uuid(),
+      criteria: badchecklists,
+      isUsed: false,
+    };
+  });
+};
+
+/**
+ * bad 체크리스트 초기 initial data return
+ */
+const getBadChecklistInitialData = (): IChecklistItem<string>[] => {
+  return CHECK_LIST.bad.map((goodchecklists) => {
+    return {
+      id: uuid(),
+      criteria: goodchecklists,
+      isUsed: false,
+    };
+  });
+};
+
+const updateChecklistData = <T>(checklists: IChecklistItem<T>[], id: T): IChecklistItem<T>[] => {
+  const updateItem = checklists.map((checklist: IChecklistItem<T>) => {
+    if (checklist.id === id) {
+      return {
+        ...checklist,
+        isUsed: !checklist.isUsed,
+      };
+    }
+    return checklist;
+  });
+
+  return updateItem;
+};
+export {
+  updateChecklist,
+  getCreatehecklistComplete,
+  updateChecklistData,
+  getGoodChecklistInitialData,
+  getBadChecklistInitialData,
+};
