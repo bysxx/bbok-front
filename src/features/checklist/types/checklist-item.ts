@@ -9,6 +9,6 @@ export interface IChecklistItem<T = number> {
 }
 
 export interface ICreateChecklistBody {
-  badChecklist: IChecklistItem<string>;
-  goodChecklist: IChecklistItem<string>;
+  badChecklist: IChecklistItem<string>[];
+  goodChecklist: IChecklistItem<string>[];
 }
