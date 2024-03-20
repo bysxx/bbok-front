@@ -25,7 +25,9 @@ const DiaryDetailPage = ({ id }: { id: number }) => {
         label={diaryDate}
       />
       <div className="mt-4 flex items-center justify-center">
-        <Image loader={ImageLoader} src={DIARY_EMOJI[data?.data.emoji!].select} width={56} height={56} alt="" />
+        {data?.data.emoji && (
+          <Image loader={ImageLoader} src={DIARY_EMOJI[data?.data.emoji!].select} width={56} height={56} alt="" />
+        )}
       </div>
       <div className="mx-6">
         <DetailContent content={data?.data.content!} id={id} />

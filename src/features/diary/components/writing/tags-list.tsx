@@ -5,7 +5,11 @@ import { IDiaryRequestBody } from '@interfaces/diary';
 import { MouseEvent } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
-const WritingTagsList = () => {
+interface IWritingTagsFormProp {
+  defaultValue?: string[];
+}
+
+const WritingTagsList = ({ defaultValue }: IWritingTagsFormProp) => {
   const { push } = useCustomRouter();
   const {
     register,
@@ -15,7 +19,7 @@ const WritingTagsList = () => {
   const { field } = useController({
     name: 'tags',
     control,
-    defaultValue: [],
+    defaultValue: defaultValue ? defaultValue : [],
   });
   const { value, onChange } = field;
 

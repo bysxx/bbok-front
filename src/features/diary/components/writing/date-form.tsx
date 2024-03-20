@@ -3,10 +3,13 @@ import { IDiaryRequestBody } from '@interfaces/diary';
 import moment from 'moment';
 import { useFormContext, useController } from 'react-hook-form';
 
-const WritingDateForm = () => {
+interface IWritingDateFormProp {
+  defaultValue?: string;
+}
+const WritingDateForm = ({ defaultValue }: IWritingDateFormProp) => {
   const today = moment().format('YYYY-MM-DD');
   const { register, control } = useFormContext<IDiaryRequestBody>();
-  const { field } = useController({ name: 'date', control, defaultValue: today });
+  const { field } = useController({ name: 'date', control, defaultValue: defaultValue ? defaultValue : today });
 
   return (
     <>
