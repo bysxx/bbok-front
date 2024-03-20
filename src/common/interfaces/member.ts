@@ -14,6 +14,7 @@ export interface IMyProfile {
 export interface CheckContent {
   id: number;
   criteria: string;
+  isUsed: boolean;
 }
 
 export interface IMyCheckList {

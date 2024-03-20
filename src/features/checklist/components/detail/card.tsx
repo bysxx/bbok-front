@@ -11,7 +11,7 @@ interface CriteriaProps {
 }
 
 const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
-  const target = useMemo(() => list.filter((_, i) => i < 5), [list]);
+  const target = useMemo(() => list.filter((item) => item.isUsed), [list]);
   return (
     <section className="flex justify-between rounded-xl bg-yellow py-5 pl-5 pr-4">
       <div className="flex flex-col">
