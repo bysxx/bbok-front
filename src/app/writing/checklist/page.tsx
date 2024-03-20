@@ -54,37 +54,29 @@ const WritingChecklistPage = () => {
     await postDiary.mutateAsync(result);
   };
 
+  const TAB_CONTROL = {
+    [TypeQuery.bad]: {
+      onClick: () => changeItem(1),
+      multiClick: () => changeItem(1),
+      navClick: () => back(),
+    },
+    [TypeQuery.good]: {
+      onClick: () => handleCreateDiary(),
+      multiClick: () => handleCreateDiary(),
+      navClick: () => changeItem(0),
+    },
+  };
+
   return (
     <FooterButtonLayout
       text={TYPE_CHECLIST_COMMENT[tab].bottom}
       multi={true}
       isLoading={loading}
       border={false}
-      onClick={() => {
-        if (tab === TypeQuery.bad) {
-          changeItem(1);
-        } else {
-          handleCreateDiary();
-        }
-      }}
-      multiOnClick={() => {
-        if (tab === TypeQuery.bad) {
-          changeItem(1);
-        } else {
-          handleCreateDiary();
-        }
-      }}
+      onClick={TAB_CONTROL[tab].onClick}
+      multiOnClick={TAB_CONTROL[tab].multiClick}
     >
-      <NavTopBar
-        onClick={() => {
-          if (tab === TypeQuery.bad) {
-            back();
-          } else {
-            changeItem(0);
-          }
-        }}
-        label={TYPE_CHECLIST_COMMENT[tab].title}
-      />
+      <NavTopBar onClick={TAB_CONTROL[tab].navClick} label={TYPE_CHECLIST_COMMENT[tab].title} />
 
       <DefaultLayout>
         <div className="mt-6 flex items-center">
