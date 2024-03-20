@@ -1,9 +1,13 @@
 /**
  * 서비스 제공하는 체크 리스트 response type
  */
+export interface IChecklistLandingItem {
+  criteria: string;
+  isUsed: boolean;
+}
 export interface ICheckList {
-  badChecklist: string[];
-  goodChecklist: string[];
+  badChecklist: IChecklistLandingItem[];
+  goodChecklist: IChecklistLandingItem[];
 }
 
 export interface ICheckItem<T = number> {

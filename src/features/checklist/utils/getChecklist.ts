@@ -1,13 +1,13 @@
-import { ICheckItem } from '@interfaces/checklist';
+import { ICheckItem, IChecklistLandingItem } from '@interfaces/checklist';
 
 /**
  * 체크리스트 생성 리스트 가공
  */
-const getChecklistComplete = (checklists: ICheckItem<string>[]): string[] => {
+const getChecklistComplete = (checklists: ICheckItem<string>[]): IChecklistLandingItem[] => {
   const result = checklists
     .filter((checklist) => checklist.isChecked === true)
     .map((list) => {
-      return list.criteria;
+      return { criteria: list.criteria, isUsed: true };
     });
   return result;
 };
