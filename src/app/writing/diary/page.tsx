@@ -1,11 +1,15 @@
 'use client';
 
 import BoxButton from '@components/buttons/box-button';
-import Input from '@components/input';
 import Popup from '@components/popup';
 import { ButtonTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
-import { WritingEmojiForm, WritingTagsList, WritingTextForm } from '@features/diary/components/writing';
+import {
+  WritingEmojiForm,
+  WritingFriendForm,
+  WritingTagsList,
+  WritingTextForm,
+} from '@features/diary/components/writing';
 import WritingDateForm from '@features/diary/components/writing/date-form';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
@@ -46,8 +50,7 @@ const WritingDiaryPage = () => {
       </Popup>
       <ButtonTopBar label={'일화 작성'} onClick={onOpen} name={'닫기'} />
       <DefaultLayout>
-        <h2 className="mb-3 mt-[15px] text-base font-medium text-gray-65">친구</h2>
-        <Input disabled={true} inputValue={friend.name} />
+        <WritingFriendForm />
         <WritingDateForm />
         <WritingTextForm />
         <WritingTagsList />
