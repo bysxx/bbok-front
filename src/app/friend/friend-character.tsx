@@ -1,7 +1,9 @@
+import ImageLoader from '@components/imageLoader';
 import RadioButton from '@components/radio-button';
 import { FRIEND_CHARACTER } from '@constants/character';
 import type { TCharacter } from '@interfaces/enums';
 import { Character } from '@interfaces/enums';
+import Image from 'next/image';
 import { useCallback } from 'react';
 
 interface CharacterProps {
@@ -27,7 +29,10 @@ const FriendCharacter = ({ type, character, setCharacter, selected, name }: Char
         <RadioButton isChecked={selected} setIsChecked={handleSelectedClick} />
       </div>
       <div className="flex h-full flex-col items-center">
-        <img
+        <Image
+          loader={ImageLoader}
+          width={66}
+          height={66}
           className="mt-3"
           src={selected ? FRIEND_CHARACTER[type].selected : FRIEND_CHARACTER[type].default}
           alt=""
