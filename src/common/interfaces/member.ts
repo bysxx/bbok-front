@@ -11,9 +11,7 @@ export interface IMyProfile {
 /**
  * 나만의 체크리스트 reponse type
  */
-export interface CheckContent {
-  id: number;
-  criteria: string;
+export interface CheckContent extends IAddChecklistItem {
   isUsed: boolean;
 }
 
@@ -25,6 +23,22 @@ export interface IMyCheckList {
 /**
  * 수정할 나만의 체크리스트 request body type
  */
+export interface IAddChecklistItem {
+  criteria: string;
+  isUsed: boolean;
+}
+
+export interface IModifyChecklistItem {
+  isUsed: boolean;
+  id: number;
+}
+
+export interface IModifyChecklistRequestBody {
+  addedBadChecklist: IAddChecklistItem;
+  addedGoodChecklist: IAddChecklistItem;
+  modifiedBadChecklis: IModifyChecklistItem;
+  modifiedGoodChecklist: IModifyChecklistItem;
+}
 export interface IMyCheckListBody {
   isGood: boolean;
   checklist: CheckContent[];
