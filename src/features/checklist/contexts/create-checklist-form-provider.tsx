@@ -1,14 +1,14 @@
 import { DevTool } from '@hookform/devtools';
+import { IMyCheckListResponse } from '@interfaces/checklist';
+import { useIsMounted } from '@hooks/useIsMounted';
 import { PropsWithChildren } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useIsMounted } from '@hooks/useIsMounted';
-import { ICreateChecklistBody } from '../types';
 
 const CreateChecklistFormProvier = ({ children }: PropsWithChildren) => {
-  const methods = useForm<ICreateChecklistBody>();
+  const methods = useForm<IMyCheckListResponse<string>>();
   const isMounted = useIsMounted();
 
-  const onSubmit = (data: ICreateChecklistBody) => {
+  const onSubmit = (data: IMyCheckListResponse<string>) => {
     console.log(data);
   };
   return (

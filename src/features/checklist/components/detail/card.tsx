@@ -1,14 +1,15 @@
 import ImageLoader from '@components/imageLoader';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { IUserChecklistItem } from '@interfaces/checklist';
 import { TQuery } from '@interfaces/enums';
-import { CheckContent } from '@interfaces/member';
+
 import Image from 'next/image';
 import { useMemo } from 'react';
 
 interface CriteriaProps {
   type: TQuery;
-  list: CheckContent[];
+  list: IUserChecklistItem[];
 }
 
 const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
@@ -23,8 +24,8 @@ const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
         </div>
 
         <ul className="ml-6 list-disc">
-          {target.map((l) => (
-            <li key={l.id} className="text-body-3 mb-[14px] ">
+          {target.map((l, i) => (
+            <li key={i} className="text-body-3 mb-[14px] ">
               {l.criteria}
             </li>
           ))}

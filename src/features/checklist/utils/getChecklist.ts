@@ -1,12 +1,12 @@
-import { ICheckItem, IChecklistCreateItem } from '@interfaces/checklist';
-import { CHECK_LIST } from '../constants';
+import type { ICheckItem, IUserChecklistItem, TChecklistCreateItem } from '@interfaces/checklist';
 import uuid from 'react-uuid';
-import { IChecklistItem } from '../types';
+
+import { CHECK_LIST } from '../constants';
 
 /**
  * 체크리스트 생성 최종 request body 리스트 가공
  */
-const getCreatehecklistComplete = (checklists: IChecklistItem<string>[]): IChecklistCreateItem[] => {
+const getCreatehecklistComplete = (checklists: IUserChecklistItem<string>[]): TChecklistCreateItem[] => {
   const result = checklists.map((list) => {
     return { criteria: list.criteria, isUsed: list.isUsed };
   });
@@ -33,7 +33,7 @@ const updateChecklist = <T>(checklists: ICheckItem<T>[], id: T): ICheckItem<T>[]
 /**
  * good 체크리스트 초기 initial data return
  */
-const getGoodChecklistInitialData = (): IChecklistItem<string>[] => {
+const getGoodChecklistInitialData = (): IUserChecklistItem<string>[] => {
   return CHECK_LIST.good.map((badchecklists) => {
     return {
       id: uuid(),
@@ -46,7 +46,7 @@ const getGoodChecklistInitialData = (): IChecklistItem<string>[] => {
 /**
  * bad 체크리스트 초기 initial data return
  */
-const getBadChecklistInitialData = (): IChecklistItem<string>[] => {
+const getBadChecklistInitialData = (): IUserChecklistItem<string>[] => {
   return CHECK_LIST.bad.map((goodchecklists) => {
     return {
       id: uuid(),
@@ -56,8 +56,8 @@ const getBadChecklistInitialData = (): IChecklistItem<string>[] => {
   });
 };
 
-const updateChecklistData = <T>(checklists: IChecklistItem<T>[], id: T): IChecklistItem<T>[] => {
-  const updateItem = checklists.map((checklist: IChecklistItem<T>) => {
+const updateChecklistData = <T>(checklists: IUserChecklistItem<T>[], id: T): IUserChecklistItem<T>[] => {
+  const updateItem = checklists.map((checklist: IUserChecklistItem<T>) => {
     if (checklist.id === id) {
       return {
         ...checklist,
@@ -70,9 +70,9 @@ const updateChecklistData = <T>(checklists: IChecklistItem<T>[], id: T): ICheckl
   return updateItem;
 };
 export {
-  updateChecklist,
-  getCreatehecklistComplete,
-  updateChecklistData,
-  getGoodChecklistInitialData,
   getBadChecklistInitialData,
+  getCreatehecklistComplete,
+  getGoodChecklistInitialData,
+  updateChecklist,
+  updateChecklistData,
 };

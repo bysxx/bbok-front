@@ -4,32 +4,34 @@ import { ChangeTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
 import {
   BAD_CHECK_COUNT,
-  CHECKLIST_TABS,
   CHECK_LIST_TABS_COUNT,
+  CHECKLIST_TABS,
   GOOD_CHECK_COUNT,
 } from '@features/checklist/constants';
-import { ICreateChecklistBody } from '@features/checklist/types';
 import {
   getBadChecklistInitialData,
   getCreatehecklistComplete,
   getGoodChecklistInitialData,
 } from '@features/checklist/utils';
-import { useTabs } from '@hooks/useTabs';
 import { usePostChecklist } from '@hooks/queries/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { TQuery, TypeQuery } from '@interfaces/enums';
-import { useController, useFormContext } from 'react-hook-form';
+import { useTabs } from '@hooks/useTabs';
+import { IMyCheckListResponse } from '@interfaces/checklist';
+import type { TQuery } from '@interfaces/enums';
+import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
-import ChecklistTitle from './title';
+import { useController, useFormContext } from 'react-hook-form';
+
 import ChecklistCount from './count';
 import ChecklistTab from './tab';
+import ChecklistTitle from './title';
 
 const ChecklistCreatePage = () => {
   const { push } = useCustomRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { mutateAsync } = usePostChecklist();
   const { currentItem, changeItem } = useTabs<TQuery>(0, CHECKLIST_TABS);
-  const { register, control } = useFormContext<ICreateChecklistBody>();
+  const { register, control } = useFormContext<IMyCheckListResponse<string>>();
   const { field: badField } = useController({
     name: 'badChecklist',
     control,
