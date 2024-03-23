@@ -64,6 +64,6 @@ export type TModifyCheclistItem = Pick<IUserChecklistItem, 'id' | 'isUsed'>;
 export interface IModifyChecklistRequestBody {
   addedBadChecklist: TChecklistCreateItem;
   addedGoodChecklist: TChecklistCreateItem;
-  modifiedBadChecklis: TModifyCheclistItem;
+  modifiedBadChecklist: TModifyCheclistItem;
   modifiedGoodChecklist: TModifyCheclistItem;
 }

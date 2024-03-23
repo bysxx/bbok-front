@@ -6,6 +6,6 @@ import { IUserChecklistItem } from '@interfaces/checklist';
 export interface IModifyChecklistContext {
   addedBadChecklist: IUserChecklistItem<string>[];
   addedGoodChecklist: IUserChecklistItem<string>[];
-  modifiedBadChecklis: IUserChecklistItem[];
+  modifiedBadChecklist: IUserChecklistItem[];
   modifiedGoodChecklist: IUserChecklistItem[];
 }
