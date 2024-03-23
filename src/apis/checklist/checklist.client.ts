@@ -1,4 +1,4 @@
-import { ICheckList, IChecklistCreateRequestBody } from '@interfaces/checklist';
+import { ICheckList, IChecklistCreateRequestBody, IModifyChecklistRequestBody } from '@interfaces/checklist';
 import { ResponseAPI, ResponseDTO } from '@interfaces/common';
 import { http } from '@libs/http.client';
 
@@ -12,5 +12,10 @@ const checklistApi = {
    * @description 체크리스트 등록
    */
   post: async (body: IChecklistCreateRequestBody) => await http.post<ResponseAPI>('/checklist', body),
+
+  /**
+   * @description 체크리스트 수정
+   */
+  patch: async (body: IModifyChecklistRequestBody) => await http.patch('/member/checklist', body),
 };
 export default checklistApi;
