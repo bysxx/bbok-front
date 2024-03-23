@@ -23,6 +23,28 @@ export const getInitialDiaryList = (list: IMyCheckListResponse<number>): IDiaryC
 };
 
 /**
+ * 일화 상세 페이지에서 체크리스트 배열 반환
+ */
+export const getDiaryCheckList = (badlist: ICheckItem[], goodlist: ICheckItem[]): IDiaryCheckListItem[] => {
+  const goodList = goodlist.slice(0, 5).map((goodItem) => {
+    return {
+      id: goodItem.id,
+      isChecked: false,
+      isGood: true,
+    };
+  });
+  const badList = badlist.slice(0, 5).map((badItem) => {
+    return {
+      id: badItem.id,
+      isChecked: false,
+      isGood: false,
+    };
+  });
+
+  return [...goodList, ...badList];
+};
+
+/**
  * 일화 디테일 배열 return
  */
 export const getDiaryChecklist = (badChecklist: ICheckItem[], goodChecklist: ICheckItem[]): IDiaryCheckListItem[] => {

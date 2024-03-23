@@ -1,4 +1,4 @@
-import { CheckInput } from '@components/check-input';
+import CheckInput from '@components/check-input';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { updateChecklist } from '@features/checklist/utils';
 import { ICheckItem } from '@interfaces/checklist';

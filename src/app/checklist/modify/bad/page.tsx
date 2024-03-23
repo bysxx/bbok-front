@@ -1,9 +1,9 @@
 'use client';
 
 import BoxButton from '@components/buttons/box-button';
-import { CheckInput, WriteCheckInput } from '@components/check-input';
+import CheckInput from '@components/check-input';
 import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
-import ChecklistCount from '@features/checklist/components/count';
+import { ChecklistCount, WriteCheckInput } from '@features/checklist/components';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { DATA } from '@features/checklist/dummy';
 import { IModifyChecklistContext } from '@features/checklist/types';

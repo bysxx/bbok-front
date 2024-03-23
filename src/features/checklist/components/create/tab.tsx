@@ -4,13 +4,14 @@
  * @description 모든 체크 리스트 보여주는 컴포넌트
  */
 import BoxButton from '@components/buttons/box-button';
-import { CheckInput, WriteCheckInput } from '@components/check-input';
+import CheckInput from '@components/check-input';
 import { TQuery } from '@interfaces/enums';
 import { IUserChecklistItem } from '@interfaces/checklist';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { updateChecklistData } from '@features/checklist/utils';
-
 import uuid from 'react-uuid';
+
+import WriteCheckInput from '../write-input';
 interface TypeCheckListProps<T> {
   type: TQuery;
   allList: IUserChecklistItem<T>[];
