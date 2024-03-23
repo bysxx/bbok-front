@@ -1,6 +1,5 @@
 import CheckBox from '@components/check-box';
-import { IUserChecklistItem } from '@interfaces/checklist';
-
+import type { IUserChecklistItem } from '@interfaces/checklist';
 import React from 'react';
 
 interface IWriteCheckInputProps<T> {
