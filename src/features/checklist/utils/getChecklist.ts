@@ -76,11 +76,23 @@ const updateChecklistData = <T>(checklists: IUserChecklistItem<T>[], id: T): IUs
 const getChecklistCount = <T>(list: IUserChecklistItem<T>[]) => {
   return list.filter((l: IUserChecklistItem<T>) => l.isUsed === true).length;
 };
+
+/**
+ * 수정할 체크리스트 modify body return
+ */
+const getModifyChecklistBody = (checklists: IUserChecklistItem[]) => {
+  const result = checklists.map((list) => {
+    return { id: list.id, isUsed: list.isUsed };
+  });
+  return result;
+};
+
 export {
   getBadChecklistInitialData,
   getChecklistCount,
   getCreatehecklistComplete,
   getGoodChecklistInitialData,
+  getModifyChecklistBody,
   updateChecklist,
   updateChecklistData,
 };
