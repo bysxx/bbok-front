@@ -7,14 +7,23 @@ import ChecklistCount from '@features/checklist/components/count';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { DATA } from '@features/checklist/dummy';
 import { IModifyChecklistContext } from '@features/checklist/types';
-import { getChecklistCount, updateChecklistData } from '@features/checklist/utils';
-import { IUserChecklistItem } from '@interfaces/checklist';
+import {
+  getChecklistCount,
+  getCreatehecklistComplete,
+  getModifyChecklistBody,
+  updateChecklistData,
+} from '@features/checklist/utils';
+import { useChecklistMutation } from '@hooks/queries/checklist';
+import { IModifyChecklistRequestBody, IUserChecklistItem } from '@interfaces/checklist';
 import { TypeQuery } from '@interfaces/enums';
+import { useState } from 'react';
 import { useFormContext, useController } from 'react-hook-form';
 import uuid from 'react-uuid';
 
 const ModifyGoodChecklistPage = () => {
   // const { data } = useGetMyChecklist();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { patchChecklist } = useChecklistMutation();
   const { register, control } = useFormContext<IModifyChecklistContext>();
   const { field: addField } = useController({
     name: 'addedBadChecklist',
@@ -27,31 +36,50 @@ const ModifyGoodChecklistPage = () => {
     defaultValue: DATA.goodChecklist,
   });
 
+  // 체크 수정 완료 버튼 클릭 했을 때
+  const handleModifyChecklist = async () => {
+    setLoading(true);
+    const body: IModifyChecklistRequestBody = {
+      addedBadChecklist: [],
+      addedGoodChecklist: getCreatehecklistComplete(addField.value),
+      modifiedGoodChecklist: getModifyChecklistBody(modifyField.value),
+      modifiedBadChecklist: [],
+    };
+    await patchChecklist.mutateAsync(body);
+  };
+
+  // 체크리스트 체크 박스 클릭했을 때
   const handleCheckItem = (item: IUserChecklistItem) => {
     modifyField.onChange(updateChecklistData(modifyField.value, item.id));
   };
 
+  // 체크리스트 plus 버튼 클릭했을 때
   const handleAddChecklist = (item: IUserChecklistItem<string>) => {
     addField.onChange(updateChecklistData(addField.value, item.id));
   };
 
+  // 체크리스트 plus input 체크 박스 클릭했을 때
   const handlePlusCountClick = () => {
     addField.onChange([...addField.value, { id: uuid(), criteria: '', isUsed: false }]);
   };
 
+  // 체크리스트 plus input 삭제할 때
   const handleDeleteChecklist = (item: IUserChecklistItem<string>) => {
     addField.onChange(addField.value.filter((list) => list.id !== item.id));
   };
   return (
     <FooterButtonLayout
       text="완료"
+      isLoading={loading}
       disabled={getChecklistCount<string>(addField.value) + getChecklistCount<number>(modifyField.value) !== 5}
-      onClick={() => {}}
+      onClick={handleModifyChecklist}
     >
       <DefaultLayout className="px-[33px]">
         <div className="mb-[34px] mt-7 flex items-center justify-between">
           <h1 className="text-title-3 text-gray-70">{DIARY_CRITERIA_TEXT[TypeQuery.good].label}</h1>
-          <ChecklistCount num={getChecklistCount(DATA.goodChecklist)} />
+          <ChecklistCount
+            num={getChecklistCount<string>(addField.value) + getChecklistCount<number>(modifyField.value)}
+          />
         </div>
 
         <h5 className="text-body-3 mb-4">{DIARY_CRITERIA_TEXT[TypeQuery.good].label}</h5>
