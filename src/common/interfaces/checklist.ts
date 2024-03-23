@@ -61,7 +61,6 @@ export type TModifyCheclistItem = Pick<IUserChecklistItem, 'id' | 'isUsed'>;
 /**
  * 수정할 사용자 체크리스트 request body type
  */
-
 export interface IModifyChecklistRequestBody {
   addedBadChecklist: TChecklistCreateItem;
   addedGoodChecklist: TChecklistCreateItem;
