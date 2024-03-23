@@ -1,9 +1,11 @@
 import checklistApi from '@apis/checklist/checklist.client';
+import { MEMBER_KEYS } from '@constants/queryKeys';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const usePostChecklist = () => {
+export const useChecklistMutation = () => {
   const { push } = useCustomRouter();
+  const queryClient = useQueryClient();
   /**
    * 체크리스트 등록
    */
@@ -20,7 +22,8 @@ export const usePostChecklist = () => {
   const patchChecklist = useMutation({
     mutationFn: checklistApi.patch,
     onSuccess: () => {
-      push('./checklist/detail');
+      push('/checklist/detail');
+      queryClient.invalidateQueries({ queryKey: MEMBER_KEYS.lists() });
     },
   });
 

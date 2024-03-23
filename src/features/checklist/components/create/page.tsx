@@ -14,7 +14,7 @@ import {
   getCreatehecklistComplete,
   getGoodChecklistInitialData,
 } from '@features/checklist/utils';
-import { usePostChecklist } from '@hooks/queries/checklist';
+import { useChecklistMutation } from '@hooks/queries/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useTabs } from '@hooks/useTabs';
 import { IMyCheckListResponse } from '@interfaces/checklist';
@@ -30,7 +30,7 @@ import ChecklistCount from '../count';
 const ChecklistCreatePage = () => {
   const { push } = useCustomRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { postChecklist } = usePostChecklist();
+  const { postChecklist } = useChecklistMutation();
   const { currentItem, changeItem } = useTabs<TQuery>(0, CHECKLIST_TABS);
   const { register, control } = useFormContext<IMyCheckListResponse<string>>();
   const { field: badField } = useController({
