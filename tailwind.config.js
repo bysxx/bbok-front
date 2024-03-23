@@ -56,6 +56,7 @@ module.exports = {
         'friend-card-orange': '0px 7px 0px 0px #EF6106',
         'friend-card-green': '0px 7px 0px 0px #346D52',
         'locked-friend-card': '0px 7px 0px 0px #1B1B1B',
+        bookmark: '0px 4px 9px rgba(0, 0, 0, 0.15)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

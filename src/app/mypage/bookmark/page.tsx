@@ -1,4 +1,16 @@
+'use client';
+
+import { NavTopBar } from '@components/top-bar';
+import { BookmarkCard } from '@features/mypage/components/bookmark';
+
 const MyPageBookmarkPage = () => {
-  return <div>북마크 페이지</div>;
+  return (
+    <>
+      <NavTopBar label="북마크" onClick={() => {}} />
+
+      {/* <EmptyBookmarCard /> */}
+      <BookmarkCard />
+    </>
+  );
 };
 export default MyPageBookmarkPage;
