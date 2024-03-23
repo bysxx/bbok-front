@@ -5,6 +5,7 @@ import ImageLoader from '@components/imageLoader';
 import { NavTopBar } from '@components/top-bar';
 import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
 import { LoadingPage } from '@components/ui/pages';
+import { DATA } from '@features/checklist/dummy';
 import { CHECKLIST_TABS, TYPE_CHECLIST_COMMENT } from '@features/diary/constants';
 import { getInitialDiaryList, updateDiaryChecklist } from '@features/diary/utils/get-diary-checklist';
 import { useDiaryMutation } from '@hooks/queries/diary';
@@ -30,11 +31,11 @@ const WritingChecklistPage = () => {
   const { register, getValues, setValue } = useFormContext<IDiaryRequestBody>();
   const { tags, content, date, emoji } = getValues();
 
+  // TODO: 체크리스트 api 변경 후 연결
   const { data, isSuccess, isLoading } = useGetMyChecklist();
-
   useEffect(() => {
     if (isSuccess && data) {
-      setChecklists(getInitialDiaryList(data.data));
+      setChecklists(getInitialDiaryList(DATA));
     }
   }, [isSuccess, data]);
 

@@ -1,11 +1,9 @@
-import { ICheckItem, IDiaryCheckListItem } from '@interfaces/checklist';
-
-import { IMyCheckList } from '@interfaces/member';
+import type { ICheckItem, IDiaryCheckListItem, IMyCheckListResponse } from '@interfaces/checklist';
 
 /**
  * 일화 리스트 초기 배열 return
  */
-export const getInitialDiaryList = (list: IMyCheckList): IDiaryCheckListItem[] => {
+export const getInitialDiaryList = (list: IMyCheckListResponse<number>): IDiaryCheckListItem[] => {
   const goodList = list.goodChecklist.slice(0, 5).map((goodItem) => {
     return {
       id: goodItem.id,
