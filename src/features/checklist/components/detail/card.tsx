@@ -35,7 +35,7 @@ const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
       <span
         className="cursor-pointer text-body-4 text-gray-40"
         onClick={() => {
-          push({ pathname: './modify', query: { type } });
+          push(`./modify/${type}`);
         }}
       >
         수정
