@@ -8,7 +8,7 @@ import {
   WritingTextForm,
   WritingTagsList,
 } from '@features/diary/components/writing';
-import { getInitialDiaryList } from '@features/diary/utils/get-diary-checklist';
+import { getDiaryCheckList } from '@features/diary/utils/get-diary-checklist';
 import { useGetDiaryDetail, useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { IDiaryRequestBody } from '@interfaces/diary';
@@ -33,7 +33,7 @@ const DiaryDetailModifyPage = ({ params }: IDiaryDetailModifyProp) => {
       content,
       date,
       emoji: data?.data.emoji!,
-      checklist: getInitialDiaryList(data?.data!),
+      checklist: getDiaryCheckList(data?.data.badChecklist!, data?.data.goodChecklist!),
       sticker: '',
       id: params.id,
     });

@@ -2,7 +2,7 @@
 
 import { NavTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
-import ChecklistTab from '@features/checklist/components/tab';
+import { DiaryChecklistTab } from '@features/checklist/components/diary';
 import { CHECKLIST_TABS, DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { getDiaryChecklist } from '@features/diary/utils/get-diary-checklist';
 import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
@@ -75,11 +75,10 @@ const DiaryDetailCriteriaPage = ({ params: { id } }: IDiaryDetailCriteriaProp) =
       <h2 className="px-8 pt-7 text-[17px] font-medium text-gray-70">{DIARY_CRITERIA_TEXT[tab].label}</h2>
 
       <div className="mt-[34px]">
-        <ChecklistTab
+        <DiaryChecklistTab
+          checklist={modifyChecklist[tab].list}
+          setChecklist={modifyChecklist[tab].setList}
           type={tab}
-          allList={modifyChecklist[tab].list}
-          setAllList={modifyChecklist[tab].setList}
-          length={modifyChecklist[tab].list.length}
         />
       </div>
     </FooterButtonLayout>

@@ -30,8 +30,8 @@ const WritingChecklistPage = () => {
   const { register, getValues, setValue } = useFormContext<IDiaryRequestBody>();
   const { tags, content, date, emoji } = getValues();
 
+  // TODO: 체크리스트 api 변경 후 연결
   const { data, isSuccess, isLoading } = useGetMyChecklist();
-
   useEffect(() => {
     if (isSuccess && data) {
       setChecklists(getInitialDiaryList(data.data));

@@ -1,11 +1,9 @@
-import { ICheckItem, IDiaryCheckListItem } from '@interfaces/checklist';
-
-import { IMyCheckList } from '@interfaces/member';
+import type { ICheckItem, IDiaryCheckListItem, IMyCheckListResponse } from '@interfaces/checklist';
 
 /**
  * 일화 리스트 초기 배열 return
  */
-export const getInitialDiaryList = (list: IMyCheckList): IDiaryCheckListItem[] => {
+export const getInitialDiaryList = (list: IMyCheckListResponse<number>): IDiaryCheckListItem[] => {
   const goodList = list.goodChecklist.slice(0, 5).map((goodItem) => {
     return {
       id: goodItem.id,
@@ -17,6 +15,28 @@ export const getInitialDiaryList = (list: IMyCheckList): IDiaryCheckListItem[] =
     return {
       id: badItem.id,
       isChecked: false,
+      isGood: false,
+    };
+  });
+
+  return [...goodList, ...badList];
+};
+
+/**
+ * 일화 상세 페이지에서 체크리스트 배열 반환
+ */
+export const getDiaryCheckList = (badlist: ICheckItem[], goodlist: ICheckItem[]): IDiaryCheckListItem[] => {
+  const goodList = goodlist.slice(0, 5).map((goodItem) => {
+    return {
+      id: goodItem.id,
+      isChecked: goodItem.isChecked,
+      isGood: true,
+    };
+  });
+  const badList = badlist.slice(0, 5).map((badItem) => {
+    return {
+      id: badItem.id,
+      isChecked: badItem.isChecked,
       isGood: false,
     };
   });

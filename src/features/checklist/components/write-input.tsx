@@ -1,14 +1,14 @@
 import CheckBox from '@components/check-box';
-import type { ICheckItem } from '@interfaces/checklist';
+import type { IUserChecklistItem } from '@interfaces/checklist';
 import React from 'react';
 
 interface IWriteCheckInputProps<T> {
   selected: boolean;
   onClick: () => void;
-  value: ICheckItem<T>;
-  setValue: (value: ICheckItem<T>[]) => void;
+  value: IUserChecklistItem<T>;
+  setValue: (value: IUserChecklistItem<T>[]) => void;
   onDelete: () => void;
-  allList: ICheckItem<T>[];
+  allList: IUserChecklistItem<T>[];
 }
 
 function WriteCheckInput<T = string>({

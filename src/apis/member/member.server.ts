@@ -1,13 +1,14 @@
-import { IMyCheckList, IMyInfoRespone } from '@interfaces/member';
+import { IMyInfoRespone } from '@interfaces/member';
 import { httpServer } from '@libs/http.server';
 import { ResponseDTO } from '@interfaces/common';
+import { IMyCheckListResponse } from '@interfaces/checklist';
 
 const memberServerApi = {
   /**
    * @description 나만의 기준을 조회하는 server api
    */
   getList: async () => {
-    const res = await httpServer.get<ResponseDTO<IMyCheckList>>('/member/checklist');
+    const res = await httpServer.get<ResponseDTO<IMyCheckListResponse>>('/member/checklist');
     return res;
   },
 
