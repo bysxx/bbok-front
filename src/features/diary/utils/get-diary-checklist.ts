@@ -29,14 +29,14 @@ export const getDiaryCheckList = (badlist: ICheckItem[], goodlist: ICheckItem[])
   const goodList = goodlist.slice(0, 5).map((goodItem) => {
     return {
       id: goodItem.id,
-      isChecked: false,
+      isChecked: goodItem.isChecked,
       isGood: true,
     };
   });
   const badList = badlist.slice(0, 5).map((badItem) => {
     return {
       id: badItem.id,
-      isChecked: false,
+      isChecked: badItem.isChecked,
       isGood: false,
     };
   });
