@@ -10,6 +10,7 @@ import {
 } from '@features/checklist/constants';
 import {
   getBadChecklistInitialData,
+  getChecklistCount,
   getCreatehecklistComplete,
   getGoodChecklistInitialData,
 } from '@features/checklist/utils';
@@ -22,9 +23,9 @@ import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
-import ChecklistCount from './count';
 import ChecklistTab from './tab';
 import ChecklistTitle from './title';
+import ChecklistCount from '../count';
 
 const ChecklistCreatePage = () => {
   const { push } = useCustomRouter();
@@ -58,7 +59,7 @@ const ChecklistCreatePage = () => {
       setList: goodField.onChange,
       count: GOOD_CHECK_COUNT,
       index: 2,
-      disabled: goodField.value.filter((good) => good.isUsed === true).length !== 5,
+      disabled: getChecklistCount(goodField.value) !== 5,
       onClick: handleCheckListComplete,
       back: () => {
         changeItem(0);
@@ -69,7 +70,7 @@ const ChecklistCreatePage = () => {
       setList: badField.onChange,
       count: BAD_CHECK_COUNT,
       index: 1,
-      disabled: badField.value.filter((bad) => bad.isUsed === true).length !== 5,
+      disabled: getChecklistCount(badField.value) !== 5,
       onClick: () => {
         changeItem(1);
       },
@@ -94,7 +95,7 @@ const ChecklistCreatePage = () => {
 
       <div className="ml-8 w-full">
         <ChecklistTitle type={currentItem?.tab} />
-        <ChecklistCount list={TABS[currentItem.tab].list} />
+        <ChecklistCount num={getChecklistCount(TABS[currentItem.tab].list)} />
       </div>
 
       <div

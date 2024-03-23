@@ -71,7 +71,7 @@ const updateChecklistData = <T>(checklists: IUserChecklistItem<T>[], id: T): IUs
 };
 
 /**
- * 체크리느스 체크된 항목의 개수를 return
+ * 체크리스트 체크된 항목의 개수를 return
  */
 const getChecklistCount = <T>(list: IUserChecklistItem<T>[]) => {
   return list.filter((l: IUserChecklistItem<T>) => l.isUsed === true).length;
