@@ -49,7 +49,7 @@ export interface IChecklistCreateRequestBody {
 /**
  * 사용자 정의 체크리스트 get reponse type
  */
-export interface IMyCheckListResponse<T> {
+export interface IMyCheckListResponse<T = number> {
   badChecklist: IUserChecklistItem<T>[];
   goodChecklist: IUserChecklistItem<T>[];
 }
@@ -62,8 +62,8 @@ export type TModifyCheclistItem = Pick<IUserChecklistItem, 'id' | 'isUsed'>;
  * 수정할 사용자 체크리스트 request body type
  */
 export interface IModifyChecklistRequestBody {
-  addedBadChecklist: TChecklistCreateItem;
-  addedGoodChecklist: TChecklistCreateItem;
-  modifiedBadChecklist: TModifyCheclistItem;
-  modifiedGoodChecklist: TModifyCheclistItem;
+  addedBadChecklist: TChecklistCreateItem[];
+  addedGoodChecklist: TChecklistCreateItem[];
+  modifiedBadChecklist: TModifyCheclistItem[];
+  modifiedGoodChecklist: TModifyCheclistItem[];
 }

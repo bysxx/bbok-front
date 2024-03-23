@@ -16,6 +16,6 @@ const checklistApi = {
   /**
    * @description 체크리스트 수정
    */
-  patch: async (body: IModifyChecklistRequestBody) => await http.patch('/member/checklist', body),
+  patch: async (body: IModifyChecklistRequestBody) => await http.patch<ResponseAPI>('/member/checklist', body),
 };
 export default checklistApi;
