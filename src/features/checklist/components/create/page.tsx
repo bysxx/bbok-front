@@ -30,7 +30,7 @@ import ChecklistCount from '../count';
 const ChecklistCreatePage = () => {
   const { push } = useCustomRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { mutateAsync } = usePostChecklist();
+  const { postChecklist } = usePostChecklist();
   const { currentItem, changeItem } = useTabs<TQuery>(0, CHECKLIST_TABS);
   const { register, control } = useFormContext<IMyCheckListResponse<string>>();
   const { field: badField } = useController({
@@ -50,7 +50,7 @@ const ChecklistCreatePage = () => {
       badChecklist: getCreatehecklistComplete(badField.value),
       goodChecklist: getCreatehecklistComplete(goodField.value),
     };
-    await mutateAsync(body);
+    await postChecklist.mutateAsync(body);
   };
 
   const TABS = {
