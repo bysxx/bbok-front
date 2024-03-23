@@ -23,7 +23,7 @@ export default function KakaoPage() {
         setCookie('refreshToken', res.data.refreshToken);
         setCookie('isVisited', true);
         if (res.data.newMember) {
-          push('/checklist');
+          push('/checklist/create');
         } else {
           push('/');
         }

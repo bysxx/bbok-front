@@ -8,15 +8,15 @@ import { PropsWithChildren } from 'react';
 const ModifyChecklistLayout = ({ children }: PropsWithChildren) => {
   const { push } = useCustomRouter();
   return (
-    <ModifyChecklistFormProvider>
+    <>
       <NavTopBar
         label="기준 수정"
         onClick={() => {
           push('/checklist/detail');
         }}
       />
-      {children}
-    </ModifyChecklistFormProvider>
+      <ModifyChecklistFormProvider>{children}</ModifyChecklistFormProvider>
+    </>
   );
 };
 export default ModifyChecklistLayout;
