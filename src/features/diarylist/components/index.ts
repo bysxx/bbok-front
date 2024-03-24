@@ -1,5 +1,2 @@
-export { default as DiaryItem } from './diary-item';
-export { default as DiarylistCard } from './diarylist-card';
-export { default as DiarylistOption } from './diarylist-option';
-export { default as EmptyDiarylistCard } from './empty-diarylist-card';
-export { default as TagButtonsList } from './tag-buttons-list';
+export { default as DiarylistOption } from './option';
+export { default as TagButtonsList } from './tag-list';

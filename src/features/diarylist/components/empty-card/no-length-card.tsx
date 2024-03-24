@@ -7,7 +7,7 @@ import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/useInput';
 import Image from 'next/image';
 
-const EmptyDiaryListPage = () => {
+const NoLengthDiaryListCard = () => {
   const { push } = useCustomRouter();
   const { text, onChange } = useInput('');
   return (
@@ -27,4 +27,4 @@ const EmptyDiaryListPage = () => {
     </FooterButtonLayout>
   );
 };
-export default EmptyDiaryListPage;
+export default NoLengthDiaryListCard;

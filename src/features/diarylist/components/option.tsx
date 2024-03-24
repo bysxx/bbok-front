@@ -1,6 +1,7 @@
 import { DATE_SELECT } from '@constants/date';
-import { DateOption, TDate } from '@interfaces/enums';
-import { ChangeEvent } from 'react';
+import type { TDate } from '@interfaces/enums';
+import { DateOption } from '@interfaces/enums';
+import type { ChangeEvent } from 'react';
 
 interface IDiarylistOptionProps {
   length: number;
@@ -12,7 +13,7 @@ const DiarylistOption = ({ length, order, setOrder }: IDiarylistOptionProps) => 
     setOrder(event.target.value as TDate);
   };
   return (
-    <div className="pb-[2px] pt-[38px] flex justify-between">
+    <div className="flex justify-between pb-[2px] pt-[38px]">
       <h5 className="text-caption-1 text-gray-25">총 일화 수 {length}</h5>
       <select className="text-caption-1 text-gray-30" value={order} onChange={(e) => handleSetTime(e)}>
         <option value={DateOption.desc}>{DATE_SELECT[DateOption.desc]}</option>
