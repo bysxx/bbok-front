@@ -1,5 +1,6 @@
-import { TDate, TEmoji } from '@interfaces/enums';
-import { ICheckItem, IDiaryCheckListItem } from './checklist';
+import type { TDate, TEmoji } from '@interfaces/enums';
+
+import type { ICheckItem, IDiaryCheckListItem } from './checklist';
 
 /**
  * 일화 생성 request body
