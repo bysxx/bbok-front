@@ -3,12 +3,9 @@
 import { ButtonTopBar } from '@components/top-bar';
 import { DistanceBookmark, DistanceCard } from '@features/distance/components';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { useSayingStore } from '@stores/useSayingStore';
 
 const DiaryDistancePage = () => {
   const { push } = useCustomRouter();
-  const { saying } = useSayingStore();
-  console.log(saying);
   return (
     <div className="relative flex flex-1 flex-col">
       <ButtonTopBar
