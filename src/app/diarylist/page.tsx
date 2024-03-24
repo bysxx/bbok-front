@@ -11,30 +11,32 @@ import TagButtonsList from '@features/diarylist/components/tags';
 import { useGetDiaryListInfiniteQuery } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/useInput';
+import { useIntersectionObserver } from '@hooks/useIntersectionObserver';
 import { type TDate } from '@interfaces/enums';
 import { useFriendStore } from '@stores/useFriendStore';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const DiaryListPage = () => {
-  // const observeBox = useRef<HTMLDivElement>(null);
+  const observeBox = useRef<HTMLDivElement>(null);
   const { push } = useCustomRouter();
   const { text, onChange } = useInput('');
   const { friend } = useFriendStore();
   const [tag, setTag] = useState<string>('');
   const [order, setOrder] = useState<TDate>('desc');
-  const { data, isSuccess, isPending, isFetching } = useGetDiaryListInfiniteQuery({
-    id: friend.id,
-    order,
-    q: text,
-    tag,
-  });
+  const { data, isSuccess, isPending, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useGetDiaryListInfiniteQuery({
+      id: friend.id,
+      order,
+      q: text,
+      tag,
+    });
   const diaryList = data?.pages ? data.pages.flatMap((page) => page.data.diaries) : [];
 
-  // useIntersectionObserver({
-  //  target: observeBox,
-  //  onIntersect: fetchNextPage,
-  //  enabled: hasNextPage && !isFetchingNextPage,
-  // });
+  useIntersectionObserver({
+    target: observeBox,
+    onIntersect: fetchNextPage,
+    enabled: hasNextPage && !isFetchingNextPage,
+  });
 
   if (isSuccess && diaryList.length === 0 && text === '' && tag === '') {
     return <NoLengthDiaryListCard />;
@@ -56,7 +58,7 @@ const DiaryListPage = () => {
         {diaryList.length === 0 && !isPending && <EmptyDiarylistCard />}
         {diaryList.length > 0 && <DiarylistCard diaryList={diaryList} search={text} />}
         {(isPending || isFetching) && <DiaryListSkeletonCard />}
-        {/* {!isLoading && <div ref={observeBox} />} */}
+        <div ref={observeBox} />
       </DefaultLayout>
     </FooterButtonLayout>
   );

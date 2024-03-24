@@ -16,7 +16,10 @@ export const useGetDiaryListInfiniteQuery = (body: IDiaryInfiniteRequest) => {
     queryFn: ({ pageParam = 0 }) => diaryApi.list({ ...body, offset: pageParam as number }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      return lastPage.data.pageNumber === lastPage.data.totalPages - 1 ? undefined : lastPage.data.pageNumber + 1;
+      if (lastPage.data.pageNumber === lastPage.data.totalPages - 1 || lastPage.data.totalPages === 0) {
+        return undefined;
+      }
+      return lastPage.data.pageNumber + 1;
     },
   });
 };
