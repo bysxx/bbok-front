@@ -6,7 +6,17 @@ import Image from 'next/image';
 
 const DistanceBookmark = () => {
   const { ref } = useBackgroundFadeIn(3);
-  const { saying } = useSayingStore();
+  const { saying, setSaying } = useSayingStore();
+
+  const handleClickBookmark = () => {
+    setSaying({
+      friendPercentage: saying.friendPercentage,
+      saying: {
+        ...saying.saying,
+        isMarked: !saying.saying.isMarked,
+      },
+    });
+  };
 
   return (
     <div
@@ -22,7 +32,27 @@ const DistanceBookmark = () => {
           color="white"
           placement="top-end"
         >
-          <Image loader={ImageLoader} src={'icon/ui/bookmark.svg'} width={24} height={24} alt="" />
+          {saying.saying.isMarked ? (
+            <Image
+              className="cursor-pointer"
+              onClick={handleClickBookmark}
+              loader={ImageLoader}
+              src={'icon/ui/selected-bookmark.svg'}
+              width={24}
+              height={24}
+              alt=""
+            />
+          ) : (
+            <Image
+              className="cursor-pointer"
+              onClick={handleClickBookmark}
+              loader={ImageLoader}
+              src={'icon/ui/bookmark.svg'}
+              width={24}
+              height={24}
+              alt=""
+            />
+          )}
         </Tooltip>
       </div>
 
