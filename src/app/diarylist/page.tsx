@@ -2,10 +2,12 @@
 
 import SearchBar from '@components/search-bar';
 import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
-import { DiarylistOption, TagButtonsList } from '@features/diarylist/components';
+import { DiarylistOption } from '@features/diarylist/components';
 import DiarylistCard from '@features/diarylist/components/card';
 import EmptyDiarylistCard from '@features/diarylist/components/empty-card';
 import NoLengthDiaryListCard from '@features/diarylist/components/empty-card/no-length-card';
+import DiaryListSkeletonCard from '@features/diarylist/components/loading';
+import TagButtonsList from '@features/diarylist/components/tags';
 import { useGetDiaryListInfiniteQuery } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/useInput';
@@ -20,7 +22,7 @@ const DiaryListPage = () => {
   const { friend } = useFriendStore();
   const [tag, setTag] = useState<string>('');
   const [order, setOrder] = useState<TDate>('desc');
-  const { data, isSuccess } = useGetDiaryListInfiniteQuery({
+  const { data, isSuccess, isPending, isFetching } = useGetDiaryListInfiniteQuery({
     id: friend.id,
     order,
     q: text,
@@ -51,8 +53,9 @@ const DiaryListPage = () => {
       <TagButtonsList selectTag={tag} setSelectTag={setTag} />
       <DefaultLayout className="mb-6">
         <DiarylistOption length={diaryList.length} order={order} setOrder={setOrder} />
-        {diaryList.length === 0 && <EmptyDiarylistCard />}
+        {diaryList.length === 0 && !isPending && <EmptyDiarylistCard />}
         {diaryList.length > 0 && <DiarylistCard diaryList={diaryList} search={text} />}
+        {(isPending || isFetching) && <DiaryListSkeletonCard />}
         {/* {!isLoading && <div ref={observeBox} />} */}
       </DefaultLayout>
     </FooterButtonLayout>
