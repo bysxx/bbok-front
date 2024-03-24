@@ -1,5 +1,6 @@
 import { Tooltip } from '@chakra-ui/react';
 import ImageLoader from '@components/imageLoader';
+import { useBookmarkMutation } from '@hooks/queries/bookmark';
 import useBackgroundFadeIn from '@hooks/useBackgroundFadeIn';
 import { useSayingStore } from '@stores/useSayingStore';
 import Image from 'next/image';
@@ -7,8 +8,9 @@ import Image from 'next/image';
 const DistanceBookmark = () => {
   const { ref } = useBackgroundFadeIn(3);
   const { saying, setSaying } = useSayingStore();
+  const { postBookmark, deleteBookmark } = useBookmarkMutation();
 
-  const handleClickBookmark = () => {
+  const handleStoreSaying = () => {
     setSaying({
       friendPercentage: saying.friendPercentage,
       saying: {
@@ -16,6 +18,15 @@ const DistanceBookmark = () => {
         isMarked: !saying.saying.isMarked,
       },
     });
+  };
+
+  const handleClickBookmark = () => {
+    if (saying.saying.isMarked) {
+      deleteBookmark.mutate(saying.saying.id);
+    } else {
+      postBookmark.mutate(saying.saying.id);
+    }
+    handleStoreSaying();
   };
 
   return (
