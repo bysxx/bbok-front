@@ -1,9 +1,9 @@
 /**
  * 북마크 item type
  */
-interface BookmarkContent {
+export interface BookmarkContent {
   id: number;
-  content: string;
+  contents: string;
   reference: string;
 }
 /**
