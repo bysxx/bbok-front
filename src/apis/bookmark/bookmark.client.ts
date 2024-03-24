@@ -12,5 +12,10 @@ const bookmarkApi = {
    * @description 북마크 추가하는 api 함수
    */
   post: async (id: number) => http.post<ResponseAPI>('/bookmark', { id }),
+
+  /**
+   * @description 북마크 취소하는 api 함수
+   */
+  delete: async (id: number) => http.delete<ResponseAPI>(`/bookmark/${id}`),
 };
 export default bookmarkApi;
