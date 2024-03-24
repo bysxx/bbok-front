@@ -1,16 +1,13 @@
-'use client';
-
-import { NavTopBar } from '@components/top-bar';
-import { BookmarkCard } from '@features/mypage/components/bookmark';
+import bookmarkServerApi from '@apis/bookmark/bookmark.server';
+import { PrefetchHydration } from '@components/react-query';
+import { BOOKMARK_KEYS } from '@constants/queryKeys';
+import { BookmarkPage } from '@features/mypage/components/bookmark';
 
 const MyPageBookmarkPage = () => {
   return (
-    <>
-      <NavTopBar label="북마크" onClick={() => {}} />
-
-      {/* <EmptyBookmarCard /> */}
-      <BookmarkCard />
-    </>
+    <PrefetchHydration queryKey={BOOKMARK_KEYS.lists()} queryFn={bookmarkServerApi.get}>
+      <BookmarkPage />
+    </PrefetchHydration>
   );
 };
 export default MyPageBookmarkPage;

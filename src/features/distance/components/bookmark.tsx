@@ -1,15 +1,38 @@
 import { Tooltip } from '@chakra-ui/react';
 import ImageLoader from '@components/imageLoader';
+import { useBookmarkMutation } from '@hooks/queries/bookmark';
 import useBackgroundFadeIn from '@hooks/useBackgroundFadeIn';
+import { useSayingStore } from '@stores/useSayingStore';
 import Image from 'next/image';
 
 const DistanceBookmark = () => {
   const { ref } = useBackgroundFadeIn(3);
+  const { saying, setSaying } = useSayingStore();
+  const { postBookmark, deleteBookmark } = useBookmarkMutation();
+
+  const handleStoreSaying = () => {
+    setSaying({
+      friendPercentage: saying.friendPercentage,
+      saying: {
+        ...saying.saying,
+        isMarked: !saying.saying.isMarked,
+      },
+    });
+  };
+
+  const handleClickBookmark = () => {
+    if (saying.saying.isMarked) {
+      deleteBookmark.mutate(saying.saying.id);
+    } else {
+      postBookmark.mutate(saying.saying.id);
+    }
+    handleStoreSaying();
+  };
 
   return (
     <div
       ref={ref}
-      className="relative flex translate-y-0 animate-[bottom-sheet-up_700ms_ease-in-out] flex-col items-center justify-center rounded-xl bg-brownModal px-12 pb-5 pt-[34px] opacity-10 transition-transform duration-500"
+      className="relative flex w-full translate-y-0 animate-[bottom-sheet-up_700ms_ease-in-out] flex-col items-center justify-center rounded-xl bg-brownModal px-12 pb-5 pt-[34px] opacity-10 transition-transform duration-500"
     >
       <div className="absolute right-[10px] top-[10px] cursor-pointer">
         <Tooltip
@@ -20,14 +43,32 @@ const DistanceBookmark = () => {
           color="white"
           placement="top-end"
         >
-          <Image loader={ImageLoader} src={'icon/ui/bookmark.svg'} width={24} height={24} alt="" />
+          {saying.saying.isMarked ? (
+            <Image
+              className="cursor-pointer"
+              onClick={handleClickBookmark}
+              loader={ImageLoader}
+              src={'icon/ui/selected-bookmark.svg'}
+              width={24}
+              height={24}
+              alt=""
+            />
+          ) : (
+            <Image
+              className="cursor-pointer"
+              onClick={handleClickBookmark}
+              loader={ImageLoader}
+              src={'icon/ui/bookmark.svg'}
+              width={24}
+              height={24}
+              alt=""
+            />
+          )}
         </Tooltip>
       </div>
 
-      <p className="text-center text-sm font-medium text-gray-5">
-        궁극적으로 결혼이든 우정이든 관계에서 유대감을 형성하는 것은 대화다.
-      </p>
-      <p className="mt-[23px] text-xs font-medium text-gray-5">아일랜드 작가, 오스카 와일드</p>
+      <p className="text-center text-sm font-medium text-gray-5">{saying.saying.contents}</p>
+      <p className="mt-[23px] text-xs font-medium text-gray-5">{saying.saying.reference}</p>
     </div>
   );
 };

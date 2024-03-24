@@ -1,8 +1,14 @@
-interface BookmarkContent {
+/**
+ * 북마크 item type
+ */
+export interface BookmarkContent {
   id: number;
-  content: string;
+  contents: string;
   reference: string;
 }
-export interface IBookmarkList {
+/**
+ * 북마크 리스트 reponse type
+ */
+export interface IBookmarkListResponse {
   bookmarks: BookmarkContent[];
 }

@@ -11,9 +11,10 @@ import { useDiaryMutation } from '@hooks/queries/diary';
 import { useGetMyChecklist } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useTabs } from '@hooks/useTabs';
-import { IDiaryCheckListItem } from '@interfaces/checklist';
-import { IDiaryRequestBody } from '@interfaces/diary';
-import { TQuery, TypeQuery } from '@interfaces/enums';
+import type { IDiaryCheckListItem } from '@interfaces/checklist';
+import type { IDiaryRequestBody } from '@interfaces/diary';
+import type { TQuery } from '@interfaces/enums';
+import { TypeQuery } from '@interfaces/enums';
 import { useFriendStore } from '@stores/useFriendStore';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -94,7 +95,7 @@ const WritingChecklistPage = () => {
         )?.map((list) => (
           <div className="mb-3" key={list.id} {...register('checklist')}>
             <CheckList
-              selected={checklists.filter((checklist) => checklist.id === list.id)[0]?.isChecked!}
+              selected={checklists.filter((checklist) => checklist.id === list.id)[0]?.isChecked || false}
               label={list.criteria}
               key={list.id}
               onClick={() => {
