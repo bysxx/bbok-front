@@ -1,8 +1,8 @@
 'use client';
 
-import { LoadingPage } from '@components/ui/pages';
+import DiaryListSkeletonPage from '@features/diarylist/components/loading/page';
 
 const DiaryListLoading = () => {
-  return <LoadingPage />;
+  return <DiaryListSkeletonPage />;
 };
 export default DiaryListLoading;

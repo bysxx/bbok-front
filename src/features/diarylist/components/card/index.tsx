@@ -1,7 +1,7 @@
+import type { IDiariesItem } from '@interfaces/diary';
 import Link from 'next/link';
 
 import DiaryItem from './diary-item';
-import { IDiariesItem } from '@interfaces/diary';
 
 interface IDiarylistCardProps {
   diaryList: IDiariesItem[];

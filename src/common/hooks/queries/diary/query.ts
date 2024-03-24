@@ -1,18 +1,25 @@
-import { DIARY_KEYS } from '@constants/queryKeys';
-import { IDiaryDetailResponse, IDiaryInfiniteRequest, IDiaryListResponse, IDiaryTagReponse } from '@interfaces/diary';
-
-import { ResponseDTO } from '@interfaces/common';
 import diaryApi from '@apis/diary/diary.client';
+import { DIARY_KEYS } from '@constants/queryKeys';
+import type { ResponseDTO } from '@interfaces/common';
+import type {
+  IDiaryDetailResponse,
+  IDiaryInfiniteRequest,
+  IDiaryListResponse,
+  IDiaryTagReponse,
+} from '@interfaces/diary';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
 
-export const useGetDiaryList = (body: IDiaryInfiniteRequest) => {
+export const useGetDiaryListInfiniteQuery = (body: IDiaryInfiniteRequest) => {
   return useInfiniteQuery<ResponseDTO<IDiaryListResponse>, AxiosError>({
     queryKey: DIARY_KEYS.list([{ ...body }]),
     queryFn: ({ pageParam = 0 }) => diaryApi.list({ ...body, offset: pageParam as number }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      return lastPage.data.pageNumber === lastPage.data.totalPages - 1 ? undefined : lastPage.data.pageNumber + 1;
+      if (lastPage.data.pageNumber === lastPage.data.totalPages - 1 || lastPage.data.totalPages === 0) {
+        return undefined;
+      }
+      return lastPage.data.pageNumber + 1;
     },
   });
 };
