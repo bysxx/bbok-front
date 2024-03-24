@@ -14,5 +14,15 @@ export const useBookmarkMutation = () => {
     },
   });
 
-  return { postBookmark };
+  /**
+   * 북마크 삭제
+   */
+  const deleteBookmark = useMutation({
+    mutationFn: bookmarkApi.delete,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: BOOKMARK_KEYS.lists() });
+    },
+  });
+
+  return { postBookmark, deleteBookmark };
 };
