@@ -1,12 +1,12 @@
-import { getSinceTime } from '@libs/getTime';
-import Image from 'next/image';
-import cx from 'classnames';
-
-import FriendProgressBar from './progress-bar';
-import { Friend } from '@interfaces/friend';
-import { FRIEND_CHARACTER_STYLE } from '../constants';
 import ImageLoader from '@components/imageLoader';
 import { FRIEND_CHARACTER } from '@constants/character';
+import { FRIEND_CHARACTER_STYLE } from '@features/friend/constants';
+import type { Friend } from '@interfaces/friend';
+import { getSinceTime } from '@libs/getTime';
+import cx from 'classnames';
+import Image from 'next/image';
+
+import FriendProgressBar from './progress-bar';
 
 const FriendCard = (data: Friend) => {
   const { countingDiary, startedAt, name, score, active, characterType } = data;

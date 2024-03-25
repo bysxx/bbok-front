@@ -2,14 +2,14 @@
 
 import BoxButton from '@components/buttons/box-button';
 import { DiaryTopBar } from '@components/top-bar';
+import useHandleFriendCard from '@features/friend/hooks/useHandleFriendCard';
 import { useGetFriend } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { showErrorToast } from '@libs/showToast';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useEffect } from 'react';
 
-import { EmptyFriend, FriendCard, KeyFriendCard } from '../component';
-import useHandleFriendCard from '../hooks/useHandleFriendCard';
+import { EmptyFriendCard, FriendCard, KeyFriendCard } from './cards';
 
 const FriendCardPage = () => {
   const { data, isSuccess } = useGetFriend();
@@ -47,7 +47,7 @@ const FriendCardPage = () => {
       {/* 친구가 아예 없는 경우 */}
       {type === 'NoFriend' && (
         <div className="mx-9 mt-9">
-          <EmptyFriend />
+          <EmptyFriendCard />
         </div>
       )}
       {/* 활성화 친구 오직 한명인 경우 */}

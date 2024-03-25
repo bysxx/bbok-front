@@ -1,7 +1,7 @@
 import { RoundButton } from '@components/buttons';
 import useCustomRouter from '@hooks/useCustomRouter';
 
-const EmptyFriend = () => {
+const EmptyFriendCard = () => {
   const { push } = useCustomRouter();
   return (
     <div className="rounded-3xl bg-white pb-[53px] pt-[51px]">
@@ -24,4 +24,4 @@ const EmptyFriend = () => {
     </div>
   );
 };
-export default EmptyFriend;
+export default EmptyFriendCard;
