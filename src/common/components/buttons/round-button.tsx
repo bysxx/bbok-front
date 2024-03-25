@@ -1,7 +1,7 @@
 import cx from 'classnames';
-import type { HTMLAttributes } from 'react';
+import { forwardRef, type HTMLAttributes } from 'react';
 
-interface RoundProps extends HTMLAttributes<HTMLButtonElement> {
+interface RoundProps extends Partial<HTMLAttributes<HTMLButtonElement>> {
   type: 'primary' | 'secondary';
   onClick?: () => void;
   label: string;
@@ -18,22 +18,27 @@ const options = {
     hoverColor: 'hover:bg-orange-hover',
   },
 };
-const RoundButton = ({ onClick, type, label, className, ...rest }: RoundProps) => {
-  const { backgroundColor, hoverColor, textColor } = options[type];
-  return (
-    <button
-      {...rest}
-      className={cx(
-        className,
-        backgroundColor,
-        hoverColor,
-        textColor,
-        'rounded-[39px] px-[13px]  py-2 text-center text-xs font-medium leading-none hover:shadow-sm active:opacity-[0.85]',
-      )}
-      onClick={onClick}
-    >
-      {label}
-    </button>
-  );
-};
+const RoundButton = forwardRef<HTMLButtonElement, RoundProps>(
+  ({ onClick, type, label, className, ...rest }: RoundProps, ref) => {
+    const { backgroundColor, hoverColor, textColor } = options[type];
+    return (
+      <button
+        {...rest}
+        ref={ref}
+        className={cx(
+          className,
+          backgroundColor,
+          hoverColor,
+          textColor,
+          'rounded-[39px] px-[13px]  py-2 text-center text-xs font-medium leading-none hover:shadow-sm active:opacity-[0.85]',
+        )}
+        onClick={onClick}
+      >
+        {label}
+      </button>
+    );
+  },
+);
+
+RoundButton.displayName = 'RoundButton';
 export default RoundButton;
