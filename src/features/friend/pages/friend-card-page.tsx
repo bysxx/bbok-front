@@ -16,7 +16,7 @@ const FriendCardPage = () => {
   const { push } = useCustomRouter();
   const { setFriend } = useFriendStore();
 
-  const { handleFriendType, friendList } = useHandleFriendCard(data?.data.friends!);
+  const { handleFriendType, friendList } = useHandleFriendCard(data?.data.friends || []);
   const type = handleFriendType();
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const FriendCardPage = () => {
           {friendList.map((friend) => (
             <>
               <FriendCard key={friend?.id} {...friend} />
-              <KeyFriendCard name={friend?.name!} lock={true} />
+              <KeyFriendCard name={friend?.name || ''} lock={true} />
             </>
           ))}
         </div>
