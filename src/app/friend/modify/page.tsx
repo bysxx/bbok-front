@@ -14,7 +14,7 @@ import useInput from '@hooks/useInput';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';
 
-const SettingPage = () => {
+const FriendModifyPage = () => {
   const { text: value, isValid: error, onChange } = useInput('', friendInputVerifier);
   const { back } = useCustomRouter();
   const { errorMessage } = useNameValidation(value);
@@ -101,4 +101,4 @@ const SettingPage = () => {
     </>
   );
 };
-export default SettingPage;
+export default FriendModifyPage;
