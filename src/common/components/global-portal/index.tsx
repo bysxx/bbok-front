@@ -1,12 +1,12 @@
 'use client';
 
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 import { createContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 const PortalContext = createContext<HTMLDivElement | null>(null);
 
-const PortalProvider = ({ children }: PropsWithChildren) => {
+export const PortalProvider = ({ children }: PropsWithChildren) => {
   const [portalContainerRef, setPortalContainerRef] = useState<HTMLDivElement | null>(null);
 
   return (
@@ -25,7 +25,7 @@ const PortalProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-const PortalConsumer = ({ children }: { children: ReactNode }) => {
+export const PortalConsumer = ({ children }: PropsWithChildren) => {
   return (
     <PortalContext.Consumer>
       {(portalContainerRef) => {
@@ -36,9 +36,4 @@ const PortalConsumer = ({ children }: { children: ReactNode }) => {
       }}
     </PortalContext.Consumer>
   );
-};
-
-export const GlobalPortal = {
-  Consumer: PortalConsumer,
-  Provider: PortalProvider,
 };
