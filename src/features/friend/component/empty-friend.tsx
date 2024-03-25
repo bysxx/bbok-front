@@ -16,7 +16,7 @@ const EmptyFriend = () => {
         <RoundButton
           type="secondary"
           onClick={() => {
-            push('/friend');
+            push('/friend/create');
           }}
           label="친구 생성"
         />

@@ -37,10 +37,10 @@ const FriendCardPage = () => {
         label={'MY일기장'}
         settingClick={() => {
           if (type === 'BothActiveFriend' || type === 'OneFriend') {
-            push('/setting');
+            push('/friend/modify');
           } else {
             showErrorToast('친구를 먼저 생성해주세요');
-            push('/friend');
+            push('/friend/create');
           }
         }}
       />
