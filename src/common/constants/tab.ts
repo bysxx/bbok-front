@@ -1,4 +1,4 @@
-import { TBottomTab } from '../interfaces/enums';
+import type { TBottomTab } from '../interfaces/enums';
 
 interface IBottomContent {
   href: string;
