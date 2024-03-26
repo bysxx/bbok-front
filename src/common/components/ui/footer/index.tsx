@@ -8,7 +8,11 @@ import { useFriendStore } from '@stores/useFriendStore';
 
 import FooterSection from './section';
 
-const Footer = ({ setRoute, check = false }: { setRoute?: (value: TBottomTab) => void; check?: boolean }) => {
+interface IFooterProps {
+  setRoute?: (value: TBottomTab) => void;
+  check?: boolean;
+}
+const Footer = ({ setRoute, check = false }: IFooterProps) => {
   const { push, pathname } = useCustomRouter();
   const { friend } = useFriendStore();
 
