@@ -1,7 +1,7 @@
 'use client';
 
 import Footer from '@components/ui/footer';
-import TooltipFooter from '@features/friend/component/home/footer';
+import { TooltipFooter } from '@features/friend/component/home';
 import { useCheckTooltipStore } from '@stores/useCheckTooltipStore';
 import { Inter } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
