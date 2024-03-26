@@ -3,6 +3,7 @@ import { BOTTOM_TAP } from '@constants/tab';
 import type { TBottomTab } from '@interfaces/enums';
 import classNames from 'classnames';
 import Image from 'next/image';
+import { forwardRef } from 'react';
 
 interface IFooterSectionProps {
   focus: boolean;
@@ -10,24 +11,29 @@ interface IFooterSectionProps {
   onClick: () => void;
 }
 
-const FooterSection = ({ focus, item, onClick }: IFooterSectionProps) => {
-  return (
-    <button
-      className={classNames('flex flex-col p-2 items-center', {
-        'text-gray-65': focus,
-      })}
-      key={BOTTOM_TAP[item].label}
-      onClick={onClick}
-    >
-      <Image
-        loader={ImageLoader}
-        width={36}
-        height={36}
-        src={focus ? BOTTOM_TAP[item].iconOn : BOTTOM_TAP[item].iconOff}
-        alt=""
-      />
-      <span className="text-xs">{BOTTOM_TAP[item].label}</span>
-    </button>
-  );
-};
+const FooterSection = forwardRef<HTMLButtonElement, IFooterSectionProps>(
+  ({ focus, item, onClick }: IFooterSectionProps, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={classNames('flex flex-col p-2 items-center', {
+          'text-gray-65': focus,
+        })}
+        key={BOTTOM_TAP[item].label}
+        onClick={onClick}
+      >
+        <Image
+          loader={ImageLoader}
+          width={36}
+          height={36}
+          src={focus ? BOTTOM_TAP[item].iconOn : BOTTOM_TAP[item].iconOff}
+          alt=""
+        />
+        <span className="text-xs">{BOTTOM_TAP[item].label}</span>
+      </button>
+    );
+  },
+);
+
+FooterSection.displayName = 'FooterSection';
 export default FooterSection;
