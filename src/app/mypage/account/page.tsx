@@ -5,18 +5,18 @@ import Tab from '@components/tab';
 import { NavTopBar } from '@components/top-bar';
 import { ACCOUNT_TAB_LIST } from '@features/mypage/constants';
 import useCustomRouter from '@hooks/useCustomRouter';
+import useModal from '@hooks/useModal';
 import { AccountTab } from '@interfaces/enums';
-import { useState } from 'react';
 
 const MyPageAccountPage = () => {
   const { back } = useCustomRouter();
-  const [withDraw, setWithDraw] = useState<boolean>(false);
-  const [initial, setInitial] = useState<boolean>(false);
+  const { isOpen: withdrawIsOpen, onClose: onWithdrawClose, onOpen: onWidthdrawOpen } = useModal();
+  const { isOpen: initialIsOpen, onClose: onInitialClose, onOpen: onInitialOpen } = useModal();
   return (
     <main>
       <Popup
-        isOpen={withDraw}
-        onClose={() => setWithDraw(false)}
+        isOpen={withdrawIsOpen}
+        onClose={onWithdrawClose}
         label="탈퇴"
         onClick={() => {
           // TODO: 탈퇴 api 호출
@@ -30,8 +30,8 @@ const MyPageAccountPage = () => {
         </p>
       </Popup>
       <Popup
-        isOpen={initial}
-        onClose={() => setInitial(false)}
+        isOpen={initialIsOpen}
+        onClose={onInitialClose}
         label="초기화"
         onClick={() => {
           // TODO: 초기화 api 호출
@@ -51,9 +51,9 @@ const MyPageAccountPage = () => {
           divider={i !== ACCOUNT_TAB_LIST.length - 1}
           onClick={() => {
             if (tab.value === AccountTab.initial) {
-              setInitial(true);
+              onInitialOpen();
             } else if (tab.value === AccountTab.widthDraw) {
-              setWithDraw(true);
+              onWidthdrawOpen();
             }
           }}
           label={tab.label}
