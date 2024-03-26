@@ -3,11 +3,12 @@
 import { Tooltip } from '@chakra-ui/react';
 import Dimmer from '@components/dimmer';
 import { BOTTOM_TAP_ARRAY } from '@constants/tab';
+import type { TBottomTab } from '@interfaces/enums';
 import { useCheckTooltipStore } from '@stores/useCheckTooltipStore';
 
 import FooterSection from './section';
 
-const TooltipFooter = () => {
+const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
   const { isCheckDiary, setIsCheckDiary } = useCheckTooltipStore();
   return (
     <>
@@ -26,7 +27,7 @@ const TooltipFooter = () => {
             paddingX={6}
             borderRadius={8}
           >
-            <FooterSection key={item} item={item} />
+            <FooterSection key={item} item={item} focus={item === focusTab} />
           </Tooltip>
         ))}
       </footer>

@@ -14,7 +14,7 @@ const HomeLayout = ({ children }: PropsWithChildren) => {
   return (
     <main className={`${inter.className} flex size-full flex-col bg-yellow`}>
       <div className="flex flex-1 flex-col">{children}</div>
-      <div className={`sticky bottom-0 h-[67px]`}>{isCheckDiary ? <Footer /> : <TooltipFooter />}</div>
+      <div className={`sticky bottom-0 h-[67px]`}>{isCheckDiary ? <Footer /> : <TooltipFooter focusTab="Diary" />}</div>
     </main>
   );
 };
