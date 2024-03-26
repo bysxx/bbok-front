@@ -1,7 +1,7 @@
-import { IMyInfoRespone } from '@interfaces/member';
+import type { IMyCheckListResponse } from '@interfaces/checklist';
+import type { ResponseAPI, ResponseDTO } from '@interfaces/common';
+import type { IMyInfoRespone } from '@interfaces/member';
 import { http } from '@libs/http.client';
-import { ResponseDTO } from '@interfaces/common';
-import { IMyCheckListResponse } from '@interfaces/checklist';
 
 const memberApi = {
   /**
@@ -10,8 +10,13 @@ const memberApi = {
   getList: () => http.get<ResponseDTO<IMyCheckListResponse>>('/member/checklist'),
 
   /**
-   * @description 내 정보 조회하는 server api
+   * @description 내 정보 조회하는 api
    */
   get: () => http.get<ResponseDTO<IMyInfoRespone>>('/member'),
+
+  /**
+   * @description 내 계정 삭제하는 api
+   */
+  delete: () => http.delete<ResponseAPI>('/member'),
 };
 export default memberApi;
