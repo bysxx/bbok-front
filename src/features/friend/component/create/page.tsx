@@ -4,16 +4,15 @@ import Input from '@components/input';
 import { ButtonTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
+import useNameValidation from '@features/friend/hooks/useNameValidation';
+import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
 import { useFriendMutation, useGetFriendCharater } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/useInput';
-
+import type { TCharacter } from '@interfaces/enums';
 import { useState } from 'react';
 
-import useNameValidation from '../hooks/useNameValidation';
-import { friendInputVerifier } from '../utils/friendInputVerifier';
-import { TCharacter } from '@interfaces/enums';
-import FriendCharacter from 'src/app/friend/friend-character';
+import FriendCharacter from './character';
 
 const FriendMakePage = () => {
   const { push } = useCustomRouter();

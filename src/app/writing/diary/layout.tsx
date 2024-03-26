@@ -2,12 +2,13 @@
 
 import Popup from '@components/popup';
 import Footer from '@components/ui/footer';
-import { TBottomTab } from '@interfaces/enums';
-import useModal from '@hooks/useModal';
 import useCustomRouter from '@hooks/useCustomRouter';
+import useModal from '@hooks/useModal';
+import type { TBottomTab } from '@interfaces/enums';
+import type { PropsWithChildren } from 'react';
 import React, { useEffect, useState } from 'react';
 
-const DiaryWritingLayout = ({ children }: { children: React.ReactNode }) => {
+const DiaryWritingLayout = ({ children }: PropsWithChildren) => {
   const { push } = useCustomRouter();
   const { isOpen, onClose, onOpen } = useModal();
   const [route, setRoute] = useState<TBottomTab>('Diary');

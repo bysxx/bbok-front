@@ -2,21 +2,21 @@
 
 import BoxButton from '@components/buttons/box-button';
 import { DiaryTopBar } from '@components/top-bar';
+import useHandleFriendCard from '@features/friend/hooks/useHandleFriendCard';
 import { useGetFriend } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { showErrorToast } from '@libs/showToast';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useEffect } from 'react';
 
-import { EmptyFriend, FriendCard, KeyFriendCard } from '../component';
-import useHandleFriendCard from '../hooks/useHandleFriendCard';
+import { EmptyFriendCard, FriendCard, KeyFriendCard } from './cards';
 
 const FriendCardPage = () => {
   const { data, isSuccess } = useGetFriend();
   const { push } = useCustomRouter();
   const { setFriend } = useFriendStore();
 
-  const { handleFriendType, friendList } = useHandleFriendCard(data?.data.friends!);
+  const { handleFriendType, friendList } = useHandleFriendCard(data?.data.friends || []);
   const type = handleFriendType();
 
   useEffect(() => {
@@ -37,17 +37,17 @@ const FriendCardPage = () => {
         label={'MY일기장'}
         settingClick={() => {
           if (type === 'BothActiveFriend' || type === 'OneFriend') {
-            push('/setting');
+            push('/friend/modify');
           } else {
             showErrorToast('친구를 먼저 생성해주세요');
-            push('/friend');
+            push('/friend/create');
           }
         }}
       />
       {/* 친구가 아예 없는 경우 */}
       {type === 'NoFriend' && (
         <div className="mx-9 mt-9">
-          <EmptyFriend />
+          <EmptyFriendCard />
         </div>
       )}
       {/* 활성화 친구 오직 한명인 경우 */}
@@ -56,7 +56,7 @@ const FriendCardPage = () => {
           {friendList.map((friend) => (
             <>
               <FriendCard key={friend?.id} {...friend} />
-              <KeyFriendCard name={friend?.name!} lock={true} />
+              <KeyFriendCard name={friend?.name || ''} lock={true} />
             </>
           ))}
         </div>

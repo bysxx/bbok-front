@@ -74,16 +74,20 @@ module.exports = {
           '0%': { transform: 'translateY(0)' },
           '100%': { transform: 'translateY(420px)' },
         },
+        'fade-in-back-drop': {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
       },
-      // fontSize: {
-      //   heading: [
-      //     '20px',
-      //     {
-      //       fontWeight: 700,
-      //       letterSpacing: '-3%',
-      //     },
-      //   ],
-      // },
+
+      animation: {
+        'fade-in-back-drop': 'fade-in-back-drop 0.3s ease-in-out forwards',
+        'slide-up-bottom-sheet': 'bottom-sheet-up 0.3s ease-out forwards',
+      },
     },
   },
   // eslint-disable-next-line global-require

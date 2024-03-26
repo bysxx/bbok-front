@@ -1,15 +1,18 @@
 'use client';
 
-import ImageLoader from '@components/imageLoader';
-import { TBottomTab } from '@interfaces/enums';
 import { BOTTOM_TAP, BOTTOM_TAP_ARRAY } from '@constants/tab';
 import useCustomRouter from '@hooks/useCustomRouter';
+import type { TBottomTab } from '@interfaces/enums';
 import { showErrorToast } from '@libs/showToast';
 import { useFriendStore } from '@stores/useFriendStore';
-import classNames from 'classnames';
-import Image from 'next/image';
 
-function Footer({ setRoute, check = false }: { setRoute?: (value: TBottomTab) => void; check?: boolean }) {
+import FooterSection from './section';
+
+interface IFooterProps {
+  setRoute?: (value: TBottomTab) => void;
+  check?: boolean;
+}
+const Footer = ({ setRoute, check = false }: IFooterProps) => {
   const { push, pathname } = useCustomRouter();
   const { friend } = useFriendStore();
 
@@ -28,25 +31,15 @@ function Footer({ setRoute, check = false }: { setRoute?: (value: TBottomTab) =>
   return (
     <footer className="sticky bottom-0 grid w-full grid-cols-3 border-t border-t-gray-15 bg-[#fbfbfb] text-center text-gray-20">
       {BOTTOM_TAP_ARRAY.map((item) => (
-        <button
-          className={classNames('flex flex-col p-2 items-center', {
-            'text-gray-65': BOTTOM_TAP[item].check.includes(pathname),
-          })}
-          key={BOTTOM_TAP[item].label}
+        <FooterSection
+          key={item}
           onClick={() => handleBottomRouter(item)}
-        >
-          <Image
-            loader={ImageLoader}
-            width={36}
-            height={36}
-            src={BOTTOM_TAP[item].check.includes(pathname) ? BOTTOM_TAP[item].iconOn : BOTTOM_TAP[item].iconOff}
-            alt=""
-          />
-          <span className="text-xs">{BOTTOM_TAP[item].label}</span>
-        </button>
+          focus={BOTTOM_TAP[item].check.includes(pathname)}
+          item={item}
+        />
       ))}
     </footer>
   );
-}
+};
 
 export default Footer;
