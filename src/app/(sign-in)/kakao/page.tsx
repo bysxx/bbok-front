@@ -4,7 +4,7 @@ import authApi from '@apis/auth';
 import { LoadingPage } from '@components/ui/pages';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { redirectUri } from '@libs/config';
-import { setIsVisited, setTokens } from '@libs/cookie';
+import { setIsVisited, setTokens } from '@libs/cookie/manageCookie.client';
 import { useUserStore } from '@stores/useUserStore';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';

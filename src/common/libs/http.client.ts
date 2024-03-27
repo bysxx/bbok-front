@@ -1,10 +1,8 @@
 import { baseUrl } from '@libs/config';
-// eslint-disable-next-line import/no-cycle
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import { getCookie } from 'cookies-next';
 
-import { getRefreshToken } from './cookie';
+import { getAccessToken, getRefreshToken } from './cookie/manageCookie.client';
 // eslint-disable-next-line import/no-cycle
 import { getAccessTokenClient } from './tokenValidator.client';
 
@@ -36,7 +34,7 @@ httpWithoutToken.interceptors.response.use((res: AxiosResponse) => {
 
 http.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const accessToken = getCookie('accessToken');
+    const accessToken = getAccessToken();
     if (accessToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers!.Authorization = `Bearer ${accessToken}`;

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import authApi from '@apis/auth';
 
-import { setTokens } from './cookie';
+import { setTokens } from './cookie/manageCookie.client';
 
 export const getAccessTokenClient = async (refreshToken: string | null): Promise<null | string> => {
   try {

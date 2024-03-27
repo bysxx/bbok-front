@@ -1,5 +1,5 @@
 import type { IExpireToken, ILoginToken } from '@interfaces/auth';
-import { getRefreshToken, setTokens } from '@libs/cookie';
+import { getRefreshToken, setTokens } from '@libs/cookie/manageCookie.client';
 // eslint-disable-next-line import/no-cycle
 import { httpWithoutToken } from '@libs/http.client';
 
@@ -17,7 +17,7 @@ const authApi = {
    */
   refresh: async (): Promise<boolean> => {
     try {
-      const refreshToken = await getRefreshToken();
+      const refreshToken = getRefreshToken();
 
       const res = await httpWithoutToken.get<ResponseDTO<IExpireToken>>(`/jwt/refresh?refreshToken=${refreshToken}`);
       setTokens(res.data.accessToken, res.data.refreshToken);
