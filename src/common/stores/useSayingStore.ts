@@ -1,8 +1,7 @@
 import type { IPostDiaryResponse } from '@interfaces/diary';
+import { LocalStorageKey } from '@libs/local-storage/localStorageKey';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-const StorageKey = 'saying';
 
 interface ISayingStoreState {
   saying: IPostDiaryResponse;
@@ -30,7 +29,7 @@ export const useSayingStore = create(
       setIsOver: (state: boolean) => set({ isOver: state }),
     }),
     {
-      name: StorageKey,
+      name: LocalStorageKey.saying,
     },
   ),
 );

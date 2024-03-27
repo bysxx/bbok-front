@@ -1,7 +1,6 @@
+import { LocalStorageKey } from '@libs/local-storage/localStorageKey';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-const StorageKey = 'home-tooltip';
 
 interface ICheckTooltipStoreState {
   isCheckFriend: boolean;
@@ -23,7 +22,7 @@ export const useCheckTooltipStore = create(
       },
     }),
     {
-      name: StorageKey,
+      name: LocalStorageKey.homeTooltip,
     },
   ),
 );

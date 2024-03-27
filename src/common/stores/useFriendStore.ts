@@ -1,7 +1,6 @@
+import { LocalStorageKey } from '@libs/local-storage/localStorageKey';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-const StorageKey = 'active-friend';
 
 interface IFriendStateContent {
   id: number;
@@ -25,7 +24,7 @@ export const useFriendStore = create(
       },
     }),
     {
-      name: StorageKey,
+      name: LocalStorageKey.activeFriend,
     },
   ),
 );
