@@ -1,26 +1,15 @@
 import ImageLoader from '@components/imageLoader';
 import { getCharacterImg } from '@features/distance/utils/getCharacterImg';
-import useCustomRouter from '@hooks/useCustomRouter';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useSayingStore } from '@stores/useSayingStore';
 import Image from 'next/image';
-import { useEffect } from 'react';
 
 import DistanceProgressBar from './progress-bar';
 
 const DistanceCard = () => {
   const { friend } = useFriendStore();
-  const { push } = useCustomRouter();
-  const { saying, isOver, setIsOver } = useSayingStore();
+  const { saying } = useSayingStore();
 
-  useEffect(() => {
-    if (saying.friendPercentage >= 15) {
-      setIsOver(true);
-    }
-    if (isOver) {
-      push('./distance/isOver');
-    }
-  }, [isOver]);
   return (
     <div className="flex w-full flex-col items-center justify-center rounded-3xl bg-white px-7 pb-8 pt-1">
       <Image

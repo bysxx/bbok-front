@@ -1,10 +1,12 @@
 import { ButtonTopBar } from '@components/top-bar';
 import useBackgroundFadeIn from '@hooks/useBackgroundFadeIn';
 import useCustomRouter from '@hooks/useCustomRouter';
+import { useSayingStore } from '@stores/useSayingStore';
 
 const DistanceIsOverDimmer = () => {
   const { ref } = useBackgroundFadeIn(4);
   const { push } = useCustomRouter();
+  const { setIsOver } = useSayingStore();
   return (
     <div className="flex justify-center">
       <div ref={ref} className="absolute top-0 z-[2000] size-full max-w-md bg-gray-70">
@@ -12,6 +14,7 @@ const DistanceIsOverDimmer = () => {
           label="친구와의 거리"
           onClick={() => {
             push('/');
+            setIsOver('after');
           }}
           name="홈"
           type="secondary"
