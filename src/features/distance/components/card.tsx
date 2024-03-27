@@ -22,7 +22,11 @@ const DistanceCard = () => {
       <DistanceProgressBar percent={saying.friendPercentage} />
 
       <p className="text-title-3 mt-5 text-gray-65">{`${friend.name}님은 나와`}</p>
-      <p className="text-title-2 mt-2 text-orange-1">{`${saying.friendPercentage}m 정도 멀어졌어요`}</p>
+      {saying.friendPercentage === 100 ? (
+        <p className="text-title-2 mt-2 text-orange-1">완전히 멀어졌어요!</p>
+      ) : (
+        <p className="text-title-2 mt-2 text-orange-1">{`${saying.friendPercentage}m 정도 멀어졌어요`}</p>
+      )}
     </div>
   );
 };
