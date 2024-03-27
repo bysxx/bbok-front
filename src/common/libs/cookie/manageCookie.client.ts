@@ -68,6 +68,12 @@ export const setIsVisited = (value: boolean) => {
 };
 
 /**
+ * 최초 방문 여부 값 삭제
+ */
+export const clearIsVisited = () => {
+  deleteCookie(CookieKey.isVisited);
+};
+/**
  * access token, refresh token 값 삭제
  */
 export const clearTokens = () => {
