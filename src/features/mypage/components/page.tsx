@@ -7,8 +7,8 @@ import { MypageTab } from '@interfaces/enums';
 import { clearTokens } from '@libs/cookie/manageCookie.client';
 import { showSuccessToast } from '@libs/showToast';
 
-import { Profile } from '../components';
 import { TAP_LIST } from '../constants';
+import Profile from './profile';
 
 const MyInfoPage = () => {
   const { data } = useGetMyInfo();

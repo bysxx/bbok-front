@@ -1,2 +1,2 @@
-export { default as MypageLayout } from './mypage-layout';
+export { default as MyInfoPage } from './page';
 export { default as Profile } from './profile';
