@@ -7,6 +7,8 @@ const StorageKey = 'saying';
 interface ISayingStoreState {
   saying: IPostDiaryResponse;
   setSaying: (state: IPostDiaryResponse) => void;
+  isOver: boolean;
+  setIsOver: (state: boolean) => void;
 }
 
 export const useSayingStore = create(
@@ -23,6 +25,9 @@ export const useSayingStore = create(
       },
 
       setSaying: (state: IPostDiaryResponse) => set({ saying: state }),
+
+      isOver: false,
+      setIsOver: (state: boolean) => set({ isOver: state }),
     }),
     {
       name: StorageKey,
