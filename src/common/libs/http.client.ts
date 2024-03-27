@@ -4,6 +4,7 @@ import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, Inte
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
 
+import { getRefreshToken } from './cookie';
 // eslint-disable-next-line import/no-cycle
 import { getAccessTokenClient } from './tokenValidator.client';
 
@@ -20,10 +21,10 @@ const api: AxiosInstance = axios.create({
 
 export interface HttpClient extends AxiosInstance {
   get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T>;
-  post<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  put<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  patch<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  delete<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
+  post<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T>;
+  put<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T>;
+  patch<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T>;
+  delete<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T>;
 }
 
 export const http: HttpClient = api;
@@ -62,8 +63,8 @@ const onRejected = async (error: AxiosError) => {
     console.log('토큰 재발급 실행');
     lock = true;
     try {
-      const refreshToken = getCookie('refreshToken');
-      const accesstoken = await getAccessTokenClient(refreshToken!!);
+      const refreshToken = await getRefreshToken();
+      const accesstoken = await getAccessTokenClient(refreshToken);
       if (accesstoken) {
         return await apiWithoutToken
           .request({

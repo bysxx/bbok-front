@@ -12,6 +12,7 @@ const MyPageAccountPage = () => {
   const { back } = useCustomRouter();
   const { isOpen: withdrawIsOpen, onClose: onWithdrawClose, onOpen: onWidthdrawOpen } = useModal();
   const { isOpen: initialIsOpen, onClose: onInitialClose, onOpen: onInitialOpen } = useModal();
+
   return (
     <main>
       <Popup

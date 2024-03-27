@@ -28,7 +28,7 @@ const setItem = <T>(key: CookieKey, items: T) => {
 /**
  * refresh token 값을 가져옴
  */
-export const getRefreshToken = () => {
+export const getRefreshToken = async () => {
   return getItemOrNull<string>(CookieKey.refreshToken);
 };
 
@@ -42,7 +42,7 @@ const setRefreshToken = (refreshToken: string) => {
 /**
  * access token 값을 가져옴
  */
-export const getAccessToken = () => {
+export const getAccessToken = async () => {
   return getItemOrNull<string>(CookieKey.accessToken);
 };
 

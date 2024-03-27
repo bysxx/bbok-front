@@ -1,2 +1,2 @@
 export * from './cookieKey';
-export * from './manageCookie';
+export * from './manageCookie.client';
