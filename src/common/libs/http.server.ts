@@ -40,7 +40,6 @@ const onRejected = async (error: AxiosError) => {
   // const data = error.response?.data;
 
   if (originalConfig && error.response?.status === 401 && !lock) {
-    console.log('토큰 재발급 실행');
     lock = true;
     try {
       const refreshToken = await getRefreshToken();
