@@ -31,7 +31,7 @@ const DistanceProgressBar = ({ percent }: IDistanceProgressBarProps) => {
           <div
             ref={fillRef}
             style={{ width: '0%' }}
-            className={`absolute left-0 top-0 h-full rounded-full bg-orange-1 transition-all${animationDuration}`}
+            className={`absolute left-0 top-0 h-full rounded-full ${percent === 100 ? 'bg-orange-4' : 'bg-orange-1'} bg-orange-1 transition-all${animationDuration}`}
           />
 
           <Tooltip hasArrow label={`${percent.toString()}m`} bg="#FF802D" color="white" isOpen={true} placement="top">

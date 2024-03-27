@@ -7,3 +7,4 @@ export const DISTANCE_GAGE: Record<TDistancePercent, string> = {
   [DistancePercent.Three]: 'illustration/distance-80over.svg',
   [DistancePercent.Four]: 'illustration/distance-90over.svg',
 };
+export type TDistanceImg = (typeof DISTANCE_GAGE)[keyof typeof DISTANCE_GAGE];

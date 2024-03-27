@@ -19,8 +19,8 @@ const FriendProgressBar = ({ percent, type = 'CACTUS' }: IFriendProgressBarProps
 
   useEffect(() => {
     if (fillRef.current && imgRef.current) {
-      fillRef.current.style.width = `${percent}px`;
-      imgRef.current.style.left = `${percent - HEART_WIDTH / 2}px`;
+      fillRef.current.style.width = `${percent}%`;
+      imgRef.current.style.left = `calc(${percent}% - ${HEART_WIDTH / 2}px)`;
     }
   }, [fillRef, imgRef, percent]);
 

@@ -5,7 +5,6 @@ import { LoadingPage } from '@components/ui/pages';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { redirectUri } from '@libs/config';
 import { setIsVisited, setTokens } from '@libs/cookie/manageCookie.client';
-import { useUserStore } from '@stores/useUserStore';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -13,12 +12,10 @@ import { useEffect } from 'react';
 export default function KakaoPage() {
   const { push } = useCustomRouter();
   const searchParams = useSearchParams();
-  const { setUserData } = useUserStore();
 
   useEffect(() => {
     if (searchParams.get('code')) {
       authApi.signIn(searchParams.get('code') as string, redirectUri).then((res) => {
-        setUserData(res.data);
         setTokens(res.data.accessToken, res.data.refreshToken);
         setIsVisited(true);
         if (res.data.newMember) {

@@ -1,2 +1,2 @@
 export { default as DistanceBookmark } from './bookmark';
-export { default as DistanceCard } from './card';
+export { default as DistanceIsOverDimmer } from './dimmer';
