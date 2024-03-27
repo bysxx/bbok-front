@@ -4,14 +4,17 @@ import Popup from '@components/popup';
 import Tab from '@components/tab';
 import { NavTopBar } from '@components/top-bar';
 import { ACCOUNT_TAB_LIST } from '@features/mypage/constants';
+import { useMemberMutation } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/useModal';
 import { AccountTab } from '@interfaces/enums';
+import { showErrorToast } from '@libs/showToast';
 
 const MyPageAccountPage = () => {
   const { back } = useCustomRouter();
   const { isOpen: withdrawIsOpen, onClose: onWithdrawClose, onOpen: onWidthdrawOpen } = useModal();
   const { isOpen: initialIsOpen, onClose: onInitialClose, onOpen: onInitialOpen } = useModal();
+  const { deleteMember } = useMemberMutation();
 
   return (
     <main>
@@ -20,7 +23,8 @@ const MyPageAccountPage = () => {
         onClose={onWithdrawClose}
         label="탈퇴"
         onClick={() => {
-          // TODO: 탈퇴 api 호출
+          deleteMember.mutate();
+          onWithdrawClose();
         }}
         title="정말 뽁을 떠나시겠어요?"
       >
@@ -36,6 +40,8 @@ const MyPageAccountPage = () => {
         label="초기화"
         onClick={() => {
           // TODO: 초기화 api 호출
+          showErrorToast('아직 기능이 준비가 안되었어요');
+          onInitialClose();
         }}
         title="정말 초기화 하시겠어요?"
       >
