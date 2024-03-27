@@ -2,6 +2,7 @@ import friendApi from '@apis/friend/friend.client';
 import { FRIEND_KEYS } from '@constants/queryKeys';
 import useCustomRouter from '@hooks/useCustomRouter';
 import type { ResponseErrorApi } from '@interfaces/common';
+import { clearDeleteFriend } from '@libs/local-storage/localStorage';
 import { showErrorToast, showSuccessToast } from '@libs/showToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
@@ -49,6 +50,7 @@ export const useFriendMutation = () => {
       queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
       push('/');
       showSuccessToast('관계 정리가 완료됐어요. 새일기장을 추가해보세요.');
+      clearDeleteFriend();
     },
   });
 
