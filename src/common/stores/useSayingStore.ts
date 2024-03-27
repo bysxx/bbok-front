@@ -6,8 +6,8 @@ import { persist } from 'zustand/middleware';
 interface ISayingStoreState {
   saying: IPostDiaryResponse;
   setSaying: (state: IPostDiaryResponse) => void;
-  isOver: boolean;
-  setIsOver: (state: boolean) => void;
+  isOver: 'before' | 'ing' | 'after';
+  setIsOver: (state: 'before' | 'ing' | 'after') => void;
 }
 
 export const useSayingStore = create(
@@ -25,8 +25,8 @@ export const useSayingStore = create(
 
       setSaying: (state: IPostDiaryResponse) => set({ saying: state }),
 
-      isOver: false,
-      setIsOver: (state: boolean) => set({ isOver: state }),
+      isOver: 'before',
+      setIsOver: (state: 'before' | 'ing' | 'after') => set({ isOver: state }),
     }),
     {
       name: LocalStorageKey.saying,
