@@ -1,9 +1,8 @@
 import { baseUrl } from '@libs/config';
-// eslint-disable-next-line import/no-cycle
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import { getCookie } from 'cookies-next';
 
+import { getAccessToken, getRefreshToken } from './cookie/manageCookie.client';
 // eslint-disable-next-line import/no-cycle
 import { getAccessTokenClient } from './tokenValidator.client';
 
@@ -20,10 +19,10 @@ const api: AxiosInstance = axios.create({
 
 export interface HttpClient extends AxiosInstance {
   get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T>;
-  post<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  put<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  patch<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  delete<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
+  post<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T>;
+  put<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T>;
+  patch<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T>;
+  delete<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T>;
 }
 
 export const http: HttpClient = api;
@@ -34,8 +33,8 @@ httpWithoutToken.interceptors.response.use((res: AxiosResponse) => {
 });
 
 http.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const accessToken = getCookie('accessToken');
+  async (config: InternalAxiosRequestConfig) => {
+    const accessToken = await getAccessToken();
     if (accessToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers!.Authorization = `Bearer ${accessToken}`;
@@ -59,11 +58,10 @@ const onRejected = async (error: AxiosError) => {
   // const data = error.response?.data;
 
   if (originalConfig && error.response?.status === 401 && !lock) {
-    console.log('토큰 재발급 실행');
     lock = true;
     try {
-      const refreshToken = getCookie('refreshToken');
-      const accesstoken = await getAccessTokenClient(refreshToken!!);
+      const refreshToken = await getRefreshToken();
+      const accesstoken = await getAccessTokenClient(refreshToken);
       if (accesstoken) {
         return await apiWithoutToken
           .request({

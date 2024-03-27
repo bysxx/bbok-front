@@ -1,7 +1,7 @@
 import memberServerApi from '@apis/member/member.server';
 import { PrefetchHydration } from '@components/react-query';
 import { MEMBER_KEYS } from '@constants/queryKeys';
-import { MyInfoPage } from '@features/mypage/pages';
+import { MyInfoPage } from '@features/mypage/components';
 
 export default function MyPage() {
   return (

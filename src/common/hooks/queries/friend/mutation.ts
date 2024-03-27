@@ -1,10 +1,10 @@
+import friendApi from '@apis/friend/friend.client';
 import { FRIEND_KEYS } from '@constants/queryKeys';
 import useCustomRouter from '@hooks/useCustomRouter';
+import type { ResponseErrorApi } from '@interfaces/common';
 import { showErrorToast, showSuccessToast } from '@libs/showToast';
-import { ResponseErrorApi } from '@interfaces/common';
-import friendApi from '@apis/friend/friend.client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
 
 export const useFriendMutation = () => {
   const queryClient = useQueryClient();

@@ -1,14 +1,13 @@
 import authApi from '@apis/auth';
-import { cookies } from 'next/headers';
 
-export const getAccessTokenServer = async (refreshToken: string): Promise<null | string> => {
+import { setTokens } from './cookie/manageCookie.server';
+
+export const getAccessTokenServer = async (refreshToken: string | unknown): Promise<null | string> => {
   try {
     if (refreshToken) {
       // token refresh 로직 처리
-      const data = await authApi.reissue(refreshToken);
-      const cookieStore = cookies();
-      cookieStore.set('accessToken', data.data.accessToken);
-      cookieStore.set('refreshToken', data.data.refreshToken);
+      const data = await authApi.reissue(refreshToken as string);
+      setTokens(data.data.accessToken, data.data.refreshToken);
 
       return data.data.accessToken;
     }
