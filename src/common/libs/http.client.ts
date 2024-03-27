@@ -33,8 +33,8 @@ httpWithoutToken.interceptors.response.use((res: AxiosResponse) => {
 });
 
 http.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const accessToken = getAccessToken();
+  async (config: InternalAxiosRequestConfig) => {
+    const accessToken = await getAccessToken();
     if (accessToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers!.Authorization = `Bearer ${accessToken}`;
