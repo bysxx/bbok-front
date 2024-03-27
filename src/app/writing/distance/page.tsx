@@ -1,7 +1,8 @@
 'use client';
 
 import { ButtonTopBar } from '@components/top-bar';
-import { DistanceBookmark, DistanceCard } from '@features/distance/components';
+import { DistanceBookmark } from '@features/distance/components';
+import DistanceCard from '@features/distance/components/card';
 import useCustomRouter from '@hooks/useCustomRouter';
 
 const DiaryDistancePage = () => {
