@@ -11,6 +11,7 @@ function ReactQueryProvider({ children }: PropsWithChildren) {
       queries: {
         staleTime: Infinity,
         gcTime: Infinity,
+        retry: 0,
       },
     },
   });
