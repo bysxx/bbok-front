@@ -35,12 +35,22 @@ export const middleware = (request: NextRequest) => {
    */
   if (request.nextUrl.pathname.startsWith('/writing')) {
     const [, , tab, step] = request.nextUrl.pathname.split('/');
-    if (step) return NextResponse.redirect(new URL(`/writing/${tab}`, request.nextUrl));
+    if (step || !tab) return NextResponse.redirect(new URL(`/writing/${tab || 'emoji'}`, request.nextUrl));
   }
 
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ['/', '/checklist', '/criteria', '/diarylist', '/writing/:path+', '/diarylist/:path+', '/friend', '/mypage'],
+  matcher: [
+    '/',
+    '/checklist',
+    '/checklist/:path+',
+    '/diarylist',
+    '/writing',
+    '/writing/:path+',
+    '/diarylist/:path+',
+    '/friend',
+    '/mypage',
+  ],
 };
