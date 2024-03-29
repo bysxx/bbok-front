@@ -17,15 +17,15 @@ import {
 import { useChecklistMutation } from '@hooks/queries/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useTabs } from '@hooks/useTabs';
-import { IMyCheckListResponse } from '@interfaces/checklist';
+import type { IMyCheckListResponse } from '@interfaces/checklist';
 import type { TQuery } from '@interfaces/enums';
 import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
+import ChecklistCount from '../count';
 import ChecklistTab from './tab';
 import ChecklistTitle from './title';
-import ChecklistCount from '../count';
 
 const ChecklistCreatePage = () => {
   const { push } = useCustomRouter();

@@ -8,8 +8,9 @@ import { getDiaryChecklist } from '@features/diary/utils/get-diary-checklist';
 import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useTabs } from '@hooks/useTabs';
-import { ICheckItem } from '@interfaces/checklist';
-import { TQuery, TypeQuery } from '@interfaces/enums';
+import type { ICheckItem } from '@interfaces/checklist';
+import type { TQuery } from '@interfaces/enums';
+import { TypeQuery } from '@interfaces/enums';
 import { useEffect, useState } from 'react';
 
 interface IDiaryDetailCriteriaProp {
@@ -30,10 +31,10 @@ const DiaryDetailCriteriaPage = ({ params: { id } }: IDiaryDetailCriteriaProp) =
   const handleModifyCriteria = () => {
     const body = {
       sticker: '',
-      emoji: data?.data.emoji!,
-      date: data?.data.date!,
-      content: data?.data.content!,
-      tags: data?.data.tags!,
+      emoji: data?.data.emoji || 'ANGRY',
+      date: data?.data.date || '',
+      content: data?.data.content || '',
+      tags: data?.data.tags || [],
       checklist: getDiaryChecklist(badChecklist, goodChecklist),
     };
     patchDiary.mutate({ ...body, id });
