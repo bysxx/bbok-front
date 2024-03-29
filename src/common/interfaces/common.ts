@@ -22,7 +22,8 @@ type TErrorCode =
   | 'S001'
   | 'I001'
   | 'E001'
-  | 'E004';
+  | 'E004'
+  | 'F002';
 
 export interface ResponseErrorApi {
   code: TErrorCode;
