@@ -1,3 +1,4 @@
+export { default as ChecklistForm } from './checklist-form';
 export { default as WritingDateForm } from './date-form';
 export { default as WritingEmojiForm } from './emoji-form';
 export { default as WritingFriendForm } from './friend-form';

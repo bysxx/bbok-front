@@ -11,7 +11,7 @@ import { AccountTab } from '@interfaces/enums';
 import { showErrorToast } from '@libs/showToast';
 
 const MyPageAccountPage = () => {
-  const { back } = useCustomRouter();
+  const { push } = useCustomRouter();
   const { isOpen: withdrawIsOpen, onClose: onWithdrawClose, onOpen: onWidthdrawOpen } = useModal();
   const { isOpen: initialIsOpen, onClose: onInitialClose, onOpen: onInitialOpen } = useModal();
   const { deleteMember } = useMemberMutation();
@@ -51,7 +51,7 @@ const MyPageAccountPage = () => {
           작성한 일화들은 복구가 불가능해요.
         </p>
       </Popup>
-      <NavTopBar onClick={back} label="내 계정" className="mb-[10px]" />
+      <NavTopBar onClick={() => push('./')} label="내 계정" className="mb-[10px]" />
       {ACCOUNT_TAB_LIST.map((tab, i) => (
         <Tab
           key={tab.value}

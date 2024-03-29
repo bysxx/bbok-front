@@ -11,10 +11,11 @@ import {
   WritingTextForm,
 } from '@features/diary/components/writing';
 import WritingDateForm from '@features/diary/components/writing/date-form';
+import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/useModal';
-import { IDiaryRequestBody } from '@interfaces/diary';
+import type { IDiaryRequestBody } from '@interfaces/diary';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -58,7 +59,7 @@ const WritingDiaryPage = () => {
 
         <BoxButton
           text="완료"
-          disabled={!tags || content.length === 0 || !date || !emoji}
+          disabled={CheckNotNextPage({ tags, content, date, emoji })}
           isLoading={isLoading}
           onClick={() => {
             if (check) {

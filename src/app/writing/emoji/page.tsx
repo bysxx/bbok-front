@@ -5,9 +5,8 @@ import { CancelTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
 import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { IDiaryRequestBody } from '@interfaces/diary';
-import { TEmoji } from '@interfaces/enums';
-
+import type { IDiaryRequestBody } from '@interfaces/diary';
+import type { TEmoji } from '@interfaces/enums';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -50,6 +49,7 @@ const WritingEmojiPage = () => {
               height={56}
               loader={ImageLoader}
               src={
+                // eslint-disable-next-line no-nested-ternary
                 !selectEmoji
                   ? DIARY_EMOJI[emoji].select
                   : selectEmoji === emoji
