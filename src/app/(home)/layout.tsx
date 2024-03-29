@@ -2,7 +2,7 @@
 
 import Footer from '@components/ui/footer';
 import { TooltipFooter } from '@features/friend/component/home';
-import { useCheckTooltipStore } from '@stores/useCheckTooltipStore';
+import { useCheckVisitedStore } from '@stores/useCheckVisitedStore';
 import { Inter } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
 import React from 'react';
@@ -10,7 +10,7 @@ import React from 'react';
 const inter = Inter({ subsets: ['latin'] });
 
 const HomeLayout = ({ children }: PropsWithChildren) => {
-  const { isCheckDiary } = useCheckTooltipStore();
+  const { isCheckDiary } = useCheckVisitedStore();
   return (
     <main className={`${inter.className} flex size-full flex-col bg-yellow`}>
       <div className="flex flex-1 flex-col">{children}</div>

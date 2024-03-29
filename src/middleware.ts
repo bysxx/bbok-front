@@ -52,7 +52,7 @@ export const middleware = (request: NextRequest) => {
    */
   if (request.nextUrl.pathname.startsWith('/friend')) {
     const [, , tab, step] = request.nextUrl.pathname.split('/');
-    if (step || !tab) return NextResponse.redirect(new URL(`/friend/${tab || 'modify'}`, request.nextUrl));
+    if (step || !tab) return NextResponse.redirect(new URL(`/friend/${tab || 'create'}`, request.nextUrl));
   }
 
   /**

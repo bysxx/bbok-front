@@ -5,7 +5,7 @@ import { LocalStorageKey } from './localStorageKey';
  */
 export const clearLocalStorage = () => {
   localStorage.removeItem(LocalStorageKey.activeFriend);
-  localStorage.removeItem(LocalStorageKey.homeTooltip);
+  localStorage.removeItem(LocalStorageKey.checkVisited);
   localStorage.removeItem(LocalStorageKey.saying);
 };
 

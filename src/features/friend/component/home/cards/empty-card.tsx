@@ -1,11 +1,11 @@
 import { RoundButton } from '@components/buttons';
 import TooltipPortal from '@components/tooltip-portal';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { useCheckTooltipStore } from '@stores/useCheckTooltipStore';
+import { useCheckVisitedStore } from '@stores/useCheckVisitedStore';
 
 const EmptyFriendCard = () => {
   const { push } = useCustomRouter();
-  const { isCheckFriend, setIsCheckFriend, setIsCheckDiary } = useCheckTooltipStore();
+  const { isCheckFriend, setIsCheckFriend, setIsCheckDiary } = useCheckVisitedStore();
 
   const onCloseTooltip = () => {
     setIsCheckFriend(true);

@@ -1,5 +1,5 @@
 export const enum LocalStorageKey {
-  'homeTooltip' = 'homeTooltip',
+  'checkVisited' = 'checkVisited',
   'activeFriend' = 'activeFriend',
   'saying' = 'saying',
 }

@@ -1,11 +1,9 @@
 import friendApi from '@apis/friend/friend.client';
 import { FRIEND_KEYS } from '@constants/queryKeys';
 import useCustomRouter from '@hooks/useCustomRouter';
-import type { ResponseErrorApi } from '@interfaces/common';
 import { clearDeleteFriend } from '@libs/local-storage/localStorage';
-import { showErrorToast, showSuccessToast } from '@libs/showToast';
+import { showSuccessToast } from '@libs/showToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
 
 export const useFriendMutation = () => {
   const queryClient = useQueryClient();
@@ -19,14 +17,6 @@ export const useFriendMutation = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: FRIEND_KEYS.lists() });
       push('/');
-    },
-    onError: (err) => {
-      const errorResponse = (err as AxiosError).response;
-      push('/');
-      if (errorResponse?.data) {
-        const error = errorResponse.data as ResponseErrorApi;
-        showErrorToast(error.message);
-      }
     },
   });
 

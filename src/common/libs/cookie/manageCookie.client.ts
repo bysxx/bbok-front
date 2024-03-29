@@ -19,7 +19,9 @@ const getItemOrNull = async <T>(key: CookieKey): Promise<T | null> => {
  */
 const setItem = <T>(key: CookieKey, items: T) => {
   try {
-    setCookie(key, items);
+    const date = new Date();
+    date.setMonth(date.getMonth() + 1);
+    setCookie(key, items, { expires: date });
   } catch (error) {
     // TODO: log 파일에 저장
   }
