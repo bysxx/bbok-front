@@ -24,7 +24,13 @@ const DiaryWritingLayout = ({ children }: PropsWithChildren) => {
         onClose={onClose}
         label="삭제"
         onClick={() => {
-          push('/diarylist');
+          if (route === 'Home') {
+            push('/');
+          } else if (route === 'Mypage') {
+            push('/mypage');
+          } else {
+            push('diarylist');
+          }
         }}
         title="정말 작성을 취소하시겠어요?"
       >

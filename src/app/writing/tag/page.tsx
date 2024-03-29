@@ -7,7 +7,7 @@ import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useInput from '@hooks/useInput';
-import { IDiaryRequestBody } from '@interfaces/diary';
+import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
