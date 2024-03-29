@@ -6,10 +6,10 @@ import { PortalConsumer } from '@components/global-portal';
 import FooterSection from '@components/ui/footer/section';
 import { BOTTOM_TAP_ARRAY } from '@constants/tab';
 import type { TBottomTab } from '@interfaces/enums';
-import { useCheckTooltipStore } from '@stores/useCheckTooltipStore';
+import { useCheckVisitedStore } from '@stores/useCheckVisitedStore';
 
 const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
-  const { isCheckDiary, setIsCheckDiary } = useCheckTooltipStore();
+  const { isCheckDiary, setIsCheckDiary } = useCheckVisitedStore();
   return (
     <PortalConsumer>
       <Dimmer isShow={!isCheckDiary} onClose={() => setIsCheckDiary(true)} />

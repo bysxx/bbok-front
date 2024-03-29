@@ -1,4 +1,7 @@
+'use client';
+
 import BoxButton from '@components/buttons/box-button';
+import { setIsVisited } from '@libs/cookie/manageCookie.client';
 import Link from 'next/link';
 
 import LandingSection from './section';
@@ -29,7 +32,7 @@ export default function LandingPage() {
       </div>
 
       <Link href="/login" className="absolute bottom-6 w-[calc(100%-48px)]">
-        <BoxButton text="일기쓰러 가기" typo="title4" size="large" bg="orange4" />
+        <BoxButton text="일기쓰러 가기" typo="title4" size="large" bg="orange4" onClick={() => setIsVisited(true)} />
       </Link>
     </main>
   );
