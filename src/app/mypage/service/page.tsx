@@ -7,10 +7,10 @@ import { copyClipboard } from '@libs/copyClipboard';
 import Image from 'next/image';
 
 const MyPageServicePage = () => {
-  const { back } = useCustomRouter();
+  const { push } = useCustomRouter();
   return (
     <div className="size-full">
-      <NavTopBar label="서비스 문의" onClick={back} />
+      <NavTopBar label="서비스 문의" onClick={() => push('./')} />
       <div className="flex h-[calc(100%-134px)] flex-col items-center justify-center">
         <Image loader={ImageLoader} src={'illustration/letter.svg'} width={148} height={122} alt="" />
         <h1 className="text-body-2 mt-3 text-gray-60">서비스 문의는 아래 이메일로 보내주세요</h1>
