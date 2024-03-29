@@ -14,7 +14,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   /**
-   * /diarylist/[id] id 값이 문자열 인 경우 /diarylist 로 redirect
+   * /diarylist/[id] id 값이 문자열이 포함된 경우 /diarylist 로 redirect
    */
   if (request.nextUrl.pathname.startsWith('/diarylist')) {
     const [, , id] = request.nextUrl.pathname.split('/');
@@ -31,11 +31,25 @@ export const middleware = (request: NextRequest) => {
   }
 
   /**
-   * /writing/tag/.... -> /writing/tag
+   * writing url param이 더 추가되면 /writing/${tab} 로 route
+   * /writing 존재하지 않은 페이지 -> /writing/emoji (defualt)
    */
   if (request.nextUrl.pathname.startsWith('/writing')) {
     const [, , tab, step] = request.nextUrl.pathname.split('/');
     if (step || !tab) return NextResponse.redirect(new URL(`/writing/${tab || 'emoji'}`, request.nextUrl));
+  }
+
+  /**
+   * checklist url param 이 더 추가되면 /checklist/${tab} 으로 route
+   * /checklist 존재하지 않은 페이지 -> /checklist/detail (defualt)
+   */
+  if (request.nextUrl.pathname.startsWith('/checklist')) {
+    const [, , tab, step, param] = request.nextUrl.pathname.split('/');
+    if (!tab) return NextResponse.redirect(new URL(`/checklist/${tab || 'detail'}`, request.nextUrl));
+    if ((tab === 'create' || tab === 'detail') && step)
+      return NextResponse.redirect(new URL(`/checklist/${tab}`, request.nextUrl));
+    if (param) return NextResponse.redirect(new URL(`/checklist/${tab}/${step}`, request.nextUrl));
+    if (tab === 'modify' && !step) return NextResponse.redirect(new URL(`/checklist/${tab}/good`, request.nextUrl));
   }
 
   return NextResponse.next();

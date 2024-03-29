@@ -1,9 +1,8 @@
 import ImageLoader from '@components/imageLoader';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { IUserChecklistItem } from '@interfaces/checklist';
-import { TQuery } from '@interfaces/enums';
-
+import type { IUserChecklistItem } from '@interfaces/checklist';
+import type { TQuery } from '@interfaces/enums';
 import Image from 'next/image';
 import { useMemo } from 'react';
 
@@ -33,7 +32,7 @@ const FriendCriteriaCard = ({ type, list }: CriteriaProps) => {
       </div>
 
       <span
-        className="cursor-pointer text-body-4 text-gray-40"
+        className="text-body-4 cursor-pointer text-gray-40"
         onClick={() => {
           push(`./modify/${type}`);
         }}
