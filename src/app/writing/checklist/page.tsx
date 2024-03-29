@@ -6,6 +6,7 @@ import { NavTopBar } from '@components/top-bar';
 import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
 import { LoadingPage } from '@components/ui/pages';
 import { CHECKLIST_TABS, TYPE_CHECLIST_COMMENT } from '@features/diary/constants';
+import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { getInitialDiaryList, updateDiaryChecklist } from '@features/diary/utils/get-diary-checklist';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import { useGetMyChecklist } from '@hooks/queries/member';
@@ -21,7 +22,7 @@ import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 const WritingChecklistPage = () => {
-  const { back } = useCustomRouter();
+  const { back, replace } = useCustomRouter();
   const [checklists, setChecklists] = useState<IDiaryCheckListItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const { currentItem, changeItem } = useTabs<TQuery>(0, CHECKLIST_TABS);
@@ -30,6 +31,12 @@ const WritingChecklistPage = () => {
   const { postDiary } = useDiaryMutation();
   const { register, getValues, setValue } = useFormContext<IDiaryRequestBody>();
   const { tags, content, date, emoji } = getValues();
+
+  useEffect(() => {
+    if (CheckNotNextPage({ tags, content, date, emoji })) {
+      replace('/writing/diary');
+    }
+  }, []);
 
   // TODO: 체크리스트 api 변경 후 연결
   const { data, isSuccess, isLoading } = useGetMyChecklist();
