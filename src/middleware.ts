@@ -47,6 +47,14 @@ export const middleware = (request: NextRequest) => {
     if (tab === 'modify' && !step) return NextResponse.redirect(new URL(`/checklist/${tab}/good`, request.nextUrl));
   }
 
+  /**
+   * friend url param이 더 추가되면 /friend/modify 로 route
+   */
+  if (request.nextUrl.pathname.startsWith('/friend')) {
+    const [, , tab, step] = request.nextUrl.pathname.split('/');
+    if (step || !tab) return NextResponse.redirect(new URL(`/friend/${tab || 'modify'}`, request.nextUrl));
+  }
+
   return NextResponse.next();
 };
 
@@ -60,6 +68,7 @@ export const config = {
     '/writing/:path+',
     '/diarylist/:path+',
     '/friend',
+    '/friend/:path+',
     '/mypage',
   ],
 };
