@@ -30,9 +30,17 @@ export const middleware = (request: NextRequest) => {
     if (step) return NextResponse.redirect(new URL(`/diarylist`, request.nextUrl));
   }
 
+  /**
+   * /writing/tag/.... -> /writing/tag
+   */
+  if (request.nextUrl.pathname.startsWith('/writing')) {
+    const [, , tab, step] = request.nextUrl.pathname.split('/');
+    if (step) return NextResponse.redirect(new URL(`/writing/${tab}`, request.nextUrl));
+  }
+
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ['/', '/checklist', '/criteria', '/diarylist', '/diarylist/:path+', '/friend', '/mypage'],
+  matcher: ['/', '/checklist', '/criteria', '/diarylist', '/writing/:path+', '/diarylist/:path+', '/friend', '/mypage'],
 };
