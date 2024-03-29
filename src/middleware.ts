@@ -55,6 +55,14 @@ export const middleware = (request: NextRequest) => {
     if (step || !tab) return NextResponse.redirect(new URL(`/friend/${tab || 'modify'}`, request.nextUrl));
   }
 
+  /**
+   * mypage url param이 더 추가되면 /mypage/account 로 route
+   */
+  if (request.nextUrl.pathname.startsWith('/mypage')) {
+    const [, , tab, step] = request.nextUrl.pathname.split('/');
+    if (step) return NextResponse.redirect(new URL(`/mypage/${tab}`, request.nextUrl));
+  }
+
   return NextResponse.next();
 };
 
@@ -70,5 +78,6 @@ export const config = {
     '/friend',
     '/friend/:path+',
     '/mypage',
+    '/mypage/:path+',
   ],
 };
