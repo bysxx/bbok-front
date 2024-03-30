@@ -36,7 +36,7 @@ const TooltipContent = forwardRef<HTMLDivElement, ITooltipContentProps>(
         style={style}
       >
         <div className="rounded-lg bg-orange-1 px-7 py-[18px]">
-          <h5 className="text-sm font-medium text-white">{label}</h5>
+          <h5 className="whitespace-nowrap text-sm font-medium text-white">{label}</h5>
           {/* 툴팁 안 취소 아이콘 */}
           {icon && (
             <Image

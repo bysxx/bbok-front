@@ -1,5 +1,5 @@
 import { RoundButton } from '@components/buttons';
-import Tooltip from '@components/tooltip';
+import TooltipDimmer from '@components/tooltip/tooltip-dimmer';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useCheckVisitedStore } from '@stores/useCheckVisitedStore';
 
@@ -26,11 +26,10 @@ const EmptyFriendCard = () => {
       </div>
 
       <div className={`absolute top-[355px] ${!isCheckFriend ? 'z-[200]' : ''}`}>
-        <Tooltip
+        <TooltipDimmer
           label="먼저 친구를 생성해보세요"
           position="top-center"
           gab={10}
-          dimmer={!isCheckFriend}
           isShow={!isCheckFriend}
           onClose={onCloseTooltip}
           icon={true}
@@ -46,7 +45,7 @@ const EmptyFriendCard = () => {
             }}
             label="친구 생성"
           />
-        </Tooltip>
+        </TooltipDimmer>
       </div>
     </div>
   );

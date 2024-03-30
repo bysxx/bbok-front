@@ -1,7 +1,7 @@
 'use client';
 
 import { PortalConsumer } from '@components/global-portal';
-import Tooltip from '@components/tooltip';
+import TooltipDimmer from '@components/tooltip/tooltip-dimmer';
 import FooterSection from '@components/ui/footer/section';
 import { BOTTOM_TAP_ARRAY } from '@constants/tab';
 import type { TBottomTab } from '@interfaces/enums';
@@ -18,12 +18,11 @@ const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
             {(() => {
               if (!isCheckDiary && item === 'Diary') {
                 return (
-                  <Tooltip
+                  <TooltipDimmer
                     key={item}
                     label="친구와의 일화를 써보세요"
                     position="top-center"
                     gab={10}
-                    dimmer={!isCheckDiary && item === 'Diary'}
                     isShow={!isCheckDiary && item === 'Diary'}
                     onClose={() => setIsCheckDiary(true)}
                     icon={true}
@@ -37,7 +36,7 @@ const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
                         onClick={() => {}}
                       />
                     </PortalConsumer>
-                  </Tooltip>
+                  </TooltipDimmer>
                 );
               }
 
