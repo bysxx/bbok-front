@@ -20,14 +20,27 @@ interface ITooltipProps extends HTMLAttributes<HTMLDivElement> {
 const Tooltip = ({ position, label, children, gab, isShow, onClose, dimmer = false }: ITooltipProps) => {
   const childrenRef = useRef<HTMLDivElement>(null);
   const [childrenRect, setChildrenRect] = useState<DOMRect>();
-
-  const tooltipPlacement = getTooltipPosition(position, gab ?? 0, childrenRect);
+  const [tooltipPlacement, setTooltipPlacement] = useState<React.CSSProperties | null>(null);
 
   useEffect(() => {
-    const childrenElement = childrenRef.current;
-    if (!childrenElement) return;
-    setChildrenRect(childrenElement.getBoundingClientRect());
+    const handleResize = () => {
+      const childrenElement = childrenRef.current;
+      if (!childrenElement) return;
+      setChildrenRect(childrenElement.getBoundingClientRect());
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  useEffect(() => {
+    if (childrenRect) {
+      setTooltipPlacement(getTooltipPosition(position, gab ?? 0, childrenRect)!);
+    }
+  }, [position, gab, childrenRect]);
+
   return (
     <>
       <PortalConsumer>{dimmer && isShow && <Dimmer isShow={isShow} onClose={onClose!} />}</PortalConsumer>
