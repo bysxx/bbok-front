@@ -26,6 +26,7 @@ const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
                     dimmer={!isCheckDiary && item === 'Diary'}
                     isShow={!isCheckDiary && item === 'Diary'}
                     onClose={() => setIsCheckDiary(true)}
+                    icon={true}
                   >
                     <PortalConsumer>
                       <FooterSection

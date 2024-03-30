@@ -9,6 +9,8 @@ interface ITooltipContentProps {
   label: string;
   type: TooltipType;
   style: object;
+  icon: boolean;
+  onClose: () => void;
 }
 
 const TooltipContentStyle: Record<TooltipType, { wrapper: string; arrow: string }> = {
@@ -26,7 +28,7 @@ const TooltipContentStyle: Record<TooltipType, { wrapper: string; arrow: string 
   },
 };
 const TooltipContent = forwardRef<HTMLDivElement, ITooltipContentProps>(
-  ({ label, type, style }: ITooltipContentProps, ref) => {
+  ({ label, type, style, icon, onClose }: ITooltipContentProps, ref) => {
     return (
       <div
         ref={ref}
@@ -35,7 +37,20 @@ const TooltipContent = forwardRef<HTMLDivElement, ITooltipContentProps>(
       >
         <div className="rounded-lg bg-orange-1 px-7 py-[18px]">
           <h5 className="text-sm font-medium text-white">{label}</h5>
+          {/* 툴팁 안 취소 아이콘 */}
+          {icon && (
+            <Image
+              className="absolute right-2 top-2 cursor-pointer"
+              loader={ImageLoader}
+              src={'icon/ui/close.white.svg'}
+              width={16}
+              height={16}
+              onClick={onClose}
+              alt=""
+            />
+          )}
         </div>
+        {/* 툴팁 화살표 아이콘 */}
         <Image
           loader={ImageLoader}
           src={'icon/ui/tooltip-arrow.svg'}

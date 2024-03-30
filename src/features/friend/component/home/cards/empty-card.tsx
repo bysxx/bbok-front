@@ -33,6 +33,7 @@ const EmptyFriendCard = () => {
           dimmer={!isCheckFriend}
           isShow={!isCheckFriend}
           onClose={onCloseTooltip}
+          icon={true}
         >
           <RoundButton
             type="secondary"

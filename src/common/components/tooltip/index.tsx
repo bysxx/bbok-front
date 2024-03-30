@@ -12,12 +12,23 @@ interface ITooltipProps extends HTMLAttributes<HTMLDivElement> {
   label: string;
   gab?: number;
 
+  /**
+   * 툴팁 밖 dimmer 유무
+   */
   dimmer?: boolean;
+  /**
+   * 툴팁 보이는 상태 값
+   */
   isShow: boolean;
   onClose?: () => void;
+
+  /**
+   * 툴팁 안 close icon 유무
+   */
+  icon?: boolean;
 }
 
-const Tooltip = ({ position, label, children, gab, isShow, onClose, dimmer = false }: ITooltipProps) => {
+const Tooltip = ({ position, label, children, gab, isShow, onClose, dimmer = false, icon = false }: ITooltipProps) => {
   const childrenRef = useRef<HTMLDivElement>(null);
   const [childrenRect, setChildrenRect] = useState<DOMRect>();
   const [tooltipPlacement, setTooltipPlacement] = useState<React.CSSProperties | null>(null);
@@ -46,7 +57,9 @@ const Tooltip = ({ position, label, children, gab, isShow, onClose, dimmer = fal
       <PortalConsumer>{dimmer && isShow && <Dimmer isShow={isShow} onClose={onClose!} />}</PortalConsumer>
       <div ref={childrenRef}>{children}</div>
       <PortalConsumer>
-        {tooltipPlacement && isShow && <TooltipContent type={position} label={label} style={tooltipPlacement} />}
+        {tooltipPlacement && isShow && (
+          <TooltipContent type={position} label={label} style={tooltipPlacement} icon={icon} onClose={onClose!} />
+        )}
       </PortalConsumer>
     </>
   );
