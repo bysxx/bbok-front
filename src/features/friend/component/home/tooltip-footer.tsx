@@ -6,6 +6,7 @@ import FooterSection from '@components/ui/footer/section';
 import { BOTTOM_TAP_ARRAY } from '@constants/tab';
 import type { TBottomTab } from '@interfaces/enums';
 import { useCheckVisitedStore } from '@stores/useCheckVisitedStore';
+import { Fragment } from 'react';
 
 const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
   const { isCheckDiary, setIsCheckDiary } = useCheckVisitedStore();
@@ -13,7 +14,7 @@ const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
     <section className="flex justify-center">
       <footer className="absolute bottom-0 grid w-full max-w-md grid-cols-3 border-t border-t-gray-15 bg-[#fbfbfb] text-center text-gray-20">
         {BOTTOM_TAP_ARRAY.map((item) => (
-          <>
+          <Fragment key={item}>
             {(() => {
               if (!isCheckDiary && item === 'Diary') {
                 return (
@@ -43,7 +44,7 @@ const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
                 <FooterSection key={item} item={item} focus={item === focusTab} type="tooltip" onClick={() => {}} />
               );
             })()}
-          </>
+          </Fragment>
         ))}
       </footer>
     </section>
