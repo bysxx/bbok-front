@@ -1,8 +1,7 @@
 'use client';
 
-import { Tooltip } from '@chakra-ui/react';
-import Dimmer from '@components/dimmer';
 import { PortalConsumer } from '@components/global-portal';
+import Tooltip from '@components/tooltip';
 import FooterSection from '@components/ui/footer/section';
 import { BOTTOM_TAP_ARRAY } from '@constants/tab';
 import type { TBottomTab } from '@interfaces/enums';
@@ -11,29 +10,43 @@ import { useCheckVisitedStore } from '@stores/useCheckVisitedStore';
 const TooltipFooter = ({ focusTab }: { focusTab: TBottomTab }) => {
   const { isCheckDiary, setIsCheckDiary } = useCheckVisitedStore();
   return (
-    <PortalConsumer>
-      <Dimmer isShow={!isCheckDiary} onClose={() => setIsCheckDiary(true)} />
-      <section className="flex justify-center">
-        <footer className="absolute bottom-0 grid w-full max-w-md grid-cols-3 border-t border-t-gray-15 bg-[#fbfbfb] text-center text-gray-20">
-          {BOTTOM_TAP_ARRAY.map((item) => (
-            <Tooltip
-              key={item}
-              hasArrow
-              label={'친구와의 일화를 써보세요'}
-              bg="#FF802D"
-              color="white"
-              isOpen={!isCheckDiary && item === 'Diary'}
-              placement="top"
-              paddingY={3}
-              paddingX={6}
-              borderRadius={8}
-            >
-              <FooterSection key={item} item={item} focus={item === focusTab} type="tooltip" onClick={() => {}} />
-            </Tooltip>
-          ))}
-        </footer>
-      </section>
-    </PortalConsumer>
+    <section className="flex justify-center">
+      <footer className="absolute bottom-0 grid w-full max-w-md grid-cols-3 border-t border-t-gray-15 bg-[#fbfbfb] text-center text-gray-20">
+        {BOTTOM_TAP_ARRAY.map((item) => (
+          <>
+            {(() => {
+              if (!isCheckDiary && item === 'Diary') {
+                return (
+                  <Tooltip
+                    key={item}
+                    label="친구와의 일화를 써보세요"
+                    position="top-center"
+                    gab={10}
+                    dimmer={!isCheckDiary && item === 'Diary'}
+                    isShow={!isCheckDiary && item === 'Diary'}
+                    onClose={() => setIsCheckDiary(true)}
+                  >
+                    <PortalConsumer>
+                      <FooterSection
+                        key={item}
+                        item={item}
+                        focus={item === focusTab}
+                        type="tooltip"
+                        onClick={() => {}}
+                      />
+                    </PortalConsumer>
+                  </Tooltip>
+                );
+              }
+
+              return (
+                <FooterSection key={item} item={item} focus={item === focusTab} type="tooltip" onClick={() => {}} />
+              );
+            })()}
+          </>
+        ))}
+      </footer>
+    </section>
   );
 };
 export default TooltipFooter;

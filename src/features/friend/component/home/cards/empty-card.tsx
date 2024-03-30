@@ -1,5 +1,5 @@
 import { RoundButton } from '@components/buttons';
-import TooltipPortal from '@components/tooltip-portal';
+import Tooltip from '@components/tooltip';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useCheckVisitedStore } from '@stores/useCheckVisitedStore';
 
@@ -11,6 +11,7 @@ const EmptyFriendCard = () => {
     setIsCheckFriend(true);
     setIsCheckDiary(false);
   };
+
   return (
     <div className="flex w-full flex-col items-center justify-center">
       <div className="w-full rounded-3xl bg-white pb-[102px] pt-[51px]">
@@ -24,8 +25,15 @@ const EmptyFriendCard = () => {
         </div>
       </div>
 
-      <div className={`absolute top-[355px] ${!isCheckFriend ? 'z-[100]' : ''}`}>
-        <TooltipPortal isShow={!isCheckFriend} onClose={onCloseTooltip} label="먼저 친구를 생성해보세요">
+      <div className={`absolute top-[355px] ${!isCheckFriend ? 'z-[200]' : ''}`}>
+        <Tooltip
+          label="먼저 친구를 생성해보세요"
+          position="top-center"
+          gab={10}
+          dimmer={!isCheckFriend}
+          isShow={!isCheckFriend}
+          onClose={onCloseTooltip}
+        >
           <RoundButton
             type="secondary"
             onClick={() => {
@@ -36,9 +44,8 @@ const EmptyFriendCard = () => {
               push('/friend/create');
             }}
             label="친구 생성"
-            className="absolute h-8 w-[85px]"
           />
-        </TooltipPortal>
+        </Tooltip>
       </div>
     </div>
   );
