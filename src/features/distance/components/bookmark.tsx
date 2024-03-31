@@ -1,4 +1,3 @@
-import { Tooltip } from '@chakra-ui/react';
 import ImageLoader from '@components/imageLoader';
 import { useBookmarkMutation } from '@hooks/queries/bookmark';
 import useBackgroundFadeIn from '@hooks/useBackgroundFadeIn';
@@ -35,36 +34,27 @@ const DistanceBookmark = () => {
       className="relative flex w-full translate-y-0 animate-[bottom-sheet-up_700ms_ease-in-out] flex-col items-center justify-center rounded-xl bg-brownModal px-12 pb-5 pt-[34px] opacity-10 transition-transform duration-500"
     >
       <div className="absolute right-[10px] top-[10px] cursor-pointer">
-        <Tooltip
-          hasArrow
-          label="마이페이지에서 다시 볼 수 있어요"
-          bg="#FF802D"
-          isOpen={true}
-          color="white"
-          placement="top-end"
-        >
-          {saying.saying.isMarked ? (
-            <Image
-              className="cursor-pointer"
-              onClick={handleClickBookmark}
-              loader={ImageLoader}
-              src={'icon/ui/selected-bookmark.svg'}
-              width={24}
-              height={24}
-              alt=""
-            />
-          ) : (
-            <Image
-              className="cursor-pointer"
-              onClick={handleClickBookmark}
-              loader={ImageLoader}
-              src={'icon/ui/bookmark.svg'}
-              width={24}
-              height={24}
-              alt=""
-            />
-          )}
-        </Tooltip>
+        {saying.saying.isMarked ? (
+          <Image
+            className="cursor-pointer"
+            onClick={handleClickBookmark}
+            loader={ImageLoader}
+            src={'icon/ui/selected-bookmark.svg'}
+            width={24}
+            height={24}
+            alt=""
+          />
+        ) : (
+          <Image
+            className="cursor-pointer"
+            onClick={handleClickBookmark}
+            loader={ImageLoader}
+            src={'icon/ui/bookmark.svg'}
+            width={24}
+            height={24}
+            alt=""
+          />
+        )}
       </div>
 
       <p className="text-center text-sm font-medium text-gray-5">{saying.saying.contents}</p>
