@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import { forwardRef } from 'react';
 
+import { TooltipContentStyle } from './constants';
 import type { TooltipType } from './type';
 
 interface ITooltipContentProps {
@@ -10,23 +11,9 @@ interface ITooltipContentProps {
   type: TooltipType;
   style: object;
   icon: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
-const TooltipContentStyle: Record<TooltipType, { wrapper: string; arrow: string }> = {
-  'top-center': {
-    wrapper: 'items-center',
-    arrow: '',
-  },
-  'top-left': {
-    wrapper: 'items-start',
-    arrow: 'ml-3',
-  },
-  'top-right': {
-    wrapper: 'items-end',
-    arrow: 'mr-3',
-  },
-};
 const TooltipContent = forwardRef<HTMLDivElement, ITooltipContentProps>(
   ({ label, type, style, icon, onClose }: ITooltipContentProps, ref) => {
     return (
