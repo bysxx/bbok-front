@@ -34,7 +34,21 @@ const DistanceProgressBar = ({ percent }: IDistanceProgressBarProps) => {
             className={`absolute left-0 top-0 h-full rounded-full ${percent === 100 ? 'bg-orange-4' : 'bg-orange-1'} bg-orange-1 transition-all${animationDuration}`}
           />
 
-          <Tooltip hasArrow label={`${percent.toString()}m`} bg="#FF802D" color="white" isOpen={true} placement="top">
+          <Tooltip
+            hasArrow
+            label={`${percent.toString()}m`}
+            bg="#FF802D"
+            color="white"
+            isOpen={true}
+            placement="top"
+            paddingLeft={3}
+            paddingRight={3}
+            paddingTop={1}
+            paddingBottom={1}
+            fontWeight={500}
+            fontSize={14}
+            rounded={6}
+          >
             <Image
               ref={imgRef}
               loader={ImageLoader}
