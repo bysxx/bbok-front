@@ -20,7 +20,7 @@ const FooterSection = forwardRef<HTMLButtonElement, IFooterSectionProps>(
           ref={ref}
           className={classNames('flex flex-col p-2 items-center', {
             'text-gray-65': focus,
-            'z-[2000] bg-[#fbfbfb] w-[76px]': focus && type === 'tooltip',
+            'z-[200] bg-[#fbfbfb] absolute bottom-0 w-[76px]': focus && type === 'tooltip',
           })}
           key={BOTTOM_TAP[item].label}
           onClick={onClick}

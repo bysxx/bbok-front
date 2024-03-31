@@ -1,5 +1,6 @@
 'use client';
 
+import Tooltip from '@components/tooltip';
 import { ButtonTopBar } from '@components/top-bar';
 import { DistanceBookmark, DistanceIsOverDimmer } from '@features/distance/components';
 import DistanceCard from '@features/distance/components/card';
@@ -21,19 +22,31 @@ const DiaryDistancePage = () => {
     <>
       {isOver === 'ing' && <DistanceIsOverDimmer />}
 
-      <div className="relative flex flex-1 flex-col">
-        <ButtonTopBar
-          label="친구와의 거리"
-          onClick={() => {
-            push('/diarylist');
-          }}
-          name="닫기"
-        />
-        <div className="mt-[42px] px-8">
-          <DistanceCard />
+      <div className="size-full">
+        <div className="h-[calc(100%-157px)]">
+          <ButtonTopBar
+            label="친구와의 거리"
+            onClick={() => {
+              push('/diarylist');
+            }}
+            name="닫기"
+          />
+          <div className="mt-[42px] px-8">
+            <DistanceCard />
+          </div>
         </div>
-        <div className="mt-14 flex justify-center px-[18px]">
-          <DistanceBookmark />
+        <div className="flex w-full justify-center px-[18px]">
+          <Tooltip
+            label="마이페이지에서 볼수 있어요"
+            position="top-right"
+            className="w-full"
+            gab={-11}
+            alwaysShow={false}
+            duration={6}
+            delay={4}
+          >
+            <DistanceBookmark />
+          </Tooltip>
         </div>
       </div>
     </>
