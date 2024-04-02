@@ -5,7 +5,7 @@ import Popup from '@components/popup';
 import { DETAIL_OPTIONS } from '@features/diary/constants';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useModal from '@hooks/useModal';
+import { useModal } from '@hooks/useModal';
 import type { TDetailOption } from '@interfaces/enums';
 import { DetailOption } from '@interfaces/enums';
 import Image from 'next/image';

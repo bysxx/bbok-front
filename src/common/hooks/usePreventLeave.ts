@@ -1,4 +1,4 @@
-const usePreventLeave = () => {
+export const usePreventLeave = () => {
   const listener = (e: BeforeUnloadEvent) => {
     e.preventDefault();
     e.returnValue = '';
@@ -8,5 +8,3 @@ const usePreventLeave = () => {
 
   return { enablePrevent, disablePrevent };
 };
-
-export default usePreventLeave;

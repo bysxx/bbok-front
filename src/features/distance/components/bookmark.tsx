@@ -1,6 +1,6 @@
 import ImageLoader from '@components/imageLoader';
 import { useBookmarkMutation } from '@hooks/queries/bookmark';
-import useBackgroundFadeIn from '@hooks/useBackgroundFadeIn';
+import { useBackgroundFadeIn } from '@hooks/useBackgroundFadeIn';
 import { useSayingStore } from '@stores/useSayingStore';
 import Image from 'next/image';
 

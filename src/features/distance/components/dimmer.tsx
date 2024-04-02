@@ -1,5 +1,5 @@
 import { ButtonTopBar } from '@components/top-bar';
-import useBackgroundFadeIn from '@hooks/useBackgroundFadeIn';
+import { useBackgroundFadeIn } from '@hooks/useBackgroundFadeIn';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useSayingStore } from '@stores/useSayingStore';
 

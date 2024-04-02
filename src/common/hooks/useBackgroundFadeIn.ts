@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const useBackgroundFadeIn = (duration: number = 2, opacity = '0.1') => {
+export const useBackgroundFadeIn = (duration: number = 2, opacity = '0.1') => {
   const element = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,5 +16,3 @@ const useBackgroundFadeIn = (duration: number = 2, opacity = '0.1') => {
 
   return { ref: element };
 };
-
-export default useBackgroundFadeIn;

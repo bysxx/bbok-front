@@ -15,7 +15,7 @@ import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import { useBeforeLeave } from '@hooks/useBeforeLeave';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useModal from '@hooks/useModal';
+import { useModal } from '@hooks/useModal';
 import { usePreventLeave } from '@hooks/usePreventLeave';
 import type { IDiaryRequestBody } from '@interfaces/diary';
 import { useFriendStore } from '@stores/useFriendStore';

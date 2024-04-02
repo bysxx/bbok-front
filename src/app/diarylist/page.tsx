@@ -10,7 +10,7 @@ import DiaryListSkeletonCard from '@features/diarylist/components/loading';
 import TagButtonsList from '@features/diarylist/components/tags';
 import { useGetDiaryListInfiniteQuery } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/useInput';
+import { useInput } from '@hooks/useInput';
 import { useIntersectionObserver } from '@hooks/useIntersectionObserver';
 import { type TDate } from '@interfaces/enums';
 import { useFriendStore } from '@stores/useFriendStore';

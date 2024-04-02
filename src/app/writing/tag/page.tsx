@@ -6,7 +6,7 @@ import { NavTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/useInput';
+import { useInput } from '@hooks/useInput';
 import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';

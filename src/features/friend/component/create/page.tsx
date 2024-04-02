@@ -8,7 +8,7 @@ import useNameValidation from '@features/friend/hooks/useNameValidation';
 import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
 import { useFriendMutation, useGetFriendCharater } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/useInput';
+import { useInput } from '@hooks/useInput';
 import type { TCharacter } from '@interfaces/enums';
 import { useState } from 'react';
 
