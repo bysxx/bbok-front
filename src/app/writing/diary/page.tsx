@@ -16,6 +16,7 @@ import { useDiaryMutation } from '@hooks/queries/diary';
 import { useBeforeLeave } from '@hooks/useBeforeLeave';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/useModal';
+import { usePreventLeave } from '@hooks/usePreventLeave';
 import type { IDiaryRequestBody } from '@interfaces/diary';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';
@@ -37,8 +38,10 @@ const WritingDiaryPage = () => {
     await postDiary.mutateAsync(result);
   };
 
+  const { enablePrevent, disablePrevent } = usePreventLeave();
+
   useBeforeLeave(() => {
-    onOpen();
+    enablePrevent();
   });
 
   return (
@@ -67,6 +70,7 @@ const WritingDiaryPage = () => {
           disabled={CheckNotNextPage({ tags, content, date, emoji })}
           isLoading={isLoading}
           onClick={() => {
+            disablePrevent();
             if (check) {
               push('./checklist');
             } else {
