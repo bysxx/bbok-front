@@ -13,6 +13,7 @@ import {
 import WritingDateForm from '@features/diary/components/writing/date-form';
 import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { useDiaryMutation } from '@hooks/queries/diary';
+import { useBeforeLeave } from '@hooks/useBeforeLeave';
 import useCustomRouter from '@hooks/useCustomRouter';
 import useModal from '@hooks/useModal';
 import type { IDiaryRequestBody } from '@interfaces/diary';
@@ -35,6 +36,10 @@ const WritingDiaryPage = () => {
     const result = { content, sticker: '', tags, emoji, date, checklist: [], id: friend.id };
     await postDiary.mutateAsync(result);
   };
+
+  useBeforeLeave(() => {
+    onOpen();
+  });
 
   return (
     <>
