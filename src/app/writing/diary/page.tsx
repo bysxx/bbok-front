@@ -13,10 +13,8 @@ import {
 import WritingDateForm from '@features/diary/components/writing/date-form';
 import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { useDiaryMutation } from '@hooks/queries/diary';
-import { useBeforeLeave } from '@hooks/useBeforeLeave';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useModal } from '@hooks/useModal';
-import { usePreventLeave } from '@hooks/usePreventLeave';
 import type { IDiaryRequestBody } from '@interfaces/diary';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';
@@ -37,12 +35,6 @@ const WritingDiaryPage = () => {
     const result = { content, sticker: '', tags, emoji, date, checklist: [], id: friend.id };
     await postDiary.mutateAsync(result);
   };
-
-  const { enablePrevent, disablePrevent } = usePreventLeave();
-
-  useBeforeLeave(() => {
-    enablePrevent();
-  });
 
   return (
     <>
@@ -70,7 +62,6 @@ const WritingDiaryPage = () => {
           disabled={CheckNotNextPage({ tags, content, date, emoji })}
           isLoading={isLoading}
           onClick={() => {
-            disablePrevent();
             if (check) {
               push('./checklist');
             } else {

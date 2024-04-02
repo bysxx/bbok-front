@@ -9,9 +9,7 @@ import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { getInitialDiaryList } from '@features/diary/utils/get-diary-checklist';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import { useGetMyChecklist } from '@hooks/queries/member';
-import { useBeforeLeave } from '@hooks/useBeforeLeave';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { usePreventLeave } from '@hooks/usePreventLeave';
 import { useTabs } from '@hooks/useTabs';
 import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { TQuery } from '@interfaces/enums';
@@ -30,12 +28,6 @@ const WritingChecklistPage = () => {
   const { getValues } = useFormContext<IDiaryRequestBody>();
   const { tags, content, date, emoji, checklist } = getValues();
 
-  const { enablePrevent, disablePrevent } = usePreventLeave();
-
-  useBeforeLeave(() => {
-    enablePrevent();
-  });
-
   useEffect(() => {
     if (CheckNotNextPage({ tags, content, date, emoji })) {
       replace('/writing/diary');
@@ -50,7 +42,6 @@ const WritingChecklistPage = () => {
   }
 
   const handleCreateDiary = async () => {
-    disablePrevent();
     setLoading(true);
     const result = { content, sticker: '', tags, emoji, date, id: friend.id, checklist };
     await postDiary.mutateAsync(result);
