@@ -6,8 +6,8 @@ import { NavTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/useInput';
-import { IDiaryRequestBody } from '@interfaces/diary';
+import { useInput } from '@hooks/useInput';
+import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
@@ -21,7 +21,7 @@ const WritingTagForm = ({ defaultValue }: IWritingTagFormProp) => {
   const [error, setError] = useState<boolean>(false);
   const { back } = useCustomRouter();
   const { register, setValue, getValues, control } = useFormContext<IDiaryRequestBody>();
-  useController({ name: 'tags', control, defaultValue: defaultValue ? defaultValue : [] });
+  useController({ name: 'tags', control, defaultValue: defaultValue || [] });
 
   useEffect(() => {
     if (getValues('tags')) {
