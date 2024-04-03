@@ -14,5 +14,5 @@ export const CheckNotNextPage = ({
   date: string;
   emoji: TEmoji | null;
 }): boolean => {
-  return !tags || (tags && tags.length === 0) || content.length === 0 || !date || !emoji;
+  return !tags || content.length === 0 || !date || !emoji;
 };

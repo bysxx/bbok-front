@@ -6,7 +6,7 @@ import { NavTopBar } from '@components/top-bar';
 import { ACCOUNT_TAB_LIST } from '@features/mypage/constants';
 import { useMemberMutation } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useModal from '@hooks/useModal';
+import { useModal } from '@hooks/useModal';
 import { AccountTab } from '@interfaces/enums';
 import { showErrorToast } from '@libs/showToast';
 

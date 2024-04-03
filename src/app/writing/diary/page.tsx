@@ -14,7 +14,7 @@ import WritingDateForm from '@features/diary/components/writing/date-form';
 import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useModal from '@hooks/useModal';
+import { useModal } from '@hooks/useModal';
 import type { IDiaryRequestBody } from '@interfaces/diary';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';

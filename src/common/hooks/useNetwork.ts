@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useNetwork = (onChange: (online: boolean) => void) => {
+export const useNetwork = (onChange: (online: boolean) => void) => {
   const [status, setStatus] = useState(navigator.onLine);
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const useNetwork = (onChange: (online: boolean) => void) => {
 
   return status;
 };
-
-export default useNetwork;

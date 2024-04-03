@@ -1,5 +1,5 @@
 import ImageLoader from '@components/imageLoader';
-import useFadeOut from '@hooks/useFadeOut';
+import { useFadeOut } from '@hooks/useFadeOut';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { forwardRef } from 'react';

@@ -3,7 +3,7 @@
 import Popup from '@components/popup';
 import Footer from '@components/ui/footer';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useModal from '@hooks/useModal';
+import { useModal } from '@hooks/useModal';
 import type { TBottomTab } from '@interfaces/enums';
 import type { PropsWithChildren } from 'react';
 import React, { useEffect, useState } from 'react';

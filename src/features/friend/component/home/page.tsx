@@ -22,12 +22,7 @@ const FriendCardPage = () => {
   useEffect(() => {
     if (isSuccess) {
       const [result] = data.data.friends.filter((value) => value.active);
-      if (result) {
-        setFriend({
-          id: result.id,
-          name: result.name,
-        });
-      }
+      setFriend(result || { id: 0, name: '' });
     }
   }, [isSuccess, data]);
 

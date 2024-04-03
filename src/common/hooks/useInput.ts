@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useInput = <T>(initialValue: string, validator?: T) => {
+export const useInput = <T>(initialValue: string, validator?: T) => {
   const [text, setText] = useState(initialValue);
   const [isValid, setIsValid] = useState(false);
 
@@ -18,5 +18,3 @@ const useInput = <T>(initialValue: string, validator?: T) => {
 
   return { text, isValid, onChange, onClear };
 };
-
-export default useInput;

@@ -6,8 +6,8 @@ import { NavTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
 import useCustomRouter from '@hooks/useCustomRouter';
-import useInput from '@hooks/useInput';
-import { IDiaryRequestBody } from '@interfaces/diary';
+import { useInput } from '@hooks/useInput';
+import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
@@ -16,35 +16,27 @@ interface IWritingTagFormProp {
   defaultValue: string[];
 }
 const WritingTagForm = ({ defaultValue }: IWritingTagFormProp) => {
-  const [tags, setTags] = useState<string[]>([]);
   const { text, onChange, onClear } = useInput('');
   const [error, setError] = useState<boolean>(false);
   const { back } = useCustomRouter();
-  const { register, setValue, getValues, control } = useFormContext<IDiaryRequestBody>();
-  useController({ name: 'tags', control, defaultValue: defaultValue ? defaultValue : [] });
+  const { register, control } = useFormContext<IDiaryRequestBody>();
+  const { field } = useController({ name: 'tags', control, defaultValue: defaultValue || [] });
 
   useEffect(() => {
-    if (getValues('tags')) {
-      setTags(getValues('tags'));
-    }
-  }, [getValues]);
-
-  useEffect(() => {
-    if (tags.length < 7 || text.length === 0) {
+    if (field.value.length < 7 || text.length === 0) {
       setError(false);
     }
-  }, [tags, text]);
+  }, [field.value, text]);
 
   const onPlustTag = () => {
-    const isInTags = tags.includes(text);
-    setError(tags.length === 7);
-    if (isInTags && tags.length !== 7) {
+    const isInTags = field.value.includes(text);
+    setError(field.value.length === 7);
+    if (isInTags && field.value.length !== 7) {
       onClear();
-    } else if (isInTags && tags.length === 7) {
+    } else if (isInTags && field.value.length === 7) {
       setError(true);
-    } else if (text.length > 0 && !isInTags && tags.length < 7) {
-      setTags([...tags, text]);
-      setValue('tags', [...tags, text]);
+    } else if (text.length > 0 && !isInTags && field.value.length < 7) {
+      field.onChange([...field.value, text]);
       onClear();
     }
   };
@@ -78,16 +70,12 @@ const WritingTagForm = ({ defaultValue }: IWritingTagFormProp) => {
         <h1 className="mb-4 mt-5 text-base font-bold">MY 태그</h1>
 
         <div className="mt-4 flex flex-wrap gap-[10px]" {...register('tags')}>
-          {tags.map((tag, i) => (
+          {field.value.map((tag, i) => (
             <TagButton
               label={tag}
               key={i}
               onClick={() => {
-                setTags(tags.filter((value) => value !== tag));
-                setValue(
-                  'tags',
-                  tags.filter((value) => value !== tag),
-                );
+                field.onChange(field.value.filter((value) => value !== tag));
               }}
             />
           ))}
