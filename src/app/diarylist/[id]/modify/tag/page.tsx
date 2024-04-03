@@ -11,6 +11,6 @@ interface ITagsDetailModifyProp {
 
 const TagsDetailModifyPage = ({ params }: ITagsDetailModifyProp) => {
   const { data } = useGetDiaryDetail(params.id);
-  return <WritingTagForm defaultValue={data?.data.tags!} />;
+  return <WritingTagForm defaultValue={data?.data.tags || []} />;
 };
 export default TagsDetailModifyPage;
