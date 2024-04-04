@@ -21,7 +21,9 @@ const DiaryItem = ({ content, date, tags, emoji, search }: IDiaryItemProps) => {
           <h3 className="text-body-4 text-gray-65">{second}</h3>
         </div>
       ) : (
-        <h3 className="text-body-4 mr-11 mt-[6px] text-gray-65">{content}</h3>
+        <div className="inline-block w-full overflow-hidden whitespace-normal">
+          <p className="line-clamp-2">{content}</p>
+        </div>
       )}
 
       <div className="flex items-end justify-between">

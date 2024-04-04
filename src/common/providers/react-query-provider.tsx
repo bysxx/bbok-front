@@ -11,8 +11,6 @@ function ReactQueryProvider({ children }: PropsWithChildren) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: Infinity,
-        gcTime: Infinity,
         retry: 0,
       },
       mutations: {

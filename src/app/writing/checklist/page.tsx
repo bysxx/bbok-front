@@ -26,7 +26,7 @@ const WritingChecklistPage = () => {
   const { friend } = useFriendStore();
   const { postDiary } = useDiaryMutation();
   const { getValues } = useFormContext<IDiaryRequestBody>();
-  const { tags, content, date, emoji, checklist } = getValues();
+  const { tags, content, date, emoji } = getValues();
 
   useEffect(() => {
     if (CheckNotNextPage({ tags, content, date, emoji })) {
@@ -34,7 +34,6 @@ const WritingChecklistPage = () => {
     }
   }, []);
 
-  // TODO: 체크리스트 api 변경 후 연결
   const { data, isSuccess, isLoading } = useGetMyChecklist();
 
   if (isLoading) {
@@ -42,6 +41,7 @@ const WritingChecklistPage = () => {
   }
 
   const handleCreateDiary = async () => {
+    const { checklist } = getValues();
     setLoading(true);
     const result = { content, sticker: '', tags, emoji, date, id: friend.id, checklist };
     await postDiary.mutateAsync(result);

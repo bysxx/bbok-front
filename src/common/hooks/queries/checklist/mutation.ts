@@ -23,8 +23,8 @@ export const useChecklistMutation = () => {
   const patchChecklist = useMutation({
     mutationFn: checklistApi.patch,
     onSuccess: () => {
-      push('/checklist/detail');
       queryClient.invalidateQueries({ queryKey: MEMBER_KEYS.lists() });
+      push('/checklist/detail');
       showSuccessToast('체크리스트 수정이 완료되었어요');
     },
   });
