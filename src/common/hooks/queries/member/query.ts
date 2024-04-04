@@ -1,17 +1,15 @@
-import { MEMBER_KEYS } from '@constants/queryKeys';
-import { IMyInfoRespone } from '@interfaces/member';
-import { ResponseDTO } from '@interfaces/common';
-import { IMyCheckListResponse } from '@interfaces/checklist';
 import memberApi from '@apis/member/member.client';
+import { MEMBER_KEYS } from '@constants/queryKeys';
+import type { IMyCheckListResponse } from '@interfaces/checklist';
+import type { ResponseDTO } from '@interfaces/common';
+import type { IMyInfoRespone } from '@interfaces/member';
 import { useQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
 
 export const useGetMyChecklist = () => {
   return useQuery<ResponseDTO<IMyCheckListResponse>, AxiosError>({
     queryKey: MEMBER_KEYS.lists(),
     queryFn: memberApi.getList,
-    staleTime: Infinity,
-    gcTime: Infinity,
   });
 };
 
