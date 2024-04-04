@@ -48,7 +48,7 @@ const FriendCard = (data: Friend) => {
 
         <div className="text-friend-card-name rounded-[38px] bg-white px-3.5 py-2 text-gray-65">{name}</div>
 
-        <FriendProgressBar type={characterType} percent={score} />
+        <FriendProgressBar type={characterType} percent={active ? score : 0} />
 
         {(() => {
           if (!active) {

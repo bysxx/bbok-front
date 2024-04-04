@@ -18,7 +18,7 @@ const FriendCardPage = () => {
 
   const { handleFriendType, friendList } = useHandleFriendCard(data?.data.friends || []);
   const type = handleFriendType();
-  console.log(friendList);
+
   useEffect(() => {
     if (isSuccess) {
       const [result] = data.data.friends.filter((value) => value.active);
