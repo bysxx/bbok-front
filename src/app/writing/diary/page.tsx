@@ -17,23 +17,31 @@ import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useModal } from '@hooks/useModal';
 import { useFriendStore } from '@stores/useFriendStore';
-import { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
 
 const WritingDiaryPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const { isOpen, onClose, onOpen } = useModal();
   const { push } = useCustomRouter();
   const { friend } = useFriendStore();
-  const { getValues } = useFormContext<IDiaryContextBody>();
+  const { getValues, control } = useFormContext<IDiaryContextBody>();
   const { postDiary } = useDiaryMutation();
   const { tags, content, date, emoji, isChecked } = getValues();
-
+  const { field } = useController({
+    name: 'content',
+    control,
+  });
   const handleCreateDiary = async () => {
     setIsLoading(true);
     const result = { content, sticker: '', tags, emoji, date, checklist: [], id: friend.id };
     await postDiary.mutateAsync(result);
   };
+
+  useEffect(() => {
+    setIsDisabled(CheckNotNextPage({ tags, content, date, emoji }));
+  }, [tags, content, emoji, field.value]);
 
   return (
     <>
@@ -58,7 +66,7 @@ const WritingDiaryPage = () => {
 
         <BoxButton
           text="완료"
-          disabled={CheckNotNextPage({ tags, content, date, emoji })}
+          disabled={isDisabled}
           isLoading={isLoading}
           onClick={() => {
             if (isChecked) {
