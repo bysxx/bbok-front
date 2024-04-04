@@ -1,7 +1,7 @@
 'use client';
 
 import TextField from '@components/text-field';
-import { IDiaryRequestBody } from '@interfaces/diary';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import { useController, useFormContext } from 'react-hook-form';
 
 interface IWritingTextFormProp {
@@ -9,8 +9,8 @@ interface IWritingTextFormProp {
 }
 
 const WritingTextForm = ({ defaultValue }: IWritingTextFormProp) => {
-  const { register, control } = useFormContext<IDiaryRequestBody>();
-  const { field } = useController({ name: 'content', control, defaultValue: defaultValue ? defaultValue : '' });
+  const { register, control } = useFormContext<IDiaryContextBody>();
+  const { field } = useController({ name: 'content', control, defaultValue: defaultValue || '' });
   return (
     <>
       <h2 className="mb-3 mt-8 text-base font-medium text-gray-65">친구 일화</h2>

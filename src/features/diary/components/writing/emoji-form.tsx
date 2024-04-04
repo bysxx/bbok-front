@@ -3,19 +3,20 @@
 import ImageLoader from '@components/imageLoader';
 import ToggleButton from '@components/toggle-button';
 import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
-import { IDiaryRequestBody } from '@interfaces/diary';
-import { TEmoji } from '@interfaces/enums';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
+import type { TEmoji } from '@interfaces/enums';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 
-interface IWritingEmojiForm {
-  check: boolean;
-  setCheck: (value: boolean) => void;
-}
-const WritingEmojiForm = ({ check, setCheck }: IWritingEmojiForm) => {
+const WritingEmojiForm = () => {
   const [selectEmoji, setSelectEmoji] = useState<TEmoji | null>(null);
-  const { register, getValues, setValue } = useFormContext<IDiaryRequestBody>();
+  const { register, getValues, setValue, control } = useFormContext<IDiaryContextBody>();
+  const { field } = useController({
+    name: 'isChecked',
+    control,
+    defaultValue: true,
+  });
 
   useEffect(() => {
     setSelectEmoji(getValues('emoji'));
@@ -43,9 +44,9 @@ const WritingEmojiForm = ({ check, setCheck }: IWritingEmojiForm) => {
         ))}
       </div>
 
-      <div className="my-12 flex items-center justify-between">
+      <div className="my-12 flex items-center justify-between" {...register('isChecked')}>
         <h2 className="text-base font-medium text-gray-65">친구 기준 체크 여부</h2>
-        <ToggleButton isChecked={check} setIsChecked={setCheck} />
+        <ToggleButton isChecked={field.value} setIsChecked={field.onChange} />
       </div>
     </>
   );

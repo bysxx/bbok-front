@@ -11,24 +11,23 @@ import {
   WritingTextForm,
 } from '@features/diary/components/writing';
 import WritingDateForm from '@features/diary/components/writing/date-form';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useModal } from '@hooks/useModal';
-import type { IDiaryRequestBody } from '@interfaces/diary';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 const WritingDiaryPage = () => {
-  const [check, setCheck] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { isOpen, onClose, onOpen } = useModal();
   const { push } = useCustomRouter();
   const { friend } = useFriendStore();
-  const { getValues } = useFormContext<IDiaryRequestBody>();
+  const { getValues } = useFormContext<IDiaryContextBody>();
   const { postDiary } = useDiaryMutation();
-  const { tags, content, date, emoji } = getValues();
+  const { tags, content, date, emoji, isChecked } = getValues();
 
   const handleCreateDiary = async () => {
     setIsLoading(true);
@@ -55,14 +54,14 @@ const WritingDiaryPage = () => {
         <WritingDateForm />
         <WritingTextForm />
         <WritingTagsList />
-        <WritingEmojiForm check={check} setCheck={setCheck} />
+        <WritingEmojiForm />
 
         <BoxButton
           text="완료"
           disabled={CheckNotNextPage({ tags, content, date, emoji })}
           isLoading={isLoading}
           onClick={() => {
-            if (check) {
+            if (isChecked) {
               push('./checklist');
             } else {
               handleCreateDiary();

@@ -2,9 +2,9 @@ import { CheckList } from '@components/check-list';
 import ImageLoader from '@components/imageLoader';
 import { DefaultLayout } from '@components/ui/layout';
 import { TYPE_CHECLIST_COMMENT } from '@features/diary/constants';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import { updateDiaryChecklist } from '@features/diary/utils/get-diary-checklist';
 import type { IDiaryCheckListItem, IUserChecklistItem } from '@interfaces/checklist';
-import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { TQuery } from '@interfaces/enums';
 import { TypeQuery } from '@interfaces/enums';
 import Image from 'next/image';
@@ -17,7 +17,7 @@ interface IChecklistFormProps {
   initialValue: IDiaryCheckListItem[];
 }
 const ChecklistForm = ({ tab, initialValue, goodChecklist, badChecklist }: IChecklistFormProps) => {
-  const { register, control } = useFormContext<IDiaryRequestBody>();
+  const { register, control } = useFormContext<IDiaryContextBody>();
   const { field } = useController({
     name: 'checklist',
     control,

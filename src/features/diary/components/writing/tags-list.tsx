@@ -1,8 +1,8 @@
 import { TagButton } from '@components/buttons';
 import Verifier from '@components/verifier';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { IDiaryRequestBody } from '@interfaces/diary';
-import { MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
 interface IWritingTagsFormProp {
@@ -15,11 +15,11 @@ const WritingTagsList = ({ defaultValue }: IWritingTagsFormProp) => {
     register,
     control,
     formState: { errors },
-  } = useFormContext<IDiaryRequestBody>();
+  } = useFormContext<IDiaryContextBody>();
   const { field } = useController({
     name: 'tags',
     control,
-    defaultValue: defaultValue ? defaultValue : [],
+    defaultValue: defaultValue || [],
   });
   const { value, onChange } = field;
 
@@ -33,7 +33,7 @@ const WritingTagsList = ({ defaultValue }: IWritingTagsFormProp) => {
         if (value.length === 0) {
           return (
             <button
-              className="flex items-start justify-start rounded-[10px] bg-gray-10 py-4 pl-[14px] mb-8 w-full"
+              className="mb-8 flex w-full items-start justify-start rounded-[10px] bg-gray-10 py-4 pl-[14px]"
               onClick={() => push('./tag')}
             >
               <h5 className="text-sm font-medium text-gray-30">입력하면 일화의 카테고리로 분류해서 볼 수 있어요</h5>
@@ -42,7 +42,7 @@ const WritingTagsList = ({ defaultValue }: IWritingTagsFormProp) => {
         }
         return (
           <button
-            className="mt-4 w-full flex flex-wrap gap-[10px] bg-gray-10 rounded-[10px] py-2 px-3 cursor-pointer mb-8"
+            className="mb-8 mt-4 flex w-full cursor-pointer flex-wrap gap-[10px] rounded-[10px] bg-gray-10 px-3 py-2"
             onClick={(e: MouseEvent) => {
               e.stopPropagation();
               push('./tag');

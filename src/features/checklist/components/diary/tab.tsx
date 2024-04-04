@@ -1,8 +1,8 @@
 import CheckInput from '@components/check-input';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { updateChecklist } from '@features/checklist/utils';
-import { ICheckItem } from '@interfaces/checklist';
-import { TQuery } from '@interfaces/enums';
+import type { ICheckItem } from '@interfaces/checklist';
+import type { TQuery } from '@interfaces/enums';
 
 interface IDiaryChecklistTabProps {
   checklist: ICheckItem[];
