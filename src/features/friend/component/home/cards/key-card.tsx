@@ -9,7 +9,7 @@ const KeyFriendCard = ({ name, lock }: IKeyFriendCardProp) => {
   const { push } = useCustomRouter();
   return (
     <div
-      className="min-w-[250px] rounded-3xl bg-brown px-4 pb-6 pt-[18px] shadow-locked-friend-card"
+      className="min-w-[250px] cursor-pointer rounded-3xl bg-brown px-4 pb-6 pt-[18px] shadow-locked-friend-card"
       onClick={() => {
         if (!lock) {
           push('./friend');

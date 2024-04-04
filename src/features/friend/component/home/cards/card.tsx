@@ -1,6 +1,7 @@
 import ImageLoader from '@components/imageLoader';
 import { FRIEND_CHARACTER } from '@constants/character';
 import { FRIEND_CHARACTER_STYLE } from '@features/friend/constants';
+import useCustomRouter from '@hooks/useCustomRouter';
 import type { Friend } from '@interfaces/friend';
 import { getSinceTime } from '@libs/getTime';
 import cx from 'classnames';
@@ -10,12 +11,19 @@ import FriendProgressBar from './progress-bar';
 
 const FriendCard = (data: Friend) => {
   const { countingDiary, startedAt, name, score, active, characterType } = data;
+  const { push } = useCustomRouter();
   return (
     <div
       className={cx(
         'min-w-[250px] rounded-3xl border-2 px-4 pb-6 pt-[18px] shadow-friend-card',
         FRIEND_CHARACTER_STYLE[characterType].style,
+        'cursor-pointer',
       )}
+      onClick={() => {
+        if (active && countingDiary === 0) {
+          push('/writing/emoji');
+        }
+      }}
     >
       <div className="relative flex flex-col items-center gap-6 text-white">
         <div className="absolute left-0 top-0 flex items-center gap-0.5">
@@ -40,7 +48,7 @@ const FriendCard = (data: Friend) => {
 
         <div className="text-friend-card-name rounded-[38px] bg-white px-3.5 py-2 text-gray-65">{name}</div>
 
-        <FriendProgressBar type={characterType} percent={score} />
+        <FriendProgressBar type={characterType} percent={active ? score : 0} />
 
         {(() => {
           if (!active) {

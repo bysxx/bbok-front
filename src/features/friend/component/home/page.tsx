@@ -47,14 +47,14 @@ const FriendCardPage = () => {
       )}
       {/* 활성화 친구 오직 한명인 경우 */}
       {type === 'OneFriend' && (
-        <div className="flex gap-4 overflow-x-scroll px-9 py-4 scrollbar-hide">
+        <>
           {friendList.map((friend) => (
-            <>
+            <div key={friend.id} className="flex gap-4 overflow-x-scroll px-9 py-4 scrollbar-hide">
               <FriendCard key={friend?.id} {...friend} />
               <KeyFriendCard name={friend?.name || ''} lock={true} />
-            </>
+            </div>
           ))}
-        </div>
+        </>
       )}
 
       {/* 활성화 친구 와 비활성화 친구가 있는 경우 */}
