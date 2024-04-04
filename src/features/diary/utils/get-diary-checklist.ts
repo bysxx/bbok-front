@@ -4,20 +4,25 @@ import type { ICheckItem, IDiaryCheckListItem, IMyCheckListResponse } from '@int
  * 일화 리스트 초기 배열 return
  */
 export const getInitialDiaryList = (list: IMyCheckListResponse<number>): IDiaryCheckListItem[] => {
-  const goodList = list.goodChecklist.slice(0, 5).map((goodItem) => {
-    return {
-      id: goodItem.id,
-      isChecked: false,
-      isGood: true,
-    };
-  });
-  const badList = list.badChecklist.slice(0, 5).map((badItem) => {
-    return {
-      id: badItem.id,
-      isChecked: false,
-      isGood: false,
-    };
-  });
+  const goodList = list.goodChecklist
+    .filter((goodItem) => goodItem.isUsed)
+    .map((item) => {
+      return {
+        id: item.id,
+        isChecked: false,
+        isGood: true,
+      };
+    });
+
+  const badList = list.badChecklist
+    .filter((badItem) => badItem.isUsed)
+    .map((item) => {
+      return {
+        id: item.id,
+        isChecked: false,
+        isGood: false,
+      };
+    });
 
   return [...goodList, ...badList];
 };

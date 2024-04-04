@@ -23,6 +23,7 @@ const ChecklistForm = ({ tab, initialValue, goodChecklist, badChecklist }: IChec
     control,
     defaultValue: initialValue,
   });
+
   const handleClickChecklist = (id: number) => {
     field.onChange(updateDiaryChecklist(id, field.value));
   };
@@ -38,21 +39,22 @@ const ChecklistForm = ({ tab, initialValue, goodChecklist, badChecklist }: IChec
         <h4 className="text-title-3">{TYPE_CHECLIST_COMMENT[tab].subTitle}</h4>
       </div>
       <div {...register('checklist')}>
-        {(tab === TypeQuery.good ? goodChecklist.filter((_, i) => i < 5) : badChecklist.filter((_, i) => i < 5))?.map(
-          (list) => (
-            <div className="mb-3" key={list.id}>
-              <CheckList
-                selected={field.value.filter((checklist) => checklist.id === list.id)[0]?.isChecked || false}
-                label={list.criteria}
-                key={list.id}
-                onClick={() => {
-                  handleClickChecklist(list.id);
-                }}
-                side="right"
-              />
-            </div>
-          ),
-        )}
+        {(tab === TypeQuery.good
+          ? goodChecklist.filter((item) => item.isUsed)
+          : badChecklist.filter((item) => item.isUsed)
+        )?.map((list) => (
+          <div className="mb-3" key={list.id}>
+            <CheckList
+              selected={field.value.filter((checklist) => checklist.id === list.id)[0]?.isChecked || false}
+              label={list.criteria}
+              key={list.id}
+              onClick={() => {
+                handleClickChecklist(list.id);
+              }}
+              side="right"
+            />
+          </div>
+        ))}
       </div>
     </DefaultLayout>
   );
