@@ -3,15 +3,15 @@
 import { ButtonTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import {
-  WritingFriendForm,
   WritingDateForm,
-  WritingTextForm,
+  WritingFriendForm,
   WritingTagsList,
+  WritingTextForm,
 } from '@features/diary/components/writing';
 import { getDiaryCheckList } from '@features/diary/utils/get-diary-checklist';
-import { useGetDiaryDetail, useDiaryMutation } from '@hooks/queries/diary';
+import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { IDiaryRequestBody } from '@interfaces/diary';
+import type { IDiaryRequestBody } from '@interfaces/diary';
 import { useFormContext } from 'react-hook-form';
 
 interface IDiaryDetailModifyProp {
@@ -32,8 +32,8 @@ const DiaryDetailModifyPage = ({ params }: IDiaryDetailModifyProp) => {
       tags,
       content,
       date,
-      emoji: data?.data.emoji!,
-      checklist: getDiaryCheckList(data?.data.badChecklist!, data?.data.goodChecklist!),
+      emoji: data?.data.emoji || 'ANGRY',
+      checklist: getDiaryCheckList(data?.data.badChecklist || [], data?.data.goodChecklist || []),
       sticker: '',
       id: params.id,
     });
@@ -44,12 +44,14 @@ const DiaryDetailModifyPage = ({ params }: IDiaryDetailModifyProp) => {
   return (
     <>
       <ButtonTopBar label={'일화 수정'} onClick={handleModifyDiary} name={'완료'} />
-      <DefaultLayout>
-        <WritingFriendForm />
-        <WritingDateForm defaultValue={data?.data.date} />
-        <WritingTextForm defaultValue={data?.data.content} />
-        <WritingTagsList defaultValue={data?.data.tags} />
-      </DefaultLayout>
+      {data?.data && (
+        <DefaultLayout>
+          <WritingFriendForm />
+          <WritingDateForm defaultValue={data?.data.date} />
+          <WritingTextForm defaultValue={data?.data.content} />
+          <WritingTagsList defaultValue={data?.data.tags} />
+        </DefaultLayout>
+      )}
     </>
   );
 };
