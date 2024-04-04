@@ -54,7 +54,12 @@ const DiaryListPage = () => {
       </div>
       <TagButtonsList selectTag={tag} setSelectTag={setTag} />
       <DefaultLayout className="mb-6">
-        <DiarylistOption length={diaryList.length} search={text} order={order} setOrder={setOrder} />
+        <DiarylistOption
+          length={data?.pages[0]?.data.totalElements || 0}
+          search={text}
+          order={order}
+          setOrder={setOrder}
+        />
         {diaryList.length === 0 && !isPending && <EmptyDiarylistCard />}
         {diaryList.length > 0 && <DiarylistCard diaryList={diaryList} search={text} />}
         {(isPending || isFetching) && <DiaryListSkeletonCard />}

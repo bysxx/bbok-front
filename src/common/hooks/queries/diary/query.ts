@@ -13,7 +13,7 @@ import type { AxiosError } from 'axios';
 export const useGetDiaryListInfiniteQuery = (body: IDiaryInfiniteRequest) => {
   return useInfiniteQuery<ResponseDTO<IDiaryListResponse>, AxiosError>({
     queryKey: DIARY_KEYS.list([{ ...body }]),
-    queryFn: ({ pageParam = 0 }) => diaryApi.list({ ...body, offset: pageParam as number }),
+    queryFn: ({ pageParam = 0 }) => diaryApi.list({ ...body, offset: (pageParam as number) * 20 }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       if (lastPage.data.pageNumber === lastPage.data.totalPages - 1 || lastPage.data.totalPages === 0) {
