@@ -4,8 +4,8 @@ import ImageLoader from '@components/imageLoader';
 import { CancelTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
 import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import useCustomRouter from '@hooks/useCustomRouter';
-import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { TEmoji } from '@interfaces/enums';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ import { useFormContext } from 'react-hook-form';
 const WritingEmojiPage = () => {
   const { push } = useCustomRouter();
   const [selectEmoji, setSelectEmoji] = useState<TEmoji | null>(null);
-  const { register, getValues, setValue } = useFormContext<IDiaryRequestBody>();
+  const { register, getValues, setValue } = useFormContext<IDiaryContextBody>();
 
   useEffect(() => {
     setSelectEmoji(getValues('emoji'));

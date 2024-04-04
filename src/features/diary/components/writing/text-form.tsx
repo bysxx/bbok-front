@@ -1,7 +1,7 @@
 'use client';
 
 import TextField from '@components/text-field';
-import type { IDiaryRequestBody } from '@interfaces/diary';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import { useController, useFormContext } from 'react-hook-form';
 
 interface IWritingTextFormProp {
@@ -9,7 +9,7 @@ interface IWritingTextFormProp {
 }
 
 const WritingTextForm = ({ defaultValue }: IWritingTextFormProp) => {
-  const { register, control } = useFormContext<IDiaryRequestBody>();
+  const { register, control } = useFormContext<IDiaryContextBody>();
   const { field } = useController({ name: 'content', control, defaultValue: defaultValue || '' });
   return (
     <>

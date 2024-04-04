@@ -5,9 +5,9 @@ import Input from '@components/input';
 import { NavTopBar } from '@components/top-bar';
 import { DefaultLayout } from '@components/ui/layout';
 import Verifier from '@components/verifier';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useInput } from '@hooks/useInput';
-import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { KeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
@@ -19,7 +19,7 @@ const WritingTagForm = ({ defaultValue }: IWritingTagFormProp) => {
   const { text, onChange, onClear } = useInput('');
   const [error, setError] = useState<boolean>(false);
   const { back } = useCustomRouter();
-  const { register, control } = useFormContext<IDiaryRequestBody>();
+  const { register, control } = useFormContext<IDiaryContextBody>();
   const { field } = useController({ name: 'tags', control, defaultValue: defaultValue || [] });
 
   useEffect(() => {

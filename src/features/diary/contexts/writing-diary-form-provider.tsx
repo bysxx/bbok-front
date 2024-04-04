@@ -1,13 +1,12 @@
-import { DevTool } from '@hookform/devtools';
-import { useIsMounted } from '@hooks/useIsMounted';
-import type { IDiaryRequestBody } from '@interfaces/diary';
+// import { DevTool } from '@hookform/devtools';
 import type { PropsWithChildren } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import type { IDiaryContextBody } from './type';
+
 const WritingDiaryFormProvier = ({ children }: PropsWithChildren) => {
-  const methods = useForm<IDiaryRequestBody>();
-  const isMounted = useIsMounted();
-  const onSubmit = (data: IDiaryRequestBody) => {
+  const methods = useForm<IDiaryContextBody>();
+  const onSubmit = (data: IDiaryContextBody) => {
     console.log(data);
   };
   return (
@@ -15,7 +14,6 @@ const WritingDiaryFormProvier = ({ children }: PropsWithChildren) => {
       <form className="flex size-full flex-col" onSubmit={methods.handleSubmit(onSubmit)}>
         {children}
       </form>
-      {isMounted && <DevTool control={methods.control} />}
     </FormProvider>
   );
 };

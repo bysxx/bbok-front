@@ -8,10 +8,10 @@ import {
   WritingTagsList,
   WritingTextForm,
 } from '@features/diary/components/writing';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import { getDiaryCheckList } from '@features/diary/utils/get-diary-checklist';
 import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
-import type { IDiaryRequestBody } from '@interfaces/diary';
 import { useFormContext } from 'react-hook-form';
 
 interface IDiaryDetailModifyProp {
@@ -24,7 +24,7 @@ const DiaryDetailModifyPage = ({ params }: IDiaryDetailModifyProp) => {
   const { data } = useGetDiaryDetail(params.id);
   const { push } = useCustomRouter();
   const { patchDiary } = useDiaryMutation();
-  const { getValues } = useFormContext<IDiaryRequestBody>();
+  const { getValues } = useFormContext<IDiaryContextBody>();
 
   const handleModifyDiary = () => {
     const { tags, content, date } = getValues();

@@ -14,25 +14,28 @@ import TagList from './tags';
 const DiaryDetailPage = ({ id }: { id: number }) => {
   const { push } = useCustomRouter();
   const { data } = useGetDiaryDetail(id);
-  const diaryDate = getTime(data?.data.date!);
 
   return (
     <div className="size-full bg-gray-13">
-      <NavTopBar
-        onClick={() => {
-          push('/diarylist');
-        }}
-        label={diaryDate}
-      />
-      <div className="mt-4 flex items-center justify-center">
-        {data?.data.emoji && (
-          <Image loader={ImageLoader} src={DIARY_EMOJI[data?.data.emoji!].select} width={56} height={56} alt="" />
-        )}
-      </div>
-      <div className="mx-6">
-        <DetailContent content={data?.data.content!} id={id} />
-        <TagList tags={data?.data.tags!} />
-      </div>
+      {data?.data && (
+        <>
+          <NavTopBar
+            onClick={() => {
+              push('/diarylist');
+            }}
+            label={getTime(data?.data.date)}
+          />
+          <div className="mt-4 flex items-center justify-center">
+            {data?.data.emoji && (
+              <Image loader={ImageLoader} src={DIARY_EMOJI[data?.data.emoji].select} width={56} height={56} alt="" />
+            )}
+          </div>
+          <div className="mx-6">
+            <DetailContent content={data?.data.content} id={id} />
+            <TagList tags={data?.data.tags} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

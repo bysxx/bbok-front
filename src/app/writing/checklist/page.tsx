@@ -5,13 +5,13 @@ import { FooterButtonLayout } from '@components/ui/layout';
 import { LoadingPage } from '@components/ui/pages';
 import { ChecklistForm } from '@features/diary/components/writing';
 import { CHECKLIST_TABS, TYPE_CHECLIST_COMMENT } from '@features/diary/constants';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import { CheckNotNextPage } from '@features/diary/utils/check-next-page';
 import { getInitialDiaryList } from '@features/diary/utils/get-diary-checklist';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import { useGetMyChecklist } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useTabs } from '@hooks/useTabs';
-import type { IDiaryRequestBody } from '@interfaces/diary';
 import type { TQuery } from '@interfaces/enums';
 import { TypeQuery } from '@interfaces/enums';
 import { useFriendStore } from '@stores/useFriendStore';
@@ -25,7 +25,7 @@ const WritingChecklistPage = () => {
   const { tab } = currentItem;
   const { friend } = useFriendStore();
   const { postDiary } = useDiaryMutation();
-  const { getValues } = useFormContext<IDiaryRequestBody>();
+  const { getValues } = useFormContext<IDiaryContextBody>();
   const { tags, content, date, emoji } = getValues();
 
   useEffect(() => {

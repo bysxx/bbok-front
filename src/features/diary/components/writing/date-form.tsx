@@ -1,15 +1,15 @@
 import DatePicker from '@components/date-picker';
-import { IDiaryRequestBody } from '@interfaces/diary';
+import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import moment from 'moment';
-import { useFormContext, useController } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 
 interface IWritingDateFormProp {
   defaultValue?: string;
 }
 const WritingDateForm = ({ defaultValue }: IWritingDateFormProp) => {
   const today = moment().format('YYYY-MM-DD');
-  const { register, control } = useFormContext<IDiaryRequestBody>();
-  const { field } = useController({ name: 'date', control, defaultValue: defaultValue ? defaultValue : today });
+  const { register, control } = useFormContext<IDiaryContextBody>();
+  const { field } = useController({ name: 'date', control, defaultValue: defaultValue || today });
 
   return (
     <>
