@@ -42,6 +42,7 @@
       "@providers/*": ["src/common/providers/*"],
       "@constants/*": ["src/common/constants/*"],
       "@features/*": ["src/features/*"],
+      "@foundations/*": ["src/common/foundations/*"],
     },
     "plugins": [
       {

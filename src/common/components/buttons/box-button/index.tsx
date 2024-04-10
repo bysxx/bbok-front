@@ -1,4 +1,5 @@
-import { bgColor, textColor, typography } from '@styles/theme';
+import { bgColor, textColor } from '@foundations/color';
+import { typography } from '@foundations/font';
 import cx from 'classnames';
 import { BeatLoader } from 'react-spinners';
 
