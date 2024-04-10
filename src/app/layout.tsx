@@ -1,5 +1,4 @@
-import '@styles/global.css';
-import '@styles/font.css';
+import './globals.css';
 
 import { PortalProvider } from '@components/global-portal';
 import ChakraUIProvider from '@providers/chakra-provider';
