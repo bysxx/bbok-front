@@ -1,8 +1,8 @@
 'use client';
 
+import type { TBottomTab } from '@constants/tab';
 import { BOTTOM_TAP, BOTTOM_TAP_ARRAY } from '@constants/tab';
 import useCustomRouter from '@hooks/useCustomRouter';
-import type { TBottomTab } from '@interfaces/enums';
 import { showErrorToast } from '@libs/showToast';
 import { useFriendStore } from '@stores/useFriendStore';
 
