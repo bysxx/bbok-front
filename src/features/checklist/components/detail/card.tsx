@@ -1,8 +1,8 @@
 import ImageLoader from '@components/imageLoader';
+import type { TQuery } from '@constants/query';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import useCustomRouter from '@hooks/useCustomRouter';
 import type { IUserChecklistItem } from '@interfaces/checklist';
-import type { TQuery } from '@interfaces/enums';
 import Image from 'next/image';
 import { useMemo } from 'react';
 
