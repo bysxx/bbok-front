@@ -29,7 +29,7 @@ const WritingChecklistPage = () => {
   const { tags, content, date, emoji } = getValues();
 
   useEffect(() => {
-    if (CheckNotNextPage({ tags, content, date, emoji })) {
+    if (CheckNotNextPage({ content, date, emoji })) {
       replace('/writing/diary');
     }
   }, []);

@@ -40,7 +40,7 @@ const WritingDiaryPage = () => {
   };
 
   useEffect(() => {
-    setIsDisabled(CheckNotNextPage({ tags, content, date, emoji }));
+    setIsDisabled(CheckNotNextPage({ content, date, emoji }));
   }, [tags, content, emoji, field.value]);
 
   return (
