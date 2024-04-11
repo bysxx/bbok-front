@@ -1,4 +1,4 @@
-import { TAuth } from './enums/auth';
+import type { TAuth } from '@constants/auth';
 
 /**
  * 토큰 재발 reponse type
