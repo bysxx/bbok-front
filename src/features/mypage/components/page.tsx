@@ -3,11 +3,10 @@
 import Tab from '@components/tab';
 import { useGetMyInfo } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
-import { MypageTab } from '@interfaces/enums';
 import { clearTokens } from '@libs/cookie/manageCookie.client';
 import { showSuccessToast } from '@libs/showToast';
 
-import { TAP_LIST } from '../constants';
+import { MYPAGE_TAB, TAP_LIST } from '../constants';
 import Profile from './profile';
 
 const MyInfoPage = () => {
@@ -24,7 +23,7 @@ const MyInfoPage = () => {
           key={tap.value}
           divider={i !== TAP_LIST.length - 1}
           onClick={() => {
-            if (tap.value === MypageTab.logout) {
+            if (tap.value === MYPAGE_TAB.logout) {
               clearTokens();
               push('/login');
               showSuccessToast('성공적으로 로그아웃되었어요');

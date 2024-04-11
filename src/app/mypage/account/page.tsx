@@ -3,11 +3,10 @@
 import Popup from '@components/popup';
 import Tab from '@components/tab';
 import { NavTopBar } from '@components/top-bar';
-import { ACCOUNT_TAB_LIST } from '@features/mypage/constants';
+import { ACCOUNT_TAB, ACCOUNT_TAB_LIST } from '@features/mypage/constants';
 import { useMemberMutation } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useModal } from '@hooks/useModal';
-import { AccountTab } from '@interfaces/enums';
 import { showErrorToast } from '@libs/showToast';
 
 const MyPageAccountPage = () => {
@@ -57,9 +56,9 @@ const MyPageAccountPage = () => {
           key={tab.value}
           divider={i !== ACCOUNT_TAB_LIST.length - 1}
           onClick={() => {
-            if (tab.value === AccountTab.initial) {
+            if (tab.value === ACCOUNT_TAB.initial) {
               onInitialOpen();
-            } else if (tab.value === AccountTab.widthDraw) {
+            } else if (tab.value === ACCOUNT_TAB.widthDraw) {
               onWidthdrawOpen();
             }
           }}
