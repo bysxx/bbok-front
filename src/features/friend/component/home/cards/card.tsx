@@ -16,7 +16,7 @@ const FriendCard = (data: Friend) => {
     <div
       className={cx(
         'min-w-[250px] rounded-3xl border-2 px-4 pb-6 pt-[18px] shadow-friend-card',
-        FRIEND_CHARACTER_STYLE[characterType].style,
+        FRIEND_CHARACTER_STYLE[characterType]?.style,
         'cursor-pointer',
       )}
       onClick={() => {
@@ -43,7 +43,13 @@ const FriendCard = (data: Friend) => {
         })()}
 
         <figure className="size-[102px] rounded-full bg-white p-2.5">
-          <Image loader={ImageLoader} src={FRIEND_CHARACTER[characterType].selected} alt="" width={102} height={102} />
+          <Image
+            loader={ImageLoader}
+            src={FRIEND_CHARACTER[characterType]?.selected || 'illustration/small-default-kaka.svg'}
+            alt=""
+            width={102}
+            height={102}
+          />
         </figure>
 
         <div className="text-friend-card-name rounded-[38px] bg-white px-3.5 py-2 text-gray-65">{name}</div>

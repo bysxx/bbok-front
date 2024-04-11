@@ -1,11 +1,11 @@
-import { TCharacter } from '@interfaces/enums';
+import type { TValueOfCharacter } from '@constants/character';
 
 /**
  * 등록할 친구 request type
  */
 export interface IFriendBody {
   name: string;
-  character: TCharacter;
+  character: TValueOfCharacter;
 }
 
 /**
@@ -15,7 +15,7 @@ export interface Friend {
   active: boolean;
   characterUrl: string;
   countingDiary: number;
-  characterType: TCharacter;
+  characterType: TValueOfCharacter;
   id: number;
   name: string;
   score: number;
@@ -30,7 +30,7 @@ export interface IFriendList {
  * 캐릭터 이미지 type
  */
 interface CharacterContent {
-  type: TCharacter;
+  type: TValueOfCharacter;
   iconUrl: string;
   name: string;
 }
