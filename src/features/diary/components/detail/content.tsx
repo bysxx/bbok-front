@@ -2,12 +2,11 @@
 
 import ImageLoader from '@components/imageLoader';
 import Popup from '@components/popup';
-import { DETAIL_OPTIONS } from '@features/diary/constants';
+import type { TDetailOption } from '@features/diary/constants';
+import { DETAIL_OPTION, DETAIL_OPTIONS } from '@features/diary/constants';
 import { useDiaryMutation } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useModal } from '@hooks/useModal';
-import type { TDetailOption } from '@interfaces/enums';
-import { DetailOption } from '@interfaces/enums';
 import Image from 'next/image';
 
 import StickerBottomModal from './sticker';
@@ -25,10 +24,10 @@ const DetailContent = ({ content, id }: { content: string; id: number }) => {
   };
 
   const detailContentClick: Record<TDetailOption, () => void> = {
-    [DetailOption.diary]: () => push(`/diarylist/${id}/modify/${DetailOption.diary}`),
-    [DetailOption.delete]: () => onDeleteOpen(),
-    [DetailOption.sticker]: () => onStickerOpen(),
-    [DetailOption.checklist]: () => push(`/diarylist/${id}/modify/${DetailOption.checklist}`),
+    [DETAIL_OPTION.diary]: () => push(`/diarylist/${id}/modify/${DETAIL_OPTION.diary}`),
+    [DETAIL_OPTION.delete]: () => onDeleteOpen(),
+    [DETAIL_OPTION.sticker]: () => onStickerOpen(),
+    [DETAIL_OPTION.checklist]: () => push(`/diarylist/${id}/modify/${DETAIL_OPTION.checklist}`),
   };
 
   return (

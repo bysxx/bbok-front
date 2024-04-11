@@ -1,7 +1,7 @@
 export const CHARACTER = {
   CACTUS: 'CACTUS',
   HEDGEHOG: 'HEDGEHOG',
-};
+} as const;
 export type TCharacter = keyof typeof CHARACTER;
 export type TValueOfCharacter = (typeof CHARACTER)[TCharacter];
 
