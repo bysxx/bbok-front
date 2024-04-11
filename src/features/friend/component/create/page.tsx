@@ -4,12 +4,12 @@ import Input from '@components/input';
 import { ButtonTopBar } from '@components/top-bar';
 import DefaultLayout from '@components/ui/layout/default-layout';
 import FooterButtonLayout from '@components/ui/layout/footer-button-layout';
+import type { TValueOfCharacter } from '@constants/character';
 import useNameValidation from '@features/friend/hooks/useNameValidation';
 import { friendInputVerifier } from '@features/friend/utils/friendInputVerifier';
 import { useFriendMutation, useGetFriendCharater } from '@hooks/queries/friend';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useInput } from '@hooks/useInput';
-import type { TCharacter } from '@interfaces/enums';
 import { useState } from 'react';
 
 import FriendCharacter from './character';
@@ -20,7 +20,7 @@ const FriendMakePage = () => {
   const { postfriend } = useFriendMutation();
   const { text: name, isValid: error, onChange } = useInput('', friendInputVerifier);
   const { errorMessage } = useNameValidation(name);
-  const [character, setCharacter] = useState<TCharacter>('CACTUS');
+  const [character, setCharacter] = useState<TValueOfCharacter>('CACTUS');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleFriendMake = async () => {

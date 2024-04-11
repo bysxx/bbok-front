@@ -2,6 +2,7 @@
 
 import SearchBar from '@components/search-bar';
 import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
+import type { TDate } from '@constants/date';
 import { DiarylistOption } from '@features/diarylist/components';
 import DiarylistCard from '@features/diarylist/components/card';
 import EmptyDiarylistCard from '@features/diarylist/components/empty-card';
@@ -12,7 +13,6 @@ import { useGetDiaryListInfiniteQuery } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useInput } from '@hooks/useInput';
 import { useIntersectionObserver } from '@hooks/useIntersectionObserver';
-import { type TDate } from '@interfaces/enums';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useRef, useState } from 'react';
 

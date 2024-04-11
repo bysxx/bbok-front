@@ -1,8 +1,8 @@
-import type { TQuery } from '@interfaces/enums';
-import { TypeQuery } from '@interfaces/enums';
+import type { TQuery } from '@constants/query';
+import { TYPE_QUERY } from '@constants/query';
 
 export const CHECK_LIST: { [key in TQuery]: string[] } = {
-  [TypeQuery.bad]: [
+  [TYPE_QUERY.bad]: [
     '나를 배려하지 않은 친구',
     '신뢰를 잃는 행동을 하는 친구',
     '나의 자존감을 낮추는 친구',
@@ -14,7 +14,7 @@ export const CHECK_LIST: { [key in TQuery]: string[] } = {
     '의사소통 스타일이 맞지 않는 친구',
     '나를 가르치려고 하는 친구',
   ],
-  [TypeQuery.good]: [
+  [TYPE_QUERY.good]: [
     '이야기를 잘 듣고 공감해주는 친구',
     '존중하고 배려하는 마음을 가진 친구',
     '관심사가 비슷한 친구',

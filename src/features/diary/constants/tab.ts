@@ -1,16 +1,16 @@
-import type { TQuery } from '@interfaces/enums';
-import { TypeQuery } from '@interfaces/enums';
+import type { TQuery } from '@constants/query';
+import { TYPE_QUERY } from '@constants/query';
 
 export const CHECKLIST_TABS: {
   tab: TQuery;
   content: string;
 }[] = [
   {
-    tab: TypeQuery.bad,
+    tab: TYPE_QUERY.bad,
     content: '다음',
   },
   {
-    tab: TypeQuery.good,
+    tab: TYPE_QUERY.good,
     content: '체크완료',
   },
 ];

@@ -1,23 +1,24 @@
 import ImageLoader from '@components/imageLoader';
 import RadioButton from '@components/radio-button';
-import { FRIEND_CHARACTER } from '@constants/character';
-import type { TCharacter } from '@interfaces/enums';
-import { Character } from '@interfaces/enums';
+import type { TValueOfCharacter } from '@constants/character';
+import { CHARACTER, FRIEND_CHARACTER } from '@constants/character';
 import Image from 'next/image';
 import { useCallback } from 'react';
 
 interface CharacterProps {
-  type: TCharacter;
+  type: TValueOfCharacter;
   selected: boolean;
-  character: TCharacter;
-  setCharacter: (value: TCharacter) => void;
+  character: TValueOfCharacter;
+  setCharacter: (value: TValueOfCharacter) => void;
   name: string;
 }
 
 const FriendCharacter = ({ type, character, setCharacter, selected, name }: CharacterProps) => {
   const handleSelectedClick = useCallback(() => {
-    setCharacter(character === Character.CACTUS ? Character.HEDGEHOG : Character.CACTUS);
+    setCharacter(character === CHARACTER.CACTUS ? CHARACTER.HEDGEHOG : CHARACTER.CACTUS);
   }, [setCharacter, character]);
+
+  const characterTypeImg = selected ? FRIEND_CHARACTER[type]?.selected : FRIEND_CHARACTER[type]?.default;
 
   return (
     <div
@@ -34,11 +35,12 @@ const FriendCharacter = ({ type, character, setCharacter, selected, name }: Char
           width={66}
           height={66}
           className="mt-3"
-          src={selected ? FRIEND_CHARACTER[type].selected : FRIEND_CHARACTER[type].default}
+          src={characterTypeImg || 'illustration/small-default-kaka.svg'}
           alt=""
         />
+
         <h4 className="mt-[5px] text-sm font-medium text-gray-65">{name}</h4>
-        <h5 className="text-caption-2 mt-[5px] text-center text-gray-55">{FRIEND_CHARACTER[type].label}</h5>
+        <h5 className="text-caption-2 mt-[5px] text-center text-gray-55">{FRIEND_CHARACTER[type]?.label}</h5>
       </div>
     </div>
   );

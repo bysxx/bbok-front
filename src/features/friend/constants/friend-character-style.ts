@@ -1,11 +1,11 @@
-import type { TCharacter } from '@interfaces/enums';
-import { Character } from '@interfaces/enums';
+import type { TValueOfCharacter } from '@constants/character';
+import { CHARACTER } from '@constants/character';
 
-export const FRIEND_CHARACTER_STYLE: { [key in TCharacter]: { style: string } } = {
-  [Character.CACTUS]: {
+export const FRIEND_CHARACTER_STYLE: { [key in TValueOfCharacter]: { style: string } } = {
+  [CHARACTER.CACTUS]: {
     style: 'border-orange-4 bg-orange-3 shadow-friend-card-orange',
   },
-  [Character.HEDGEHOG]: {
+  [CHARACTER.HEDGEHOG]: {
     style: 'border-green-2 bg-green-1 shadow-friend-card-green',
   },
 };

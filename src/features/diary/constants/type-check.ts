@@ -1,4 +1,4 @@
-import { TQuery } from '@interfaces/enums';
+import type { TQuery } from '@constants/query';
 
 export const TYPE_CHECLIST_COMMENT: {
   [key in TQuery]: { title: string; subTitle: string; img: string; bottom: string };

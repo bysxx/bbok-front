@@ -5,13 +5,14 @@
  */
 import BoxButton from '@components/buttons/box-button';
 import CheckInput from '@components/check-input';
-import { TQuery } from '@interfaces/enums';
-import { IUserChecklistItem } from '@interfaces/checklist';
+import type { TQuery } from '@constants/query';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { updateChecklistData } from '@features/checklist/utils';
+import type { IUserChecklistItem } from '@interfaces/checklist';
 import uuid from 'react-uuid';
 
 import WriteCheckInput from '../write-input';
+
 interface TypeCheckListProps<T> {
   type: TQuery;
   allList: IUserChecklistItem<T>[];

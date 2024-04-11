@@ -1,5 +1,3 @@
-import type { TBottomTab } from '../interfaces/enums';
-
 interface IBottomContent {
   href: string;
   label: string;
@@ -7,6 +5,13 @@ interface IBottomContent {
   iconOff: string;
   check: string[];
 }
+
+export const BOTTOM_TAB = {
+  Home: 'Home',
+  Diary: 'Diary',
+  Mypage: 'Mypage',
+} as const;
+export type TBottomTab = keyof typeof BOTTOM_TAB;
 
 export const BOTTOM_TAP_ARRAY: TBottomTab[] = ['Home', 'Diary', 'Mypage'];
 

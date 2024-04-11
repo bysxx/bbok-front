@@ -3,8 +3,8 @@
 import { PortalConsumer } from '@components/global-portal';
 import TooltipDimmer from '@components/tooltip/tooltip-dimmer';
 import FooterSection from '@components/ui/footer/section';
+import type { TBottomTab } from '@constants/tab';
 import { BOTTOM_TAP_ARRAY } from '@constants/tab';
-import type { TBottomTab } from '@interfaces/enums';
 import { useCheckVisitedStore } from '@stores/useCheckVisitedStore';
 import { Fragment } from 'react';
 

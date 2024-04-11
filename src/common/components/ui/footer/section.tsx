@@ -1,6 +1,6 @@
 import ImageLoader from '@components/imageLoader';
+import type { TBottomTab } from '@constants/tab';
 import { BOTTOM_TAP } from '@constants/tab';
-import type { TBottomTab } from '@interfaces/enums';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { forwardRef } from 'react';

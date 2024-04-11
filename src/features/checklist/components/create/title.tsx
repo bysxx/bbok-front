@@ -1,5 +1,5 @@
+import type { TQuery } from '@constants/query';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
-import type { TQuery } from '@interfaces/enums';
 
 const ChecklistTitle = ({ type }: { type: TQuery }) => {
   return (

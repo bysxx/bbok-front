@@ -1,12 +1,12 @@
 import { CheckList } from '@components/check-list';
 import ImageLoader from '@components/imageLoader';
 import { DefaultLayout } from '@components/ui/layout';
+import type { TQuery } from '@constants/query';
+import { TYPE_QUERY } from '@constants/query';
 import { TYPE_CHECLIST_COMMENT } from '@features/diary/constants';
 import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import { updateDiaryChecklist } from '@features/diary/utils/get-diary-checklist';
 import type { IDiaryCheckListItem, IUserChecklistItem } from '@interfaces/checklist';
-import type { TQuery } from '@interfaces/enums';
-import { TypeQuery } from '@interfaces/enums';
 import Image from 'next/image';
 import { useController, useFormContext } from 'react-hook-form';
 
@@ -35,11 +35,18 @@ const ChecklistForm = ({ tab, initialValue, goodChecklist, badChecklist }: IChec
         <h1 className="text-title-1 text-orange-1">어떤 친구였나요?</h1>
       </div>
       <div className="mb-5 mt-7 flex items-center">
-        <Image loader={ImageLoader} src={TYPE_CHECLIST_COMMENT[tab].img} alt="" width={24} height={24} />
-        <h4 className="text-title-3">{TYPE_CHECLIST_COMMENT[tab].subTitle}</h4>
+        <Image
+          loader={ImageLoader}
+          src={TYPE_CHECLIST_COMMENT[tab]?.img || '/icon/ui/broken-heart.svg'}
+          alt=""
+          width={24}
+          height={24}
+        />
+
+        <h4 className="text-title-3">{TYPE_CHECLIST_COMMENT[tab]?.subTitle}</h4>
       </div>
       <div {...register('checklist')}>
-        {(tab === TypeQuery.good
+        {(tab === TYPE_QUERY.good
           ? goodChecklist.filter((item) => item.isUsed)
           : badChecklist.filter((item) => item.isUsed)
         )?.map((list) => (
