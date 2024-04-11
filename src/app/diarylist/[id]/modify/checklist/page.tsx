@@ -2,6 +2,7 @@
 
 import { NavTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
+import { type TQuery, TYPE_QUERY } from '@constants/query';
 import { DiaryChecklistTab } from '@features/checklist/components/diary';
 import { CHECKLIST_TABS, DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import { getDiaryChecklist } from '@features/diary/utils/get-diary-checklist';
@@ -9,8 +10,6 @@ import { useDiaryMutation, useGetDiaryDetail } from '@hooks/queries/diary';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useTabs } from '@hooks/useTabs';
 import type { ICheckItem } from '@interfaces/checklist';
-import type { TQuery } from '@interfaces/enums';
-import { TypeQuery } from '@interfaces/enums';
 import { useEffect, useState } from 'react';
 
 interface IDiaryDetailCriteriaProp {
@@ -52,7 +51,7 @@ const DiaryDetailCriteriaPage = ({ params: { id } }: IDiaryDetailCriteriaProp) =
     TQuery,
     { list: ICheckItem[]; setList: (value: ICheckItem[]) => void; onClick: () => void; navClick: () => void }
   > = {
-    [TypeQuery.good]: {
+    [TYPE_QUERY.good]: {
       list: goodChecklist,
       setList: setGoodChecklist,
       onClick: () => {
@@ -60,7 +59,7 @@ const DiaryDetailCriteriaPage = ({ params: { id } }: IDiaryDetailCriteriaProp) =
       },
       navClick: () => changeItem(0),
     },
-    [TypeQuery.bad]: {
+    [TYPE_QUERY.bad]: {
       list: badChecklist,
       setList: setBadChecklist,
       onClick: () => {
@@ -71,9 +70,9 @@ const DiaryDetailCriteriaPage = ({ params: { id } }: IDiaryDetailCriteriaProp) =
   };
 
   return (
-    <FooterButtonLayout onClick={modifyChecklist[tab].onClick} text={DIARY_CRITERIA_TEXT[tab].text}>
+    <FooterButtonLayout onClick={modifyChecklist[tab].onClick} text={DIARY_CRITERIA_TEXT[tab]?.text || ''}>
       <NavTopBar label="선택 기준 수정" onClick={modifyChecklist[tab].navClick} />
-      <h2 className="px-8 pt-7 text-[17px] font-medium text-gray-70">{DIARY_CRITERIA_TEXT[tab].label}</h2>
+      <h2 className="px-8 pt-7 text-[17px] font-medium text-gray-70">{DIARY_CRITERIA_TEXT[tab]?.label}</h2>
 
       <div className="mt-[34px]">
         <DiaryChecklistTab

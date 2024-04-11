@@ -2,6 +2,8 @@
 
 import { ChangeTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
+import type { TQuery } from '@constants/query';
+import { TYPE_QUERY } from '@constants/query';
 import {
   BAD_CHECK_COUNT,
   CHECK_LIST_TABS_COUNT,
@@ -18,8 +20,6 @@ import { useChecklistMutation } from '@hooks/queries/checklist';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useTabs } from '@hooks/useTabs';
 import type { IMyCheckListResponse } from '@interfaces/checklist';
-import type { TQuery } from '@interfaces/enums';
-import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
@@ -54,7 +54,7 @@ const ChecklistCreatePage = () => {
   };
 
   const TABS = {
-    [TypeQuery.good]: {
+    [TYPE_QUERY.good]: {
       list: goodField.value,
       setList: goodField.onChange,
       count: GOOD_CHECK_COUNT,
@@ -65,7 +65,7 @@ const ChecklistCreatePage = () => {
         changeItem(0);
       },
     },
-    [TypeQuery.bad]: {
+    [TYPE_QUERY.bad]: {
       list: badField.value,
       setList: badField.onChange,
       count: BAD_CHECK_COUNT,

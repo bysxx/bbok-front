@@ -3,6 +3,7 @@
 import BoxButton from '@components/buttons/box-button';
 import CheckInput from '@components/check-input';
 import { DefaultLayout, FooterButtonLayout } from '@components/ui/layout';
+import { TYPE_QUERY } from '@constants/query';
 import { ChecklistCount, WriteCheckInput } from '@features/checklist/components';
 import { DIARY_CRITERIA_TEXT } from '@features/checklist/constants';
 import type { IModifyChecklistContext } from '@features/checklist/types';
@@ -14,7 +15,6 @@ import {
 } from '@features/checklist/utils';
 import { useChecklistMutation } from '@hooks/queries/checklist';
 import type { IModifyChecklistRequestBody, IUserChecklistItem } from '@interfaces/checklist';
-import { TypeQuery } from '@interfaces/enums';
 import { useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import uuid from 'react-uuid';
@@ -75,13 +75,13 @@ const ModifyBadChecklistForm = ({ defaultValue }: { defaultValue: IUserChecklist
     >
       <DefaultLayout className="px-[33px]">
         <div className="mb-[34px] mt-7 flex items-center justify-between">
-          <h1 className="text-title-3 text-gray-70">{DIARY_CRITERIA_TEXT[TypeQuery.bad].label}</h1>
+          <h1 className="text-title-3 text-gray-70">{DIARY_CRITERIA_TEXT[TYPE_QUERY.bad].label}</h1>
           <ChecklistCount
             num={getChecklistCount<string>(addField.value) + getChecklistCount<number>(modifyField.value)}
           />
         </div>
 
-        <h5 className="text-body-3 mb-4">{DIARY_CRITERIA_TEXT[TypeQuery.bad].label}</h5>
+        <h5 className="text-body-3 mb-4">{DIARY_CRITERIA_TEXT[TYPE_QUERY.bad].label}</h5>
 
         <div {...register('modifiedBadChecklist')}>
           {modifyField.value.map((item) => (

@@ -3,6 +3,8 @@
 import { NavTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
 import { LoadingPage } from '@components/ui/pages';
+import type { TQuery } from '@constants/query';
+import { TYPE_QUERY } from '@constants/query';
 import { ChecklistForm } from '@features/diary/components/writing';
 import { CHECKLIST_TABS, TYPE_CHECLIST_COMMENT } from '@features/diary/constants';
 import type { IDiaryContextBody } from '@features/diary/contexts/type';
@@ -12,8 +14,6 @@ import { useDiaryMutation } from '@hooks/queries/diary';
 import { useGetMyChecklist } from '@hooks/queries/member';
 import useCustomRouter from '@hooks/useCustomRouter';
 import { useTabs } from '@hooks/useTabs';
-import type { TQuery } from '@interfaces/enums';
-import { TypeQuery } from '@interfaces/enums';
 import { useFriendStore } from '@stores/useFriendStore';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -48,12 +48,12 @@ const WritingChecklistPage = () => {
   };
 
   const TAB_CONTROL = {
-    [TypeQuery.bad]: {
+    [TYPE_QUERY.bad]: {
       onClick: () => changeItem(1),
       multiClick: () => changeItem(1),
       navClick: () => back(),
     },
-    [TypeQuery.good]: {
+    [TYPE_QUERY.good]: {
       onClick: () => handleCreateDiary(),
       multiClick: () => handleCreateDiary(),
       navClick: () => changeItem(0),
@@ -62,14 +62,14 @@ const WritingChecklistPage = () => {
 
   return (
     <FooterButtonLayout
-      text={TYPE_CHECLIST_COMMENT[tab].bottom}
+      text={TYPE_CHECLIST_COMMENT[tab]?.bottom || ''}
       multi={true}
       isLoading={loading}
       border={false}
       onClick={TAB_CONTROL[tab].onClick}
       multiOnClick={TAB_CONTROL[tab].multiClick}
     >
-      <NavTopBar onClick={TAB_CONTROL[tab].navClick} label={TYPE_CHECLIST_COMMENT[tab].title} />
+      <NavTopBar onClick={TAB_CONTROL[tab].navClick} label={TYPE_CHECLIST_COMMENT[tab]?.title || ''} />
       {isSuccess && data.data && (
         <ChecklistForm
           initialValue={getInitialDiaryList(data.data)}
