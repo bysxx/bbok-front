@@ -1,4 +1,4 @@
-import type { TEmoji } from '@interfaces/enums';
+import type { TEmoji } from '@constants/emoji';
 
 /**
  * 일화 다음 페이지로 이동 여부 반환 함수

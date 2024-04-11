@@ -1,10 +1,18 @@
-import { TEmoji } from '../interfaces/enums/emoji';
+export const EMOJI = {
+  CALM: 'CALM',
+  HAPPY: 'HAPPY',
+  PANIC: 'PANIC',
+  ANGRY: 'ANGRY',
+  DISPLEASED: 'DISPLEASED',
+  SAD: 'SAD',
+} as const;
+export type TEmoji = keyof typeof EMOJI;
 
 interface IEmoji {
   select: string;
   notSelect: string;
-  smallSelect: any;
-  smallNotSelect: any;
+  smallSelect: string;
+  smallNotSelect: string;
 }
 export const DIARY_EMOJI_ARRAY: TEmoji[] = ['HAPPY', 'CALM', 'PANIC', 'DISPLEASED', 'SAD', 'ANGRY'];
 export const DIARY_EMOJI: { [key in TEmoji]: IEmoji } = {

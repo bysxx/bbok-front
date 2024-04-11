@@ -3,10 +3,10 @@
 import ImageLoader from '@components/imageLoader';
 import { CancelTopBar } from '@components/top-bar';
 import { FooterButtonLayout } from '@components/ui/layout';
+import type { TEmoji } from '@constants/emoji';
 import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
 import type { IDiaryContextBody } from '@features/diary/contexts/type';
 import useCustomRouter from '@hooks/useCustomRouter';
-import type { TEmoji } from '@interfaces/enums';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';

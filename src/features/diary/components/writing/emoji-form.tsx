@@ -2,9 +2,9 @@
 
 import ImageLoader from '@components/imageLoader';
 import ToggleButton from '@components/toggle-button';
+import type { TEmoji } from '@constants/emoji';
 import { DIARY_EMOJI, DIARY_EMOJI_ARRAY } from '@constants/emoji';
 import type { IDiaryContextBody } from '@features/diary/contexts/type';
-import type { TEmoji } from '@interfaces/enums';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';

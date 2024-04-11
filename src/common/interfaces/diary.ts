@@ -1,5 +1,5 @@
 import type { TDate } from '@constants/date';
-import type { TEmoji } from '@interfaces/enums';
+import type { TEmoji } from '@constants/emoji';
 
 import type { ICheckItem, IDiaryCheckListItem } from './checklist';
 
